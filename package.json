@@ -1,0 +1,37 @@
+{
+	"name": "next-checkout-zeit",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.26",
+		"@fortawesome/free-regular-svg-icons": "^5.12.0",
+		"@fortawesome/free-solid-svg-icons": "^5.12.0",
+		"@fortawesome/react-fontawesome": "^0.1.8",
+		"atob": "^2.1.2",
+		"btoa": "^1.2.1",
+		"convert-units": "^2.3.4",
+		"country-currency-map": "^2.1.6",
+		"detect-browser": "^4.8.0",
+		"formik": "^2.0.8",
+		"isomorphic-unfetch": "^3.0.0",
+		"next": "9.1.6",
+		"next-images": "^1.2.0",
+		"react": "16.12.0",
+		"react-dom": "16.12.0",
+		"react-flex-ready": "^1.1.0",
+		"styled-components": "^4.4.1",
+		"yup": "^0.28.0"
+	},
+	"devDependencies": {
+		"babel-eslint": "^10.0.3",
+		"babel-plugin-module-resolver": "^4.0.0",
+		"babel-plugin-styled-components": "^1.10.6",
+		"eslint": "^6.8.0",
+		"eslint-plugin-react": "^7.17.0"
+	}
+}
