@@ -9,7 +9,7 @@ const Index = ({ products }) => (
 );
 
 Index.getInitialProps = async () => {
-	const response = await fetch("http://localhost:3000/api/product");
+	const response = await fetch(`${process.env.BASE_URL}/api/product`);
 	const products = await response.json();
 
 	return { products };

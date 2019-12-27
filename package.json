@@ -17,6 +17,7 @@
 		"convert-units": "^2.3.4",
 		"country-currency-map": "^2.1.6",
 		"detect-browser": "^4.8.0",
+		"dotenv": "^8.2.0",
 		"formik": "^2.0.8",
 		"isomorphic-unfetch": "^3.0.0",
 		"next": "9.1.6",
