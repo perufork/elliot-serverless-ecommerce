@@ -30,7 +30,9 @@ const Product = ({ data, status }) => (
 );
 
 Product.getInitialProps = async ({ query }) => {
-	const response = await fetch(`http://localhost:3000/api/product/${query.id}`);
+	const response = await fetch(
+		`${process.env.BASE_URL}/api/product/${query.id}`
+	);
 
 	const data = await response.json();
 	return { data, status: response.status };
