@@ -1,15 +1,20 @@
-import { ThemeProvider } from 'styled-components'
-import Header from 'components/theme/Header'
-// import theme from 'components/theme'
+import Header from "components/theme/Header";
+import GlobalStyle from "components/theme/global-style";
+import Head from "next/head";
 
 export default ({ children }) => (
-  <ThemeProvider theme={{
-      colors: {
-        black: '#000',
-        white: '#fff'
-      }
-    }}>
-    <Header />
-    {children}
-  </ThemeProvider>
-)
+	<>
+		<Head>
+			{/* TODO: pass custom font from theme */}
+			<link
+				href="https://fonts.googleapis.com/css?family=Roboto&display=fallback"
+				rel="stylesheet"
+			/>
+		</Head>
+		<GlobalStyle />
+		<>
+			<Header />
+			{children}
+		</>
+	</>
+);

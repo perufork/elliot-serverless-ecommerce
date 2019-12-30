@@ -16,9 +16,9 @@ const Product = ({ data, status }) => (
 					</thead>
 					<tbody>
 						<tr>
-							<td>{data.name}</td>
+							<td>{data.title}</td>
 							<td>{data.price}</td>
-							<td>{data.quantity}</td>
+							<td>{data.rating}</td>
 						</tr>
 					</tbody>
 				</table>

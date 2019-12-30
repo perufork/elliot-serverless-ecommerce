@@ -1,32 +1,47 @@
 export const products = [
-  {
-    id: '1',
-    name: 'Apple Airpods',
-    price: '172',
-    quantity: '77'
-  },
-  {
-    id: '2',
-    name: 'Apple Mac Pro',
-    price: '167',
-    quantity: '75'
-  },
-  {
-    id: '3',
-    name: 'Apple macBook Pro',
-    price: '96',
-    quantity: '32'
-  },
-  {
-    id: '4',
-    name: 'Apple Magic keyboard',
-    price: '202',
-    quantity: '136'
-  },
-  {
-    id: '5',
-    name: 'Apple Magic mouse',
-    price: '150',
-    quantity: '49'
-  }
-]
+	{
+		id: "1",
+		title: "Apple Airpods",
+		price: 172,
+		description:
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+		rating: 3,
+		currency: "$"
+	},
+	{
+		id: "2",
+		title: "Apple Mac Pro",
+		price: 167,
+		description:
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+		rating: 4,
+		currency: "$"
+	},
+	{
+		id: "3",
+		title: "Apple macBook Pro",
+		price: 96,
+		description:
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+		rating: 2,
+		currency: "$"
+	},
+	{
+		id: "4",
+		title: "Apple Magic keyboard",
+		price: 202,
+		description:
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+		rating: 5,
+		currency: "$"
+	},
+	{
+		id: "5",
+		title: "Apple Magic mouse",
+		price: 150,
+		description:
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+		rating: 3,
+		currency: "$"
+	}
+];
