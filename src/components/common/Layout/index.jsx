@@ -1,6 +1,7 @@
 import Header from "components/theme/Header";
 import GlobalStyle from "components/theme/global-style";
 import Head from "next/head";
+import Sidebar from "components/theme/Sidebar";
 
 export default ({ children }) => (
 	<>
@@ -14,6 +15,7 @@ export default ({ children }) => (
 		<GlobalStyle />
 		<>
 			<Header />
+			<Sidebar />
 			{children}
 		</>
 	</>
