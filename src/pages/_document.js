@@ -1,52 +1,66 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { getServerLocale } from "helpers/locale";
 
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
-		const sheet = new ServerStyleSheet();
+		const pageProps = await super.getInitialProps(ctx);
+
+		const { req } = ctx;
+
+		const props = {
+			...pageProps,
+			locale: req.locale,
+			localeDataScript: req.localeDataScript
+		};
+
+		if (!props.locale) {
+			props.locale = getServerLocale(req);
+		}
+
+		const styleSheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
+
 		try {
 			ctx.renderPage = () =>
 				originalRenderPage({
-					enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+					enhanceApp: App => props =>
+						styleSheet.collectStyles(<App {...props} />)
 				});
 
-			const props = await super.getInitialProps(ctx);
-			const {
-				req: { locale, localeDataScript }
-			} = ctx;
-
-			return {
-				...props,
-				locale,
-				localeDataScript,
-				styles: (
-					<>
-						{props.styles}
-						{sheet.getStyleElement()}
-					</>
-				)
-			};
+			props.styles = (
+				<>
+					{pageProps.styles}
+					{styleSheet.getStyleElement()}
+				</>
+			);
 		} finally {
-			sheet.seal();
+			styleSheet.seal();
 		}
+
+		return props;
 	}
 
 	render() {
 		// Polyfill Intl API for older browsers
 		const polyfill = `https://cdn.polyfill.io/v3/polyfill.min.js?features=Intl.~locale.${this.props.locale}`;
+		const fallbackLocaleDataScript = `https://cdn.jsdelivr.net/npm/@formatjs/intl-relativetimeformat/dist/locale-data/${this.props.locale}.js`;
 
 		return (
-			<html>
+			<html lang={this.props.locale}>
 				<Head />
 				<body>
 					<Main />
 					<script src={polyfill} />
-					<script
-						dangerouslySetInnerHTML={{
-							__html: this.props.localeDataScript
-						}}
-					/>
+					{this.props.localeDataScript ? (
+						<script
+							dangerouslySetInnerHTML={{
+								__html: this.props.localeDataScript
+							}}
+						/>
+					) : (
+						<script src={fallbackLocaleDataScript} />
+					)}
 					<NextScript />
 				</body>
 			</html>

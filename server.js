@@ -16,7 +16,7 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-// Get the supported languages by looking for translations in the `lang/` dir.
+// Get the supported languages by looking for translations in the `./src/lang/` dir.
 const supportedLanguages = glob
 	.sync("./src/lang/*.json")
 	.map(f => basename(f, ".json"));
@@ -41,7 +41,14 @@ const getLocaleDataScript = locale => {
 // locale. These will only be used in production, in dev the `defaultMessage` in
 // each message description in the source code will be used.
 const getMessages = locale => {
-	return require(`./src/lang/${locale}.json`);
+	switch (locale) {
+		case "en":
+			return require("./src/lang/en.json");
+		case "fr":
+			return require("./src/lang/fr.json");
+		default:
+			return undefined;
+	}
 };
 
 app.prepare().then(() => {
@@ -51,6 +58,7 @@ app.prepare().then(() => {
 		req.locale = locale;
 		req.localeDataScript = getLocaleDataScript(locale);
 		req.messages = getMessages(locale);
+		throw "should fail";
 		handle(req, res);
 	}).listen(port, err => {
 		if (err) throw err;

@@ -1,0 +1,1 @@
+export default {"en":{"button.add_to_cart":"add to cart","title":"Title"},"fr":{"button.add_to_cart":"ajouter au chariot"}}

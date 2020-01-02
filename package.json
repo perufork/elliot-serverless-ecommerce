@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "BASE_URL=http://localhost:3000 node --icu-data-dir=node_modules/full-icu server.js",
-		"build": "next build",
-		"extract": "node ./src/scripts/extract '{pages,components}/*.{js,jsx}'",
+		"build": "next build && npm run extract",
+		"extract": "node ./src/scripts/default-lang && node ./src/scripts/extract",
 		"start": "NODE_ENV=production node --icu-data-dir=node_modules/full-icu server.js"
 	},
 	"dependencies": {
@@ -40,6 +40,7 @@
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
 		"babel-plugin-module-resolver": "^4.0.0",
+		"babel-plugin-react-intl": "^5.1.13",
 		"babel-plugin-styled-components": "^1.10.6",
 		"eslint": "^6.8.0",
 		"eslint-plugin-react": "^7.17.0"
