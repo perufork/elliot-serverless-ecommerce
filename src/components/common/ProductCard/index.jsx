@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import thumbnailImage from "assets/product/product.jpg";
@@ -34,7 +35,7 @@ export default ({
 			</Body>
 			<Footer>
 				<Button onClick={onClick} type="button" variant="primary">
-					Add to Cart
+					<FormattedMessage id="button.add_to_cart" />
 				</Button>
 			</Footer>
 		</div>
