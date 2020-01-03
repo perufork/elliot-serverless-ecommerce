@@ -1,22 +1,30 @@
 import Header from "components/theme/Header";
+import { withTheme } from "styled-components";
 import GlobalStyle from "components/theme/global-style";
 import Head from "next/head";
-import Sidebar from "components/theme/Sidebar";
+import { Wrapper } from "./styles";
 
-export default ({ children }) => (
+const Layout = ({ children, theme }) => (
 	<>
 		<Head>
 			{/* TODO: pass custom font from theme */}
 			<link
-				href="https://fonts.googleapis.com/css?family=Roboto&display=fallback"
+				href={`https://fonts.googleapis.com/css?family=${theme.fonts.primary.replace(
+					" ",
+					"+"
+				)}:300,400,500|${theme.fonts.primary.replace(
+					" ",
+					"+"
+				)}:400,700&display=fallback`}
 				rel="stylesheet"
 			/>
 		</Head>
 		<GlobalStyle />
 		<>
 			<Header />
-			<Sidebar />
-			{children}
+			<Wrapper>{children}</Wrapper>
 		</>
 	</>
 );
+
+export default withTheme(Layout);

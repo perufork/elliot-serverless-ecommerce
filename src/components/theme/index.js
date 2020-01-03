@@ -1,9 +1,13 @@
 export default {
+	fonts: {
+		primary: "Roboto"
+	},
 	colors: {
 		black: "#222",
 		white: "#fff",
 		lightGray: "#bbb",
-		darkGray: "#999"
+		darkGray: "#999",
+		accent: "#f68773"
 	},
 	button: {
 		lineHeight: "20px",

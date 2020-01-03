@@ -138,11 +138,19 @@ export const Navigation = styled.div`
 				text-decoration: none;
 
 				&:hover {
-					color: #f68773;
+					color: ${({
+						theme: {
+							colors: { accent }
+						}
+					}) => accent};
 				}
 
 				&.active {
-					color: #f68773;
+					color: ${({
+						theme: {
+							colors: { accent }
+						}
+					}) => accent};
 				}
 			}
 		}
@@ -163,7 +171,11 @@ export const DesktopMenu = styled.ul`
 			text-decoration: none;
 
 			&:hover {
-				color: #f68773;
+				color: ${({
+					theme: {
+						colors: { accent }
+					}
+				}) => accent};
 			}
 		}
 	}
@@ -205,11 +217,19 @@ export const List = styled.ul`
 			font-size: 16px;
 
 			&:hover {
-				color: #f68773;
+				color: ${({
+					theme: {
+						colors: { accent }
+					}
+				}) => accent};
 			}
 
 			&.active {
-				color: #f68773;
+				color: ${({
+					theme: {
+						colors: { accent }
+					}
+				}) => accent};
 			}
 		}
 	}

@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  *, ::after, ::before {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 62.5%;
   }

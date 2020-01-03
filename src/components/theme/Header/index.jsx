@@ -1,14 +1,23 @@
-import Link from "next/link";
-import Container from "components/common/Container";
-import Logo from "components/common/Logo";
-import { Wrapper } from "./styles";
+import { useState } from "react";
+import Brand from "./Brand";
+import Links from "./Links";
+import Buttons from "./Buttons";
+import { Wrapper, Options } from "./styles";
+import Sidebar from "components/theme/Sidebar";
 
-export default () => (
-	<Wrapper as={Container}>
-		<Link href="/">
-			<a>
-				<Logo width={48} height={48} />
-			</a>
-		</Link>
-	</Wrapper>
-);
+export default () => {
+	const [showSidebar, setShowSidebar] = useState(false);
+
+	return (
+		<>
+			<Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+			<Wrapper>
+				<Brand />
+				<Options>
+					<Links />
+					<Buttons toggleSidebar={setShowSidebar} />
+				</Options>
+			</Wrapper>
+		</>
+	);
+};
