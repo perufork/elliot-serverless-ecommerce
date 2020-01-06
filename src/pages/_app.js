@@ -3,6 +3,7 @@ import App from "next/app";
 import { createIntl, createIntlCache, RawIntlProvider } from "react-intl";
 import { ThemeProvider } from "styled-components";
 import theme from "components/theme";
+import { CartProvider } from "providers/CartProvider";
 import { getLocale } from "helpers/locale";
 
 const cache = createIntlCache();
@@ -48,9 +49,11 @@ export default class MyApp extends App {
 
 		return (
 			<RawIntlProvider value={intl}>
-				<ThemeProvider theme={theme}>
-					<Component {...pageProps} />
-				</ThemeProvider>
+				<CartProvider>
+					<ThemeProvider theme={theme}>
+						<Component {...pageProps} />
+					</ThemeProvider>
+				</CartProvider>
 			</RawIntlProvider>
 		);
 	}

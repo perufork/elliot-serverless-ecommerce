@@ -12,7 +12,7 @@ export default ({
 	rating = 4,
 	price = 100,
 	currency = "$",
-	onClick = () => alert("Added to cart")
+	onClick
 }) => (
 	<Wrapper>
 		<Thumbnail>
