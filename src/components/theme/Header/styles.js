@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	display: none;
 	border-bottom: 1px solid #eaeaea;
 	position: fixed;
 	top: 0;
@@ -32,6 +31,13 @@ export const Wrapper = styled.div`
 
 	@media (min-width: 1680px) {
 		padding: 10px 80px;
+	}
+
+	@media (max-width: 1200px) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 20px;
 	}
 `;
 

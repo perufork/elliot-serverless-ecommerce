@@ -1,26 +1,25 @@
-import { Wrapper, Search, Form, Actions, Cart, CartItems } from "./styles";
-import CartIcon from "components/common/CartIcon";
+import { Wrapper, Actions, Cart, CartItems } from "./styles";
+import {
+	AvatarIcon,
+	HeartIcon,
+	CartIcon,
+	MenuIcon
+} from "components/common/Icons";
+import Search from "components/theme/Header/Search";
 import Link from "next/link";
 
 const Buttons = ({ toggleSidebar }) => (
 	<Wrapper>
-		<Search>
-			<Form>
-				<input type="text" placeholder="Search Searching..." />
-				<button>
-					<CartIcon />
-				</button>
-			</Form>
-		</Search>
+		<Search />
 		<Actions>
 			<Link href="/">
 				<a>
-					<CartIcon />
+					<AvatarIcon />
 				</a>
 			</Link>
-			<Link href="/">
+			<Link href="/favorite">
 				<a>
-					<CartIcon />
+					<HeartIcon />
 				</a>
 			</Link>
 			<Link href="/">
@@ -30,7 +29,7 @@ const Buttons = ({ toggleSidebar }) => (
 				</Cart>
 			</Link>
 			<button onClick={() => toggleSidebar(true)}>
-				<CartIcon />
+				<MenuIcon />
 			</button>
 		</Actions>
 	</Wrapper>

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const Menu = styled.ul`
+	@media screen and (max-width: 1200px) {
+		display: none;
+	}
+
 	li {
 		display: inline-block;
 		padding-right: 40px;
