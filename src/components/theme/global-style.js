@@ -6,8 +6,24 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  *, ::after, ::before {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 62.5%;
+  }
+
+  button {
+    cursor: pointer;
+
+    &:hover {
+      outline: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 

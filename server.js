@@ -58,7 +58,6 @@ app.prepare().then(() => {
 		req.locale = locale;
 		req.localeDataScript = getLocaleDataScript(locale);
 		req.messages = getMessages(locale);
-		throw "should fail";
 		handle(req, res);
 	}).listen(port, err => {
 		if (err) throw err;

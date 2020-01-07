@@ -3,8 +3,10 @@ import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import thumbnailImage from "assets/product/product.jpg";
 import { Wrapper, Thumbnail, Header, Details, Body, Footer } from "./styles";
+import Link from "next/link";
 
 export default ({
+	id,
 	thumbnail = thumbnailImage,
 	image = thumbnailImage,
 	title = "Lorem Ipsum",
@@ -12,7 +14,7 @@ export default ({
 	rating = 4,
 	price = 100,
 	currency = "$",
-	onClick = () => alert("Added to cart")
+	onClick
 }) => (
 	<Wrapper>
 		<Thumbnail>
@@ -21,7 +23,11 @@ export default ({
 		<div>
 			<Header>
 				<Details>
-					<h2>{title}</h2>
+					<Link href={`/product/${id}`}>
+						<a>
+							<h2>{title}</h2>
+						</a>
+					</Link>
 					<p>
 						<span>{currency}</span> {price}
 					</p>
