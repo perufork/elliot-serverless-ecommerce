@@ -1,4 +1,5 @@
 {
-  "button.add_to_cart": "add to cart",
-  "title": "Title"
+	"button.add_to_cart": "add to cart",
+	"title": "Title",
+	"title.cart": "cart"
 }

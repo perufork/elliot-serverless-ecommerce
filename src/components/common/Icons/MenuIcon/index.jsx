@@ -1,16 +1,4 @@
-import styled from "styled-components";
-
-const StyledIcon = styled.svg`
-	&:hover {
-		path {
-			fill: ${({
-				theme: {
-					colors: { accent }
-				}
-			}) => accent};
-		}
-	}
-`;
+import StyledIcon from "components/common/StyledIcon";
 
 const MenuIcon = ({ width = 24, height = 24, color = "#222" }) => (
 	<StyledIcon

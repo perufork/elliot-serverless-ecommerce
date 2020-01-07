@@ -10,7 +10,6 @@ export const Menu = styled.ul`
 		padding-right: 40px;
 
 		a {
-			text-decoration: none;
 			position: relative;
 			display: inline-block;
 			padding: 30px 0;

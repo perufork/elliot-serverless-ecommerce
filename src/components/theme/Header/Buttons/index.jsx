@@ -26,7 +26,7 @@ const Buttons = ({ toggleSidebar }) => {
 						<HeartIcon />
 					</a>
 				</Link>
-				<Link href="/">
+				<Link href="/cart">
 					<Cart>
 						<CartIcon />
 						{state.data && state.data.length > 0 && (

@@ -16,6 +16,14 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+
+    &:hover {
+      outline: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 

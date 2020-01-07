@@ -19,7 +19,6 @@ export const CardHeader = styled.div`
 
 	a {
 		color: #000;
-		text-decoration: none;
 		font-weight: bold;
 		font-size: 18pt;
 	}
