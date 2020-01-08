@@ -1,1 +1,1 @@
-export default {"en":{"button.add_to_cart":"add to cart","title":"Title"},"fr":{"button.add_to_cart":"ajouter au chariot"}}
+export default {"en":{"button.add_to_cart":"add to cart","button.checkout":"checkout","button.view_cart":"view cart","title":"Title","title.cart":"cart"},"fr":{"button.add_to_cart":"ajouter au chariot","button.checkout":"checkout","button.view_cart":"voir le panier","title.cart":"chariot"}}

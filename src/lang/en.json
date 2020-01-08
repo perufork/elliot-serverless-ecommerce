@@ -1,7 +1,7 @@
 {
-	"button.add_to_cart": "add to cart",
-	"button.checkout": "checkout",
-	"button.view_cart": "view cart",
-	"title": "Title",
-	"title.cart": "cart"
+  "button.add_to_cart": "add to cart",
+  "button.checkout": "checkout",
+  "button.view_cart": "view cart",
+  "title": "Title",
+  "title.cart": "cart"
 }
