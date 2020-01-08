@@ -1,21 +1,33 @@
-import { useState } from "react";
-import Brand from "./Brand";
-import Links from "./Links";
-import Buttons from "./Buttons";
+import Brand from "./components/Brand";
+import Links from "./components/Links";
+import Buttons from "./components/Buttons";
 import { Wrapper, Options } from "./styles";
-import Sidebar from "components/theme/Sidebar";
+import Sidebar from "components/theme/Header/components/Sidebar";
+import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
 
 export default () => {
-	const [showSidebar, setShowSidebar] = useState(false);
+	const { state } = useSidebar();
+	const { dispatch } = useDispatchSidebar();
+
+	const toggleSidebar = ({ type, cart }) => {
+		dispatch({
+			type,
+			cartContent: cart
+		});
+	};
 
 	return (
 		<>
-			<Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+			<Sidebar
+				visibleSidebar={state.open}
+				toggleSidebar={toggleSidebar}
+				showCartContent={state.cartContent}
+			/>
 			<Wrapper>
 				<Brand />
 				<Options>
 					<Links />
-					<Buttons toggleSidebar={setShowSidebar} />
+					<Buttons toggleSidebar={toggleSidebar} />
 				</Options>
 			</Wrapper>
 		</>

@@ -4,6 +4,7 @@ import { createIntl, createIntlCache, RawIntlProvider } from "react-intl";
 import { ThemeProvider } from "styled-components";
 import theme from "components/theme";
 import { CartProvider } from "providers/CartProvider";
+import { SidebarProvider } from "providers/SidebarProvider";
 import { getLocale } from "helpers/locale";
 
 const cache = createIntlCache();
@@ -50,9 +51,11 @@ export default class MyApp extends App {
 		return (
 			<RawIntlProvider value={intl}>
 				<CartProvider>
-					<ThemeProvider theme={theme}>
-						<Component {...pageProps} />
-					</ThemeProvider>
+					<SidebarProvider>
+						<ThemeProvider theme={theme}>
+							<Component {...pageProps} />
+						</ThemeProvider>
+					</SidebarProvider>
 				</CartProvider>
 			</RawIntlProvider>
 		);

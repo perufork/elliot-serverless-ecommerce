@@ -29,10 +29,10 @@ export default {
 			},
 			secondary: {
 				color: "#222",
-				bg: "#fff",
-				border: "1px solid #222",
+				bg: "none",
+				border: "2px solid #222",
 				hover: {
-					bg: "#222",
+					bg: "#f68773",
 					color: "#fff"
 				}
 			}

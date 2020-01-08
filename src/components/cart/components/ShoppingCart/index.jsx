@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import Container from "components/common/Container";
+import Button from "components/common/Button";
 import Swatch from "components/common/Swatch";
 import { MinusIcon, PlusIcon, CancelIcon } from "components/common/Icons";
 import {
@@ -8,6 +9,7 @@ import {
 	addQuantityByProduct,
 	subtractQuantityByProduct
 } from "components/cart/actions";
+import getTotal from "helpers/getTotal";
 import thumbnailImage from "assets/product/product.jpg";
 import {
 	TableWrapper,
@@ -21,7 +23,6 @@ import {
 	Controller,
 	Center
 } from "./styles";
-import Button from "components/common/Button";
 
 const ShoppingCart = () => {
 	const { state } = useCart();
@@ -94,7 +95,7 @@ const ShoppingCart = () => {
 									</td>
 									<td>
 										<p>
-											<strong>${price}</strong>
+											<strong>${price * quantity}</strong>
 										</p>
 									</td>
 									<td>
