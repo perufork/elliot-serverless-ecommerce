@@ -57,7 +57,7 @@ const ShoppingCart = () => {
 												</Link>
 											</Thumbnail>
 											<Content>
-												<Link href={`/product/${id}`}>
+												<Link href={`/product?id=${id}`} as={`/product/${id}`}>
 													<a>{title}</a>
 												</Link>
 												<p>Apple</p>
