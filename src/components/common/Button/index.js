@@ -15,106 +15,53 @@ const Button = styled.button`
 		transition: ${({ theme: { button } }) => button.transition};
 	}
 
+	${({ wide }) =>
+		wide &&
+		`
+      width: 100%;
+      text-align: center;
+    `}
+
+    ${({ marginBottom }) =>
+			marginBottom &&
+			`
+        margin-bottom: ${marginBottom}rem;
+    `}
+
 	${({
 		variant,
 		theme: {
 			button: {
-				variants: { primary }
+				variants: { primary, secondary }
 			}
 		}
-	}) =>
-		// TODO: add a helper to handle variants
-		variant === "primary" &&
-		`
-    color: ${primary.color};
-    background: ${primary.bg};
+	}) => {
+		switch (variant) {
+			case "primary":
+				return `
+                        color: ${primary.color};
+                        background: ${primary.bg};
 
-    &:hover {
-      background: ${primary.hover.bg}
-    }
-  `} /* &--rounded {
-      border-radius: 50px;
-  }
+                        &:hover {
+                            background: ${primary.hover.bg};
+                        }
+                    `;
+			case "secondary":
+				return `
+                        color: ${secondary.color};
+                        background: ${secondary.bg};
+                        border: ${secondary.border};
 
-  &--curve {
-      border-radius: 5px;
-  } */
-
-  /* &--outline {
-      padding: 15px 36px;
-      font-size: 14px;
-      color: $color-heading;
-      border: 2px solid #222;
-      text-transform: uppercase;
-      background-color: transparent;
-
-      &:hover {
-          background-color: $color-1st;
-          border-color: $color-1st;
-          color: #ffffff;
-      }
-  } */
-
-  /* &--fullwidth {
-      width: 100%;
-      text-align: center;
-  } */
-
-  /* &--sm {
-      padding: .5rem 2rem;
-      font-size: 1.2rem;
-
-      &.ps-btn--curve {
-          border-radius: 3px;
-      }
-  }
-
-  &--lg {
-      padding: 1.5rem 4rem;
-  }
-
-  &--xl {
-      padding: 2rem 6rem;
-      font-size: 1.6rem;
-  }
-
-  &--reverse {
-      background-color: #576391;
-
-      &:hover {
-          background-color: $color-2nd;
-      }
-  }
-
-  &--gray {
-      background-color: #e5e5e5;
-      color: #000000;
-      font-size: 1.6rem;
-  }
-
-  &--black {
-      background-color: $color-heading;
-
-      &.ps-btn--outline {
-          background-color: transparent;
-          border: 2px solid $color-heading;
-          color: $color-heading;
-
-          &:hover {
-              background-color: $color-heading;
-              color: #ffffff;
-          }
-      }
-  }
-
-  &:hover, &:active {
-      color: #fff;
-      background-color: $color-1st;
-
-      &.ps-btn--black {
-          background-color: $color-1st;
-      }
-  } */
+                        &:hover {
+                            background: ${secondary.hover.bg};
+                            color: ${secondary.hover.color};
+                            border-color: ${secondary.hover.bg};
+                        }
+                    `;
+			default:
+				return null;
+		}
+	}}
 `;
 
 export default Button;

@@ -5,7 +5,7 @@ import {
 	CartIcon,
 	MenuIcon
 } from "components/common/Icons";
-import Search from "components/theme/Header/Search";
+import Search from "components/theme/Header/components/Search";
 import Link from "next/link";
 import { useCart } from "providers/CartProvider";
 
@@ -26,15 +26,21 @@ const Buttons = ({ toggleSidebar }) => {
 						<HeartIcon />
 					</a>
 				</Link>
-				<Link href="/cart">
+				<button
+					type="button"
+					onClick={() => toggleSidebar({ type: "OPEN_SIDEBAR", cart: true })}
+				>
 					<Cart>
 						<CartIcon />
 						{state.data && state.data.length > 0 && (
 							<CartItems>{state.data.length}</CartItems>
 						)}
 					</Cart>
-				</Link>
-				<button onClick={() => toggleSidebar(true)}>
+				</button>
+				<button
+					type="button"
+					onClick={() => toggleSidebar({ type: "OPEN_SIDEBAR", cart: false })}
+				>
 					<MenuIcon />
 				</button>
 			</Actions>

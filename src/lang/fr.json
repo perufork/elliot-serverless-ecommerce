@@ -1,4 +1,6 @@
 {
 	"button.add_to_cart": "ajouter au chariot",
+	"button.checkout": "checkout",
+	"button.view_cart": "voir le panier",
 	"title.cart": "chariot"
 }
