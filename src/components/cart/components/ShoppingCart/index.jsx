@@ -3,13 +3,13 @@ import { useCart, useDispatchCart } from "providers/CartProvider";
 import Container from "components/common/Container";
 import Button from "components/common/Button";
 import Swatch from "components/common/Swatch";
-import { MinusIcon, PlusIcon, CancelIcon } from "components/common/Icons";
+import QuantityController from "components/common/QuantityController";
+import { CancelIcon } from "components/common/Icons";
 import {
 	removeFromCart,
 	addQuantityByProduct,
 	subtractQuantityByProduct
 } from "components/cart/actions";
-import getTotal from "helpers/getTotal";
 import thumbnailImage from "assets/product/product.jpg";
 import {
 	TableWrapper,
@@ -19,8 +19,6 @@ import {
 	Product,
 	Thumbnail,
 	Content,
-	QuantityController,
-	Controller,
 	Center
 } from "./styles";
 
@@ -72,26 +70,13 @@ const ShoppingCart = () => {
 										<strong>${price}</strong>
 									</td>
 									<td>
-										<QuantityController>
-											<Controller
-												disabled={quantity === 1}
-												onClick={() =>
-													subtractQuantityByProduct({ dispatch, id })
-												}
-											>
-												<MinusIcon
-													color={quantity === 1 && "#bbb"}
-													width={16}
-													height={16}
-												/>
-											</Controller>
-											<input type="text" value={quantity} readOnly />
-											<Controller
-												onClick={() => addQuantityByProduct({ dispatch, id })}
-											>
-												<PlusIcon width={16} height={16} />
-											</Controller>
-										</QuantityController>
+										<QuantityController
+											id={id}
+											dispatch={dispatch}
+											subtractQuantityByProduct={subtractQuantityByProduct}
+											addQuantityByProduct={addQuantityByProduct}
+											quantity={quantity}
+										/>
 									</td>
 									<td>
 										<p>

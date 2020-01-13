@@ -6,3 +6,4 @@ export * from "./CartIcon";
 export * from "./PlusIcon";
 export * from "./MinusIcon";
 export * from "./CancelIcon";
+export * from "./CarouselArrow";
