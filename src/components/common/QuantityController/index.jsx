@@ -15,7 +15,7 @@ export default ({
 			onClick={() => subtractQuantityByProduct({ dispatch, id })}
 		>
 			<MinusIcon
-				color={quantity === 1 ? "#bbb" : "#222"}
+				color={quantity <= 1 ? "#bbb" : "#222"}
 				width={16}
 				height={16}
 			/>
@@ -23,10 +23,13 @@ export default ({
 		<input type="text" value={quantity} readOnly />
 		<Controller
 			disalbed={quantity <= 0}
-			onClick={() => addQuantityByProduct({ dispatch, id })}
+			onClick={() => {
+				if (quantity === 0) return null;
+				addQuantityByProduct({ dispatch, id });
+			}}
 		>
 			<PlusIcon
-				color={quantity === 1 ? "#bbb" : "#222"}
+				color={quantity <= 0 ? "#bbb" : "#222"}
 				width={16}
 				height={16}
 			/>
