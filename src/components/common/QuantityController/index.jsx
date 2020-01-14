@@ -11,20 +11,25 @@ export default ({
 }) => (
 	<Wrapper wide={wide}>
 		<Controller
-			disabled={quantity === 1}
+			disabled={quantity <= 1 || quantity < 0}
 			onClick={() => subtractQuantityByProduct({ dispatch, id })}
 		>
-			<MinusIcon color={quantity === 1 && "#bbb"} width={16} height={16} />
+			<MinusIcon
+				color={quantity === 1 ? "#bbb" : "#222"}
+				width={16}
+				height={16}
+			/>
 		</Controller>
 		<input type="text" value={quantity} readOnly />
 		<Controller
-			disalbed={quantity === 0}
-			onClick={() => {
-				if (quantity === 0) return null;
-				addQuantityByProduct({ dispatch, id });
-			}}
+			disalbed={quantity <= 0}
+			onClick={() => addQuantityByProduct({ dispatch, id })}
 		>
-			<PlusIcon color={quantity === 1 && "#bbb"} width={16} height={16} />
+			<PlusIcon
+				color={quantity === 1 ? "#bbb" : "#222"}
+				width={16}
+				height={16}
+			/>
 		</Controller>
 	</Wrapper>
 );
