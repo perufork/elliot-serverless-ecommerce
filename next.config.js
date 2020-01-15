@@ -9,6 +9,10 @@ module.exports = withImages({
 	env: {
 		BASE_URL: process.env.BASE_URL
 	},
+	cssModules: false,
+	cssLoaderOptions: {
+		url: false
+	},
 	webpack: config => {
 		config.resolve.modules = [path.resolve(__dirname, "src"), "node_modules"];
 		return config;

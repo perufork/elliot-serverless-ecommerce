@@ -4,11 +4,13 @@ import ShoppingCart from "components/cart/components/ShoppingCart";
 const breadcumbs = [
 	{
 		name: "Shop",
-		link: "/"
+		link: "/",
+		as: "/"
 	},
 	{
 		name: "Cart",
 		link: "/cart/",
+		as: "/cart/",
 		active: true
 	}
 ];

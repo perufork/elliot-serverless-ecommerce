@@ -120,63 +120,6 @@ export const Content = styled.div`
 	}
 `;
 
-export const QuantityController = styled.div`
-	max-width: 120px;
-	display: flex;
-	align-items: center;
-	border: 2px solid #eaeaea;
-
-	input {
-		border: none;
-		height: 45px;
-		font-size: 14px;
-		font-weight: 600;
-		text-align: center;
-		color: #222;
-		background-color: transparent;
-		outline: none;
-		transition: all 0.4s ease;
-		display: block;
-		width: 50px;
-
-		&::placeholder {
-			color: #222;
-		}
-	}
-`;
-
-export const Controller = styled.button`
-	font-size: 30px;
-	border: none;
-	background: none;
-`;
-
-export const Thead = styled.thead`
-	display: table-header-group;
-	vertical-align: middle;
-	border-color: inherit;
-
-	tr {
-		th {
-			text-align: left;
-			font-size: 12px;
-			font-weight: 600;
-			color: #ccc;
-			border: none;
-			text-transform: uppercase;
-			border-bottom: 1px solid #eaeaea;
-
-			&:last-child {
-				text-align: right;
-			}
-
-			&:first-child {
-				padding-left: 0;
-			}
-		}
-	}
-`;
-
 export const Tbody = styled.tbody`
 	tr {
 		td {
@@ -203,6 +146,32 @@ export const Tbody = styled.tbody`
 						font-size: inherit;
 					}
 				}
+			}
+		}
+	}
+`;
+
+export const Thead = styled.thead`
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+
+	tr {
+		th {
+			text-align: left;
+			font-size: 12px;
+			font-weight: 600;
+			color: #ccc;
+			border: none;
+			text-transform: uppercase;
+			border-bottom: 1px solid #eaeaea;
+
+			&:last-child {
+				text-align: right;
+			}
+
+			&:first-child {
+				padding-left: 0;
 			}
 		}
 	}

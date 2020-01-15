@@ -23,7 +23,7 @@ export default ({
 		<div>
 			<Header>
 				<Details>
-					<Link href={`/product/${id}`}>
+					<Link href={`/product?id=${id}`} as={`/product/${id}`}>
 						<a>
 							<h2>{title}</h2>
 						</a>

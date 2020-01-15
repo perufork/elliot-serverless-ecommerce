@@ -1,31 +1,10 @@
 import fetch from "isomorphic-unfetch";
 import Layout from "components/common/Layout";
-import Container from "components/common/Container";
+import ProductItem from "components/product/ProductItem";
 
 const Product = ({ data, status }) => (
 	<Layout>
-		<Container>
-			{status === 200 ? (
-				<table>
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Price</th>
-							<th>Quantity</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>{data.title}</td>
-							<td>{data.price}</td>
-							<td>{data.rating}</td>
-						</tr>
-					</tbody>
-				</table>
-			) : (
-				<p>{data.message}</p>
-			)}
-		</Container>
+		{status === 200 ? <ProductItem {...data} /> : <p>{data.message}</p>}
 	</Layout>
 );
 

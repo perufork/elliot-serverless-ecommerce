@@ -30,6 +30,7 @@ export const Actions = styled.div`
 	button {
 		border: none;
 		cursor: pointer;
+		background: none;
 
 		&:focus {
 			outline: none;

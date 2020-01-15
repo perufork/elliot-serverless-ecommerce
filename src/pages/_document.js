@@ -48,7 +48,12 @@ export default class MyDocument extends Document {
 
 		return (
 			<html lang={this.props.locale}>
-				<Head />
+				<Head>
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
+					/>
+				</Head>
 				<body>
 					<Main />
 					<script src={polyfill} />

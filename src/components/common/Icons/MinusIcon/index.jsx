@@ -1,6 +1,6 @@
 import StyledIcon from "components/common/StyledIcon";
 
-const MinusIcon = ({ width = 24, height = 24, color = "#030303" }) => (
+const MinusIcon = ({ width = 24, height = 24, color = "#222" }) => (
 	<StyledIcon
 		width={width}
 		height={height}

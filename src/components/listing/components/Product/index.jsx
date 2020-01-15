@@ -4,7 +4,7 @@ import { Card, CardHeader, CardFooter } from "./styles";
 export default ({ product: { id, price, name } }) => (
 	<Card>
 		<CardHeader>
-			<Link href={`/product?id=${id}`}>
+			<Link href={`/product?id=${id}`} as={`/product/${id}`}>
 				<a>{name}</a>
 			</Link>
 		</CardHeader>
