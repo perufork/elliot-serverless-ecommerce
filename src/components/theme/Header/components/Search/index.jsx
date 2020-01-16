@@ -26,7 +26,7 @@ const Search = () => (
 				<StyledForm as={Form}>
 					<Field name="search" placeholder="Search Searching..." />
 					<button type="submit" disabled={isSubmitting}>
-						<SearchIcon />
+						<SearchIcon width={20} height={20} />
 					</button>
 				</StyledForm>
 			)}

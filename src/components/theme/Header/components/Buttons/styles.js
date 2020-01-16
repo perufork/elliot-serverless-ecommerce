@@ -21,6 +21,8 @@ export const Actions = styled.div`
 		width: 40px;
 		font-size: 22px;
 		margin-right: 4px;
+		padding-right: 0;
+		padding-left: 0;
 
 		&:last-child {
 			margin-right: 0;

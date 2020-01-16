@@ -24,11 +24,19 @@ const Index = ({ products }) => {
 	);
 };
 
-Index.getInitialProps = async () => {
-	const response = await fetch(`${process.env.BASE_URL}/api/product`);
-	const products = await response.json();
+export async function unstable_getStaticProps() {
+	try {
+		const response = await fetch(`${process.env.BASE_URL}/api/product`);
+		const products = await response.json();
 
-	return { products };
-};
+		return {
+			props: {
+				products
+			}
+		};
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 export default Index;

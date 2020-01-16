@@ -39,25 +39,25 @@ const Button = styled.button`
 		switch (variant) {
 			case "primary":
 				return `
-                        color: ${primary.color};
-                        background: ${primary.bg};
+					color: ${primary.color};
+					background: ${primary.bg};
 
-                        &:hover {
-                            background: ${primary.hover.bg};
-                        }
-                    `;
+					&:hover {
+							background: ${primary.hover.bg};
+					}
+			`;
 			case "secondary":
 				return `
-                        color: ${secondary.color};
-                        background: ${secondary.bg};
-                        border: ${secondary.border};
+					color: ${secondary.color};
+					background: ${secondary.bg};
+					border: ${secondary.border};
 
-                        &:hover {
-                            background: ${secondary.hover.bg};
-                            color: ${secondary.hover.color};
-                            border-color: ${secondary.hover.bg};
-                        }
-                    `;
+					&:hover {
+							background: ${secondary.hover.bg};
+							color: ${secondary.hover.color};
+							border-color: ${secondary.hover.bg};
+					}
+			`;
 			default:
 				return null;
 		}

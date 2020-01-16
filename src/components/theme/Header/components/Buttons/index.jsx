@@ -18,12 +18,12 @@ const Buttons = ({ toggleSidebar }) => {
 			<Actions>
 				<Link href="/">
 					<a>
-						<AvatarIcon />
+						<AvatarIcon width={20} height={20} />
 					</a>
 				</Link>
 				<Link href="/favorite">
 					<a>
-						<HeartIcon />
+						<HeartIcon width={20} height={20} />
 					</a>
 				</Link>
 				<button
@@ -31,7 +31,7 @@ const Buttons = ({ toggleSidebar }) => {
 					onClick={() => toggleSidebar({ type: "OPEN_SIDEBAR", cart: true })}
 				>
 					<Cart>
-						<CartIcon />
+						<CartIcon width={20} height={20} />
 						{state.data && state.data.length > 0 && (
 							<CartItems>{state.data.length}</CartItems>
 						)}
@@ -41,7 +41,7 @@ const Buttons = ({ toggleSidebar }) => {
 					type="button"
 					onClick={() => toggleSidebar({ type: "OPEN_SIDEBAR", cart: false })}
 				>
-					<MenuIcon />
+					<MenuIcon width={20} height={20} />
 				</button>
 			</Actions>
 		</Wrapper>
