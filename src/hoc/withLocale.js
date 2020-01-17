@@ -3,12 +3,15 @@ import Error from "next/error";
 import { getDisplayName } from "next/dist/next-server/lib/utils";
 import { createIntlCache, RawIntlProvider, createIntl } from "react-intl";
 import strings from "lang/strings";
+import locales from "helpers/locales";
 
 const cache = createIntlCache();
 
 export default Component => {
 	const WithLocale = ({ locale, ...pageProps }) => {
-		if (!locale) {
+		const supportedLocale = locales.some(item => item === locale);
+
+		if (!locale || !supportedLocale) {
 			return <Error statusCode={404} />;
 		}
 

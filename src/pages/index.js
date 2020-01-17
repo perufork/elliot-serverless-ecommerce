@@ -7,7 +7,7 @@ const Index = () => {
 	const Router = useRouter();
 
 	useEffect(() => {
-		Router.replace("/[lang]", `/${getBrowserLocale()}`);
+		Router.replace("/[lang]", `/${getBrowserLocale()}/`);
 	}, []);
 
 	return (
