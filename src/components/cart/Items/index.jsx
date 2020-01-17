@@ -1,21 +1,23 @@
 import PageTitle from "components/common/PageTitle";
 import ShoppingCart from "components/cart/components/ShoppingCart";
-
-const breadcumbs = [
-	{
-		name: "Shop",
-		link: "/",
-		as: "/"
-	},
-	{
-		name: "Cart",
-		link: "/cart/",
-		as: "/cart/",
-		active: true
-	}
-];
+import { useIntl } from "react-intl";
 
 const Items = () => {
+	const { locale } = useIntl();
+
+	const breadcumbs = [
+		{
+			name: "Shop",
+			link: `/${locale}/`,
+			as: `/${locale}/`
+		},
+		{
+			name: "Cart",
+			link: `/${locale}/cart/`,
+			as: `/${locale}/cart/`,
+			active: true
+		}
+	];
 	return (
 		<>
 			<PageTitle title="title.cart" breadcumbs={breadcumbs} />

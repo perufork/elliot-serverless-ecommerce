@@ -1,12 +1,17 @@
 import Link from "next/link";
 import Logo from "components/common/Logo";
+import { useIntl } from "react-intl";
 
-const Brand = () => (
-	<Link href="/">
-		<a>
-			<Logo width={48} height={48} />
-		</a>
-	</Link>
-);
+const Brand = () => {
+	const { locale } = useIntl();
+
+	return (
+		<Link href={`/${locale}/`} as={`/${locale}/`}>
+			<a>
+				<Logo width={48} height={48} />
+			</a>
+		</Link>
+	);
+};
 
 export default Brand;

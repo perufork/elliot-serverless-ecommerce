@@ -21,10 +21,12 @@ import {
 	Content,
 	Center
 } from "./styles";
+import { useIntl } from "react-intl";
 
 const ShoppingCart = () => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
+	const { locale } = useIntl();
 
 	return (
 		<Container>
@@ -48,14 +50,17 @@ const ShoppingCart = () => {
 									<td>
 										<Product>
 											<Thumbnail>
-												<Link href="/">
+												<Link href={`/${locale}/`} as={`/${locale}/`}>
 													<a>
 														<img src={thumbnailImage} alt={title} />
 													</a>
 												</Link>
 											</Thumbnail>
 											<Content>
-												<Link href={`/product?id=${id}`} as={`/product/${id}`}>
+												<Link
+													href={`/${locale}/product?id=${id}`}
+													as={`/${locale}/product/${id}`}
+												>
 													<a>{title}</a>
 												</Link>
 												<p>Apple</p>
@@ -99,7 +104,7 @@ const ShoppingCart = () => {
 			) : (
 				<Center>
 					<h2>No items on cart</h2>
-					<Link href="/">
+					<Link href={`/${locale}/`} as={`/${locale}/`}>
 						<Button as="a" variant="primary">
 							Back to Shop
 						</Button>

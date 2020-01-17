@@ -9,17 +9,36 @@ import {
 	List
 } from "./styles";
 
+const Languages = [
+	{
+		title: "English",
+		locale: "en"
+	},
+	{
+		title: "Italian",
+		locale: "it"
+	},
+	{
+		title: "German",
+		locale: "de"
+	},
+	{
+		title: "French",
+		locale: "fr"
+	}
+];
+
 const NavigationLinks = ({ toggleSidebar }) => (
 	<Navigation>
 		<Options>
 			<Flex>
 				<Item col={6} colTablet={12} colMobile={12} marginBottom={20}>
 					<List>
-						{["English", "Italian", "German", "French"].map((item, i) => (
+						{Languages.map(({ title, locale }, i) => (
 							<li key={i}>
-								<Link href="/" as="/">
+								<Link href={`/${locale}/`} as={`/${locale}/`}>
 									<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
-										{item}
+										{title}
 									</a>
 								</Link>
 							</li>
@@ -46,7 +65,7 @@ const NavigationLinks = ({ toggleSidebar }) => (
 				{["Home", "Shop", "Collection", "Pages", "Blog", "Contact"].map(
 					(item, i) => (
 						<li key={i}>
-							<Link href="/" as="/">
+							<Link href="/en/" as="/en/">
 								<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
 									{item}
 								</a>

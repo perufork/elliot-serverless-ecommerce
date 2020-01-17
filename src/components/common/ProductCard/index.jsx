@@ -1,4 +1,4 @@
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import thumbnailImage from "assets/product/product.jpg";
@@ -15,35 +15,42 @@ export default ({
 	price = 100,
 	currency = "$",
 	onClick
-}) => (
-	<Wrapper>
-		<Thumbnail>
-			<img src={thumbnail} alt={title} />
-		</Thumbnail>
-		<div>
-			<Header>
-				<Details>
-					<Link href={`/product?id=${id}`} as={`/product/${id}`}>
-						<a>
-							<h2>{title}</h2>
-						</a>
-					</Link>
-					<p>
-						<span>{currency}</span> {price}
-					</p>
-				</Details>
-				<div>
-					<Stars stars={rating} />
-				</div>
-			</Header>
-			<Body>
-				<p>{description}</p>
-			</Body>
-			<Footer>
-				<Button onClick={onClick} type="button" variant="primary">
-					<FormattedMessage id="button.add_to_cart" />
-				</Button>
-			</Footer>
-		</div>
-	</Wrapper>
-);
+}) => {
+	const { locale } = useIntl();
+
+	return (
+		<Wrapper>
+			<Thumbnail>
+				<img src={thumbnail} alt={title} />
+			</Thumbnail>
+			<div>
+				<Header>
+					<Details>
+						<Link
+							href={`/${locale}/product?id=${id}`}
+							as={`/${locale}/product/${id}`}
+						>
+							<a>
+								<h2>{title}</h2>
+							</a>
+						</Link>
+						<p>
+							<span>{currency}</span> {price}
+						</p>
+					</Details>
+					<div>
+						<Stars stars={rating} />
+					</div>
+				</Header>
+				<Body>
+					<p>{description}</p>
+				</Body>
+				<Footer>
+					<Button onClick={onClick} type="button" variant="primary">
+						<FormattedMessage id="button.add_to_cart" />
+					</Button>
+				</Footer>
+			</div>
+		</Wrapper>
+	);
+};

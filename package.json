@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next",
 		"server": "BASE_URL=http://localhost:3000 node --icu-data-dir=node_modules/full-icu server.js",
-		"build": "next build && npm run extract",
+		"build": "npm run extract && next build",
 		"extract": "node ./src/scripts/default-lang && node ./src/scripts/extract",
 		"start": "NODE_ENV=production node --icu-data-dir=node_modules/full-icu server.js"
 	},

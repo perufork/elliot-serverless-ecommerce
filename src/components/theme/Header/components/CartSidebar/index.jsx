@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { CancelIcon } from "components/common/Icons";
 import Button from "components/common/Button";
 import { useCart, useDispatchCart } from "providers/CartProvider";
@@ -11,6 +11,7 @@ import thumbnailImage from "assets/product/product.jpg";
 const CartSidebar = ({ toggleSidebar }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
+	const { locale } = useIntl();
 
 	return (
 		<Wrapper>
@@ -20,7 +21,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 						{state.data.map(({ id, title, price, quantity }) => (
 							<CartItem key={id}>
 								<Thumbnail>
-									<Link href="/">
+									<Link href={`/${locale}/`} as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>
 											<img src={thumbnailImage} alt="title" />
 										</a>
@@ -33,7 +34,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									>
 										<CancelIcon width={16} height={16} color="#a5a5a5" />
 									</button>
-									<Link href="/">
+									<Link href={`/${locale}/`} as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>{title}</a>
 									</Link>
 									<p>Qty: {quantity}</p>
@@ -47,7 +48,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 							Sub Total: <strong>${getTotal(state.data)}</strong>
 						</h3>
 						<div>
-							<Link href="/cart">
+							<Link href={`/${locale}/cart/`} as={`/${locale}/cart/`}>
 								<Button
 									as="a"
 									wide
@@ -58,7 +59,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									<FormattedMessage id="button.view_cart" />
 								</Button>
 							</Link>
-							<Link href="/">
+							<Link href={`/${locale}/`} as={`/${locale}/`}>
 								<Button as="a" wide variant="primary" onClick={toggleSidebar}>
 									<FormattedMessage id="button.checkout" />
 								</Button>
