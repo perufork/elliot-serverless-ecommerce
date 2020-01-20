@@ -4,14 +4,14 @@ import ProductItem from "components/product/ProductItem";
 import withLocale from "hoc/withLocale";
 import locales from "helpers/locales";
 
-async function getProducts() {
+const getProducts = async () => {
 	const response = await fetch(`${process.env.BASE_URL}/api/product`);
 	const products = await response.json();
 
 	return products;
-}
+};
 
-export async function unstable_getStaticPaths() {
+export const unstable_getStaticPaths = async () => {
 	const products = await getProducts();
 
 	const localizedProducts = products.map(({ id }) =>
@@ -19,13 +19,13 @@ export async function unstable_getStaticPaths() {
 	);
 
 	return localizedProducts.flatMap(item => item);
-}
+};
 
-export async function unstable_getStaticProps({ params: { id, lang } }) {
+export const unstable_getStaticProps = async ({ params: { id, lang } }) => {
 	const products = await getProducts();
 	const product = products.find(({ id: _id }) => _id === id);
-	return { props: { product, locale: lang } };
-}
+	return { revalidate: 10, props: { product, locale: lang } };
+};
 
 const Product = ({ product }) => (
 	<Layout>

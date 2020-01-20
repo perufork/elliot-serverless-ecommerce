@@ -21,7 +21,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 						{state.data.map(({ id, title, price, quantity }) => (
 							<CartItem key={id}>
 								<Thumbnail>
-									<Link href={`/${locale}/`} as={`/${locale}/`}>
+									<Link href="/[lang]/" as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>
 											<img src={thumbnailImage} alt="title" />
 										</a>
@@ -34,7 +34,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									>
 										<CancelIcon width={16} height={16} color="#a5a5a5" />
 									</button>
-									<Link href={`/${locale}/`} as={`/${locale}/`}>
+									<Link href="/[lang]/" as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>{title}</a>
 									</Link>
 									<p>Qty: {quantity}</p>
@@ -48,7 +48,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 							Sub Total: <strong>${getTotal(state.data)}</strong>
 						</h3>
 						<div>
-							<Link href={`/${locale}/cart/`} as={`/${locale}/cart/`}>
+							<Link href="/[lang]/cart" as={`/${locale}/cart`}>
 								<Button
 									as="a"
 									wide
@@ -59,7 +59,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									<FormattedMessage id="button.view_cart" />
 								</Button>
 							</Link>
-							<Link href={`/${locale}/`} as={`/${locale}/`}>
+							<Link href="/[lang]/" as={`/${locale}/`}>
 								<Button as="a" wide variant="primary" onClick={toggleSidebar}>
 									<FormattedMessage id="button.checkout" />
 								</Button>

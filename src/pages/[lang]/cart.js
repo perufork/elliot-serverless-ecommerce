@@ -8,12 +8,12 @@ const Cart = () => (
 	</Layout>
 );
 
-// Cart.getInitialProps = ({ params }) => {
-// 	return {
-// 		props: {
-// 			locale: params.lang
-// 		}
-// 	};
-// };
+export const unstable_getStaticProps = ({ params }) => {
+	return {
+		props: {
+			locale: params.lang
+		}
+	};
+};
 
 export default withLocale(Cart);

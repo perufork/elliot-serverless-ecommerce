@@ -7,10 +7,7 @@ export default ({ product: { id, price, name } }) => {
 	return (
 		<Card>
 			<CardHeader>
-				<Link
-					href={`/${locale}/product?id=${id}`}
-					as={`/${locale}/product/${id}`}
-				>
+				<Link href={`/[lang]/product?id=${id}`} as={`/${locale}/product/${id}`}>
 					<a>{name}</a>
 				</Link>
 			</CardHeader>

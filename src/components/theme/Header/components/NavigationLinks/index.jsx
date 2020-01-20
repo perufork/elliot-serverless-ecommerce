@@ -36,7 +36,7 @@ const NavigationLinks = ({ toggleSidebar }) => (
 					<List>
 						{Languages.map(({ title, locale }, i) => (
 							<li key={i}>
-								<Link href={`/${locale}/`} as={`/${locale}/`}>
+								<Link href="/[lang]/" as={`/${locale}/`}>
 									<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
 										{title}
 									</a>

@@ -50,7 +50,7 @@ const ShoppingCart = () => {
 									<td>
 										<Product>
 											<Thumbnail>
-												<Link href={`/${locale}/`} as={`/${locale}/`}>
+												<Link href="/[lang]/" as={`/${locale}/`}>
 													<a>
 														<img src={thumbnailImage} alt={title} />
 													</a>
@@ -58,7 +58,7 @@ const ShoppingCart = () => {
 											</Thumbnail>
 											<Content>
 												<Link
-													href={`/${locale}/product?id=${id}`}
+													href={`/[lang]/product?id=${id}`}
 													as={`/${locale}/product/${id}`}
 												>
 													<a>{title}</a>
@@ -104,7 +104,7 @@ const ShoppingCart = () => {
 			) : (
 				<Center>
 					<h2>No items on cart</h2>
-					<Link href={`/${locale}/`} as={`/${locale}/`}>
+					<Link href="/[lang]/" as={`/${locale}/`}>
 						<Button as="a" variant="primary">
 							Back to Shop
 						</Button>

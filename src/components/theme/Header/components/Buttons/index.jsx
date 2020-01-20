@@ -18,7 +18,7 @@ const Buttons = ({ toggleSidebar }) => {
 		<Wrapper>
 			<Search />
 			<Actions>
-				<Link href={`/${locale}/`} as={`/${locale}/`}>
+				<Link href="/[lang]/" as={`/${locale}/`}>
 					<a>
 						<AvatarIcon width={20} height={20} />
 					</a>

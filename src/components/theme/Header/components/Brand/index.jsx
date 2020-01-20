@@ -6,7 +6,7 @@ const Brand = () => {
 	const { locale } = useIntl();
 
 	return (
-		<Link href={`/${locale}/`} as={`/${locale}/`}>
+		<Link href="/[lang]/" as={`/${locale}/`}>
 			<a>
 				<Logo width={48} height={48} />
 			</a>

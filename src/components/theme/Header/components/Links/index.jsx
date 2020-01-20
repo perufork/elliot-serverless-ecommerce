@@ -9,7 +9,7 @@ const Links = () => {
 			<Menu>
 				{["Home", "Shop", "Collection", "Contact"].map((item, id) => (
 					<li key={id}>
-						<Link href={`/${locale}/`} as={`/${locale}/`}>
+						<Link href="/[lang]/" as={`/${locale}/`}>
 							<a>{item}</a>
 						</Link>
 					</li>
