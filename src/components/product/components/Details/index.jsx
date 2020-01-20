@@ -1,4 +1,4 @@
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Flex, Item } from "react-flex-ready";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
@@ -11,7 +11,8 @@ import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 import { HeartIcon } from "components/common/Icons";
-import { Wrapper, Review, Sku, Shop, Favorite } from "./styles";
+import { Wrapper, Review, Sku, Shop, Favorite, Specs } from "./styles";
+import Link from "next/link";
 
 const Details = ({
 	id,
@@ -20,11 +21,14 @@ const Details = ({
 	price,
 	description,
 	rating = 4,
-	review = 1
+	review = 1,
+	categories,
+	tags
 }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
+	const { locale } = useIntl();
 
 	const product = state.data && state.data.find(item => item.id === id);
 
@@ -33,7 +37,9 @@ const Details = ({
 			<div>
 				<Review>
 					<Stars stars={rating} />
-					<span>{review} Review</span>
+					<span>
+						{review} <FormattedMessage id="product.review" />
+					</span>
 				</Review>
 				<h2>{title}</h2>
 				<Sku>SKU: {sku}</Sku>
@@ -85,22 +91,29 @@ const Details = ({
 					<FormattedMessage id="button.buy_now" />
 				</Button>
 			</Shop>
-			{/* <div class="ps-product__specification">
+			<Specs>
 				<p>
-					<strong>CATEGORY:</strong>
-					<a href="shop-4-column.html">Women</a>
-					<a href="shop-4-column.html"> Top</a>
-					<a href="shop-4-column.html"> Accessories</a>
-					<a href="shop-4-column.html"> Jewellery</a>
+					<strong>
+						<FormattedMessage id="product.category" />:
+					</strong>
+					{categories.map((item, i) => (
+						<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
+							<a>{item}</a>
+						</Link>
+					))}
 				</p>
 				<p>
-					<strong>Tags:</strong>
-					<a href="shop-4-column.html">clothing</a>
-					<a href="shop-4-column.html"> t-shirt</a>
-					<a href="shop-4-column.html"> woman</a>
+					<strong>
+						<FormattedMessage id="product.tags" />:
+					</strong>
+					{tags.map((item, i) => (
+						<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
+							<a>{item}</a>
+						</Link>
+					))}
 				</p>
-			</div>
-			<div class="ps-product__sharing">
+			</Specs>
+			{/* <div class="ps-product__sharing">
 				<a href="#">
 					<i class="fa fa-facebook"></i>
 				</a>

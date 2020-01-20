@@ -3,5 +3,8 @@
 	"button.checkout": "checkout",
 	"button.view_cart": "voir le panier",
 	"button.buy_now": "Acheter maintenant",
-	"title.cart": "chariot"
+	"title.cart": "chariot",
+	"product.review": "Révision",
+	"product.category": "CATÉGORIE",
+	"product.tags": "Mots clés"
 }

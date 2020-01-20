@@ -3,10 +3,10 @@ import Carousel from "components/product/components/Carousel";
 import Details from "components/product/components/Details";
 import { Wrapper } from "./styles";
 
-const Content = ({ title, ...props }) => (
+const Content = props => (
 	<Wrapper as={Flex} align="start">
 		<Item col={6} colTablet={12} colMobile={12} gap={2}>
-			<Carousel title={title} />
+			<Carousel title={props.title} />
 		</Item>
 		<Item col={6} colTablet={12} colMobile={12} gap={2}>
 			<Details {...props} />

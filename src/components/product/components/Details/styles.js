@@ -84,3 +84,47 @@ export const Favorite = styled.button`
 		align-self: center;
 	}
 `;
+
+export const Specs = styled.div`
+	margin-bottom: 2rem;
+	padding-top: 20px;
+	border-top: 1px solid #eaeaea;
+
+	p {
+		color: #222;
+
+		strong {
+			margin-right: 5px;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+
+		a {
+			color: #999;
+			font-size: 15px;
+
+			&:after {
+				content: ",";
+				padding-right: 3px;
+			}
+
+			&:first-child {
+				padding-left: 5px;
+			}
+
+			&:last-child {
+				&:after {
+					display: none;
+				}
+			}
+
+			&:hover {
+				color: ${({
+					theme: {
+						colors: { accent }
+					}
+				}) => accent};
+			}
+		}
+	}
+`;

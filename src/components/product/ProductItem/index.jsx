@@ -10,7 +10,9 @@ const ProductItem = ({
 	price,
 	quantity,
 	sku = "AB1609456789",
-	description
+	description,
+	categories,
+	tags
 }) => (
 	<Container>
 		<BreadcumbsHeader id={id} title={title} />
@@ -22,6 +24,8 @@ const ProductItem = ({
 			quantity={quantity}
 			sku={sku}
 			description={description}
+			categories={categories}
+			tags={tags}
 		/>
 	</Container>
 );
