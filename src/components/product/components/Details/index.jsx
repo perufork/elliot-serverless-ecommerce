@@ -96,21 +96,23 @@ const Details = ({
 					<strong>
 						<FormattedMessage id="product.category" />:
 					</strong>
-					{categories.map((item, i) => (
-						<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
-							<a>{item}</a>
-						</Link>
-					))}
+					{categories &&
+						categories.map((item, i) => (
+							<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
+								<a>{item}</a>
+							</Link>
+						))}
 				</p>
 				<p>
 					<strong>
 						<FormattedMessage id="product.tags" />:
 					</strong>
-					{tags.map((item, i) => (
-						<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
-							<a>{item}</a>
-						</Link>
-					))}
+					{tags &&
+						tags.map((item, i) => (
+							<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
+								<a>{item}</a>
+							</Link>
+						))}
 				</p>
 			</Specs>
 			{/* <div class="ps-product__sharing">

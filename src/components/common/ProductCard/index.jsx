@@ -26,7 +26,7 @@ export default ({
 			<div>
 				<Header>
 					<Details>
-						<Link href={`/product?id=${id}/`} as={`/${locale}/product/${id}`}>
+						<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
 							<a>
 								<h2>{title}</h2>
 							</a>
