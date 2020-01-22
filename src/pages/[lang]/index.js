@@ -25,7 +25,7 @@ const Index = ({ products }) => {
 	);
 };
 
-export async function unstable_getStaticProps({ params }) {
+export const unstable_getStaticProps = async ({ params }) => {
 	try {
 		const response = await fetch(`${process.env.BASE_URL}/api/product`);
 		const products = await response.json();
@@ -39,6 +39,6 @@ export async function unstable_getStaticProps({ params }) {
 	} catch (error) {
 		console.log(error);
 	}
-}
+};
 
 export default withLocale(Index);

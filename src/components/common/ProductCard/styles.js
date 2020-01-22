@@ -1,32 +1,38 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	border-bottom: 1px solid #eaeaea;
-	padding: 3rem 0;
+	${({ grid }) =>
+		!grid &&
+		`
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		border-bottom: 1px solid #eaeaea;
+		padding: 3rem 0;
 
-	@media screen and (max-width: 960px) {
-		flex-direction: column;
-	}
+		@media screen and (max-width: 960px) {
+			flex-direction: column;
+		}
+	`}
 `;
 
 export const Thumbnail = styled.div`
-	margin-right: 1rem;
+	${({ grid }) =>
+		!grid &&
+		`
+		@media screen and (min-width: 1200px) {
+			max-width: calc(40% - 50px);
+		}
 
-	@media screen and (min-width: 1200px) {
-		max-width: calc(40% - 50px);
-	}
+		@media screen and (min-width: 768px) {
+			max-width: calc(40% - 30px);
+		}
 
-	@media screen and (min-width: 768px) {
-		max-width: calc(40% - 30px);
-	}
-
-	@media screen and (max-width: 960px) {
-		margin-right: unset;
-		margin-bottom: 1rem;
-	}
+		@media screen and (max-width: 960px) {
+			margin-right: unset;
+			margin-bottom: 1rem;
+		}
+	`}
 
 	img {
 		width: 100%;
@@ -41,13 +47,17 @@ export const Thumbnail = styled.div`
 `;
 
 export const Header = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+	${({ grid }) =>
+		!grid &&
+		`
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
 
-	@media screen and (max-width: 960px) {
-		flex-direction: column;
-	}
+		@media screen and (max-width: 960px) {
+			flex-direction: column;
+		}
+	`}
 `;
 
 export const Details = styled.div`
