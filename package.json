@@ -46,6 +46,33 @@
 		"babel-plugin-react-intl": "^5.1.13",
 		"babel-plugin-styled-components": "^1.10.6",
 		"eslint": "^6.8.0",
-		"eslint-plugin-react": "^7.17.0"
+		"husky": "^4.2.0",
+		"lint-staged": "^10.0.2",
+		"prettier": "^1.19.1"
+	},
+	"prettier": {
+		"useTabs": true,
+		"printWidth": 80,
+		"semi": true
+	},
+	"eslintConfig": {
+		"parser": "babel-eslint"
+	},
+	"eslintIgnore": [
+		"**/node_modules/**/*",
+		"**/.next/**/*"
+	],
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{js,css,json,md}": [
+			"prettier --write"
+		],
+		"*.js": [
+			"eslint --fix"
+		]
 	}
 }
