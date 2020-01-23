@@ -1,12 +1,13 @@
-import fetch from "isomorphic-unfetch";
+import axios from "axios";
 import Layout from "components/common/Layout";
 import ProductItem from "components/product/ProductItem";
 import withLocale from "hoc/withLocale";
 import locales from "helpers/locales";
 
 const getProducts = async () => {
-	const response = await fetch(`${process.env.BASE_URL}/api/product`);
-	const products = await response.json();
+	const { data: products } = await axios.get(
+		`${process.env.BASE_URL}/api/product`
+	);
 
 	return products;
 };

@@ -2,19 +2,23 @@ import Link from "next/link";
 import { FormattedMessage } from "react-intl";
 import Stars from "components/common/Stars";
 import Button from "components/common/Button";
-import thumbnailImage from "assets/product/product.jpg";
-import thumbnailSecondaryImage from "assets/product/product-2.jpg";
-import { Wrapper, Thumbnail, Header, Details, Body, Footer } from "./styles";
+import {
+	Wrapper,
+	Thumbnail,
+	Content,
+	Header,
+	Details,
+	Body,
+	Footer
+} from "./styles";
 
 export default ({
 	id,
-	thumbnail = thumbnailImage,
-	image = thumbnailSecondaryImage,
-	title = "Lorem Ipsum",
-	description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
-	rating = 4,
-	price = 100,
-	currency = "$",
+	name,
+	description,
+	images,
+	gender,
+	skus,
 	onClick,
 	locale
 }) => (
@@ -23,36 +27,41 @@ export default ({
 			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
 				<a>
 					<>
-						<img src={thumbnail} alt={title} />
-						<img src={image} alt={title} />
+						{images.edges.map(({ node }) => (
+							<img
+								key={node.id}
+								src={`https://storage.googleapis.com/elliot-images-us/${node.image}`}
+								alt={name}
+							/>
+						))}
 					</>
 				</a>
 			</Link>
 		</Thumbnail>
-		<div>
+		<Content>
 			<Header>
 				<Details>
 					<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
 						<a>
-							<h2>{title}</h2>
+							<h2>{name}</h2>
 						</a>
 					</Link>
-					<p>
-						<span>{currency}</span> {price}
-					</p>
+					{skus.edges[0].node.salePrice && (
+						<p>
+							<span>$</span> {skus.edges[0].node.salePrice}
+						</p>
+					)}
 				</Details>
 				<div>
-					<Stars stars={rating} />
+					<Stars stars={gender} />
 				</div>
 			</Header>
-			<Body>
-				<p>{description}</p>
-			</Body>
+			<Body dangerouslySetInnerHTML={{ __html: description }} />
 			<Footer>
 				<Button onClick={onClick} type="button" variant="primary">
 					<FormattedMessage id="button.add_to_cart" />
 				</Button>
 			</Footer>
-		</div>
+		</Content>
 	</Wrapper>
 );
