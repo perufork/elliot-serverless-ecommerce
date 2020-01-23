@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 	width: 100%;
 	z-index: 1;
 	background-color: #fff;
-	padding: 0 1rem;
+	padding: 1rem;
 
 	ul,
 	ol {
