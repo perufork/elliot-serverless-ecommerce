@@ -24,7 +24,7 @@ export default ({
 }) => (
 	<Wrapper>
 		<Thumbnail>
-			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
+			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${slug}`}>
 				<a>
 					<>
 						{images.edges.map(({ node }) => (
@@ -41,7 +41,7 @@ export default ({
 		<Content>
 			<Header>
 				<Details>
-					<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
+					<Link href="/[lang]/product/[id]" as={`/${locale}/product/${slug}`}>
 						<a>
 							<h2>{name}</h2>
 						</a>

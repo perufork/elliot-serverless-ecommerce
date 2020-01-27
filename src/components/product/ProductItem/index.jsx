@@ -1,28 +1,27 @@
-// import Modal from 'react-modal';
 import Container from "components/common/Container";
 import Content from "components/product/components/Content";
 import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
 
 const ProductItem = ({
 	id,
-	title,
 	name,
 	price,
 	quantity,
-	sku = "AB1609456789",
+	skus,
 	description,
 	categories,
-	tags
+	tags,
+	images
 }) => (
 	<Container>
-		<BreadcumbsHeader id={id} title={title} />
+		<BreadcumbsHeader id={id} title={name} />
 		<Content
 			id={id}
-			title={title}
 			name={name}
 			price={price}
 			quantity={quantity}
-			sku={sku}
+			skus={skus}
+			images={images}
 			description={description}
 			categories={categories}
 			tags={tags}
