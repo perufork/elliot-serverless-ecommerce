@@ -2,6 +2,12 @@ import { useState } from "react";
 import { Flex, Item } from "react-flex-ready";
 import Container from "components/common/Container";
 import { Wrapper } from "./styles";
+// import {
+// 	AvatarIcon,
+// 	HeartIcon,
+// 	CartIcon,
+// 	MenuIcon
+// } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
 import { useDispatchCart } from "providers/CartProvider";
 import { addToCart } from "components/listing/actions";

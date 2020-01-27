@@ -12,6 +12,18 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  img {
+    user-select: none;
   }
 
   button {

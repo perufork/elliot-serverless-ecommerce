@@ -2,13 +2,19 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
 	border-bottom: 1px solid #eaeaea;
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 100%;
 	z-index: 1;
 	background-color: #fff;
 	padding: 1rem;
+	transition: all 200ms ease;
+
+	&.sticky {
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
 
 	ul,
 	ol {
@@ -25,7 +31,7 @@ export const Wrapper = styled.div`
 	}
 
 	@media (min-width: 1440px) {
-		padding: 30px 60px;
+		padding: 0 60px;
 	}
 
 	@media (min-width: 1680px) {

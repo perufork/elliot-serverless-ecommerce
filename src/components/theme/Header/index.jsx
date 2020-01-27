@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Brand from "./components/Brand";
 import Links from "./components/Links";
 import Buttons from "./components/Buttons";
@@ -6,8 +7,19 @@ import Sidebar from "components/theme/Header/components/Sidebar";
 import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
 
 export default () => {
+	const [isTop, setIsTop] = useState(true);
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
+
+	useEffect(() => {
+		document.addEventListener("scroll", () => {
+			window.scrollY > 100 ? setIsTop(false) : setIsTop(true);
+		});
+
+		return () => {
+			document.removeEventListener("scroll");
+		};
+	}, []);
 
 	const toggleSidebar = ({ type, cart }) => {
 		dispatch({
@@ -17,19 +29,17 @@ export default () => {
 	};
 
 	return (
-		<>
+		<Wrapper className={!isTop && "sticky"}>
 			<Sidebar
 				visibleSidebar={state.open}
 				toggleSidebar={toggleSidebar}
 				showCartContent={state.cartContent}
 			/>
-			<Wrapper>
-				<Brand />
-				<Options>
-					<Links />
-					<Buttons toggleSidebar={toggleSidebar} />
-				</Options>
-			</Wrapper>
-		</>
+			<Brand />
+			<Options>
+				<Links />
+				<Buttons toggleSidebar={toggleSidebar} />
+			</Options>
+		</Wrapper>
 	);
 };
