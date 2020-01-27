@@ -8,6 +8,16 @@ export const Wrapper = styled.div`
 	padding: 1rem;
 	transition: all 200ms ease;
 
+	${({ sticky }) =>
+		sticky &&
+		`
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+  `}
+
 	&.sticky {
 		position: fixed;
 		top: 0;

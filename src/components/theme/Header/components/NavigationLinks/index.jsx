@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Flex, Item } from "react-flex-ready";
 import {
 	Navigation,
 	Menu,
@@ -31,34 +30,29 @@ const Languages = [
 const NavigationLinks = ({ toggleSidebar }) => (
 	<Navigation>
 		<Options>
-			<Flex>
-				<Item col={6} colTablet={12} colMobile={12} marginBottom={20}>
-					<List>
-						{Languages.map(({ title, locale }, i) => (
-							<li key={i}>
-								<Link href="/[lang]/" as={`/${locale}/`}>
-									<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
-										{title}
-									</a>
-								</Link>
-							</li>
-						))}
-					</List>
-				</Item>
-				<Item col={6} colTablet={12} colMobile={12} marginBottom={20}>
-					<List>
-						{["USD", "GPB"].map((item, i) => (
-							<li key={i}>
-								<Link href="/" as="/">
-									<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
-										{item}
-									</a>
-								</Link>
-							</li>
-						))}
-					</List>
-				</Item>
-			</Flex>
+			<List>
+				{Languages.map(({ title, locale }, i) => (
+					<li key={i}>
+						<Link href="/[lang]/" as={`/${locale}/`}>
+							<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
+								{title}
+							</a>
+						</Link>
+					</li>
+				))}
+			</List>
+
+			<List>
+				{["USD", "GPB"].map((item, i) => (
+					<li key={i}>
+						<Link href="/" as="/">
+							<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
+								{item}
+							</a>
+						</Link>
+					</li>
+				))}
+			</List>
 		</Options>
 		<Menu>
 			<DesktopMenu>

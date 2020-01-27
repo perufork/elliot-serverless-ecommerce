@@ -12,12 +12,14 @@ export default () => {
 	const { dispatch } = useDispatchSidebar();
 
 	useEffect(() => {
-		document.addEventListener("scroll", () => {
+		const handleScroll = () => {
 			window.scrollY > 100 ? setIsTop(false) : setIsTop(true);
-		});
+		};
+
+		document.addEventListener("scroll", handleScroll);
 
 		return () => {
-			document.removeEventListener("scroll");
+			document.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
 
@@ -29,7 +31,7 @@ export default () => {
 	};
 
 	return (
-		<Wrapper className={!isTop && "sticky"}>
+		<Wrapper sticky={!isTop}>
 			<Sidebar
 				visibleSidebar={state.open}
 				toggleSidebar={toggleSidebar}

@@ -57,8 +57,8 @@ export const Menu = styled.div`
 	padding-bottom: 60px;
 `;
 
-export const Options = styled.ul`
-	display: block;
+export const Options = styled.div`
+	display: flex;
 	padding-bottom: 60px;
 `;
 
@@ -78,6 +78,8 @@ export const MenuBottom = styled.div`
 `;
 
 export const List = styled.ul`
+	max-width: 200px;
+
 	li {
 		padding: 10px 0;
 		list-style: none;

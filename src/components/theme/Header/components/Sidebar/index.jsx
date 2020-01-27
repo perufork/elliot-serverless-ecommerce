@@ -1,6 +1,6 @@
 import NavigationLinks from "components/theme/Header/components/NavigationLinks";
 import CartSidebar from "components/theme/Header/components/CartSidebar";
-import { Wrapper, Burger, Bar, Nav, Overlay, Content } from "./styles";
+import { Wrapper, Burger, Close, Nav, Overlay, Content } from "./styles";
 
 export default ({ visibleSidebar, toggleSidebar, showCartContent }) => (
 	<Wrapper>
@@ -10,7 +10,7 @@ export default ({ visibleSidebar, toggleSidebar, showCartContent }) => (
 		/>
 		<Nav visible={visibleSidebar}>
 			<Burger>
-				<Bar
+				<Close
 					onClick={() => toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })}
 				/>
 			</Burger>
