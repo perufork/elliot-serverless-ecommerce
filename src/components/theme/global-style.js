@@ -37,6 +37,22 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-`;
+
+  h1 {
+    font-size: calc(36px + (48 - 36) * ((100vw - 300px) / (1600 - 300)));
+  }
+  h2 {
+    font-size: calc(24px + (36 - 24) * ((100vw - 300px) / (1600 - 300)));
+  }
+  h3 {
+    font-size: calc(18px + (24 - 18) * ((100vw - 300px) / (1600 - 300)));
+  }
+  h4 {
+    font-size: calc(16px + (18 - 16) * ((100vw - 300px) / (1600 - 300)));
+  }
+  h5 {
+    font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
+  `;
 
 export default GlobalStyle;

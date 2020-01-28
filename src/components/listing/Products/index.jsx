@@ -1,33 +1,57 @@
 import { useState } from "react";
+import { useIntl } from "react-intl";
 import { Flex, Item } from "react-flex-ready";
+import { Wrapper, Header, Heading } from "./styles";
 import Container from "components/common/Container";
-import { Wrapper, Header } from "./styles";
 import { GridIcon, ListIcon } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
-import { useDispatchCart } from "providers/CartProvider";
 import { addToCart } from "components/listing/actions";
+import Breadcrumbs from "components/common/Breadcrumbs";
+import { useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 
 export default ({ products }) => {
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const [grid, setGrid] = useState(true);
+	const { locale } = useIntl();
 
 	return (
 		<Wrapper as={Container}>
 			<Header>
-				<h1>Shop</h1>
-				<button
-					style={{ background: "none", border: "none" }}
-					type="button"
-					onClick={() => setGrid(!grid)}
-				>
-					{grid ? (
-						<ListIcon width={20} height={20} />
-					) : (
-						<GridIcon width={20} height={20} />
-					)}
-				</button>
+				<Wrapper>
+					<Heading>Shop</Heading>
+					<Breadcrumbs
+						flexAlign="flex-start"
+						links={[
+							{
+								name: "Home",
+								link: `/${locale}/product?id=`,
+								as: `/${locale}/product/`
+							},
+							{
+								name: "Shop",
+								link: `/${locale}/`,
+								as: `/${locale}/`,
+								active: true
+							}
+						]}
+					></Breadcrumbs>
+				</Wrapper>
+
+				<Wrapper>
+					<button
+						style={{ background: "none", border: "none" }}
+						type="button"
+						onClick={() => setGrid(!grid)}
+					>
+						{grid ? (
+							<ListIcon width={20} height={20} />
+						) : (
+							<GridIcon width={20} height={20} />
+						)}
+					</button>
+				</Wrapper>
 			</Header>
 			<Flex
 				col={grid ? 3 : 12}
