@@ -13,7 +13,7 @@ import {
 } from "./styles";
 
 export default ({
-	id,
+	slug,
 	name,
 	description,
 	images,

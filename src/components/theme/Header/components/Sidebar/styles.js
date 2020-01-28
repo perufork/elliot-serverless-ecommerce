@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	position: relative;
+	position: absolute;
 	overflow: scroll;
 	height: 100%;
 	color: #000;

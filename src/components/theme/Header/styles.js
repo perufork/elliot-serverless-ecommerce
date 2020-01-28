@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
 	border-bottom: 1px solid #eaeaea;
 	width: 100%;
 	z-index: 1;
@@ -14,8 +16,6 @@ export const Wrapper = styled.div`
 		position: fixed;
 		top: 0;
 		left: 0;
-		padding-top: 0;
-		padding-bottom: 0;
   `}
 
 	&.sticky {
@@ -58,15 +58,6 @@ export const Wrapper = styled.div`
 
 export const Options = styled.div`
 	display: flex;
-	padding-left: 50px;
 	justify-content: space-between;
 	align-items: center;
-
-	@media (min-width: 1680px) {
-		padding-left: 170px;
-	}
-
-	@media (min-width: 1200px) {
-		flex: 2 1 100%;
-	}
 `;

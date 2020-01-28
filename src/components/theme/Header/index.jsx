@@ -31,17 +31,19 @@ export default () => {
 	};
 
 	return (
-		<Wrapper sticky={!isTop}>
+		<>
 			<Sidebar
 				visibleSidebar={state.open}
 				toggleSidebar={toggleSidebar}
 				showCartContent={state.cartContent}
 			/>
-			<Brand />
-			<Options>
+			<Wrapper sticky={!isTop}>
+				<Brand />
 				<Links />
-				<Buttons toggleSidebar={toggleSidebar} />
-			</Options>
-		</Wrapper>
+				<Options>
+					<Buttons toggleSidebar={toggleSidebar} />
+				</Options>
+			</Wrapper>
+		</>
 	);
 };
