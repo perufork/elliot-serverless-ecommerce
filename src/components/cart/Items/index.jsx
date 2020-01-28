@@ -1,6 +1,7 @@
 import PageTitle from "components/common/PageTitle";
-import ShoppingCart from "components/cart/components/ShoppingCart";
 import { useIntl } from "react-intl";
+import ShoppingCart from "components/cart/components/ShoppingCart";
+import Checkout from "components/cart/components/Checkout";
 
 const Items = () => {
 	const { locale } = useIntl();
@@ -22,6 +23,7 @@ const Items = () => {
 		<>
 			<PageTitle title="title.cart" breadcumbs={breadcumbs} />
 			<ShoppingCart />
+			<Checkout />
 		</>
 	);
 };

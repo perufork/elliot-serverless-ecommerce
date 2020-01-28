@@ -35,6 +35,14 @@ export default {
 					bg: "#f68773",
 					color: "#fff"
 				}
+			},
+			outlined: {
+				color: "#bbb",
+				padding: "12px 10px",
+				border: "2px solid #eaeaea",
+				hover: {
+					color: "#222"
+				}
 			}
 		}
 	}

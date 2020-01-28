@@ -1,11 +1,13 @@
 {
-  "button.add_to_cart": "add to cart",
-  "button.checkout": "checkout",
-  "button.view_cart": "view cart",
-  "button.buy_now": "buy now",
-  "title": "Title",
-  "title.cart": "cart",
-  "product.review": "Review",
-  "product.category": "CATEGORY",
-  "product.tags": "Tags"
+	"button.add_to_cart": "add to cart",
+	"button.checkout": "checkout",
+	"button.view_cart": "view cart",
+	"button.buy_now": "buy now",
+	"button.continue_shopping": "continue shopping",
+	"button.update_cart": "update cart",
+	"title": "Title",
+	"title.cart": "cart",
+	"product.review": "Review",
+	"product.category": "CATEGORY",
+	"product.tags": "Tags"
 }

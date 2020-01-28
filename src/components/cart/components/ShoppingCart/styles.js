@@ -129,7 +129,6 @@ export const Tbody = styled.tbody`
 			font-size: 14px;
 			font-weight: 600;
 			color: #999;
-			border-bottom: 1px solid #ddd;
 
 			&:first-child {
 				min-width: 350px;
