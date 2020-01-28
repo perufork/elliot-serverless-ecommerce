@@ -16,14 +16,15 @@ import Link from "next/link";
 
 const Details = ({
 	id,
-	title,
+	name,
 	skus,
 	price,
 	description,
 	rating = 4,
 	review = 1,
 	categories,
-	tags
+	tags,
+	images
 }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
@@ -41,8 +42,9 @@ const Details = ({
 						{review} <FormattedMessage id="product.review" />
 					</span>
 				</Review>
-				<h2>{title}</h2>
-				{skus.edges[0].node.orderSkus &&
+				<h2>{name}</h2>
+				{skus.edge &&
+					skus.edges[0].node.orderSkus &&
 					skus.edges[0].node.orderSkus.edges[0].node.sku.sku && (
 						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
 					)}
@@ -70,7 +72,7 @@ const Details = ({
 							onClick={() => {
 								addToCart({
 									dispatch,
-									payload: { id, title, price, description }
+									payload: { id, name, skus, price, description, images }
 								});
 								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 							}}

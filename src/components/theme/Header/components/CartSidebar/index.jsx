@@ -23,7 +23,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									<Link href="/[lang]/" as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>
 											<img
-												src={`https://storage.googleapis.com/elliot-images-us/${images.edges[0].node.image}`}
+												src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
 												alt={name}
 											/>
 										</a>

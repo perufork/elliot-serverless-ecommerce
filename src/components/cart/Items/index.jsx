@@ -8,12 +8,12 @@ const Items = () => {
 	const breadcumbs = [
 		{
 			name: "Shop",
-			link: `/${locale}/`,
+			link: `/[lang]/`,
 			as: `/${locale}/`
 		},
 		{
 			name: "Cart",
-			link: `/${locale}/cart/`,
+			link: `/[lang]/cart/`,
 			as: `/${locale}/cart/`,
 			active: true
 		}

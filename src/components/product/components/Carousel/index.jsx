@@ -52,7 +52,7 @@ const Carousel = ({ name, images }) => {
 					<div key={id}>
 						<img
 							className="swiper-zoom-container"
-							src={`https://storage.googleapis.com/elliot-images-us/${image}`}
+							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${image}`}
 							alt={name}
 						/>
 					</div>

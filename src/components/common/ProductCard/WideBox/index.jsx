@@ -30,7 +30,7 @@ export default ({
 						{images.edges.map(({ node }) => (
 							<img
 								key={node.id}
-								src={`https://storage.googleapis.com/elliot-images-us/${node.image}`}
+								src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
 								alt={name}
 							/>
 						))}

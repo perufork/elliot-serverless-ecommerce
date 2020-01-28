@@ -12,12 +12,12 @@ const BreadcumbsHeader = ({ id, title }) => {
 				links={[
 					{
 						name: "Shop",
-						link: `/${locale}/`,
+						link: `/[lang]/`,
 						as: `/${locale}/`
 					},
 					{
 						name: title,
-						link: `/${locale}/product?id=${id}`,
+						link: `/[lang]/product/[id]`,
 						as: `/${locale}/product/${id}`,
 						active: true
 					}

@@ -13,7 +13,7 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 							<img
 								key={node.id}
 								className={i === 1 ? "secondary" : 0}
-								src={`https://storage.googleapis.com/elliot-images-us/${node.image}`}
+								src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
 								alt={name}
 							/>
 						))}
