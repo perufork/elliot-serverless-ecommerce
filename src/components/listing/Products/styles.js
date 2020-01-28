@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div``;
-
 export const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -9,7 +7,20 @@ export const Header = styled.div`
 	padding-bottom: 100px;
 `;
 
-export const Heading = styled.h1`
-	font-weight: 800;
-	margin-bottom: 10px;
+export const FiltersWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
+export const Products = styled.section`
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-column-gap: 30px;
+	grid-row-gap: 65px;
+
+	${({ grid }) =>
+		!grid &&
+		`
+		grid-template-columns: 1fr;
+  `}
 `;

@@ -37,10 +37,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-
-  h1 {
-    font-size: calc(36px + (48 - 36) * ((100vw - 300px) / (1600 - 300)));
-  }
+  
   h2 {
     font-size: calc(24px + (36 - 24) * ((100vw - 300px) / (1600 - 300)));
   }

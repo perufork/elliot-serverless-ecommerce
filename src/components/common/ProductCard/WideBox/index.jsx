@@ -26,15 +26,13 @@ export default ({
 		<Thumbnail>
 			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${slug}`}>
 				<a>
-					<>
-						{images.edges.map(({ node }) => (
-							<img
-								key={node.id}
-								src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
-								alt={name}
-							/>
-						))}
-					</>
+					{images.edges.map(({ node }) => (
+						<img
+							key={node.id}
+							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
+							alt={name}
+						/>
+					))}
 				</a>
 			</Link>
 		</Thumbnail>

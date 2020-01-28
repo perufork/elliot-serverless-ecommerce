@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Menu = styled.ul`
+	margin-left: 115px;
+	margin-right: auto;
+
 	@media screen and (max-width: 1200px) {
 		display: none;
 	}

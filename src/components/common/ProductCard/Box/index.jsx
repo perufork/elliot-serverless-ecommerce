@@ -8,16 +8,14 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 		<Thumbnail>
 			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
 				<a>
-					<>
-						{images.edges.map(({ node }, i) => (
-							<img
-								key={node.id}
-								className={i === 1 ? "secondary" : 0}
-								src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
-								alt={name}
-							/>
-						))}
-					</>
+					{images.edges.map(({ node }, i) => (
+						<img
+							key={node.id}
+							className={i === 1 ? "secondary" : 0}
+							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
+							alt={name}
+						/>
+					))}
 				</a>
 			</Link>
 			<div>

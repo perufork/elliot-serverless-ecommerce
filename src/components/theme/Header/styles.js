@@ -26,7 +26,12 @@ export const Wrapper = styled.div`
 		padding-bottom: 0;
 	}
 
-	ul,
+	ul {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 0;
+	}
+
 	ol {
 		margin: 0;
 		padding: 0;

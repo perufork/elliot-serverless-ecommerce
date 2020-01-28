@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
-import { Flex, Item } from "react-flex-ready";
-import { Wrapper, Header, Heading } from "./styles";
+import { FiltersWrapper, Header, Products } from "./styles";
 import Container from "components/common/Container";
+import PageTitle from "components/common/PageTitle";
 import { GridIcon, ListIcon } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
 import { addToCart } from "components/listing/actions";
-import Breadcrumbs from "components/common/Breadcrumbs";
 import { useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 
@@ -17,29 +16,29 @@ export default ({ products }) => {
 	const { locale } = useIntl();
 
 	return (
-		<Wrapper as={Container}>
+		<Container>
 			<Header>
-				<Wrapper>
-					<Heading>Shop</Heading>
-					<Breadcrumbs
-						flexAlign="flex-start"
-						links={[
-							{
-								name: "Home",
-								link: `/${locale}/product?id=`,
-								as: `/${locale}/product/`
-							},
-							{
-								name: "Shop",
-								link: `/${locale}/`,
-								as: `/${locale}/`,
-								active: true
-							}
-						]}
-					></Breadcrumbs>
-				</Wrapper>
+				<PageTitle
+					title="Shop"
+					breadcrumbs={[
+						{
+							name: "Home",
+							link: `/${locale}/product?id=`,
+							as: `/${locale}/product/`
+						},
+						{
+							name: "Shop",
+							link: `/${locale}/`,
+							as: `/${locale}/`,
+							active: true
+						}
+					]}
+				/>
 
-				<Wrapper>
+				<FiltersWrapper>
+					<p>filter</p>
+					<p>filter</p>
+					<p>filter</p>
 					<button
 						style={{ background: "none", border: "none" }}
 						type="button"
@@ -51,33 +50,21 @@ export default ({ products }) => {
 							<GridIcon width={20} height={20} />
 						)}
 					</button>
-				</Wrapper>
+				</FiltersWrapper>
 			</Header>
-			<Flex
-				col={grid ? 3 : 12}
-				colTablet={grid ? 3 : 12}
-				colMobile={grid ? 6 : 12}
-			>
+			<Products grid={grid}>
 				{products.edges.map(({ node }, i) => (
-					<Item
+					<ProductCard
 						key={i}
-						col={grid ? 3 : 12}
-						colTablet={grid ? 3 : 12}
-						colMobile={grid ? 6 : 12}
-						marginBottom={30}
-						stretch
-					>
-						<ProductCard
-							onClick={() => {
-								addToCart({ dispatch, payload: node });
-								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-							}}
-							grid={grid}
-							{...node}
-						/>
-					</Item>
+						onClick={() => {
+							addToCart({ dispatch, payload: node });
+							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+						}}
+						grid={grid}
+						{...node}
+					/>
 				))}
-			</Flex>
-		</Wrapper>
+			</Products>
+		</Container>
 	);
 };

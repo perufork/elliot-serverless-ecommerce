@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
 	padding-right: 100px;
 
 	@media (min-width: 1200px) {
-		padding-right: 0;
+		padding-right: 10px;
 	}
 
 	@media (min-width: 1366px) {
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 	}
 
 	@media (max-width: 960px) {
-		padding-right: 0;
+		padding-right: 4px;
 	}
 `;
 
