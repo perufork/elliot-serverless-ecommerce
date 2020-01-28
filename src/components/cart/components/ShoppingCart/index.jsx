@@ -10,7 +10,6 @@ import {
 	addQuantityByProduct,
 	subtractQuantityByProduct
 } from "components/cart/actions";
-import thumbnailImage from "assets/product/product.jpg";
 import {
 	TableWrapper,
 	Table,
@@ -45,59 +44,72 @@ const ShoppingCart = () => {
 							</tr>
 						</Thead>
 						<Tbody>
-							{state.data.map(({ id, title, price, quantity }) => (
-								<tr key={id}>
-									<td>
-										<Product>
-											<Thumbnail>
-												<Link href="/[lang]/" as={`/${locale}/`}>
-													<a>
-														<img src={thumbnailImage} alt={title} />
-													</a>
-												</Link>
-											</Thumbnail>
-											<Content>
-												<Link
-													href={`/[lang]/product?id=${id}`}
-													as={`/${locale}/product/${id}`}
-												>
-													<a>{title}</a>
-												</Link>
-												<p>Apple</p>
-											</Content>
-										</Product>
-									</td>
-									<td>
-										<Swatch color="#70849d" />
-									</td>
-									<td>M</td>
-									<td>
-										<strong>${price}</strong>
-									</td>
-									<td>
-										<QuantityController
-											id={id}
-											dispatch={dispatch}
-											subtractQuantityByProduct={subtractQuantityByProduct}
-											addQuantityByProduct={addQuantityByProduct}
-											quantity={quantity}
-										/>
-									</td>
-									<td>
-										<p>
-											<strong>${price * quantity}</strong>
-										</p>
-									</td>
-									<td>
-										<button
-											type="button"
-											onClick={() => removeFromCart({ dispatch, id })}
-										>
-											<CancelIcon width={16} height={16} color="#a5a5a5" />
-										</button>
-									</td>
-								</tr>
-							))}
+							{state.data.map(
+								({ id, images, name, skus, quantity, description }) => (
+									<tr key={id}>
+										<td>
+											<Product>
+												<Thumbnail>
+													<Link href="/[lang]/" as={`/${locale}/`}>
+														<a>
+															<img
+																src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+																alt={name}
+															/>
+														</a>
+													</Link>
+												</Thumbnail>
+												<Content>
+													<Link
+														href="/[lang]/product/[id]"
+														as={`/${locale}/product/${id}`}
+													>
+														<a>{name}</a>
+													</Link>
+													<div
+														dangerouslySetInnerHTML={{ __html: description }}
+													/>
+												</Content>
+											</Product>
+										</td>
+										<td>
+											<Swatch color="#70849d" />
+										</td>
+										<td>M</td>
+										<td>
+											{skus.edges[0].node.salePrice && (
+												<strong>${skus.edges[0].node.salePrice}</strong>
+											)}
+										</td>
+										<td>
+											<QuantityController
+												id={id}
+												dispatch={dispatch}
+												subtractQuantityByProduct={subtractQuantityByProduct}
+												addQuantityByProduct={addQuantityByProduct}
+												quantity={quantity}
+											/>
+										</td>
+										<td>
+											<p>
+												{skus.edges[0].node.salePrice && (
+													<strong>
+														${skus.edges[0].node.salePrice * quantity}
+													</strong>
+												)}
+											</p>
+										</td>
+										<td>
+											<button
+												type="button"
+												onClick={() => removeFromCart({ dispatch, id })}
+											>
+												<CancelIcon width={16} height={16} color="#a5a5a5" />
+											</button>
+										</td>
+									</tr>
+								)
+							)}
 						</Tbody>
 					</Table>
 				</TableWrapper>

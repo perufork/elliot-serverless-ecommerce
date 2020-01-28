@@ -6,7 +6,6 @@ import { useCart, useDispatchCart } from "providers/CartProvider";
 import { removeFromCart } from "components/cart/actions";
 import getTotal from "helpers/getTotal";
 import { Wrapper, CartItem, Thumbnail, Content, CartFooter } from "./styles";
-import thumbnailImage from "assets/product/product.jpg";
 
 const CartSidebar = ({ toggleSidebar }) => {
 	const { state } = useCart();
@@ -18,12 +17,15 @@ const CartSidebar = ({ toggleSidebar }) => {
 			{state.data && state.data.length > 0 ? (
 				<div>
 					<div>
-						{state.data.map(({ id, title, price, quantity }) => (
+						{state.data.map(({ id, name, images, skus, quantity }) => (
 							<CartItem key={id}>
 								<Thumbnail>
 									<Link href="/[lang]/" as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>
-											<img src={thumbnailImage} alt="title" />
+											<img
+												src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+												alt={name}
+											/>
 										</a>
 									</Link>
 								</Thumbnail>
@@ -35,10 +37,12 @@ const CartSidebar = ({ toggleSidebar }) => {
 										<CancelIcon width={16} height={16} color="#a5a5a5" />
 									</button>
 									<Link href="/[lang]/" as={`/${locale}/`}>
-										<a onClick={toggleSidebar}>{title}</a>
+										<a onClick={toggleSidebar}>{name}</a>
 									</Link>
 									<p>Qty: {quantity}</p>
-									<span>${price}</span>
+									{skus.edges[0].node.salePrice && (
+										<span>${skus.edges[0].node.salePrice}</span>
+									)}
 								</Content>
 							</CartItem>
 						))}
