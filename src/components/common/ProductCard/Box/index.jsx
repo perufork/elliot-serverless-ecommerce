@@ -1,28 +1,22 @@
 import Link from "next/link";
 import Stars from "components/common/Stars";
-import thumbnailImage from "assets/product/product.jpg";
-import thumbnailSecondaryImage from "assets/product/product-2.jpg";
 import { Thumbnail, Details } from "./styles";
 import { HeartIcon } from "components/common/Icons";
 
-export default ({
-	id,
-	thumbnail = thumbnailImage,
-	image = thumbnailSecondaryImage,
-	title = "Lorem Ipsum",
-	rating = 4,
-	price = 100,
-	currency = "$",
-	onClick,
-	locale
-}) => (
+export default ({ id, name, images, gender, skus, onClick, locale }) => (
 	<div>
 		<Thumbnail>
 			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
 				<a>
 					<>
-						<img src={thumbnail} alt={title} />
-						<img className="secondary" src={image} alt={title} />
+						{images.edges.map(({ node }, i) => (
+							<img
+								key={node.id}
+								className={i === 1 ? "secondary" : 0}
+								src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
+								alt={name}
+							/>
+						))}
 					</>
 				</a>
 			</Link>
@@ -41,13 +35,15 @@ export default ({
 			<Details>
 				<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
 					<a>
-						<h2>{title}</h2>
+						<h2>{name}</h2>
 					</a>
 				</Link>
-				<Stars stars={rating} />
-				<p>
-					<span>{currency}</span> {price}
-				</p>
+				<Stars stars={gender} />
+				{skus.edges[0].node.salePrice && (
+					<p>
+						<span>$</span> {skus.edges[0].node.salePrice}
+					</p>
+				)}
 			</Details>
 		</div>
 	</div>

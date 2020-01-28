@@ -16,14 +16,15 @@ import Link from "next/link";
 
 const Details = ({
 	id,
-	title,
-	sku,
+	name,
+	skus,
 	price,
 	description,
 	rating = 4,
 	review = 1,
 	categories,
-	tags
+	tags,
+	images
 }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
@@ -41,13 +42,19 @@ const Details = ({
 						{review} <FormattedMessage id="product.review" />
 					</span>
 				</Review>
-				<h2>{title}</h2>
-				<Sku>SKU: {sku}</Sku>
-				<h4>${price}</h4>
+				<h2>{name}</h2>
+				{skus.edge &&
+					skus.edges[0].node.orderSkus &&
+					skus.edges[0].node.orderSkus.edges[0].node.sku.sku && (
+						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
+					)}
+				{skus.edges[0].node.salePrice && (
+					<p>
+						<span>$</span> {skus.edges[0].node.salePrice}
+					</p>
+				)}
 			</div>
-			<div>
-				<p>{description}</p>
-			</div>
+			<div dangerouslySetInnerHTML={{ __html: description }} />
 			<Shop>
 				<Flex css="margin-bottom: 2rem;">
 					<Item col={3} colTablet={3} colMobile={12} gap={1} stretch>
@@ -65,7 +72,7 @@ const Details = ({
 							onClick={() => {
 								addToCart({
 									dispatch,
-									payload: { id, title, price, description }
+									payload: { id, name, skus, price, description, images }
 								});
 								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 							}}
@@ -92,28 +99,30 @@ const Details = ({
 				</Button>
 			</Shop>
 			<Specs>
-				<p>
-					<strong>
-						<FormattedMessage id="product.category" />:
-					</strong>
-					{categories &&
-						categories.map((item, i) => (
+				{categories && (
+					<p>
+						<strong>
+							<FormattedMessage id="product.category" />:
+						</strong>
+						{categories.map((item, i) => (
 							<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
 								<a>{item}</a>
 							</Link>
 						))}
-				</p>
-				<p>
-					<strong>
-						<FormattedMessage id="product.tags" />:
-					</strong>
-					{tags &&
-						tags.map((item, i) => (
+					</p>
+				)}
+				{tags && (
+					<p>
+						<strong>
+							<FormattedMessage id="product.tags" />:
+						</strong>
+						{tags.map((item, i) => (
 							<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
 								<a>{item}</a>
 							</Link>
 						))}
-				</p>
+					</p>
+				)}
 			</Specs>
 			{/* <div class="ps-product__sharing">
 				<a href="#">

@@ -2,8 +2,8 @@ import { defineMessages, useIntl } from "react-intl";
 import Head from "next/head";
 import Layout from "components/common/Layout";
 import Products from "components/listing/Products";
-import fetch from "isomorphic-unfetch";
 import withLocale from "hoc/withLocale";
+import getProducts from "helpers/getProducts";
 
 const { title } = defineMessages({
 	title: {
@@ -27,8 +27,7 @@ const Index = ({ products }) => {
 
 export const unstable_getStaticProps = async ({ params }) => {
 	try {
-		const response = await fetch(`${process.env.BASE_URL}/api/product`);
-		const products = await response.json();
+		const products = await getProducts();
 
 		return {
 			props: {

@@ -16,18 +16,13 @@ export const Thumbnail = styled.div`
 	margin-right: 1rem;
 	position: relative;
 	overflow: hidden;
-
-	@media screen and (min-width: 1200px) {
-		max-width: calc(40% - 50px);
-	}
-
-	@media screen and (min-width: 768px) {
-		max-width: calc(40% - 30px);
-	}
+	flex: 1;
 
 	@media screen and (max-width: 960px) {
 		margin-right: unset;
 		margin-bottom: 1rem;
+		flex: unset;
+		width: 100%;
 	}
 
 	img {
@@ -58,6 +53,15 @@ export const Thumbnail = styled.div`
 				position: unset;
 			}
 		}
+	}
+`;
+
+export const Content = styled.div`
+	flex: 2;
+
+	@media screen and (max-width: 960px) {
+		flex: unset;
+		width: 100%;
 	}
 `;
 

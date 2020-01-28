@@ -58,7 +58,7 @@ export default ({ products }) => {
 				colTablet={grid ? 3 : 12}
 				colMobile={grid ? 6 : 12}
 			>
-				{products.map((product, i) => (
+				{products.edges.map(({ node }, i) => (
 					<Item
 						key={i}
 						col={grid ? 3 : 12}
@@ -69,11 +69,11 @@ export default ({ products }) => {
 					>
 						<ProductCard
 							onClick={() => {
-								addToCart({ dispatch, payload: product });
+								addToCart({ dispatch, payload: node });
 								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 							}}
 							grid={grid}
-							{...product}
+							{...node}
 						/>
 					</Item>
 				))}
