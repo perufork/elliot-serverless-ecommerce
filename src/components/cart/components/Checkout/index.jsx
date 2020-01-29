@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
-import Button from "components/common/Button";
-import { Wrapper, Actions, Flex } from "./styles";
-import Container from "components/common/Container";
-import { useCart, useDispatchCart } from "providers/CartProvider";
 import getTotal from "helpers/getTotal";
+import { useCart, useDispatchCart } from "providers/CartProvider";
+import Button from "components/common/Button";
+import Container from "components/common/Container";
+import Coupon from "components/cart/components/Coupon";
+import { Wrapper, Actions, Flex } from "./styles";
 
 const Checkout = () => {
 	const { locale } = useIntl();
@@ -26,17 +27,7 @@ const Checkout = () => {
 						</Button>
 					</Link>
 				</Flex>
-				<div className="form-group">
-					<label>Discount Code</label>
-					<div className="form-group__content">
-						<input
-							className="form-control"
-							type="text"
-							placeholder="Enter your code"
-						/>
-						<a href="#">Apply</a>
-					</div>
-				</div>
+				<Coupon />
 			</Actions>
 			<div className="ps-block--checkout-total">
 				<div className="ps-block__top">
