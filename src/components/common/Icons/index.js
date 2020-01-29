@@ -2,6 +2,7 @@ export * from "./AvatarIcon";
 export * from "./CancelIcon";
 export * from "./CartIcon";
 export * from "./CarouselArrow";
+export * from "./ChevronDownIcon";
 export * from "./GridIcon";
 export * from "./HeartIcon";
 export * from "./ListIcon";
