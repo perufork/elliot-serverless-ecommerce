@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
 	input {
 		border: none;
 		height: 45px;
+		max-width: calc(100% - 64px);
 		font-size: 14px;
 		font-weight: 600;
 		text-align: center;
@@ -24,13 +25,6 @@ export const Wrapper = styled.div`
 		outline: none;
 		transition: all 0.4s ease;
 		display: block;
-		width: 50px;
-
-		${({ wide }) =>
-			wide &&
-			`
-				width: 80%;
-		`}
 
 		&::placeholder {
 			color: #222;

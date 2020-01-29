@@ -1,5 +1,4 @@
 import { FormattedMessage, useIntl } from "react-intl";
-import { Flex, Item } from "react-flex-ready";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 import {
@@ -56,39 +55,31 @@ const Details = ({
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }} />
 			<Shop>
-				<Flex css="margin-bottom: 2rem;">
-					<Item col={3} colTablet={3} colMobile={12} gap={1} stretch>
-						<QuantityController
-							wide
-							id={id}
-							dispatch={dispatch}
-							subtractQuantityByProduct={subtractQuantityByProduct}
-							addQuantityByProduct={addQuantityByProduct}
-							quantity={product ? product.quantity : 0}
-						/>
-					</Item>
-					<Item col={7} colTablet={7} colMobile={12} gap={1} stretch>
-						<Button
-							onClick={() => {
-								addToCart({
-									dispatch,
-									payload: { id, name, skus, price, description, images }
-								});
-								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-							}}
-							type="button"
-							variant="primary"
-							wide
-						>
-							<FormattedMessage id="button.add_to_cart" />
-						</Button>
-					</Item>
-					<Item col={2} colTablet={2} colMobile={12} gap={1} stretch>
-						<Favorite>
-							<HeartIcon />
-						</Favorite>
-					</Item>
-				</Flex>
+				<QuantityController
+					wide
+					id={id}
+					dispatch={dispatch}
+					subtractQuantityByProduct={subtractQuantityByProduct}
+					addQuantityByProduct={addQuantityByProduct}
+					quantity={product ? product.quantity : 0}
+				/>
+				<Button
+					onClick={() => {
+						addToCart({
+							dispatch,
+							payload: { id, name, skus, price, description, images }
+						});
+						dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+					}}
+					type="button"
+					variant="primary"
+					wide
+				>
+					<FormattedMessage id="button.add_to_cart" />
+				</Button>
+				<Favorite>
+					<HeartIcon />
+				</Favorite>
 				<Button
 					onClick={() => alert("buy now")}
 					type="button"

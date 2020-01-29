@@ -61,7 +61,16 @@ export const Sku = styled.span`
 `;
 
 export const Shop = styled.div`
-	margin-bottom: 36px;
+	display: grid;
+	grid-template-columns: 2fr 3fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 15px;
+	margin: 30px 0;
+
+	button:last-child {
+		grid-column-start: 1;
+		grid-column-end: -1;
+	}
 `;
 
 export const Favorite = styled.button`
