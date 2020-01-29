@@ -49,6 +49,7 @@ export const Nav = styled.div`
 	width: 100%;
 	max-width: 470px;
 	height: 100vh;
+	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 10001;
 	background-color: #fff;
@@ -107,7 +108,7 @@ export const Close = styled.div`
 `;
 
 export const Content = styled.div`
-	height: 100%;
+	height: 90%;
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;

@@ -10,6 +10,10 @@ export const Header = styled.div`
 export const FiltersWrapper = styled.div`
 	display: flex;
 	align-items: center;
+
+	*:last-child {
+		padding-right: 0;
+	}
 `;
 
 export const Products = styled.section`

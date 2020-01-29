@@ -5,6 +5,12 @@ export const Thumbnail = styled.div`
 	overflow: hidden;
 	width: 100%;
 
+	a {
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
+
 	img {
 		width: 100%;
 		transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);

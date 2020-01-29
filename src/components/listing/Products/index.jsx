@@ -23,13 +23,13 @@ export default ({ products }) => {
 					breadcrumbs={[
 						{
 							name: "Home",
-							link: `/${locale}/product?id=`,
-							as: `/${locale}/product/`
+							link: `/${locale}`,
+							as: `/${locale}`
 						},
 						{
 							name: "Shop",
-							link: `/${locale}/`,
-							as: `/${locale}/`,
+							link: `/${locale}`,
+							as: `/${locale}`,
 							active: true
 						}
 					]}
