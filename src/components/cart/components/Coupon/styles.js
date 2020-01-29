@@ -25,5 +25,14 @@ export const CouponWrapper = styled.div`
 		color: #222;
 		background: none;
 		border: none;
+		transition: all 0.4s ease;
+
+		&:hover {
+			color: ${({
+				theme: {
+					colors: { accent }
+				}
+			}) => accent};
+		}
 	}
 `;

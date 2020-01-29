@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: space-between;
-	padding-top: 50px;
+	padding: 4rem 0;
 	border-top: 1px solid #eaeaea;
 
 	@media (min-width: 768px) {
@@ -18,45 +18,6 @@ export const Wrapper = styled.div`
 export const Actions = styled.div`
 	max-width: 370px;
 	width: 100%;
-
-	.form-group {
-		label {
-			margin-bottom: 10px;
-			font-size: 18px;
-			font-weight: 600;
-			color: #222;
-		}
-
-		input {
-			border: 2px solid #eaeaea;
-			&::placeholder {
-				color: #ccc;
-			}
-		}
-
-		.form-group__content {
-			position: relative;
-
-			a {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				right: 20px;
-				font-size: 12px;
-				font-weight: 600;
-				text-transform: uppercase;
-				color: #222;
-
-				&:hover {
-					color: ${({
-						theme: {
-							colors: { accent }
-						}
-					}) => accent};
-				}
-			}
-		}
-	}
 `;
 
 export const Flex = styled.div`
