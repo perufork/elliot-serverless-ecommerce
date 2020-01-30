@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "components/common/Logo";
+import { Wrapper } from "./styles";
 import { useIntl } from "react-intl";
 
 const Brand = () => {
@@ -8,7 +9,9 @@ const Brand = () => {
 	return (
 		<Link href="/[lang]/" as={`/${locale}/`}>
 			<a>
-				<Logo width={48} height={48} />
+				<Wrapper>
+					<Logo width="100%" height="auto" />
+				</Wrapper>
 			</a>
 		</Link>
 	);

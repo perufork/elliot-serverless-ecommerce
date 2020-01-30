@@ -1,51 +1,80 @@
 import { useState } from "react";
-import { Flex, Item } from "react-flex-ready";
+import { useIntl } from "react-intl";
+import { FiltersWrapper, Header, Products, Result, Filters } from "./styles";
 import Container from "components/common/Container";
-import { Wrapper } from "./styles";
+import PageTitle from "components/common/PageTitle";
+import Dropdown from "components/common/Dropdown";
+import { GridIcon, ListIcon } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
-import { useDispatchCart } from "providers/CartProvider";
 import { addToCart } from "components/listing/actions";
+import { useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 
 export default ({ products }) => {
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const [grid, setGrid] = useState(true);
+	const { locale } = useIntl();
 
 	return (
-		<Wrapper as={Container}>
-			<button
-				style={{ marginBottom: 20 }}
-				type="button"
-				onClick={() => setGrid(!grid)}
-			>
-				Switch grid
-			</button>
-			<Flex
-				col={grid ? 3 : 12}
-				colTablet={grid ? 3 : 12}
-				colMobile={grid ? 6 : 12}
-			>
-				{products.edges.map(({ node }, i) => (
-					<Item
-						key={i}
-						col={grid ? 3 : 12}
-						colTablet={grid ? 3 : 12}
-						colMobile={grid ? 6 : 12}
-						marginBottom={30}
-						stretch
-					>
-						<ProductCard
-							onClick={() => {
-								addToCart({ dispatch, payload: node });
-								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-							}}
-							grid={grid}
-							{...node}
+		<Container>
+			<Header>
+				<PageTitle
+					title="Shop"
+					breadcrumbs={[
+						{
+							name: "Home",
+							link: `/${locale}`,
+							as: `/${locale}`
+						},
+						{
+							name: "Shop",
+							link: `/${locale}`,
+							as: `/${locale}`,
+							active: true
+						}
+					]}
+				/>
+
+				<FiltersWrapper>
+					<Result>
+						<span>25</span>
+						Products Found
+					</Result>
+					<Filters>
+						<Dropdown
+							label="Sort by"
+							options={["Default", "Average Rating", "Newest", "Oldest"]}
+							displayDefaultValue
 						/>
-					</Item>
+
+						<button
+							style={{ background: "none", border: "none" }}
+							type="button"
+							onClick={() => setGrid(!grid)}
+						>
+							{grid ? (
+								<ListIcon width={20} height={20} />
+							) : (
+								<GridIcon width={20} height={20} />
+							)}
+						</button>
+					</Filters>
+				</FiltersWrapper>
+			</Header>
+			<Products grid={grid}>
+				{products.edges.map(({ node }, i) => (
+					<ProductCard
+						key={i}
+						onClick={() => {
+							addToCart({ dispatch, payload: node });
+							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+						}}
+						grid={grid}
+						{...node}
+					/>
 				))}
-			</Flex>
-		</Wrapper>
+			</Products>
+		</Container>
 	);
 };
