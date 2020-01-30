@@ -61,7 +61,6 @@ export const Country = styled.div`
 	h5,
 	span {
 		position: relative;
-
 		display: inline-block;
 		font-size: 14px;
 		font-weight: 600;
@@ -82,5 +81,17 @@ export const Country = styled.div`
 			border-radius: 4px;
 			background-color: #222;
 		}
+	}
+`;
+
+export const FormField = styled.div`
+	margin-bottom: 2.5rem;
+
+	span {
+		font-weight: normal;
+		font-size: 12px;
+		color: #e53935;
+		display: block;
+		margin-top: 0.2rem;
 	}
 `;

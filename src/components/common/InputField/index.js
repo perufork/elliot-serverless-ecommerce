@@ -10,6 +10,11 @@ const InputField = styled.input`
 
 	&:focus {
 		outline: none;
+		border-color: ${({
+			theme: {
+				colors: { accent }
+			}
+		}) => accent};
 	}
 
 	${({ textArea }) =>

@@ -26,6 +26,10 @@ export const Flex = styled.div`
 	justify-content: space-between;
 	margin-bottom: 50px;
 
+	@media (max-width: 680px) {
+		flex-direction: column;
+	}
+
 	a:first-child {
 		margin-right: 0.5rem;
 	}

@@ -32,7 +32,7 @@ const Button = styled.button`
 		variant,
 		theme: {
 			button: {
-				variants: { primary, secondary, outlined }
+				variants: { primary, secondary, outlined, flat, ghost }
 			}
 		}
 	}) => {
@@ -67,6 +67,28 @@ const Button = styled.button`
 					&:hover {
 							color: ${outlined.hover.color};
 							border-color: ${outlined.hover.color};
+					}
+				`;
+			case "flat":
+				return `
+					color: ${flat.color};
+					border: ${flat.border};
+					background: ${flat.bg};
+
+					&:hover {
+							color: ${flat.hover.color};
+							background: ${flat.hover.bg};
+					}
+				`;
+			case "ghost":
+				return `
+					color: ${ghost.color};
+					border: ${ghost.border};
+					background: ${ghost.bg};
+
+					&:hover {
+							color: ${ghost.hover.color};
+							background: ${ghost.hover.bg};
 					}
 				`;
 			default:

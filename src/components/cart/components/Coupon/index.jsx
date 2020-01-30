@@ -21,7 +21,8 @@ export default () => (
 				setSubmitting(false);
 			}
 		}}
-		render={({ isSubmitting }) => (
+	>
+		{({ isSubmitting }) => (
 			<Wrapper as={Form}>
 				<label>Discount Code</label>
 				<CouponWrapper>
@@ -38,5 +39,5 @@ export default () => (
 				<ErrorMessage component={ErrorField} name="coupon" />
 			</Wrapper>
 		)}
-	/>
+	</Formik>
 );

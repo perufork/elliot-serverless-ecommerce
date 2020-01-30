@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
-import { useCart, useDispatchCart } from "providers/CartProvider";
+import { useCart } from "providers/CartProvider";
 import Button from "components/common/Button";
 import Container from "components/common/Container";
 import Coupon from "components/cart/components/Coupon";
@@ -10,7 +10,7 @@ import { Wrapper, Actions, Flex } from "./styles";
 const Checkout = () => {
 	const { locale } = useIntl();
 	const { state } = useCart();
-	const { dispatch } = useDispatchCart();
+	// const { dispatch } = useDispatchCart();
 
 	return (
 		<Wrapper as={Container}>
