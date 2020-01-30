@@ -10,7 +10,16 @@ import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 import { HeartIcon } from "components/common/Icons";
-import { Wrapper, Review, Sku, Shop, Favorite, Specs } from "./styles";
+import {
+	Wrapper,
+	Review,
+	Sku,
+	ButtonGroup,
+	MainAction,
+	Shop,
+	Favorite,
+	Specs
+} from "./styles";
 import Link from "next/link";
 
 const Details = ({
@@ -63,31 +72,35 @@ const Details = ({
 					addQuantityByProduct={addQuantityByProduct}
 					quantity={product ? product.quantity : 0}
 				/>
-				<Button
-					onClick={() => {
-						addToCart({
-							dispatch,
-							payload: { id, name, skus, price, description, images }
-						});
-						dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-					}}
-					type="button"
-					variant="primary"
-					wide
-				>
-					<FormattedMessage id="button.add_to_cart" />
-				</Button>
-				<Favorite>
-					<HeartIcon />
-				</Favorite>
-				<Button
-					onClick={() => alert("buy now")}
-					type="button"
-					variant="primary"
-					wide
-				>
-					<FormattedMessage id="button.buy_now" />
-				</Button>
+				<ButtonGroup>
+					<Button
+						onClick={() => {
+							addToCart({
+								dispatch,
+								payload: { id, name, skus, price, description, images }
+							});
+							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+						}}
+						type="button"
+						variant="primary"
+						wide
+					>
+						<FormattedMessage id="button.add_to_cart" />
+					</Button>
+					<Favorite>
+						<HeartIcon />
+					</Favorite>
+				</ButtonGroup>
+				<MainAction>
+					<Button
+						onClick={() => alert("buy now")}
+						type="button"
+						variant="primary"
+						wide
+					>
+						<FormattedMessage id="button.buy_now" />
+					</Button>
+				</MainAction>
 			</Shop>
 			<Specs>
 				{categories && (

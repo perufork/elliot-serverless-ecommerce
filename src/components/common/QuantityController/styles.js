@@ -4,13 +4,19 @@ export const Wrapper = styled.div`
 	max-width: 120px;
 	display: flex;
 	align-items: center;
+	justify-content: space-around;
 	border: 2px solid #eaeaea;
 
 	${({ wide }) =>
 		wide &&
 		`
-		max-width: 100%;
-		width: 100%;
+		max-width: 150px;
+		margin: 0;
+		margin-right: auto;
+
+		@media (max-width: 960px) {
+			max-width: 100%;
+		}
 	`}
 
 	input {

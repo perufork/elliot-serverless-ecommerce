@@ -13,7 +13,7 @@ export default () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			window.scrollY > 100 ? setIsTop(false) : setIsTop(true);
+			window.scrollY > 150 ? setIsTop(false) : setIsTop(true);
 		};
 
 		document.addEventListener("scroll", handleScroll);
