@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: calc(40% - 50px) 1fr;
+	grid-column-gap: 50px;
+	width: 100%;
 	border-bottom: 1px solid #eaeaea;
-	padding: 0 0 3rem 0;
+	padding-bottom: 70px;
 
-	@media screen and (max-width: 960px) {
-		flex-direction: column;
+	@media screen and (max-width: 600px) {
+		grid-template-columns: 1fr;
 	}
 `;
 
@@ -16,13 +17,13 @@ export const Thumbnail = styled.div`
 	margin-right: 1rem;
 	position: relative;
 	overflow: hidden;
+	width: 100%;
 	flex: 1;
 
 	@media screen and (max-width: 960px) {
 		margin-right: unset;
 		margin-bottom: 1rem;
 		flex: unset;
-		width: 100%;
 	}
 
 	img {
@@ -57,6 +58,7 @@ export const Thumbnail = styled.div`
 `;
 
 export const Content = styled.div`
+	padding-top: 30px;
 	flex: 2;
 
 	@media screen and (max-width: 960px) {
@@ -76,10 +78,14 @@ export const Header = styled.div`
 `;
 
 export const Details = styled.div`
+	padding-bottom: 20px;
+
 	h2 {
 		font-size: 24px;
 		font-weight: 600;
 		line-height: 1.4em;
+		margin: 0;
+		padding-bottom: 5px;
 		color: ${({ theme: { colors } }) => colors.black};
 	}
 
@@ -97,9 +103,8 @@ export const Details = styled.div`
 `;
 
 export const Body = styled.div`
-	padding: 2rem 0;
-
 	p {
+		margin: 0;
 		line-height: 1.6em;
 		font-size: 16px;
 		color: ${({ theme: { colors } }) => colors.darkGray};
@@ -108,4 +113,5 @@ export const Body = styled.div`
 
 export const Footer = styled.div`
 	text-align: left;
+	padding-top: 40px;
 `;

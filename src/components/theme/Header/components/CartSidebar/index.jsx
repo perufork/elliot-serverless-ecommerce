@@ -34,7 +34,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 										type="button"
 										onClick={() => removeFromCart({ dispatch, id })}
 									>
-										<CancelIcon width={16} height={16} color="#a5a5a5" />
+										<CancelIcon width={14} height={14} color="#a5a5a5" />
 									</button>
 									<Link href="/[lang]/" as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>{name}</a>

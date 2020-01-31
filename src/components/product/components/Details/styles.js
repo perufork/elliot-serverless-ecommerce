@@ -61,7 +61,25 @@ export const Sku = styled.span`
 `;
 
 export const Shop = styled.div`
-	margin-bottom: 36px;
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	grid-gap: 15px;
+	margin: 30px 0;
+
+	@media (max-width: 450px) {
+		grid-template-columns: 1fr;
+	}
+`;
+
+export const ButtonGroup = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 45px;
+	grid-gap: 15px;
+`;
+
+export const MainAction = styled.div`
+	grid-column-start: 1;
+	grid-column-end: -1;
 `;
 
 export const Favorite = styled.button`
@@ -76,7 +94,6 @@ export const Favorite = styled.button`
 	width: 100%;
 
 	@media screen and (max-width: 960px) {
-		margin-bottom: 2rem;
 		padding: 0.8rem 0;
 	}
 

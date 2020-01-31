@@ -1,16 +1,30 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
 	border-bottom: 1px solid #eaeaea;
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 100%;
 	z-index: 1;
 	background-color: #fff;
-	padding: 0 1rem;
+	padding: 1rem;
+	transition: all 200ms ease;
 
-	ul,
+	${({ sticky }) =>
+		sticky &&
+		`
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10;
+  `}
+
+	ul {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 0;
+	}
+
 	ol {
 		margin: 0;
 		padding: 0;
@@ -25,7 +39,7 @@ export const Wrapper = styled.div`
 	}
 
 	@media (min-width: 1440px) {
-		padding: 30px 60px;
+		padding: 0 60px;
 	}
 
 	@media (min-width: 1680px) {
@@ -42,15 +56,6 @@ export const Wrapper = styled.div`
 
 export const Options = styled.div`
 	display: flex;
-	padding-left: 50px;
 	justify-content: space-between;
 	align-items: center;
-
-	@media (min-width: 1680px) {
-		padding-left: 170px;
-	}
-
-	@media (min-width: 1200px) {
-		flex: 2 1 100%;
-	}
 `;
