@@ -51,8 +51,14 @@ const Details = ({
 					</span>
 				</Review>
 				<h2>{name}</h2>
-				{skus.edges &&
+				{skus &&
+					skus.edges &&
+					skus.edges[0].node &&
 					skus.edges[0].node.orderSkus &&
+					skus.edges[0].node.orderSkus.edges &&
+					skus.edges[0].node.orderSkus.edges.length > 0 &&
+					skus.edges[0].node.orderSkus.edges[0].node &&
+					skus.edges[0].node.orderSkus.edges[0].node.sku &&
 					skus.edges[0].node.orderSkus.edges[0].node.sku.sku && (
 						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
 					)}
