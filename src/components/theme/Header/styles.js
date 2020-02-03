@@ -9,15 +9,9 @@ export const Wrapper = styled.div`
 	background-color: #fff;
 	padding: 1rem;
 	transition: all 200ms ease;
-
-	${({ sticky }) =>
-		sticky &&
-		`
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 10;
-  `}
+	position: fixed;
+	top: 0;
+	left: 0;
 
 	ul {
 		margin-top: 0;
