@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 	padding: 0;
 	min-width: 50%;
 	border-radius: 0;
+	z-index: 0;
 
 	img {
 		background-color: #f7f7f7;

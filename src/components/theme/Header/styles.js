@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 	justify-content: space-between;
 	border-bottom: 1px solid #eaeaea;
 	width: 100%;
-	z-index: 1;
+	z-index: 5;
 	background-color: #fff;
 	padding: 1rem;
 	transition: all 200ms ease;
