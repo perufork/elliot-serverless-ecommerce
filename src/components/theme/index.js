@@ -7,7 +7,8 @@ export default {
 		white: "#fff",
 		lightGray: "#bbb",
 		darkGray: "#999",
-		accent: "#f68773"
+		accent: "#f68773",
+		red: "#ff1d5d"
 	},
 	button: {
 		lineHeight: "20px",

@@ -6,6 +6,12 @@ export const Wrapper = styled.div`
 	cursor: pointer;
 	padding: 0;
 	margin: 0 30px;
+	${({ standalone }) =>
+		standalone &&
+		`
+		max-width: 70%;
+		margin: 0;
+	`}
 
 	ul {
 		list-style: none;

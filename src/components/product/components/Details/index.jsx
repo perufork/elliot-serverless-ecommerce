@@ -1,6 +1,7 @@
 import { FormattedMessage, useIntl } from "react-intl";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
+import Link from "next/link";
 import {
 	addQuantityByProduct,
 	subtractQuantityByProduct
@@ -11,16 +12,21 @@ import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 import { HeartIcon } from "components/common/Icons";
 import {
-	Wrapper,
-	Review,
-	Sku,
 	ButtonGroup,
-	MainAction,
-	Shop,
 	Favorite,
-	Specs
+	MainAction,
+	Review,
+	Shop,
+	Sku,
+	SocialShares,
+	Specs,
+	Wrapper
 } from "./styles";
-import Link from "next/link";
+import {
+	FacebookIcon,
+	PinterestIcon,
+	TwiterIcon
+} from "components/common/Icons/SocialIcon";
 
 const Details = ({
 	id,
@@ -57,9 +63,9 @@ const Details = ({
 						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
 					)}
 				{skus.edges[0].node.salePrice && (
-					<p>
+					<h5>
 						<span>$</span> {skus.edges[0].node.salePrice}
-					</p>
+					</h5>
 				)}
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }} />
@@ -88,7 +94,7 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 					<Favorite>
-						<HeartIcon height={21} width={24} />
+						<HeartIcon height={24} width={24} />
 					</Favorite>
 				</ButtonGroup>
 				<MainAction>
@@ -128,17 +134,17 @@ const Details = ({
 					</p>
 				)}
 			</Specs>
-			{/* <div class="ps-product__sharing">
+			<SocialShares>
 				<a href="#">
-					<i class="fa fa-facebook"></i>
+					<FacebookIcon />
 				</a>
 				<a href="#">
-					<i class="fa fa-twitter"></i>
+					<TwiterIcon />
 				</a>
 				<a href="#">
-					<i class="fa fa-pinterest"></i>
+					<PinterestIcon />
 				</a>
-			</div> */}
+			</SocialShares>
 		</Wrapper>
 	);
 };

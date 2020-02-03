@@ -32,6 +32,7 @@ export const StyledForm = styled.form`
 		display: block;
 		line-height: 1.5;
 		color: #495057;
+		transition: all 400ms ease;
 
 		&::placeholder {
 			color: #bbbbbb;

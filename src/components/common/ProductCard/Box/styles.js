@@ -44,6 +44,7 @@ export const Thumbnail = styled.div`
 			align-self: center;
 			border: none;
 			background: none;
+			transition: all 0.4s ease;
 			color: ${({
 				theme: {
 					colors: { black }
@@ -62,6 +63,7 @@ export const Thumbnail = styled.div`
 		ul {
 			li {
 				display: inline-block;
+				cursor: pointer;
 
 				&:first-child {
 					margin-right: 10px;
