@@ -19,7 +19,7 @@ export default async () => {
 		{
 			headers: {
 				"Content-Type": "application/json",
-				authorization: process.env.ELLIOT_API_TOKEN
+				KEY: `KEY ${process.env.ELLIOT_API_KEY}`
 			}
 		}
 	);

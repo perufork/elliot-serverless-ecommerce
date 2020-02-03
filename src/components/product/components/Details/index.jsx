@@ -51,7 +51,7 @@ const Details = ({
 					</span>
 				</Review>
 				<h2>{name}</h2>
-				{skus.edge &&
+				{skus.edges &&
 					skus.edges[0].node.orderSkus &&
 					skus.edges[0].node.orderSkus.edges[0].node.sku.sku && (
 						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
@@ -71,14 +71,19 @@ const Details = ({
 					subtractQuantityByProduct={subtractQuantityByProduct}
 					addQuantityByProduct={addQuantityByProduct}
 					quantity={product ? product.quantity : 0}
+					isProductQuantity={product && product.quantity}
 				/>
 				<ButtonGroup>
 					<Button
 						onClick={() => {
-							addToCart({
-								dispatch,
-								payload: { id, name, skus, price, description, images }
-							});
+							if (product && product.quantity > 0) {
+								addQuantityByProduct({ dispatch, id });
+							} else {
+								addToCart({
+									dispatch,
+									payload: { id, name, skus, price, description, images }
+								});
+							}
 							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 						}}
 						type="button"

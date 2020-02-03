@@ -15,7 +15,7 @@ export default ({
 			onClick={() => subtractQuantityByProduct({ dispatch, id })}
 		>
 			<MinusIcon
-				color={quantity <= 1 ? "#bbb" : "#222"}
+				color={quantity <= 1 ? "#bbb" : "#000"}
 				width={16}
 				height={16}
 			/>
