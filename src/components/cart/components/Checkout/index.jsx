@@ -7,10 +7,9 @@ import Coupon from "components/cart/components/Coupon";
 import Shipping from "components/cart/components/Shipping";
 import { Wrapper, Actions, Flex } from "./styles";
 
-const Checkout = () => {
+const Checkout = ({ handleSubmit }) => {
 	const { locale } = useIntl();
 	const { state } = useCart();
-	// const { dispatch } = useDispatchCart();
 
 	return (
 		<Wrapper as={Container}>
@@ -22,7 +21,13 @@ const Checkout = () => {
 						</Button>
 					</Link>
 					<Link href="/[lang]/cart" as={`/${locale}/cart`}>
-						<Button as="a" wide marginBottom={2} variant="outlined">
+						<Button
+							type="button"
+							onClick={() => handleSubmit()}
+							wide
+							marginBottom={2}
+							variant="outlined"
+						>
 							<FormattedMessage id="button.update_cart" />
 						</Button>
 					</Link>

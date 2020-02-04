@@ -8,8 +8,7 @@ import { GridIcon, ListIcon } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
 import { useDispatchCart, useCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
-import { addToCart } from "components/listing/actions";
-import { addQuantityByProduct } from "components/cart/actions";
+import { addQuantityByProduct, addToCart } from "components/cart/actions";
 
 export default ({ products }) => {
 	const { state } = useCart();
@@ -75,7 +74,7 @@ export default ({ products }) => {
 								if (product && product.quantity >= 1) {
 									addQuantityByProduct({ dispatch, id: product.id });
 								} else {
-									addToCart({ dispatch, payload: node });
+									addToCart({ dispatch, payload: { ...node, quantity: 1 } });
 								}
 								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 							}}

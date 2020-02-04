@@ -12,6 +12,18 @@ const cartReducer = (state = initialState, action) => {
 				...state,
 				data: state.data.filter(({ id }) => id !== action.id)
 			};
+		case "ADD_CUSTOM_QUANTITY":
+			return {
+				...state,
+				data: state.data.map(item =>
+					item.id === action.id
+						? {
+								...item,
+								quantity: item.quantity + action.quantity
+						  }
+						: item
+				)
+			};
 		case "ADD_QUANTITY":
 			return {
 				...state,

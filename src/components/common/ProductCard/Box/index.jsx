@@ -39,7 +39,7 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 				<Stars stars={gender} />
 				{skus.edges[0].node.salePrice && (
 					<p>
-						<span>$</span> {skus.edges[0].node.salePrice}
+						<span>$</span> {skus.edges[0].node.salePrice / 100}
 					</p>
 				)}
 			</Details>

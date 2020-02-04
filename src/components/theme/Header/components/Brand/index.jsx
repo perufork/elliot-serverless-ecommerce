@@ -10,7 +10,7 @@ const Brand = () => {
 		<Link href="/[lang]/" as={`/${locale}/`}>
 			<a>
 				<Wrapper>
-					<Logo width="100%" height="auto" />
+					<Logo width="100%" height={24} />
 				</Wrapper>
 			</a>
 		</Link>

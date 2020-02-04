@@ -41,7 +41,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									</Link>
 									<p>Qty: {quantity}</p>
 									{skus.edges[0].node.salePrice && (
-										<span>${skus.edges[0].node.salePrice}</span>
+										<span>${skus.edges[0].node.salePrice / 100}</span>
 									)}
 								</Content>
 							</CartItem>

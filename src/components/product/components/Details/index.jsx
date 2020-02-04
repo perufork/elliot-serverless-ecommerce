@@ -1,11 +1,9 @@
+import { useState } from "react";
+import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
-import {
-	addQuantityByProduct,
-	subtractQuantityByProduct
-} from "components/cart/actions";
-import { addToCart } from "components/listing/actions";
+import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
 import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
@@ -20,7 +18,6 @@ import {
 	Favorite,
 	Specs
 } from "./styles";
-import Link from "next/link";
 
 const Details = ({
 	id,
@@ -38,6 +35,7 @@ const Details = ({
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const { locale } = useIntl();
+	const [quantity, setQuantity] = useState(1);
 
 	const product = state.data && state.data.find(item => item.id === id);
 
@@ -64,7 +62,7 @@ const Details = ({
 					)}
 				{skus.edges[0].node.salePrice && (
 					<p>
-						<span>$</span> {skus.edges[0].node.salePrice}
+						<span>$</span> {skus.edges[0].node.salePrice / 100}
 					</p>
 				)}
 			</div>
@@ -73,21 +71,26 @@ const Details = ({
 				<QuantityController
 					wide
 					id={id}
-					dispatch={dispatch}
-					subtractQuantityByProduct={subtractQuantityByProduct}
-					addQuantityByProduct={addQuantityByProduct}
-					quantity={product ? product.quantity : 0}
-					isProductQuantity={product && product.quantity}
+					setQuantity={setQuantity}
+					quantity={quantity}
 				/>
 				<ButtonGroup>
 					<Button
 						onClick={() => {
 							if (product && product.quantity > 0) {
-								addQuantityByProduct({ dispatch, id });
+								addCustomQuantityByProduct({ dispatch, id, quantity });
 							} else {
 								addToCart({
 									dispatch,
-									payload: { id, name, skus, price, description, images }
+									payload: {
+										id,
+										name,
+										skus,
+										price,
+										description,
+										images,
+										quantity
+									}
 								});
 							}
 							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });

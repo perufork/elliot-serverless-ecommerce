@@ -31,12 +31,9 @@ export default ({ state, locale }) => (
 				country: Yup.string().required(),
 				zipCode: Yup.string().required()
 			})}
-			onSubmit={async (
-				{ total, shipping },
-				{ setFieldValue, setSubmitting }
-			) => {
+			onSubmit={async ({ shipping }, { setFieldValue, setSubmitting }) => {
 				try {
-					setFieldValue("total", total + parseInt(shipping, 10));
+					setFieldValue("total", getTotal(state.data) + parseInt(shipping, 10));
 					setSubmitting(false);
 				} catch (err) {
 					setSubmitting(false);

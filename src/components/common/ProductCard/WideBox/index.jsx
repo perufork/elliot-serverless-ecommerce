@@ -46,7 +46,7 @@ export default ({
 					</Link>
 					{skus.edges[0].node.salePrice && (
 						<p>
-							<span>$</span> {skus.edges[0].node.salePrice}
+							<span>$</span> {skus.edges[0].node.salePrice / 100}
 						</p>
 					)}
 				</Details>

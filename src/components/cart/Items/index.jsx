@@ -1,12 +1,16 @@
+import { useState, useEffect } from "react";
 import PageTitle from "components/common/PageTitle";
 import { useIntl } from "react-intl";
 import ShoppingCart from "components/cart/components/ShoppingCart";
 import Checkout from "components/cart/components/Checkout";
-import { useCart } from "providers/CartProvider";
+import { useCart, useDispatchCart } from "providers/CartProvider";
+import { addCustomQuantityByProduct } from "../actions";
 
 const Items = () => {
 	const { locale } = useIntl();
 	const { state } = useCart();
+	const { dispatch } = useDispatchCart();
+	const [quantities, setQuantities] = useState([]);
 
 	const breadcumbs = [
 		{
@@ -21,11 +25,41 @@ const Items = () => {
 			active: true
 		}
 	];
+
+	const handleQuantity = ({ id, quantity }) => {
+		const product = quantities.find(item => item.id === id);
+
+		if (product) {
+			setQuantities(
+				quantities.map(item => {
+					if (item.id === id) return { id, quantity };
+					return item;
+				})
+			);
+		} else {
+			setQuantities([
+				...quantities,
+				{
+					id,
+					quantity
+				}
+			]);
+		}
+	};
+
+	const handleSubmit = () => {
+		quantities.forEach(({ id, quantity }) => {
+			addCustomQuantityByProduct({ dispatch, id, quantity });
+		});
+	};
+
 	return (
 		<>
 			<PageTitle title="title.cart" breadcumbs={breadcumbs} />
-			<ShoppingCart />
-			{state.data && state.data.length > 0 && <Checkout />}
+			<ShoppingCart handleQuantity={handleQuantity} quantities={quantities} />
+			{state.data && state.data.length > 0 && (
+				<Checkout handleSubmit={handleSubmit} />
+			)}
 		</>
 	);
 };
