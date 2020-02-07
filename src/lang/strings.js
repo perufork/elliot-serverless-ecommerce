@@ -8,8 +8,10 @@ export default {
 		"button.update_cart": "update cart",
 		"button.update_total": "update total",
 		"button.proceed_to_checkout": "Proceed to checkout",
+		"button.go_back": "go back",
 		title: "Title",
 		"title.cart": "cart",
+		"title.checkout": "checkout",
 		"product.review": "Review",
 		"product.category": "CATEGORY",
 		"product.tags": "Tags"
@@ -23,7 +25,9 @@ export default {
 		"button.update_cart": "mise à jour panier",
 		"button.update_total": "mettre à jour le total",
 		"button.proceed_to_checkout": "Passer à la caisse",
+		"button.go_back": "précédent",
 		"title.cart": "chariot",
+		"title.checkout": "check-out",
 		"product.review": "Révision",
 		"product.category": "CATÉGORIE",
 		"product.tags": "Mots clés"

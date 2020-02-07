@@ -7,8 +7,10 @@
 	"button.update_cart": "update cart",
 	"button.update_total": "update total",
 	"button.proceed_to_checkout": "Proceed to checkout",
+	"button.go_back": "go back",
 	"title": "Title",
 	"title.cart": "cart",
+	"title.checkout": "checkout",
 	"product.review": "Review",
 	"product.category": "CATEGORY",
 	"product.tags": "Tags"

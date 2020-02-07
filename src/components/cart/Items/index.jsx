@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PageTitle from "components/common/PageTitle";
 import { useIntl } from "react-intl";
 import ShoppingCart from "components/cart/components/ShoppingCart";
@@ -12,7 +12,7 @@ const Items = () => {
 	const { dispatch } = useDispatchCart();
 	const [quantities, setQuantities] = useState([]);
 
-	const breadcumbs = [
+	const breadcrumbs = [
 		{
 			name: "Shop",
 			link: `/[lang]/`,
@@ -55,7 +55,11 @@ const Items = () => {
 
 	return (
 		<>
-			<PageTitle title="title.cart" breadcumbs={breadcumbs} />
+			<PageTitle
+				title="title.cart"
+				breadcrumbs={breadcrumbs}
+				breadCrumbsAlign="center"
+			/>
 			<ShoppingCart handleQuantity={handleQuantity} quantities={quantities} />
 			{state.data && state.data.length > 0 && (
 				<Checkout handleSubmit={handleSubmit} />

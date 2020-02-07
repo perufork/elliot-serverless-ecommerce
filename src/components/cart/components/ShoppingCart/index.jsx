@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import Container from "components/common/Container";
-import Button from "components/common/Button";
 import Swatch from "components/common/Swatch";
 import QuantityController from "components/common/QuantityController";
 import { CancelIcon } from "components/common/Icons";
+import BackToShop from "components/common/BackToShop";
 import { removeFromCart } from "components/cart/actions";
 import {
 	TableWrapper,
@@ -13,8 +13,7 @@ import {
 	Tbody,
 	Product,
 	Thumbnail,
-	Content,
-	Center
+	Content
 } from "./styles";
 import { useIntl } from "react-intl";
 
@@ -51,7 +50,10 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											<td>
 												<Product>
 													<Thumbnail>
-														<Link href="/[lang]/" as={`/${locale}/`}>
+														<Link
+															href="/[lang]/product/[id]"
+															as={`/${locale}/product/${id}`}
+														>
 															<a>
 																<img
 																	src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
@@ -117,14 +119,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 					</Table>
 				</TableWrapper>
 			) : (
-				<Center>
-					<h2>No items on cart</h2>
-					<Link href="/[lang]/" as={`/${locale}/`}>
-						<Button as="a" variant="primary">
-							Back to Shop
-						</Button>
-					</Link>
-				</Center>
+				<BackToShop title="No items on cart" />
 			)}
 		</Container>
 	);

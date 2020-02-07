@@ -5,7 +5,8 @@
 			"ELLIOT_API": "@elliot_api",
 			"ELLIOT_BASE_IMAGE_URL": "@elliot_base_image_url",
 			"ELLIOT_API_KEY": "@elliot_api_key",
-			"ELLIOT_STORE_FRONT_ID": "@elliot_store_front_id"
+			"ELLIOT_STORE_FRONT_ID": "@elliot_store_front_id",
+			"STRIPE_API_PUBLISHABLE_KEY_TEST": "@stripe_api_publishable_key_test"
 		}
 	}
 }

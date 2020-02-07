@@ -7,7 +7,9 @@
 	"button.update_cart": "mise à jour panier",
 	"button.update_total": "mettre à jour le total",
 	"button.proceed_to_checkout": "Passer à la caisse",
+	"button.go_back": "précédent",
 	"title.cart": "chariot",
+	"title.checkout": "check-out",
 	"product.review": "Révision",
 	"product.category": "CATÉGORIE",
 	"product.tags": "Mots clés"

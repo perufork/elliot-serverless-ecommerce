@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "components/theme";
 import { CartProvider } from "providers/CartProvider";
 import { SidebarProvider } from "providers/SidebarProvider";
+import "react-phone-input-2/lib/style.css";
 
 export default class MyApp extends App {
 	render() {
