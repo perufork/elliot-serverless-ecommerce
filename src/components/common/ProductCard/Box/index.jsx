@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Stars from "components/common/Stars";
+// import Stars from "components/common/Stars";
 import { Thumbnail, Details } from "./styles";
-import { HeartIcon } from "components/common/Icons";
+// import { HeartIcon } from "components/common/Icons";
 
-export default ({ id, name, images, gender, skus, onClick, locale }) => (
+export default ({ id, name, images, skus, onClick, locale }) => (
 	<div>
 		<Thumbnail>
 			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
@@ -20,13 +20,13 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 			</Link>
 			<div>
 				<button type="button" onClick={onClick}>
-					Add to cart
+					<strong>Add to cart</strong>
 				</button>
-				<ul>
+				{/* <ul>
 					<li>
 						<HeartIcon width={16} height={16} />
 					</li>
-				</ul>
+				</ul> */}
 			</div>
 		</Thumbnail>
 		<div>
@@ -36,7 +36,7 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 						<h2>{name}</h2>
 					</a>
 				</Link>
-				<Stars stars={gender} />
+				{/* <Stars stars={stars} /> */}
 				{skus.edges[0].node.salePrice && (
 					<p>
 						<span>$</span> {skus.edges[0].node.salePrice / 100}

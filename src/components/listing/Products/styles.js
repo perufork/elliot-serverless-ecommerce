@@ -56,6 +56,11 @@ export const Products = styled.section`
 	grid-column-gap: 30px;
 	grid-row-gap: 65px;
 
+	@media (max-width: 680px) {
+		grid-template-columns: repeat(1, 1fr);
+		grid-column-gap: unset;
+	}
+
 	${({ grid }) =>
 		!grid &&
 		`

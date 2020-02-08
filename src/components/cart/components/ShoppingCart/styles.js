@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
+	overflow: auto;
+
 	@media (min-width: 1200px) {
 		overflow-x: initial;
 	}

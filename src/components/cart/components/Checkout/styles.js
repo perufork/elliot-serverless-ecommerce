@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: space-between;
-	padding: 4rem 0;
+	padding: 4rem 1rem;
 	border-top: 1px solid #eaeaea;
 
 	@media (min-width: 768px) {

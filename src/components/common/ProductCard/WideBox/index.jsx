@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
-import Stars from "components/common/Stars";
+// import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import {
 	Wrapper,
@@ -17,7 +17,7 @@ export default ({
 	name,
 	description,
 	images,
-	gender,
+	// gender,
 	skus,
 	onClick,
 	locale
@@ -50,9 +50,9 @@ export default ({
 						</p>
 					)}
 				</Details>
-				<div>
-					<Stars stars={gender} />
-				</div>
+				{/* <div>
+					<Stars stars={stars} />
+				</div> */}
 			</Header>
 			<Body dangerouslySetInnerHTML={{ __html: description }} />
 			<Footer>
