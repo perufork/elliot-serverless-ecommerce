@@ -102,7 +102,7 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 					<Favorite>
-						<HeartIcon />
+						<HeartIcon height={21} width={24} />
 					</Favorite>
 				</ButtonGroup>
 				<MainAction>
