@@ -14,6 +14,7 @@ import InputField from "components/common/InputField";
 import Button from "components/common/Button";
 import ErrorField from "components/common/ErrorField";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
+import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
 import { FieldWrapper, CreditCardWrap } from "./styles";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -47,9 +48,94 @@ const CreditCardForm = ({ stripe }) => {
 		state
 	} = useCart();
 
+	const [loadingShippingInfo, setLoadingShippingInfo] = useState(false);
 	const [cardError, setCardError] = useState(false);
 	const [validCard, setCardValidity] = useState(false);
 	const [cardOnBlurMessage, setCardOnBlurMessage] = useState("");
+	const [
+		lastAddressUsedToFetchShipping,
+		setLastAddressUsedToFetchShipping
+	] = useState({
+		city: "",
+		state: "",
+		country: "",
+		zipCode: ""
+	});
+
+	const hasAddressErrors = errors => {
+		return (
+			Object.keys(errors).filter(
+				key =>
+					["addressLine1", "city", "state", "country", "zipCode"].indexOf(
+						key
+					) !== -1
+			).length > 0
+		);
+	};
+
+	const isAddressDirty = (fieldName, value) => {
+		return (
+			["city", "country", "state", "zipCode"].indexOf(fieldName) !== -1 &&
+			value !== lastAddressUsedToFetchShipping[fieldName]
+		);
+	};
+
+	const handleAddressSelected = async (
+		addressLine1,
+		addressLine2,
+		city,
+		selectedState,
+		selectedCountry,
+		zipCode
+	) => {
+		setLoadingShippingInfo(true);
+		// await updateOrderTaxAndShippingCost({
+		// 	line1: addressLine1,
+		// 	line2: addressLine2,
+		// 	city,
+		// 	state: selectedState,
+		// 	country: selectedCountry,
+		// 	postal_code: zipCode
+		// });
+
+		setLoadingShippingInfo(false);
+		setLastAddressUsedToFetchShipping({
+			city,
+			state: selectedState,
+			country: selectedCountry,
+			zipCode
+		});
+	};
+
+	const onFieldBlur = (fieldName, values, dirty, errors) => {
+		const updatedTouchedErrors = { ...touchedErrors };
+		if (fieldName in errors) {
+			updatedTouchedErrors[fieldName] = true;
+		} else if (fieldName in touchedErrors) {
+			delete updatedTouchedErrors[fieldName];
+		}
+		setTouchedErrors(updatedTouchedErrors);
+		if (dirty && !hasAddressErrors(errors)) {
+			// if (
+			// 	selectedShippingOptionIndex === -1 ||
+			// 	isAddressDirty(fieldName, values[fieldName])
+			// ) {
+			// 	updateOrderTaxAndShippingCost({
+			// 		line1: values.addressLine1,
+			// 		line2: values.addressLine2,
+			// 		city: values.city,
+			// 		state: values.state,
+			// 		country: values.country,
+			// 		postal_code: values.zipCode
+			// 	});
+			// }
+			const updatedLastAddressUsedToFetchShipping = {
+				...lastAddressUsedToFetchShipping
+			};
+			updatedLastAddressUsedToFetchShipping[fieldName] = values[fieldName];
+			setLastAddressUsedToFetchShipping(updatedLastAddressUsedToFetchShipping);
+		}
+	};
 
 	const checkValidCard = ({ error, complete }) => {
 		if (cardOnBlurMessage) {
@@ -63,6 +149,20 @@ const CreditCardForm = ({ stripe }) => {
 		} else {
 			setCardValidity(true);
 		}
+	};
+
+	const locationSearchInputComponent = ({ field, form, onBlur, value }) => {
+		return (
+			<LocationSearchInput
+				field={field}
+				form={form}
+				fieldsToUpdate={["addressLine1", "city", "state", "country", "zipCode"]}
+				placeholder="33 Irving Place"
+				onBlur={onBlur}
+				onSelect={handleAddressSelected}
+				value={value}
+			/>
+		);
 	};
 
 	return (
@@ -169,13 +269,7 @@ const CreditCardForm = ({ stripe }) => {
 					console.error(error);
 				}
 			}}
-			render={({
-				dirty,
-				errors,
-				setFieldValue,
-				values: { phone },
-				setFieldTouched
-			}) => {
+			render={({ dirty, errors, setFieldValue, values, setFieldTouched }) => {
 				const canSubmit =
 					dirty &&
 					isEmpty(errors) &&
@@ -228,7 +322,7 @@ const CreditCardForm = ({ stripe }) => {
 											country="us"
 											name="phone"
 											autoComplete="new-password"
-											value={phone}
+											value={values.phone}
 											component={PhoneInput}
 											placeholder={3477150728}
 											onBlur={() => setFieldTouched("phone")}
@@ -256,10 +350,12 @@ const CreditCardForm = ({ stripe }) => {
 							<FieldWrapper>
 								<label>Address</label>
 								<Field
-									as={InputField}
+									// as={InputField}
 									name="addressLine1"
-									autoComplete="new-password"
-									placeholder="33 Irving Place"
+									component={locationSearchInputComponent}
+									onBlur={() => {
+										onFieldBlur("addressLine1", values, dirty, errors);
+									}}
 								/>
 								<ErrorMessage component={ErrorField} name="addressLine1" />
 							</FieldWrapper>

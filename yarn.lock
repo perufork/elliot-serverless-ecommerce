@@ -6850,6 +6850,14 @@ react-phone-input-2@^2.11.0:
     lodash.startswith "^4.2.1"
     prop-types "^15.7.2"
 
+react-places-autocomplete@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-7.2.1.tgz#ecdfdbb530ba19fedddd967a646642c2efd225cf"
+  integrity sha512-X1SRv3zJjEZ9dnfy/vlSFi8dpUZc/vW4CF7GhN46AVATNMmB1y1EwhX2aiqKVWXO1888p9l7FMJLgySPRBDMCQ==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    prop-types "^15.5.8"
+
 react-select@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-3.0.8.tgz#06ff764e29db843bcec439ef13e196865242e0c1"
