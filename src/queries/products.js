@@ -16,6 +16,9 @@ query checkout($id: ID!) {
               skus {
                 edges {
                   node {
+                    width
+                    height
+                    length
                     salePrice
                     orderSkus {
                       edges {
@@ -29,6 +32,9 @@ query checkout($id: ID!) {
                   }
                 }
               }
+            }
+            vendor {
+              id
             }
             images(orderBy: "orderingPosition") {
               edges {
