@@ -9,8 +9,15 @@ export const Menu = styled.ul`
 	}
 
 	li {
+		position: relative;
 		display: inline-block;
 		padding-right: 40px;
+
+		&:hover ul {
+			visibility: visible;
+			opacity: 1;
+			transform: scale3d(1, 1, 1) translateY(0);
+		}
 
 		a {
 			position: relative;
@@ -86,5 +93,35 @@ export const Menu = styled.ul`
 				}
 			}
 		}
+	}
+`;
+
+export const InnerMenu = styled.ul`
+	position: absolute;
+	left: 0;
+	top: 100%;
+	min-width: 240px;
+	visibility: hidden;
+	opacity: 0;
+	transform: scale3d(1, 1, 0) translateY(30px);
+	transition: all 0.25s ease;
+	z-index: 1000;
+	border: 1px solid #eee;
+	background-color: rgba(255, 255, 255);
+	visibility: hidden;
+	opacity: 0;
+
+	& li a {
+		display: inline-block;
+		padding: 10px 20px;
+		width: 100%;
+		font-size: 15px;
+		color: #999;
+		text-transform: capitalize;
+		transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	& li a:hover:after {
+		content: none;
 	}
 `;
