@@ -32,7 +32,6 @@ export const Navigation = styled.div`
 
 export const DesktopMenu = styled.ul`
 	display: block;
-	position: relative;
 
 	li {
 		list-style: none;
