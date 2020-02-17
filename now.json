@@ -7,7 +7,8 @@
 			"ELLIOT_API_KEY": "@elliot_api_key",
 			"ELLIOT_STORE_FRONT_ID": "@elliot_store_front_id",
 			"STRIPE_API_PUBLISHABLE_KEY_TEST": "@stripe_api_publishable_key_test",
-			"PLACES_API_KEY": "@places_api_key"
+			"PLACES_API_KEY": "@places_api_key",
+			"ELLIOT_DOMAIN_ID": "@elliot_domain_id"
 		}
 	}
 }

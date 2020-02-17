@@ -5,7 +5,7 @@ import { Wrapper, Options } from "./styles";
 import Sidebar from "components/theme/Header/components/Sidebar";
 import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
 
-export default () => {
+export default ({ collections }) => {
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
 
@@ -25,7 +25,7 @@ export default () => {
 			/>
 			<Wrapper>
 				<Brand />
-				<Links />
+				<Links collections={collections} />
 				<Options>
 					<Buttons toggleSidebar={toggleSidebar} />
 				</Options>

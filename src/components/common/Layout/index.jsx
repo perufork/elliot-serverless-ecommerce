@@ -4,7 +4,7 @@ import GlobalStyle from "components/theme/global-style";
 import Head from "next/head";
 import { Wrapper } from "./styles";
 
-const Layout = ({ children, theme }) => (
+const Layout = ({ children, collections, theme }) => (
 	<>
 		<Head>
 			{/* TODO: pass custom font from theme */}
@@ -21,7 +21,7 @@ const Layout = ({ children, theme }) => (
 		</Head>
 		<GlobalStyle />
 		<>
-			<Header />
+			<Header collections={collections} />
 			<Wrapper>{children}</Wrapper>
 		</>
 	</>

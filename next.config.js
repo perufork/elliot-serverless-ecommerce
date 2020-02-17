@@ -16,7 +16,8 @@ module.exports = withImages({
 			process.env.STRIPE_API_PUBLISHABLE_KEY_TEST,
 		ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL:
 			process.env.ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL,
-		PLACES_API_KEY: process.env.PLACES_API_KEY
+		PLACES_API_KEY: process.env.PLACES_API_KEY,
+		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID
 	},
 	cssModules: false,
 	cssLoaderOptions: {

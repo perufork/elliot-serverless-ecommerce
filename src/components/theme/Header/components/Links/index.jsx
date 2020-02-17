@@ -2,8 +2,10 @@ import { Menu } from "./styles";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 
-const Links = () => {
+const Links = ({ collections }) => {
 	const { locale } = useIntl();
+	console.log(collections);
+
 	return (
 		<Menu>
 			{["Home", "Shop", "Collection", "Contact"].map((item, id) => (
