@@ -20,11 +20,11 @@ export default () => {
 				</Flex>
 				{state.data &&
 					state.data.length > 0 &&
-					state.data.map(({ id, name, skus, quantity }, i) => (
-						<Product key={i}>
+					state.data.map(({ id, slug, name, skus, quantity }, i) => (
+						<Product key={id}>
 							<Link
-								href="/[lang]/product/[id]"
-								as={`/${locale}/product/${id}`}
+								href="/[lang]/product/[slug]"
+								as={`/${locale}/product/${slug}`}
 								key={i}
 							>
 								<a>

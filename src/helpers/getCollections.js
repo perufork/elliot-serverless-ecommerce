@@ -13,7 +13,8 @@ export default async () => {
 		{
 			query: collectionsQuery,
 			variables: {
-				domainId: process.env.ELLIOT_DOMAIN_ID
+				domainId: process.env.ELLIOT_DOMAIN_ID,
+				checkoutId: process.env.ELLIOT_STORE_FRONT_ID
 			}
 		},
 		{
@@ -23,6 +24,8 @@ export default async () => {
 			}
 		}
 	);
+
+	collections.edges.filter(({ node }) => node.products.edges.length !== 0);
 
 	return collections;
 };

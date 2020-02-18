@@ -40,7 +40,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 						</Thead>
 						<Tbody>
 							{state.data.map(
-								({ id, images, name, skus, description, quantity }) => {
+								({ id, images, name, slug, skus, description, quantity }) => {
 									const quantityByProduct =
 										quantities.length > 0 &&
 										quantities.find(item => item.id === id);
@@ -51,8 +51,8 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<Product>
 													<Thumbnail>
 														<Link
-															href="/[lang]/product/[id]"
-															as={`/${locale}/product/${id}`}
+															href="/[lang]/product/[slug]"
+															as={`/${locale}/product/${slug}`}
 														>
 															<a>
 																<img
@@ -64,8 +64,8 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 													</Thumbnail>
 													<Content>
 														<Link
-															href="/[lang]/product/[id]"
-															as={`/${locale}/product/${id}`}
+															href="/[lang]/product/[slug]"
+															as={`/${locale}/product/${slug}`}
 														>
 															<a>{name}</a>
 														</Link>

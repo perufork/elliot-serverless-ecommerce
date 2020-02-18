@@ -2,21 +2,22 @@ import Layout from "components/common/Layout";
 import withLocale from "hoc/withLocale";
 import locales from "helpers/locales";
 import getCollections from "helpers/getCollections";
+import Products from "components/listing/Products";
 
 export const unstable_getStaticPaths = async () => {
 	const collections = await getCollections();
 
-	const localizedCollections = collections.edges.map(({ node: { id } }) =>
-		locales.map(locale => `/${locale}/collection/${id}`)
+	const localizedCollections = collections.edges.map(({ node: { slug } }) =>
+		locales.map(locale => `/${locale}/collection/${slug}`)
 	);
 
 	return localizedCollections.flatMap(item => item);
 };
 
-export const unstable_getStaticProps = async ({ params: { id, lang } }) => {
+export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 	const collections = await getCollections();
 	const collection = collections.edges.find(
-		({ node: { id: _id } }) => _id === id
+		({ node: { slug: _slug } }) => _slug === slug
 	);
 	return {
 		revalidate: 10,
@@ -26,7 +27,7 @@ export const unstable_getStaticProps = async ({ params: { id, lang } }) => {
 
 const Product = ({ collection }) => (
 	<Layout>
-		<h2>{collection.name}</h2>
+		<Products products={collection.products} collection={collection} />
 	</Layout>
 );
 

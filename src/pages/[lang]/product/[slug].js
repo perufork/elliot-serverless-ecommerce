@@ -7,16 +7,18 @@ import getProducts from "helpers/getProducts";
 export const unstable_getStaticPaths = async () => {
 	const products = await getProducts();
 
-	const localizedProducts = products.edges.map(({ node: { id } }) =>
-		locales.map(locale => `/${locale}/product/${id}`)
+	const localizedProducts = products.edges.map(({ node: { slug } }) =>
+		locales.map(locale => `/${locale}/product/${slug}`)
 	);
 
 	return localizedProducts.flatMap(item => item);
 };
 
-export const unstable_getStaticProps = async ({ params: { id, lang } }) => {
+export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 	const products = await getProducts();
-	const product = products.edges.find(({ node: { id: _id } }) => _id === id);
+	const product = products.edges.find(
+		({ node: { slug: _slug } }) => _slug === slug
+	);
 	return { revalidate: 10, props: { product: product.node, locale: lang } };
 };
 

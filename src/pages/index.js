@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-// import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-// import { getBrowserLocale } from "helpers/locale";
+import { getBrowserLocale } from "helpers/locale";
 
 const Index = () => {
-	// const Router = useRouter();
+	const Router = useRouter();
 
 	useEffect(() => {
-		Router.replace("/[lang]", `/en/`);
+		Router.replace("/[lang]", `/${getBrowserLocale()}/`);
 	}, []);
 
 	return (
