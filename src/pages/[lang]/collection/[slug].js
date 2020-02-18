@@ -11,7 +11,9 @@ export const unstable_getStaticPaths = async () => {
 		locales.map(locale => `/${locale}/collection/${slug}`)
 	);
 
-	return localizedCollections.flatMap(item => item);
+	return {
+		paths: localizedCollections.flatMap(item => item)
+	};
 };
 
 export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {

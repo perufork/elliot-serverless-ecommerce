@@ -19,12 +19,19 @@ module.exports = withImages({
 		PLACES_API_KEY: process.env.PLACES_API_KEY,
 		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID
 	},
-	cssModules: false,
-	cssLoaderOptions: {
-		url: false
-	},
 	webpack: config => {
-		config.resolve.modules = [path.resolve(__dirname, "src"), "node_modules"];
+		if (config.resolve.modules)
+			config.resolve.modules.unshift(path.resolve(__dirname, "src"));
 		return config;
 	}
+	// experimental: {
+	// 	async headers() {
+	// 		return [
+	// 			{
+	// 				source: "/",
+	// 				headers: []
+	// 			}
+	// 		];
+	// 	}
+	// }
 });

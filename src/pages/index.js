@@ -1,11 +1,9 @@
 import { useEffect } from "react";
-import { useRouter } from "next/dist/client/router";
+import Router from "next/router";
 import Head from "next/head";
 import { getBrowserLocale } from "helpers/locale";
 
-const Index = () => {
-	const Router = useRouter();
-
+export default () => {
 	useEffect(() => {
 		Router.replace("/[lang]", `/${getBrowserLocale()}/`);
 	}, []);
@@ -16,5 +14,3 @@ const Index = () => {
 		</Head>
 	);
 };
-
-export default Index;
