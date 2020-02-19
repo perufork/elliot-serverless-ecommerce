@@ -8,8 +8,6 @@ export default () => {
 	const { state } = useCart();
 	const { locale } = useIntl();
 
-	console.log(state);
-
 	return (
 		<Wrapper>
 			<h2>Summary</h2>

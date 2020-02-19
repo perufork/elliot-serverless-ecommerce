@@ -3,6 +3,7 @@ import withLocale from "hoc/withLocale";
 import locales from "helpers/locales";
 import getCollections from "helpers/getCollections";
 import Products from "components/listing/Products";
+import Error from "next/error";
 
 export const unstable_getStaticPaths = async () => {
 	const collections = await getCollections();
@@ -17,19 +18,33 @@ export const unstable_getStaticPaths = async () => {
 };
 
 export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
-	const collections = await getCollections();
-	const collection = collections.edges.find(
-		({ node: { slug: _slug } }) => _slug === slug
-	);
-	return {
-		revalidate: 10,
-		props: { collection: collection.node, locale: lang }
-	};
+	try {
+		const collections = await getCollections();
+		const collection = collections.edges.find(
+			({ node: { slug: _slug } }) => _slug === slug
+		);
+		return {
+			revalidate: 20,
+			props: {
+				collection: collection.node,
+				locale: lang,
+				collections: collections
+			}
+		};
+	} catch (error) {
+		return {
+			props: { collection: {}, locale: lang, collections: [] }
+		};
+	}
 };
 
-const Product = ({ collection }) => (
-	<Layout>
-		<Products products={collection.products} collection={collection} />
+const Product = ({ collection, collections }) => (
+	<Layout collections={collections}>
+		{collection.products ? (
+			<Products products={collection.products} collection={collection} />
+		) : (
+			<Error statusCode={404} />
+		)}
 	</Layout>
 );
 

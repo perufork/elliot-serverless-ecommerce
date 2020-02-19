@@ -4,33 +4,43 @@ import { useIntl } from "react-intl";
 
 const Links = ({ collections }) => {
 	const { locale } = useIntl();
-	console.log(collections);
 
 	return (
 		<Menu>
-			{["Home", "Shop", "Collection", "Contact"].map((item, id) => (
-				<li key={id}>
-					<Link href="/[lang]/" as={`/${locale}/`}>
-						<a>{item}</a>
-					</Link>
+			<li>
+				<Link href="/[lang]/" as={`/${locale}/`}>
+					<a>Shop</a>
+				</Link>
+			</li>
+			<li>
+				<Link
+					href="/[lang]/collection/[slug]"
+					as={`/${locale}/collection/all-12`}
+				>
+					<a>Collections</a>
+				</Link>
+				{collections && collections.edges && (
 					<InnerMenu>
-						{[
-							"Inner Home",
-							"Inner Shop",
-							"Inner Collection",
-							"Inner Pages",
-							"Inner Blog",
-							"Inner Contact"
-						].map((item, i) => (
-							<li key={i}>
-								<Link href="/[lang]/" as={`/${locale}/`}>
-									<a>{item}</a>
-								</Link>
-							</li>
-						))}
+						{collections.edges
+							.filter(({ node: { productCount } }) => productCount > 0)
+							.map(({ node: { id, name, slug } }) => (
+								<li key={id}>
+									<Link
+										href="/[lang]/collection/[slug]"
+										as={`/${locale}/collection/${slug}`}
+									>
+										<a>{name}</a>
+									</Link>
+								</li>
+							))}
 					</InnerMenu>
-				</li>
-			))}
+				)}
+			</li>
+			<li>
+				<Link href="/[lang]/" as={`/${locale}/`}>
+					<a>Contact</a>
+				</Link>
+			</li>
 		</Menu>
 	);
 };
