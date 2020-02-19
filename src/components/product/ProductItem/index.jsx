@@ -4,6 +4,7 @@ import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
 
 const ProductItem = ({
 	id,
+	slug,
 	name,
 	price,
 	quantity,
@@ -14,7 +15,7 @@ const ProductItem = ({
 	images
 }) => (
 	<Container>
-		<BreadcumbsHeader id={id} title={name} />
+		<BreadcumbsHeader slug={slug} title={name} />
 		<Content
 			id={id}
 			name={name}

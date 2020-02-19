@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Thumbnail, Details } from "./styles";
 // import { HeartIcon } from "components/common/Icons";
 
-export default ({ id, name, images, skus, onClick, locale }) => (
+export default ({ slug, id, name, images, skus, onClick, locale }) => (
 	<div>
 		<Thumbnail>
-			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
+			<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 				<a>
 					{images.edges.map(({ node }, i) => (
 						<img
@@ -31,7 +31,7 @@ export default ({ id, name, images, skus, onClick, locale }) => (
 		</Thumbnail>
 		<div>
 			<Details>
-				<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
+				<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 					<a>
 						<h2>{name}</h2>
 					</a>

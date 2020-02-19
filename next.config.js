@@ -16,14 +16,22 @@ module.exports = withImages({
 			process.env.STRIPE_API_PUBLISHABLE_KEY_TEST,
 		ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL:
 			process.env.ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL,
-		PLACES_API_KEY: process.env.PLACES_API_KEY
-	},
-	cssModules: false,
-	cssLoaderOptions: {
-		url: false
+		PLACES_API_KEY: process.env.PLACES_API_KEY,
+		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID
 	},
 	webpack: config => {
-		config.resolve.modules = [path.resolve(__dirname, "src"), "node_modules"];
+		if (config.resolve.modules)
+			config.resolve.modules.unshift(path.resolve(__dirname, "src"));
 		return config;
 	}
+	// experimental: {
+	// 	async headers() {
+	// 		return [
+	// 			{
+	// 				source: "/",
+	// 				headers: []
+	// 			}
+	// 		];
+	// 	}
+	// }
 });
