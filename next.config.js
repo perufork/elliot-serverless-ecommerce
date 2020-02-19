@@ -23,15 +23,15 @@ module.exports = withImages({
 		if (config.resolve.modules)
 			config.resolve.modules.unshift(path.resolve(__dirname, "src"));
 		return config;
+	},
+	experimental: {
+		async rewrites() {
+			return [
+				{
+					source: "/",
+					destination: "/index.html"
+				}
+			];
+		}
 	}
-	// experimental: {
-	// 	async headers() {
-	// 		return [
-	// 			{
-	// 				source: "/",
-	// 				headers: []
-	// 			}
-	// 		];
-	// 	}
-	// }
 });
