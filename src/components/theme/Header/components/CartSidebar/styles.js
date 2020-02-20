@@ -58,7 +58,7 @@ export const Content = styled.div`
 
 	p {
 		font-size: 16px;
-		color: #999;
+		color: #6f6f6f;
 		margin-bottom: 0;
 		line-height: 1.6;
 	}

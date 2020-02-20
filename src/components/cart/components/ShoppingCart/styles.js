@@ -122,7 +122,7 @@ export const Tbody = styled.tbody`
 			vertical-align: middle;
 			font-size: 14px;
 			font-weight: 600;
-			color: #999;
+			color: #6f6f6f;
 
 			&:first-child {
 				min-width: 350px;

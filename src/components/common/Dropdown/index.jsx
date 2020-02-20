@@ -43,7 +43,7 @@ function Dropdown({ options, label, displayDefaultValue }) {
 				{labelOrValue}
 				{displayDefaultValue && <DefaultValue>{defaultValue}</DefaultValue>}
 				<Arrow>
-					<ChevronDownIcon width={10} height={10} color="#999" />
+					<ChevronDownIcon width={10} height={10} color="#6f6f6f" />
 				</Arrow>
 			</Label>
 			<List hidden={!open}>

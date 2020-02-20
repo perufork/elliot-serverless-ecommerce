@@ -6,7 +6,7 @@ export default {
 		black: "#222",
 		white: "#fff",
 		lightGray: "#bbb",
-		darkGray: "#999",
+		darkGray: "#6f6f6f",
 		accent: "#f68773"
 	},
 	button: {

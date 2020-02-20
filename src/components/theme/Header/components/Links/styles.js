@@ -116,7 +116,7 @@ export const InnerMenu = styled.ul`
 		padding: 10px 20px;
 		width: 100%;
 		font-size: 15px;
-		color: #999;
+		color: #6f6f6f;
 		text-transform: capitalize;
 		transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 	}

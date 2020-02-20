@@ -28,7 +28,7 @@ export const List = styled.ul`
 	right: 0;
 	width: 100%;
 	background-color: #fff;
-	border: 1px solid #999;
+	border: 1px solid #6f6f6f;
 `;
 
 export const Arrow = styled.span`
@@ -49,7 +49,7 @@ export const Item = styled.li`
 
 export const DefaultValue = styled.p`
 	font-size: 16px;
-	color: #999;
+	color: #6f6f6f;
 	min-width: 60px;
 	text-align: center;
 	margin: 0 0 0 5px;
