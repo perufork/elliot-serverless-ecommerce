@@ -1,11 +1,11 @@
 import { Wrapper, Actions, Cart, CartItems } from "./styles";
 import {
 	AvatarIcon,
-	HeartIcon,
+	// HeartIcon,
 	CartIcon,
 	MenuIcon
 } from "components/common/Icons";
-import Search from "components/theme/Header/components/Search";
+// import Search from "components/theme/Header/components/Search";
 import Link from "next/link";
 import { useCart } from "providers/CartProvider";
 import { useIntl } from "react-intl";
@@ -16,20 +16,21 @@ const Buttons = ({ toggleSidebar }) => {
 
 	return (
 		<Wrapper>
-			<Search />
+			{/* <Search /> */}
 			<Actions>
 				<Link href="/[lang]/" as={`/${locale}/`}>
 					<a>
 						<AvatarIcon width={20} height={20} />
 					</a>
 				</Link>
-				<Link href="/favorite">
+				{/* <Link href="/favorite">
 					<a>
 						<HeartIcon width={20} height={20} />
 					</a>
-				</Link>
+				</Link> */}
 				<button
 					type="button"
+					aria-label="cart"
 					onClick={() => toggleSidebar({ type: "OPEN_SIDEBAR", cart: true })}
 				>
 					<Cart>
@@ -40,6 +41,7 @@ const Buttons = ({ toggleSidebar }) => {
 					</Cart>
 				</button>
 				<button
+					aria-label="menu"
 					type="button"
 					onClick={() => toggleSidebar({ type: "OPEN_SIDEBAR", cart: false })}
 				>
