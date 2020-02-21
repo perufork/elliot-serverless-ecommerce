@@ -9,7 +9,7 @@ const Content = props => (
 			col={6}
 			colTablet={12}
 			colMobile={12}
-			style={{ paddingRight: "30px" }}
+			className="item__container item__container--carousel"
 		>
 			<Carousel title={props.name} images={props.images} />
 		</Item>
@@ -17,7 +17,7 @@ const Content = props => (
 			col={6}
 			colTablet={12}
 			colMobile={12}
-			style={{ paddingLeft: "100px" }}
+			className="item__container item__container--details"
 		>
 			<Details {...props} />
 		</Item>

@@ -1,20 +1,21 @@
 import Link from "next/link";
 import Dropdown from "components/common/Dropdown";
+import Container from "components/common/Container";
 import {
-	Wrapper,
+	CopyWrapper,
+	Item,
+	List,
+	ListTitle,
 	Navigation,
 	Separator,
-	CopyWrapper,
-	List,
-	Item,
-	ListTitle
+	Wrapper
 } from "./styles";
 
 const Footer = () => (
 	<Wrapper>
 		<Navigation>
 			<List>
-				<ListTitle>Help & Information</ListTitle>
+				<ListTitle>Help &amp; Information</ListTitle>
 				<Item>
 					<Link href="">
 						<a>Track Order</a>
@@ -22,7 +23,7 @@ const Footer = () => (
 				</Item>
 				<Item>
 					<Link href="">
-						<a>Delivery & Returns</a>
+						<a>Delivery &amp; Returns</a>
 					</Link>
 				</Item>
 				<Item>
@@ -96,23 +97,25 @@ const Footer = () => (
 			</List>
 		</Navigation>
 		<Separator />
-		<CopyWrapper>
-			<p>
-				© 2020 <span>Elliot.</span> All rights reserved.
-			</p>
-			<ul>
-				<li>
-					<Link href="">
-						<a>Privacy Policy</a>
-					</Link>
-				</li>
-				<li>
-					<Link href="">
-						<a>Terms of Use</a>
-					</Link>
-				</li>
-			</ul>
-		</CopyWrapper>
+		<Container>
+			<CopyWrapper>
+				<p>
+					© 2020 <span>Elliot.</span> All rights reserved.
+				</p>
+				<ul>
+					<li>
+						<Link href="">
+							<a>Privacy Policy</a>
+						</Link>
+					</li>
+					<li>
+						<Link href="">
+							<a>Terms of Use</a>
+						</Link>
+					</li>
+				</ul>
+			</CopyWrapper>
+		</Container>
 	</Wrapper>
 );
 

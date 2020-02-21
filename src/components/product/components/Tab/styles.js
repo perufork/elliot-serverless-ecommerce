@@ -4,14 +4,14 @@ export const Description = styled.div`
 	h3 {
 		margin-bottom: 40px;
 		font-weight: 400;
-		font-size: 24px;
+		font-size: 18pt;
 		margin-top: 0;
 		color: ${({ theme: { colors } }) => colors.black};
 	}
 	p,
 	li {
 		margin-bottom: 25px;
-		font-size: 16px;
+		font-size: 12pt;
 		color: #777;
 		line-height: 1.6em;
 	}
@@ -45,7 +45,7 @@ export const Addition = styled.div`
 		color: ${({ theme: { colors } }) => colors.black};
 		vertical-align: middle;
 		border: none;
-		font-size: 14px;
+		font-size: 10.5pt;
 		border-bottom: 1px solid #ddd;
 	}
 	.td__key {
@@ -59,7 +59,7 @@ export const Addition = styled.div`
 export const Review = styled.div`
 	h4 {
 		margin: 10px 0 16px 0;
-		font-size: 16px;
+		font-size: 12pt;
 		font-weight: 600;
 		color: #222;
 		span {
@@ -69,11 +69,11 @@ export const Review = styled.div`
 	p {
 		line-height: 1.6em;
 		color: #999;
-		font-size: 16px;
+		font-size: 12pt;
 		small {
 			margin-bottom: 20px;
 			color: #222;
-			font-size: 14px;
+			font-size: 10.5pt;
 			line-height: 1.6em;
 		}
 	}
@@ -94,9 +94,6 @@ export const Review = styled.div`
 	h5 {
 		margin-bottom: 1.5rem;
 		font-weight: 500;
-		font-size: 18px;
+		font-size: 13.5pt;
 	}
 `;
-
-export const ReviewUser = styled.div``;
-export const TwoColumns = styled.div``;

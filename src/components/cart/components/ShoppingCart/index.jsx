@@ -90,7 +90,7 @@ const ShoppingCart = () => {
 												quantity={quantity}
 											/>
 										</td>
-										<td>
+										<td style={{ minWidth: "120px" }}>
 											<p>
 												{skus.edges[0].node.salePrice && (
 													<strong>

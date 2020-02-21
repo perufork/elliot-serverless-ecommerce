@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Wrapper, Label, List, Item, Arrow, DefaultValue } from "./styles";
 import { ChevronDownIcon } from "../Icons";
 
-function Dropdown({ standalone, options, label, displayDefaultValue }) {
+const Dropdown = ({ displayDefaultValue, label, options, standalone }) => {
 	const listEl = useRef(null);
 	const [labelOrValue, setLabelOrValue] = useState(label);
 	const [defaultValue, setDefaultValue] = useState(options[0]);
@@ -55,6 +55,6 @@ function Dropdown({ standalone, options, label, displayDefaultValue }) {
 			</List>
 		</Wrapper>
 	);
-}
+};
 
 export default Dropdown;

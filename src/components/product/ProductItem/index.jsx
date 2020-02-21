@@ -1,38 +1,32 @@
-import { useEffect, useState } from "react";
-import ProductCard from "components/common/ProductCard";
-import Container from "components/common/Container";
-import Tabs from "components/common/Tabs";
-import Content from "components/product/components/Content";
-import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
-import getProducts from "helpers/getProducts";
+import { addToCart } from "components/listing/actions";
 import { Products, Section, SectionTitle } from "./styles";
+import { useDispatchCart } from "providers/CartProvider";
+import { useDispatchSidebar } from "providers/SidebarProvider";
+import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
+import Container from "components/common/Container";
+import Content from "components/product/components/Content";
+import ProductCard from "components/common/ProductCard";
+import Tabs from "components/common/Tabs";
 import {
 	TabAdditionInformation,
 	TabDescription,
 	TabReview
 } from "../components/Tab";
 
-const ProductItem = ({
+export default ({
+	categories,
+	description,
 	id,
+	images,
 	name,
 	price,
+	products,
 	quantity,
 	skus,
-	description,
-	categories,
-	tags,
-	images
+	tags
 }) => {
-	const [products, setProducts] = useState();
-
-	const fetchRelatedProducts = async () => {
-		const relatedProducts = await getProducts();
-		return relatedProducts;
-	};
-
-	useEffect(() => {
-		setProducts(fetchRelatedProducts());
-	}, []);
+	const { dispatch } = useDispatchCart();
+	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 
 	return (
 		<>
@@ -81,5 +75,3 @@ const ProductItem = ({
 		</>
 	);
 };
-
-export default ProductItem;

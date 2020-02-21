@@ -120,7 +120,7 @@ export const Body = styled.div`
 
 	p {
 		line-height: 1.6em;
-		font-size: 16px;
+		font-size: 12pt;
 		color: ${({ theme: { colors } }) => colors.darkGray};
 	}
 `;

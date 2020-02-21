@@ -9,7 +9,7 @@ export const ShowMore = styled.div`
 	a {
 		color: ${({ theme: { colors } }) => colors.black};
 		display: inline-block;
-		font-size: 12px;
+		font-size: 9pt;
 		font-weight: 700;
 		letter-spacing: 0.05em;
 		position: relative;

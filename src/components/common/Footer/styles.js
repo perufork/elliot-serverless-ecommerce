@@ -50,7 +50,7 @@ export const Navigation = styled.nav`
 	margin-left: auto;
 	padding-bottom: 50px;
 
-	@media (max-width: 800px) {
+	@media (max-width: 960px) {
 		grid-template-columns: repeat(2, 1fr);
 		grid-row-gap: 50px;
 		grid-column-gap: 20px;
@@ -63,18 +63,18 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-	font-size: 15px;
+	font-size: 11.25pt;
 	line-height: 22px;
 	color: #999;
 `;
 
 export const ListTitle = styled.li`
-	font-size: 14px;
+	font-size: 10.5pt;
 	margin-bottom: 40px;
 	font-weight: 700;
 	text-transform: uppercase;
 
-	@media (max-width: 800px) {
+	@media (max-width: 960px) {
 		margin-bottom: 30px;
 	}
 `;
@@ -89,14 +89,9 @@ export const CopyWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	max-width: 1200px;
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
 
 	p {
-		font-size: 14px;
+		font-size: 10.5pt;
 		line-height: 40px;
 		color: #999;
 
@@ -113,7 +108,7 @@ export const CopyWrapper = styled.div`
 
 	ul li {
 		display: inline-block;
-		font-size: 15px;
+		font-size: 11.25pt;
 		line-height: 40px;
 	}
 
@@ -121,7 +116,7 @@ export const CopyWrapper = styled.div`
 		margin-right: 15px;
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 960px) {
 		flex-wrap: wrap;
 		margin: 20px auto;
 

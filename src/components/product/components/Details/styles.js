@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 
 	h5 {
 		margin: 0 0 30px 0;
-		font-size: 24px;
+		font-size: 18pt;
 		line-height: 1;
 		font-weight: 400;
 		color: ${({ theme: { colors } }) => colors.black};
@@ -126,7 +126,7 @@ export const Specs = styled.div`
 
 		a {
 			color: #999;
-			font-size: 15px;
+			font-size: 11.25pt;
 
 			&:after {
 				content: ",";

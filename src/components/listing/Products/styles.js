@@ -31,7 +31,7 @@ export const FiltersWrapper = styled.div`
 `;
 
 export const Result = styled.div`
-	font-size: 16px;
+	font-size: 12pt;
 	color: #999;
 
 	span {
@@ -56,11 +56,11 @@ export const Products = styled.section`
 	grid-column-gap: 30px;
 	grid-row-gap: 65px;
 
-	@media (max-width: 770px) {
+	@media (max-width: 960px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	@media (max-width: 400px) {
+	@media (max-width: 680px) {
 		grid-template-columns: 1fr;
 	}
 

@@ -25,7 +25,7 @@ const InputContainer = styled.div`
 		font-weight: 400;
 		color: ${({ theme: { colors } }) => colors.black};
 		line-height: 1.2;
-		font-size: 14px;
+		font-size: 10.5pt;
 		display: inline-block;
 	}
 
@@ -35,27 +35,17 @@ const InputContainer = styled.div`
 	select,
 	textarea {
 		box-sizing: border-box;
-
 		transition: all 0.4s ease;
-
 		outline: none;
-
 		border: 1px solid #ddd;
-
 		border-radius: 0;
-
 		background: transparent;
-
-		font-size: 14px;
+		font-size: 10.5pt;
 		padding: 10px 20px;
-
 		width: 100%;
-
 		resize: none;
-
 		line-height: 1;
 		color: #495057;
-
 		appearance: none;
 
 		&:focus {
@@ -65,7 +55,7 @@ const InputContainer = styled.div`
 
 	span {
 		color: ${({ theme: { colors } }) => colors.red};
-		font-size: 13px;
+		font-size: 9.75pt;
 		line-height: 1.5;
 		margin-top: 5px;
 		font-style: italic;

@@ -81,7 +81,7 @@ export const Details = styled.div`
 	padding-bottom: 20px;
 
 	h2 {
-		font-size: 24px;
+		font-size: 18pt;
 		font-weight: 600;
 		line-height: 1.4em;
 		margin: 0;
@@ -91,7 +91,7 @@ export const Details = styled.div`
 
 	p {
 		margin-bottom: unset;
-		font-size: 16px;
+		font-size: 12pt;
 		font-weight: 600;
 		margin-top: 8px;
 		color: ${({ theme: { colors } }) => colors.lightGray};
@@ -106,7 +106,7 @@ export const Body = styled.div`
 	p {
 		margin: 0;
 		line-height: 1.6em;
-		font-size: 16px;
+		font-size: 12pt;
 		color: ${({ theme: { colors } }) => colors.darkGray};
 	}
 `;

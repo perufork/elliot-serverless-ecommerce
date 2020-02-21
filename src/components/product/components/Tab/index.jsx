@@ -1,8 +1,8 @@
 import React from "react";
 import { Flex, Item } from "react-flex-ready";
-import { useForm } from "react-hook-form";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import Button from "components/common/Button";
-import cn from "classnames";
 import InputContainer from "components/common/InputContainer";
 import Stars from "components/common/Stars";
 
@@ -77,17 +77,18 @@ const TabAdditionInformation = () => {
 };
 
 const TabReview = () => {
-	const { register, handleSubmit, errors } = useForm();
-
-	const onSubmit = data => {
-		console.log(errors);
-		console.log(data);
-	};
+	const ReviewSchema = Yup.object().shape({
+		name: Yup.string().required("This field is required"),
+		email: Yup.string()
+			.email("Invalid email")
+			.required("This field is required"),
+		review: Yup.string().required("This field is required")
+	});
 
 	return (
 		<Review>
 			<h4>1 review for Contrasting Design T-Shirt</h4>
-			<ReviewUser as={Flex} align="center">
+			<Flex align="center">
 				<Item className="user_image" col={1} colTablet={12} colMobile={12}>
 					<img src="https://i.pravatar.cc/70?img=44" alt="" />
 				</Item>
@@ -103,7 +104,7 @@ const TabReview = () => {
 					</h4>
 					<p>Aenean sit amet odio est.</p>
 				</Item>
-			</ReviewUser>
+			</Flex>
 			<h5>Add a review</h5>
 			<p>
 				<small>Connect with:</small>
@@ -125,39 +126,54 @@ const TabReview = () => {
 					Your email address will not be published. Required fields are marked *
 				</small>
 			</p>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<InputContainer className={cn({ has__error: errors.review })}>
-					<Stars stars={4} />
-				</InputContainer>
-				<InputContainer className={cn({ has__error: errors.review })}>
-					<label htmlFor="review">Your Review:</label>
-					<textarea name="review" rows="6" ref={register({ required: true })} />
-					{errors.review && <span>This field is required</span>}
-				</InputContainer>
-				<TwoColumns as={Flex} align="start">
-					<Item col={6} colTablet={12} colMobile={12}>
-						<InputContainer className={cn({ has__error: errors.review })}>
-							<label htmlFor="name">Name:</label>
-							<input name="name" ref={register({ required: true })} />
-							{errors.name && <span>This field is required</span>}
+			<Formik
+				initialValues={{ email: "", name: "", review: "" }}
+				validationSchema={ReviewSchema}
+				onSubmit={(values, { setSubmitting }) => {
+					setTimeout(() => {
+						console.log(JSON.stringify(values, null, 2));
+						setSubmitting(false);
+					}, 400);
+				}}
+			>
+				{({ isSubmitting, errors, touched }) => (
+					<Form>
+						<InputContainer>
+							<Stars stars={4} />
 						</InputContainer>
-					</Item>
-					<Item col={6} colTablet={12} colMobile={12}>
-						<InputContainer className={cn({ has__error: errors.review })}>
-							<label htmlFor="email">Email:</label>
-							<input
-								name="email"
-								type="email"
-								ref={register({ required: true })}
-							/>
-							{errors.email && <span>This field is required</span>}
+						<InputContainer
+							className={errors.review && touched.review && "has__error"}
+						>
+							<label htmlFor="review">Review:</label>
+							<Field type="text" name="review" component="textarea" rows="6" />
+							<ErrorMessage name="review" component="span" />
 						</InputContainer>
-					</Item>
-				</TwoColumns>
-				<Button variant="primary" type="submit">
-					Submit
-				</Button>
-			</form>
+						<Flex align="start">
+							<Item col={6} colTablet={12} colMobile={12}>
+								<InputContainer
+									className={errors.email && touched.email && "has__error"}
+								>
+									<label htmlFor="name">Email:</label>
+									<Field type="email" name="email" />
+									<ErrorMessage name="email" component="span" />
+								</InputContainer>
+							</Item>
+							<Item col={6} colTablet={12} colMobile={12}>
+								<InputContainer
+									className={errors.name && touched.name && "has__error"}
+								>
+									<label htmlFor="name">Name:</label>
+									<Field type="text" name="name" />
+									<ErrorMessage name="name" component="span" />
+								</InputContainer>
+							</Item>
+						</Flex>
+						<Button variant="primary" type="submit" disabled={isSubmitting}>
+							Submit
+						</Button>
+					</Form>
+				)}
+			</Formik>
 		</Review>
 	);
 };

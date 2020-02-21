@@ -24,7 +24,7 @@ export const Label = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	font-size: 16px;
+	font-size: 12pt;
 	font-weight: 600;
 `;
 
@@ -42,7 +42,7 @@ export const Arrow = styled.span`
 `;
 
 export const Item = styled.li`
-	font-size: 16px;
+	font-size: 12pt;
 	padding: 6px 16px;
 	line-height: 1.5;
 	transition: all 200ms ease;
@@ -54,7 +54,7 @@ export const Item = styled.li`
 `;
 
 export const DefaultValue = styled.p`
-	font-size: 16px;
+	font-size: 12pt;
 	color: #999;
 	min-width: 60px;
 	text-align: center;

@@ -20,15 +20,32 @@ export const Wrapper = styled.div`
 		margin-right: 10px;
 		line-height: 20px;
 		font-weight: 700;
-		font-size: 20px;
+		font-size: 15pt;
 		color: #999;
 		border-radius: 50px;
 		border: 1px solid transparent;
 		cursor: pointer;
 		transition: all 400ms ease;
+		&:last-of-type {
+			margin-right: 0;
+		}
 	}
 
 	.react-tabs__tab--selected {
 		color: #000;
+	}
+
+	@media (max-width: 960px) {
+		.react-tabs__tab {
+			font-size: 13pt;
+			padding: 10px 15px;
+		}
+	}
+
+	@media (max-width: 680px) {
+		.react-tabs__tab {
+			font-size: 10pt;
+			padding: 5px;
+		}
 	}
 `;
