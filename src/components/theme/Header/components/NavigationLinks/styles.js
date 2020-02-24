@@ -40,7 +40,7 @@ export const DesktopMenu = styled.ul`
 		a {
 			font-size: 36px;
 			font-weight: 600;
-			color: #6f6f6f999;
+			color: #6f6f6f;
 
 			&:hover {
 				color: ${({

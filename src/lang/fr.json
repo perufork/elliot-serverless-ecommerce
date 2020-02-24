@@ -10,6 +10,8 @@
 	"button.go_back": "précédent",
 	"shop.page.title": "Magasin",
 	"shop.page.description": "Notre super boutique",
+	"cart.page.title": "Chariot",
+	"checkout.page.title": "Checkout",
 	"title.cart": "chariot",
 	"title.checkout": "check-out",
 	"product.review": "Révision",

@@ -22,7 +22,7 @@ const Links = ({ collections }) => {
 				{collections && collections.edges && (
 					<InnerMenu>
 						{collections.edges
-							.filter(({ node: { productCount } }) => productCount > 0)
+							.filter(({ node: { products } }) => products?.edges?.length > 0)
 							.map(({ node: { id, name, slug } }) => (
 								<li key={id}>
 									<Link

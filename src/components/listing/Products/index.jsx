@@ -21,7 +21,7 @@ export default ({ products, collection }) => {
 		<Container>
 			<Header>
 				<PageTitle
-					title="Shop"
+					title="shop.page.title"
 					breadcrumbs={
 						collection
 							? [

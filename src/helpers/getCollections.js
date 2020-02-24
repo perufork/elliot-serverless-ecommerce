@@ -25,7 +25,7 @@ export default async () => {
 		}
 	);
 
-	collections.edges.filter(({ node }) => node.products.edges.length !== 0);
+	collections.edges.filter(({ node }) => node.products.edges.length > 0);
 
 	return collections;
 };

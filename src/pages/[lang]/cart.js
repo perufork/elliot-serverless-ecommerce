@@ -2,9 +2,11 @@ import Layout from "components/common/Layout";
 import Items from "components/cart/Items";
 import withLocale from "hoc/withLocale";
 import getCollections from "helpers/getCollections";
+import SEO from "components/common/SEO";
 
 const Cart = ({ collections }) => (
 	<Layout collections={collections}>
+		<SEO title="shop.page.cart_title" description="shop.page.description" />
 		<Items />
 	</Layout>
 );

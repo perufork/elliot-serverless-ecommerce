@@ -86,7 +86,7 @@ export const Favorite = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #6f6f6f999;
+	color: #6f6f6f;
 	border: 2px solid #eaeaea;
 	cursor: pointer;
 	background: none;
