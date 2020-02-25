@@ -47,7 +47,7 @@ const RadioButton = styled.div`
 		}
 
 		span {
-			color: #999;
+			color: #6f6f6f;
 			font-size: 14px;
 			font-weight: 400;
 		}

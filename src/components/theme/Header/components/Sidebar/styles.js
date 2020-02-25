@@ -90,7 +90,7 @@ export const Close = styled.div`
 		top: 50%;
 		height: 2px;
 		transform: rotate(45deg);
-		background-color: #999;
+		background-color: #6f6f6f;
 		border-radius: 1px;
 	}
 
@@ -102,7 +102,7 @@ export const Close = styled.div`
 		top: 50%;
 		height: 2px;
 		transform: rotate(-45deg);
-		background-color: #999;
+		background-color: #6f6f6f;
 		border-radius: 1px;
 	}
 `;

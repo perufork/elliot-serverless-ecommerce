@@ -7,7 +7,7 @@ export const Navigation = styled.div`
 		li {
 			a {
 				display: block;
-				color: #999;
+				color: #6f6f6f;
 				line-height: 20px;
 
 				&:hover {
@@ -40,7 +40,7 @@ export const DesktopMenu = styled.ul`
 		a {
 			font-size: 36px;
 			font-weight: 600;
-			color: #999999;
+			color: #6f6f6f;
 
 			&:hover {
 				color: ${({
@@ -73,7 +73,7 @@ export const MenuBottom = styled.div`
 	p {
 		font-size: 16px;
 		line-height: 1.6em;
-		color: #999;
+		color: #6f6f6f;
 	}
 `;
 
@@ -86,7 +86,7 @@ export const List = styled.ul`
 
 		a {
 			display: block;
-			color: #999;
+			color: #6f6f6f;
 			line-height: 20px;
 			font-size: 16px;
 

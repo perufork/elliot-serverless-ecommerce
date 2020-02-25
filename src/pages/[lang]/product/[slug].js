@@ -5,6 +5,7 @@ import locales from "helpers/locales";
 import getProducts from "helpers/getProducts";
 import Error from "next/error";
 import getCollections from "helpers/getCollections";
+import SEO from "components/common/SEO";
 
 export const unstable_getStaticPaths = async () => {
 	const products = await getProducts();
@@ -40,7 +41,19 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 
 const Product = ({ product, collections }) => (
 	<Layout collections={collections}>
-		{product.id ? <ProductItem {...product} /> : <Error statusCode={404} />}
+		{product.id ? (
+			<>
+				<SEO
+					title={product.name}
+					description={product.description.replace(/(<([^>]+)>)/gi, "")}
+					location={product.slug}
+					cover={`${process.env.ELLIOT_BASE_IMAGE_URL}${product.images?.edges[0]?.node?.image}`}
+				/>
+				<ProductItem {...product} />
+			</>
+		) : (
+			<Error statusCode={404} />
+		)}
 	</Layout>
 );
 

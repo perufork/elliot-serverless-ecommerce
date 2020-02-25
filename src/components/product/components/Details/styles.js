@@ -48,7 +48,7 @@ export const Review = styled.div`
 
 	span {
 		margin-left: 1rem;
-		color: #999;
+		color: #6f6f6f;
 		font-size: 12pt;
 	}
 `;
@@ -86,7 +86,7 @@ export const Favorite = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #999999;
+	color: #6f6f6f;
 	border: 2px solid #eaeaea;
 	cursor: pointer;
 	background: none;
@@ -117,7 +117,7 @@ export const Specs = styled.div`
 		}
 
 		a {
-			color: #999;
+			color: #6f6f6f;
 			font-size: 15px;
 
 			&:after {

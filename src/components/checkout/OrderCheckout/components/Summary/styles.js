@@ -51,7 +51,7 @@ export const Product = styled.div`
 		}
 
 		span {
-			color: #999;
+			color: #6f6f6f;
 		}
 
 		p,
@@ -74,7 +74,7 @@ export const Item = styled.div`
 	span {
 		font-size: 14px;
 		line-height: 1.6em;
-		color: #999;
+		color: #6f6f6f;
 	}
 `;
 

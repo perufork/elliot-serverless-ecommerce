@@ -32,7 +32,7 @@ export const FiltersWrapper = styled.div`
 
 export const Result = styled.div`
 	font-size: 16px;
-	color: #999;
+	color: #6f6f6f;
 
 	span {
 		font-weight: 600;

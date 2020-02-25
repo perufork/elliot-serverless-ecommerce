@@ -4,6 +4,7 @@ import locales from "helpers/locales";
 import getCollections from "helpers/getCollections";
 import Products from "components/listing/Products";
 import Error from "next/error";
+import SEO from "components/common/SEO";
 
 export const unstable_getStaticPaths = async () => {
 	const collections = await getCollections();
@@ -41,7 +42,10 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 const Product = ({ collection, collections }) => (
 	<Layout collections={collections}>
 		{collection.products ? (
-			<Products products={collection.products} collection={collection} />
+			<>
+				<SEO title={collection.name} location={collection.slug} />
+				<Products products={collection.products} collection={collection} />
+			</>
 		) : (
 			<Error statusCode={404} />
 		)}

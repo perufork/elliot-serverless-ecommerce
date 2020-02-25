@@ -7,7 +7,7 @@ export const Flex = styled.div`
 
 export const Item = styled.a`
 	display: inline-block;
-	color: ${({ active }) => (active ? "#222" : "#999")};
+	color: ${({ active }) => (active ? "#222" : "#6f6f6f")};
 	font-size: 14px;
 	cursor: ${({ active }) => (active ? "unset" : "pointer")};
 
