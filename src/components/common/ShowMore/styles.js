@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ShowMore = styled.div`
 	display: block;
-	margin-top: 65px;
+	margin-top: 4.0625rem;
 	text-align: center;
 	width: 100%;
 
@@ -14,7 +14,7 @@ export const ShowMore = styled.div`
 		letter-spacing: 0.05em;
 		position: relative;
 		text-transform: uppercase;
-		transition: all 0.4s ease;
+		transition: ${({ theme: { transitions } }) => transitions.default400};
 
 		&:before {
 			background-color: ${({ theme: { colors } }) => colors.black};
@@ -23,7 +23,7 @@ export const ShowMore = styled.div`
 			left: 0;
 			position: absolute;
 			top: 100%;
-			transition: all 0.4s ease;
+			transition: ${({ theme: { transitions } }) => transitions.default400};
 			width: 100%;
 		}
 

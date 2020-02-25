@@ -5,10 +5,10 @@ export const Wrapper = styled.div`
 
 	.item__container {
 		&--carousel {
-			padding-right: 30px;
+			padding-right: 1.875rem;
 		}
 		&--details {
-			padding-left: 100px;
+			padding-left: 6.25rem;
 		}
 	}
 

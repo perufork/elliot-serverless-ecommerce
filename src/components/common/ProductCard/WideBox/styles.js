@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
 	display: grid;
-	grid-template-columns: calc(40% - 50px) 1fr;
-	grid-column-gap: 50px;
+	grid-template-columns: calc(40% - 3.125rem) 1fr;
+	grid-column-gap: 3.125rem;
 	width: 100%;
-	border-bottom: 1px solid #eaeaea;
-	padding-bottom: 70px;
+	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
+	padding-bottom: 4.375rem;
 
 	@media screen and (max-width: 600px) {
 		grid-template-columns: 1fr;
@@ -28,7 +28,7 @@ export const Thumbnail = styled.div`
 
 	img {
 		width: 100%;
-		transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		transition: ${({ theme: { transitions } }) => transitions.custom400};
 		opacity: 1;
 
 		&:last-child {
@@ -58,7 +58,7 @@ export const Thumbnail = styled.div`
 `;
 
 export const Content = styled.div`
-	padding-top: 30px;
+	padding-top: 1.875rem;
 	flex: 2;
 
 	@media screen and (max-width: 960px) {
@@ -78,14 +78,14 @@ export const Header = styled.div`
 `;
 
 export const Details = styled.div`
-	padding-bottom: 20px;
+	padding-bottom: 1.25rem;
 
 	h2 {
 		font-size: 18pt;
 		font-weight: 600;
 		line-height: 1.4em;
 		margin: 0;
-		padding-bottom: 5px;
+		padding-bottom: 0.3125rem;
 		color: ${({ theme: { colors } }) => colors.black};
 	}
 
@@ -93,7 +93,7 @@ export const Details = styled.div`
 		margin-bottom: unset;
 		font-size: 12pt;
 		font-weight: 600;
-		margin-top: 8px;
+		margin-top: 0.5rem;
 		color: ${({ theme: { colors } }) => colors.lightGray};
 
 		span {
@@ -113,5 +113,5 @@ export const Body = styled.div`
 
 export const Footer = styled.div`
 	text-align: left;
-	padding-top: 40px;
+	padding-top: 2.5rem;
 `;

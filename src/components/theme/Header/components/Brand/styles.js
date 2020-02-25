@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	width: 60px;
+	width: 3.75rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -9,6 +9,6 @@ export const Wrapper = styled.div`
 	flex: 0;
 
 	@media (max-width: 1200px) {
-		margin-left: 15px;
+		margin-left: 0.9375rem;
 	}
 `;

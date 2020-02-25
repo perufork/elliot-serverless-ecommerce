@@ -21,7 +21,7 @@ const InputContainer = styled.div`
 	}
 
 	label {
-		margin-bottom: 12px;
+		margin-bottom: 0.75rem;
 		font-weight: 400;
 		color: ${({ theme: { colors } }) => colors.black};
 		line-height: 1.2;
@@ -35,13 +35,13 @@ const InputContainer = styled.div`
 	select,
 	textarea {
 		box-sizing: border-box;
-		transition: all 0.4s ease;
+		transition: ${({ theme: { transitions } }) => transitions.default400};
 		outline: none;
 		border: 1px solid #ddd;
 		border-radius: 0;
 		background: transparent;
 		font-size: 10.5pt;
-		padding: 10px 20px;
+		padding: 0.625rem 1.25rem;
 		width: 100%;
 		resize: none;
 		line-height: 1;
@@ -57,7 +57,7 @@ const InputContainer = styled.div`
 		color: ${({ theme: { colors } }) => colors.red};
 		font-size: 9.75pt;
 		line-height: 1.5;
-		margin-top: 5px;
+		margin-top: 0.3125rem;
 		font-style: italic;
 	}
 `;

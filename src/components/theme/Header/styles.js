@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid #eaeaea;
+	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	width: 100%;
 	z-index: 6;
-	background-color: #fff;
+	background-color: ${({ theme: { colors } }) => colors.white};
 	padding: 1rem;
-	transition: all 200ms ease;
+	transition: ${({ theme: { transitions } }) => transitions.default200};
 	position: fixed;
 	top: 0;
 	left: 0;

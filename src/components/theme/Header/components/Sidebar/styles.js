@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
 	position: absolute;
 	height: 100%;
-	color: #000;
+	color: ${({ theme: { colors } }) => colors.darkBlack};
 
 	ul:not(:last-child) {
 		padding-bottom: 1.5rem;
@@ -47,14 +47,14 @@ export const Nav = styled.div`
 	top: 0;
 	right: 0;
 	width: 100%;
-	max-width: 470px;
+	max-width: 29.375rem;
 	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 10001;
-	background-color: #fff;
+	background-color: ${({ theme: { colors } }) => colors.white};
 	transform: translateX(100%);
-	border-left: 1px solid #eaeaea;
+	border-left: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1) 0s;
 
 	${({ visible }) =>
@@ -65,20 +65,20 @@ export const Nav = styled.div`
 
 	li {
 		margin-left: 0;
-		width: 250px;
-		transition: all 0.3s ease-in;
+		width: 15.625rem;
+		transition: ${({ theme: { transitions } }) => transitions.default300};
 	}
 `;
 
 export const Burger = styled.div`
-	padding: 20px 30px 0;
+	padding: 1.25rem 1.875rem 0;
 	width: 100%;
 `;
 
 export const Close = styled.div`
-	width: 40px;
-	height: 40px;
-	transition: all 0.3s ease-in;
+	width: 2.5rem;
+	height: 2.5rem;
+	transition: ${({ theme: { transitions } }) => transitions.default300};
 	cursor: pointer;
 	position: relative;
 
@@ -90,7 +90,7 @@ export const Close = styled.div`
 		top: 50%;
 		height: 2px;
 		transform: rotate(45deg);
-		background-color: #999;
+		background-color: ${({ theme: { colors } }) => colors.darkGray};
 		border-radius: 1px;
 	}
 
@@ -102,7 +102,7 @@ export const Close = styled.div`
 		top: 50%;
 		height: 2px;
 		transform: rotate(-45deg);
-		background-color: #999;
+		background-color: ${({ theme: { colors } }) => colors.darkGray};
 		border-radius: 1px;
 	}
 `;
@@ -112,5 +112,5 @@ export const Content = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
-	padding: 50px;
+	padding: 3.125rem;
 `;

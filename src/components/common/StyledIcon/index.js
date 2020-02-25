@@ -7,7 +7,7 @@ const StyledIcon = styled.svg`
 
 	path {
 		color: ${({ color }) => color};
-		transition: all 200ms ease;
+		transition: ${({ theme: { transitions } }) => transitions.default200};
 	}
 
 	&:hover {

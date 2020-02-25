@@ -25,7 +25,7 @@ export const Table = styled.table`
 
 	tr {
 		td {
-			padding: 10px 20px;
+			padding: 0.625rem 1.25rem;
 			border: none;
 
 			a {
@@ -54,12 +54,12 @@ export const Table = styled.table`
 
 				del {
 					color: #eee;
-					margin-left: 10px;
+					margin-left: 0.625rem;
 				}
 			}
 
 			&:nth-child(2) {
-				min-width: 230px;
+				min-width: 14.375rem;
 			}
 
 			&:last-child {
@@ -86,21 +86,21 @@ export const Product = styled.div`
 `;
 
 export const Thumbnail = styled.div`
-	max-width: 70px;
+	max-width: 4.375rem;
 	margin-right: 1rem;
 
 	@media (min-width: 768px) {
 		margin-bottom: 0;
-		max-width: 500px;
+		max-width: 31.25rem;
 	}
 
 	@media (min-width: 1200px) {
-		max-width: calc(40% - 70px);
+		max-width: calc(40% - 4.375rem);
 	}
 
 	img {
 		width: 100%;
-		transition: all 0.8s ease;
+		transition: ${({ theme: { transitions } }) => transitions.default800};
 	}
 `;
 
@@ -123,16 +123,16 @@ export const Content = styled.div`
 export const Tbody = styled.tbody`
 	tr {
 		td {
-			padding: 30px 15px;
+			padding: 1.875rem 0.9375rem;
 			border: none;
 			vertical-align: middle;
 			font-size: 14px;
 			font-weight: 600;
-			color: #999;
+			color: ${({ theme: { colors } }) => colors.darkGray};
 			border-bottom: 1px solid #ddd;
 
 			&:first-child {
-				min-width: 350px;
+				min-width: 21.875rem;
 				padding-left: 0;
 			}
 
@@ -164,7 +164,8 @@ export const Thead = styled.thead`
 			color: #ccc;
 			border: none;
 			text-transform: uppercase;
-			border-bottom: 1px solid #eaeaea;
+			border-bottom: 1px solid
+				${({ theme: { colors } }) => colors.lightnessGray};
 
 			&:last-child {
 				text-align: right;

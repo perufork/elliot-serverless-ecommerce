@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Products = styled.section`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-column-gap: 30px;
-	grid-row-gap: 65px;
+	grid-column-gap: 1.875rem;
+	grid-row-gap: 4.0625rem;
 
 	@media (max-width: 770px) {
 		grid-template-columns: repeat(2, 1fr);
@@ -22,7 +22,7 @@ export const Products = styled.section`
 `;
 
 export const Section = styled.section`
-	padding: 40px 0 150px;
+	padding: 2.5rem 0 9.375rem;
 `;
 
 export const SectionTitle = styled.h3`

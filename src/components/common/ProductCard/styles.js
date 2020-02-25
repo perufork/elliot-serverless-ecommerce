@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
-		border-bottom: 1px solid #eaeaea;
+		border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 		padding: 3rem 0;
 
 		@media screen and (max-width: 960px) {
@@ -72,7 +72,7 @@ export const Details = styled.div`
 		margin-bottom: unset;
 		font-size: 16px;
 		font-weight: 600;
-		margin-top: 8px;
+		margin-top: 0.5rem;
 		color: ${({ theme: { colors } }) => colors.lightGray};
 
 		span {

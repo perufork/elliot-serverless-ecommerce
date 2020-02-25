@@ -1,25 +1,25 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.footer`
-	margin-top: 95px;
+	margin-top: 5.9375rem;
 
 	ul {
 		list-style: none;
 	}
 
 	a {
-		color: #999;
+		color: ${({ theme: { colors } }) => colors.darkGray};
 		position: relative;
 		display: inline-block;
-		padding: 5px 0;
-		line-height: 20px;
-		transition: all 400ms ease;
+		padding: 0.3125rem 0;
+		line-height: 1.25rem;
+		transition: ${({ theme: { transitions } }) => transitions.default400};
 		text-decoration: none;
 		background-color: transparent;
 	}
 
 	a:hover {
-		color: #222;
+		color: ${({ theme: { colors } }) => colors.black};
 	}
 
 	a:before {
@@ -28,8 +28,8 @@ export const Wrapper = styled.footer`
 		bottom: 2px;
 		width: 100%;
 		height: 1px;
-		background-color: #000;
-		transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		background-color: ${({ theme: { colors } }) => colors.darkBlack};
+		transition: ${({ theme: { transitions } }) => transitions.custom400};
 		transform: scale3d(0, 1, 1);
 		transform-origin: 0% 50%;
 	}
@@ -43,17 +43,17 @@ export const Wrapper = styled.footer`
 export const Navigation = styled.nav`
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
-	max-width: 1200px;
-	padding-right: 15px;
-	padding-left: 15px;
+	max-width: 75rem;
+	padding-right: 0.9375rem;
+	padding-left: 0.9375rem;
 	margin-right: auto;
 	margin-left: auto;
-	padding-bottom: 50px;
+	padding-bottom: 3.125rem;
 
 	@media (max-width: 960px) {
 		grid-template-columns: repeat(2, 1fr);
-		grid-row-gap: 50px;
-		grid-column-gap: 20px;
+		grid-row-gap: 3.125rem;
+		grid-column-gap: 1.25rem;
 	}
 `;
 
@@ -64,25 +64,25 @@ export const List = styled.ul`
 
 export const Item = styled.li`
 	font-size: 11.25pt;
-	line-height: 22px;
-	color: #999;
+	line-height: 1.375rem;
+	color: ${({ theme: { colors } }) => colors.darkGray};
 `;
 
 export const ListTitle = styled.li`
 	font-size: 10.5pt;
-	margin-bottom: 40px;
+	margin-bottom: 2.5rem;
 	font-weight: 700;
 	text-transform: uppercase;
 
 	@media (max-width: 960px) {
-		margin-bottom: 30px;
+		margin-bottom: 1.875rem;
 	}
 `;
 
 export const Separator = styled.hr`
 	border: none;
 	height: 1px;
-	background-color: #eaeaea;
+	background-color: ${({ theme: { colors } }) => colors.lightnessGray};
 `;
 
 export const CopyWrapper = styled.div`
@@ -92,11 +92,11 @@ export const CopyWrapper = styled.div`
 
 	p {
 		font-size: 10.5pt;
-		line-height: 40px;
-		color: #999;
+		line-height: 2.5rem;
+		color: ${({ theme: { colors } }) => colors.darkGray};
 
 		span {
-			color: #000;
+			color: ${({ theme: { colors } }) => colors.darkBlack};
 			font-weight: 700;
 		}
 	}
@@ -109,16 +109,16 @@ export const CopyWrapper = styled.div`
 	ul li {
 		display: inline-block;
 		font-size: 11.25pt;
-		line-height: 40px;
+		line-height: 2.5rem;
 	}
 
 	ul li:not(:last-child) {
-		margin-right: 15px;
+		margin-right: 0.9375rem;
 	}
 
 	@media (max-width: 960px) {
 		flex-wrap: wrap;
-		margin: 20px auto;
+		margin: 1.25rem auto;
 
 		p {
 			margin: 0;

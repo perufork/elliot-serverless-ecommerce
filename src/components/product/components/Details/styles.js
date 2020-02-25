@@ -56,7 +56,7 @@ export const Review = styled.div`
 
 	span {
 		margin-left: 1rem;
-		color: #999;
+		color: ${({ theme: { colors } }) => colors.darkGray};
 		font-size: 12pt;
 	}
 `;
@@ -65,7 +65,7 @@ export const Sku = styled.span`
 	display: block;
 	margin-bottom: 1rem;
 	font-size: 10pt;
-	color: #bbbbbb;
+	color: ${({ theme: { colors } }) => colors.lightGray};
 `;
 
 export const Shop = styled.div`
@@ -94,8 +94,8 @@ export const Favorite = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #999999;
-	border: 2px solid #eaeaea;
+	color: ${({ theme: { colors } }) => colors.darkGray}999;
+	border: 2px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	cursor: pointer;
 	background: none;
 	margin: 0 auto;
@@ -112,29 +112,29 @@ export const Favorite = styled.button`
 
 export const Specs = styled.div`
 	margin-bottom: 2rem;
-	padding-top: 20px;
-	border-top: 1px solid #eaeaea;
+	padding-top: 1.25rem;
+	border-top: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 
 	p {
 		color: ${({ theme: { colors } }) => colors.black};
 
 		strong {
-			margin-right: 5px;
+			margin-right: 0.3125rem;
 			text-transform: uppercase;
 			font-weight: bold;
 		}
 
 		a {
-			color: #999;
+			color: ${({ theme: { colors } }) => colors.darkGray};
 			font-size: 11.25pt;
 
 			&:after {
 				content: ",";
-				padding-right: 3px;
+				padding-right: 0.1875rem;
 			}
 
 			&:first-child {
-				padding-left: 5px;
+				padding-left: 0.3125rem;
 			}
 
 			&:last-child {
@@ -158,10 +158,10 @@ export const SocialShares = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 1.25rem;
 	a {
-		width: 30px;
-		height: 30px;
-		margin-right: 5px;
+		width: 1.875rem;
+		height: 1.875rem;
+		margin-right: 0.3125rem;
 	}
 `;
