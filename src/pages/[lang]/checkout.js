@@ -6,7 +6,10 @@ import SEO from "components/common/SEO";
 
 const Checkout = ({ collections }) => (
 	<Layout collections={collections}>
-		<SEO title="shop.page.checkout_title" description="shop.page.description" />
+		<SEO
+			localizedTitle="shop.page.checkout_title"
+			localizedDescription="shop.page.description"
+		/>
 		<OrderCheckout />
 	</Layout>
 );

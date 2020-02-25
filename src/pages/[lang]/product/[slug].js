@@ -43,7 +43,12 @@ const Product = ({ product, collections }) => (
 	<Layout collections={collections}>
 		{product.id ? (
 			<>
-				<SEO title={product.name} description={product.description} />
+				<SEO
+					title={product.name}
+					description={product.description.replace(/(<([^>]+)>)/gi, "")}
+					location={product.slug}
+					cover={`${process.env.ELLIOT_BASE_IMAGE_URL}${product.images?.edges[0]?.node?.image}`}
+				/>
 				<ProductItem {...product} />
 			</>
 		) : (

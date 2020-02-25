@@ -2,7 +2,14 @@ import Head from "next/head";
 import { useIntl } from "react-intl";
 import Thumbnail from "assets/thumbnail.jpg";
 
-export default ({ title, location = "", description, cover }) => {
+export default ({
+	title,
+	description,
+	localizedTitle,
+	localizedDescription,
+	location = "",
+	cover
+}) => {
 	const { formatMessage, locale } = useIntl();
 
 	return (
@@ -10,14 +17,20 @@ export default ({ title, location = "", description, cover }) => {
 			<meta
 				name="title"
 				content={
-					title ? formatMessage({ id: title }) : "Elliot Headless Pacakge"
+					title
+						? localizedTitle
+							? formatMessage({ id: localizedTitle })
+							: title
+						: "Elliot Headless Pacakge"
 				}
 			/>
 			<meta
 				name="description"
 				content={
 					description
-						? formatMessage({ id: description })
+						? localizedDescription
+							? formatMessage({ id: localizedDescription })
+							: description
 						: "Elliot - Serverless eCommerce Storefront. 100% headless & serverless. Built with Next js & one-click deployable to ZEIT NOW."
 				}
 			/>
@@ -35,14 +48,20 @@ export default ({ title, location = "", description, cover }) => {
 			<meta
 				property="og:title"
 				content={
-					title ? formatMessage({ id: title }) : "Elliot Headless Pacakge"
+					title
+						? localizedTitle
+							? formatMessage({ id: localizedTitle })
+							: title
+						: "Elliot Headless Pacakge"
 				}
 			/>
 			<meta
 				property="og:description"
 				content={
 					description
-						? formatMessage({ id: description })
+						? localizedDescription
+							? formatMessage({ id: localizedDescription })
+							: description
 						: "Elliot - Serverless eCommerce Storefront. 100% headless & serverless. Built with Next js & one-click deployable to ZEIT NOW."
 				}
 			/>
@@ -58,14 +77,20 @@ export default ({ title, location = "", description, cover }) => {
 			<meta
 				name="twitter:title"
 				content={
-					title ? formatMessage({ id: title }) : "Elliot Headless Pacakge"
+					title
+						? localizedTitle
+							? formatMessage({ id: localizedTitle })
+							: title
+						: "Elliot Headless Pacakge"
 				}
 			/>
 			<meta
 				name="twitter:description"
 				content={
 					description
-						? formatMessage({ id: description })
+						? localizedDescription
+							? formatMessage({ id: localizedDescription })
+							: description
 						: "Elliot - Serverless eCommerce Storefront. 100% headless & serverless. Built with Next js & one-click deployable to ZEIT NOW."
 				}
 			/>
@@ -75,7 +100,11 @@ export default ({ title, location = "", description, cover }) => {
 			/>
 			{/* <link rel="publisher" href={socialLinks.google} /> */}
 			<title>
-				{title ? formatMessage({ id: title }) : "Elliot Headless Pacakge"}
+				{title
+					? localizedTitle
+						? formatMessage({ id: localizedTitle })
+						: title
+					: "Elliot Headless Pacakge"}
 			</title>
 			<html lang={locale} dir="ltr" />
 		</Head>

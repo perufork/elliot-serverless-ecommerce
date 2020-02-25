@@ -43,7 +43,7 @@ const Product = ({ collection, collections }) => (
 	<Layout collections={collections}>
 		{collection.products ? (
 			<>
-				<SEO title={collection.name} />
+				<SEO title={collection.name} location={collection.slug} />
 				<Products products={collection.products} collection={collection} />
 			</>
 		) : (

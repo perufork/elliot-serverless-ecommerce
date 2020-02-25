@@ -6,7 +6,10 @@ import SEO from "components/common/SEO";
 
 const Cart = ({ collections }) => (
 	<Layout collections={collections}>
-		<SEO title="shop.page.cart_title" description="shop.page.description" />
+		<SEO
+			localizedTitle="shop.page.cart_title"
+			localizedDescription="shop.page.description"
+		/>
 		<Items />
 	</Layout>
 );
@@ -24,8 +27,8 @@ export const unstable_getStaticProps = async ({ params }) => {
 	} catch (error) {
 		return {
 			props: {
-				locale: params.lang,
-				collections: []
+				collections: [],
+				locale: params.lang
 			}
 		};
 	}

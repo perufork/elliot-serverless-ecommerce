@@ -10,7 +10,10 @@ const Index = ({ products, collections }) => (
 	<Layout collections={collections}>
 		{products?.edges?.length > 0 && collections?.edges?.length > 0 ? (
 			<>
-				<SEO title="shop.page.title" description="shop.page.description" />
+				<SEO
+					localizedTitle="shop.page.title"
+					localizedDescription="shop.page.description"
+				/>
 				<Products products={products} />
 			</>
 		) : (
