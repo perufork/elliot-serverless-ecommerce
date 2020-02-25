@@ -16,7 +16,7 @@ import {
 	Shop,
 	Sku,
 	SocialShares,
-	Specs,
+	// Specs,
 	Wrapper
 } from "./styles";
 import {
@@ -33,9 +33,10 @@ const Details = ({
 	description,
 	// rating = 4,
 	// review = 1,
-	categories,
-	tags,
-	images
+	// categories,
+	// tags,
+	images,
+	slug
 }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
@@ -114,7 +115,7 @@ const Details = ({
 					</Button>
 				</MainAction>
 			</Shop>
-			<Specs>
+			{/* <Specs>
 				{categories && (
 					<p>
 						<strong>
@@ -139,15 +140,24 @@ const Details = ({
 						))}
 					</p>
 				)}
-			</Specs>
+			</Specs> */}
 			<SocialShares>
-				<a href="#">
+				<a
+					href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.BASE_URL}/${locale}/product/${slug}`}
+					aria-label="share to Facebook"
+				>
 					<FacebookIcon />
 				</a>
-				<a href="#">
+				<a
+					href={`https://twitter.com/home?status=${process.env.BASE_URL}/${locale}/product/${slug}`}
+					aria-label="share to Twitter"
+				>
 					<TwiterIcon />
 				</a>
-				<a href="#">
+				<a
+					href={`https://pinterest.com/pin/create/button/?url=${process.env.BASE_URL}/${locale}/product/${slug}`}
+					aria-label="share to Pinterest"
+				>
 					<PinterestIcon />
 				</a>
 			</SocialShares>

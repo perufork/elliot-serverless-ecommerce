@@ -8,8 +8,8 @@ import Content from "components/product/components/Content";
 import Tabs from "components/common/Tabs";
 import {
 	TabAdditionInformation,
-	TabDescription,
-	TabReview
+	TabDescription
+	// TabReview
 } from "components/product/components/Tab";
 // import { Products, Section, SectionTitle } from "./styles";
 
@@ -19,7 +19,6 @@ export default ({
 	id,
 	slug,
 	name,
-	price,
 	// products,
 	quantity,
 	skus,
@@ -36,24 +35,28 @@ export default ({
 				<Content
 					id={id}
 					name={name}
-					price={price}
 					quantity={quantity}
 					skus={skus}
 					images={images}
 					description={description}
 					categories={categories}
 					tags={tags}
+					slug={slug}
 				/>
 			</Container>
 			<Container>
+				{console.log(skus)}
 				<Tabs
 					content={[
-						{ title: "Description", content: <TabDescription /> },
+						{
+							title: "Description",
+							content: <TabDescription description={description} />
+						},
 						{
 							title: "Additional Information",
-							content: <TabAdditionInformation />
-						},
-						{ title: "Review", content: <TabReview /> }
+							content: <TabAdditionInformation skus={skus} />
+						}
+						// { title: "Review", content: <TabReview  /> }
 					]}
 				/>
 			</Container>

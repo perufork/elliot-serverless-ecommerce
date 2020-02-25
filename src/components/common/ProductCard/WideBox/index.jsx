@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FormattedMessage } from "react-intl";
 // import Stars from "components/common/Stars";
 import Button from "components/common/Button";
-import Label from "../Label";
+// import Label from "../Label";
 import {
 	Wrapper,
 	Thumbnail,
@@ -36,9 +36,9 @@ export default ({
 					))}
 				</a>
 			</Link>
-			<Label>
+			{/* <Label>
 				<span>Sale</span>
-			</Label>
+			</Label> */}
 		</Thumbnail>
 		<Content>
 			<Header>

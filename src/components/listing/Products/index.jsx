@@ -77,9 +77,8 @@ export default ({ products, collection }) => {
 				</FiltersWrapper>
 			</Header>
 			<Products grid={grid}>
-				{products?.edges.map(({ node }, i) => {
-					const product =
-						state.data && state.data.find(item => item.id === node.id);
+				{products?.edges?.map(({ node }, i) => {
+					const product = state?.data?.find(item => item.id === node.id);
 					return (
 						<ProductCard
 							key={i}

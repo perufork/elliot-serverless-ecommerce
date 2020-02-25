@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 import { Flex, Item } from "react-flex-ready";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -11,55 +11,42 @@ import {
 } from "components/common/Icons/SocialIcon";
 import { Addition, Description, Review } from "./styles";
 
-const TabDescription = () => (
-	<Description as={Flex} align="start">
-		<Item
-			className="tab__information"
-			col={8}
-			colTablet={12}
-			colMobile={12}
-			gap={2}
-		>
-			<h3>Introduction</h3>
-			<p>
-				With ultralight, quality cotton canvas, the JanSport Houston backpack is
-				ideal for a life-on-the-go. This backpack features premium faux leather
-				bottom and trim details, padded 15 in laptop sleeve and tricot lined
-				tablet sleeve
-			</p>
-			<h3>Features</h3>
-			<ul>
-				<li>Fully padded back panel, web hauded handle</li>
-				<li>
-					Internal padded sleeve fits 15″ laptop &amp; unique fabric application
-				</li>
-				<li>Internal tricot lined tablet sleeve</li>
-				<li>One large main compartment and zippered</li>
-				<li>Premium cotton canvas fabric</li>
-			</ul>
-		</Item>
-		<Item className="tab__image" col={4} colTablet={12} colMobile={12}>
-			<img src="https://via.placeholder.com/470x600" alt="" />
-		</Item>
+const TabDescription = ({ description }) => (
+	<Description>
+		<div dangerouslySetInnerHTML={{ __html: description }} />
 	</Description>
 );
 
-const TabAdditionInformation = () => (
+const TabAdditionInformation = ({ skus }) => (
 	<Addition>
-		<table>
-			<tr>
-				<td className="td__key">Weight</td>
-				<td>2 kg</td>
-			</tr>
-			<tr>
-				<td className="td__key">Color</td>
-				<td>Black, Brown, White</td>
-			</tr>
-			<tr>
-				<td className="td__key">Dimensions</td>
-				<td>8 x 6 x 2cm</td>
-			</tr>
-		</table>
+		{skus &&
+			skus?.edges?.map(
+				({ node: { weight, height, length, width, attributes } }, i) => (
+					<table key={i}>
+						<tbody>
+							{weight && (
+								<tr>
+									<td className="td__key">Weight</td>
+									<td>{weight} kg</td>
+								</tr>
+							)}
+							{attributes &&
+								Object.entries(attributes).map((value, i) => (
+									<tr key={i}>
+										<td className="td__key">{value[0]}</td>
+										<td>{value[1]}</td>
+									</tr>
+								))}
+							{width && height && length && (
+								<tr>
+									<td className="td__key">Dimensions</td>
+									<td>{`${width} x ${height} x ${length}cm`}</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
+				)
+			)}
 	</Addition>
 );
 

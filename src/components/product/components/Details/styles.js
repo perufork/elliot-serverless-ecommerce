@@ -56,9 +56,8 @@ export const Review = styled.div`
 
 	span {
 		margin-left: 1rem;
-		<<<<<<<headcolor: #6f6f6f;
-		=======color: ${({ theme: { colors } }) => colors.darkGray};
-		>>>>>>>vb-939/ui-fixesfont-size: 12pt;
+		color: ${({ theme: { colors } }) => colors.darkGray};
+		font-size: 12pt;
 	}
 `;
 
@@ -160,6 +159,7 @@ export const SocialShares = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	margin-top: 1.25rem;
+
 	a {
 		width: 1.875rem;
 		height: 1.875rem;

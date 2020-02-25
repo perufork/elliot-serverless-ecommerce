@@ -20,6 +20,8 @@ query checkout($id: ID!) {
                     height
                     length
                     salePrice
+                    weight
+                    attributes
                     orderSkus {
                       edges {
                         node {

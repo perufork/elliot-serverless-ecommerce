@@ -1,4 +1,4 @@
-import Label from "../Label";
+// import Label from "../Label";
 import Link from "next/link";
 // import Stars from "components/common/Stars";
 import { Thumbnail, Details } from "./styles";
@@ -29,9 +29,9 @@ export default ({ slug, name, images, skus, onClick, locale }) => (
 					</li>
 				</ul> */}
 			</div>
-			<Label>
+			{/* <Label>
 				<span>Sale</span>
-			</Label>
+			</Label> */}
 		</Thumbnail>
 		<div>
 			<Details>
