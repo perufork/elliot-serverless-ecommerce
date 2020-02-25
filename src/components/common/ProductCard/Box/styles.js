@@ -15,6 +15,15 @@ export const Thumbnail = styled.div`
 		width: 100%;
 		transition: ${({ theme: { transitions } }) => transitions.custom400};
 		opacity: 1;
+		float: left;
+		width: 270px;
+		height: 270px;
+		background-size: cover;
+
+		@media (max-width: 680px) {
+			width: 345px;
+			height: 345px;
+		}
 
 		&.secondary {
 			opacity: 0;

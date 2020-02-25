@@ -1,13 +1,10 @@
+import { useState } from "react";
+import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
-import Link from "next/link";
-import {
-	addQuantityByProduct,
-	subtractQuantityByProduct
-} from "components/cart/actions";
-import { addToCart } from "components/listing/actions";
-import Stars from "components/common/Stars";
+import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
+// import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 import { HeartIcon } from "components/common/Icons";
@@ -15,7 +12,7 @@ import {
 	ButtonGroup,
 	Favorite,
 	MainAction,
-	Review,
+	// Review,
 	Shop,
 	Sku,
 	SocialShares,
@@ -34,8 +31,8 @@ const Details = ({
 	skus,
 	price,
 	description,
-	rating = 4,
-	review = 1,
+	// rating = 4,
+	// review = 1,
 	categories,
 	tags,
 	images
@@ -44,28 +41,27 @@ const Details = ({
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const { locale } = useIntl();
+	const [quantity, setQuantity] = useState(1);
 
 	const product = state.data && state.data.find(item => item.id === id);
 
 	return (
 		<Wrapper>
 			<div>
-				<Review>
+				{/* <Review>
 					<Stars stars={rating} />
 					<span>
 						{review} <FormattedMessage id="product.review" />
 					</span>
-				</Review>
+				</Review> */}
 				<h2>{name}</h2>
-				{skus.edge &&
-					skus.edges[0].node.orderSkus &&
-					skus.edges[0].node.orderSkus.edges[0].node.sku.sku && (
-						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
-					)}
+				{skus?.edges[0]?.node?.orderSkus?.edges[0]?.node?.sku?.sku && (
+					<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
+				)}
 				{skus.edges[0].node.salePrice && (
-					<h5>
-						<span>$</span> {skus.edges[0].node.salePrice}
-					</h5>
+					<p>
+						<span>$</span> {skus.edges[0].node.salePrice / 100}
+					</p>
 				)}
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }} />
@@ -73,18 +69,28 @@ const Details = ({
 				<QuantityController
 					wide
 					id={id}
-					dispatch={dispatch}
-					subtractQuantityByProduct={subtractQuantityByProduct}
-					addQuantityByProduct={addQuantityByProduct}
-					quantity={product ? product.quantity : 0}
+					setQuantity={setQuantity}
+					quantity={quantity}
 				/>
 				<ButtonGroup>
 					<Button
 						onClick={() => {
-							addToCart({
-								dispatch,
-								payload: { id, name, skus, price, description, images }
-							});
+							if (product && product.quantity > 0) {
+								addCustomQuantityByProduct({ dispatch, id, quantity });
+							} else {
+								addToCart({
+									dispatch,
+									payload: {
+										id,
+										name,
+										skus,
+										price,
+										description,
+										images,
+										quantity
+									}
+								});
+							}
 							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 						}}
 						type="button"

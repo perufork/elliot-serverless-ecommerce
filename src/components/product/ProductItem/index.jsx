@@ -1,37 +1,38 @@
-import { addToCart } from "components/listing/actions";
-import { Products, Section, SectionTitle } from "./styles";
-import { useDispatchCart } from "providers/CartProvider";
-import { useDispatchSidebar } from "providers/SidebarProvider";
+// import { addToCart } from "components/cart/actions";
+// import { useDispatchCart } from "providers/CartProvider";
+// import { useDispatchSidebar } from "providers/SidebarProvider";
 import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
 import Container from "components/common/Container";
 import Content from "components/product/components/Content";
-import ProductCard from "components/common/ProductCard";
+// import ProductCard from "components/common/ProductCard";
 import Tabs from "components/common/Tabs";
 import {
 	TabAdditionInformation,
 	TabDescription,
 	TabReview
-} from "../components/Tab";
+} from "components/product/components/Tab";
+// import { Products, Section, SectionTitle } from "./styles";
 
 export default ({
 	categories,
 	description,
 	id,
-	images,
+	slug,
 	name,
 	price,
-	products,
+	// products,
 	quantity,
 	skus,
-	tags
+	tags,
+	images
 }) => {
-	const { dispatch } = useDispatchCart();
-	const { dispatch: dispatchSidebar } = useDispatchSidebar();
+	// const { dispatch } = useDispatchCart();
+	// const { dispatch: dispatchSidebar } = useDispatchSidebar();
 
 	return (
 		<>
 			<Container>
-				<BreadcumbsHeader id={id} title={name} />
+				<BreadcumbsHeader slug={slug} title={name} />
 				<Content
 					id={id}
 					name={name}
@@ -56,10 +57,10 @@ export default ({
 					]}
 				/>
 			</Container>
-			<Section as={Container}>
+			{/* <Section as={Container}>
 				<SectionTitle>Related Products</SectionTitle>
 				<Products grid={true}>
-					{products?.edges?.map(({ node }, i) => (
+					{products?.edges.map(({ node }, i) => (
 						<ProductCard
 							key={i}
 							onClick={() => {
@@ -71,7 +72,7 @@ export default ({
 						/>
 					))}
 				</Products>
-			</Section>
+			</Section> */}
 		</>
 	);
 };

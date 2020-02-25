@@ -56,8 +56,9 @@ export const Review = styled.div`
 
 	span {
 		margin-left: 1rem;
-		color: ${({ theme: { colors } }) => colors.darkGray};
-		font-size: 12pt;
+		<<<<<<<headcolor: #6f6f6f;
+		=======color: ${({ theme: { colors } }) => colors.darkGray};
+		>>>>>>>vb-939/ui-fixesfont-size: 12pt;
 	}
 `;
 
@@ -94,7 +95,7 @@ export const Favorite = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: ${({ theme: { colors } }) => colors.darkGray}999;
+	color: ${({ theme: { colors } }) => colors.darkGray};
 	border: 2px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	cursor: pointer;
 	background: none;

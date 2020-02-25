@@ -41,7 +41,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									</Link>
 									<p>Qty: {quantity}</p>
 									{skus.edges[0].node.salePrice && (
-										<span>${skus.edges[0].node.salePrice}</span>
+										<span>${skus.edges[0].node.salePrice / 100}</span>
 									)}
 								</Content>
 							</CartItem>
@@ -63,7 +63,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									<FormattedMessage id="button.view_cart" />
 								</Button>
 							</Link>
-							<Link href="/[lang]/" as={`/${locale}/`}>
+							<Link href="/[lang]/checkout" as={`/${locale}/checkout`}>
 								<Button as="a" wide variant="primary" onClick={toggleSidebar}>
 									<FormattedMessage id="button.checkout" />
 								</Button>

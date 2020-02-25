@@ -7,11 +7,12 @@ import Dropdown from "components/common/Dropdown";
 import ShowMore from "components/common/ShowMore";
 import { GridIcon, ListIcon } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
-import { addToCart } from "components/listing/actions";
-import { useDispatchCart } from "providers/CartProvider";
+import { useDispatchCart, useCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
+import { addQuantityByProduct, addToCart } from "components/cart/actions";
 
-export default ({ products }) => {
+export default ({ products, collection }) => {
+	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const [grid, setGrid] = useState(true);
@@ -21,25 +22,37 @@ export default ({ products }) => {
 		<Container>
 			<Header>
 				<PageTitle
-					title="Shop"
-					breadcrumbs={[
-						{
-							name: "Home",
-							link: `/${locale}`,
-							as: `/${locale}`
-						},
-						{
-							name: "Shop",
-							link: `/${locale}`,
-							as: `/${locale}`,
-							active: true
-						}
-					]}
+					title="shop.page.title"
+					breadcrumbs={
+						collection
+							? [
+									{
+										name: "Shop",
+										link: `/[lang]/`,
+										as: `/${locale}`,
+										active: false
+									},
+									{
+										name: collection.name,
+										link: `/[lang]/collection/[slug]`,
+										as: `/${locale}/collection/${collection.slug}`,
+										active: true
+									}
+							  ]
+							: [
+									{
+										name: "Shop",
+										link: `/[lang]/`,
+										as: `/${locale}`,
+										active: false
+									}
+							  ]
+					}
 				/>
 
 				<FiltersWrapper>
 					<Result>
-						<span>25</span>
+						<span>{(products && products.edges.length) || 0}</span>
 						Products Found
 					</Result>
 					<Filters>
@@ -64,17 +77,25 @@ export default ({ products }) => {
 				</FiltersWrapper>
 			</Header>
 			<Products grid={grid}>
-				{products?.edges?.map(({ node }, i) => (
-					<ProductCard
-						key={i}
-						onClick={() => {
-							addToCart({ dispatch, payload: node });
-							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-						}}
-						grid={grid}
-						{...node}
-					/>
-				))}
+				{products?.edges.map(({ node }, i) => {
+					const product =
+						state.data && state.data.find(item => item.id === node.id);
+					return (
+						<ProductCard
+							key={i}
+							onClick={() => {
+								if (product && product.quantity >= 1) {
+									addQuantityByProduct({ dispatch, id: product.id });
+								} else {
+									addToCart({ dispatch, payload: { ...node, quantity: 1 } });
+								}
+								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+							}}
+							grid={grid}
+							{...node}
+						/>
+					);
+				})}
 			</Products>
 			<ShowMore />
 		</Container>

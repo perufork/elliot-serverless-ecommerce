@@ -32,10 +32,15 @@ export default class MyDocument extends Document {
 		return (
 			<html>
 				<Head>
-					<link
+					{/* <link
 						rel="stylesheet"
 						href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
+					/> */}
+					<script
+						async
+						src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_API_KEY}&libraries=places`}
 					/>
+					<script async src="https://js.stripe.com/v3/" />
 				</Head>
 				<body>
 					<Main />

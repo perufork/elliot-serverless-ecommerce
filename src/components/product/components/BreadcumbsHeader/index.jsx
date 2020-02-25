@@ -2,7 +2,7 @@ import { Wrapper } from "./styles";
 import Breadcrumbs from "components/common/Breadcrumbs";
 import { useIntl } from "react-intl";
 
-const BreadcumbsHeader = ({ id, title }) => {
+const BreadcumbsHeader = ({ slug, title }) => {
 	const { locale } = useIntl();
 
 	return (
@@ -17,8 +17,8 @@ const BreadcumbsHeader = ({ id, title }) => {
 					},
 					{
 						name: title,
-						link: `/[lang]/product/[id]`,
-						as: `/${locale}/product/${id}`,
+						link: `/[lang]/product/[slug]`,
+						as: `/${locale}/product/${slug}`,
 						active: true
 					}
 				]}

@@ -1,38 +1,73 @@
 import { MinusIcon, PlusIcon } from "components/common/Icons";
 import { Wrapper, Controller } from "./styles";
 
-export default ({
-	wide,
-	id,
-	dispatch,
-	quantity,
-	subtractQuantityByProduct,
-	addQuantityByProduct
-}) => (
-	<Wrapper wide={wide}>
-		<Controller
-			disabled={quantity <= 1 || quantity < 0}
-			onClick={() => subtractQuantityByProduct({ dispatch, id })}
-		>
-			<MinusIcon
-				color={quantity <= 1 ? "#bbb" : "#222"}
-				width={16}
-				height={16}
+export default ({ wide, id, quantity, setQuantity, cart }) => {
+	const handleQuantity = ({ type, value }) => {
+		if (cart) {
+			switch (type) {
+				case "add":
+					return setQuantity({
+						quantity: quantity + 1,
+						id
+					});
+				case "subtract":
+					return setQuantity({
+						quantity: quantity - 1,
+						id
+					});
+				default:
+					return setQuantity({
+						quantity: value,
+						id
+					});
+			}
+		} else {
+			switch (type) {
+				case "add":
+					return setQuantity(quantity + 1);
+				case "subtract":
+					return setQuantity(quantity - 1);
+				default:
+					return setQuantity(value);
+			}
+		}
+	};
+
+	return (
+		<Wrapper wide={wide}>
+			<Controller
+				disabled={quantity <= 1}
+				onClick={() =>
+					handleQuantity({
+						type: "subtract"
+					})
+				}
+			>
+				<MinusIcon
+					color={quantity <= 1 ? "#bbb" : "#000"}
+					width={16}
+					height={16}
+				/>
+			</Controller>
+			<input
+				type="text"
+				value={quantity}
+				onChange={e =>
+					handleQuantity({
+						type: "value",
+						value: e.target.value
+					})
+				}
 			/>
-		</Controller>
-		<input type="text" value={quantity} readOnly />
-		<Controller
-			disalbed={quantity <= 0}
-			onClick={() => {
-				if (quantity === 0) return null;
-				addQuantityByProduct({ dispatch, id });
-			}}
-		>
-			<PlusIcon
-				color={quantity <= 0 ? "#bbb" : "#222"}
-				width={16}
-				height={16}
-			/>
-		</Controller>
-	</Wrapper>
-);
+			<Controller
+				onClick={() =>
+					handleQuantity({
+						type: "add"
+					})
+				}
+			>
+				<PlusIcon width={16} height={16} />
+			</Controller>
+		</Wrapper>
+	);
+};

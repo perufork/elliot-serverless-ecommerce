@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
+// import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import Label from "../Label";
-import Stars from "components/common/Stars";
 import {
 	Wrapper,
 	Thumbnail,
@@ -18,14 +18,14 @@ export default ({
 	name,
 	description,
 	images,
-	gender,
+	// gender,
 	skus,
 	onClick,
 	locale
 }) => (
 	<Wrapper>
 		<Thumbnail>
-			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${slug}`}>
+			<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 				<a>
 					{images.edges.map(({ node }) => (
 						<img
@@ -43,20 +43,20 @@ export default ({
 		<Content>
 			<Header>
 				<Details>
-					<Link href="/[lang]/product/[id]" as={`/${locale}/product/${slug}`}>
+					<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 						<a>
 							<h2>{name}</h2>
 						</a>
 					</Link>
 					{skus.edges[0].node.salePrice && (
 						<p>
-							<span>$</span> {skus.edges[0].node.salePrice}
+							<span>$</span> {skus.edges[0].node.salePrice / 100}
 						</p>
 					)}
 				</Details>
-				<div>
-					<Stars stars={gender} />
-				</div>
+				{/* <div>
+					<Stars stars={stars} />
+				</div> */}
 			</Header>
 			<Body dangerouslySetInnerHTML={{ __html: description }} />
 			<Footer>

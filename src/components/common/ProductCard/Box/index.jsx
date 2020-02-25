@@ -1,13 +1,13 @@
 import Label from "../Label";
 import Link from "next/link";
-import Stars from "components/common/Stars";
-import { Details, Thumbnail } from "./styles";
-import { HeartIcon } from "components/common/Icons";
+// import Stars from "components/common/Stars";
+import { Thumbnail, Details } from "./styles";
+// import { HeartIcon } from "components/common/Icons";
 
-export default ({ id, name, images, gender, skus, onClick, locale }) => (
+export default ({ slug, name, images, skus, onClick, locale }) => (
 	<div>
 		<Thumbnail>
-			<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
+			<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 				<a>
 					{images.edges.map(({ node }, i) => (
 						<img
@@ -21,13 +21,13 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 			</Link>
 			<div>
 				<button type="button" onClick={onClick}>
-					Add to cart
+					<strong>Add to cart</strong>
 				</button>
-				<ul>
+				{/* <ul>
 					<li>
 						<HeartIcon width={16} height={16} />
 					</li>
-				</ul>
+				</ul> */}
 			</div>
 			<Label>
 				<span>Sale</span>
@@ -35,15 +35,15 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 		</Thumbnail>
 		<div>
 			<Details>
-				<Link href="/[lang]/product/[id]" as={`/${locale}/product/${id}`}>
+				<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 					<a>
 						<h2>{name}</h2>
 					</a>
 				</Link>
-				<Stars stars={gender} />
+				{/* <Stars stars={stars} /> */}
 				{skus.edges[0].node.salePrice && (
 					<p>
-						<span>$</span> {skus.edges[0].node.salePrice}
+						<span>$</span> {skus.edges[0].node.salePrice / 100}
 					</p>
 				)}
 			</Details>

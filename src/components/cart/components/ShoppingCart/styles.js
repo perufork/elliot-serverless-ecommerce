@@ -1,14 +1,8 @@
 import styled from "styled-components";
 
-export const Center = styled.div`
-	text-align: center;
-
-	h2 {
-		font-size: 24pt;
-	}
-`;
-
 export const TableWrapper = styled.div`
+	overflow: auto;
+
 	@media (min-width: 1200px) {
 		overflow-x: initial;
 	}

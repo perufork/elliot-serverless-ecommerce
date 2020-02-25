@@ -8,9 +8,9 @@ const Brand = () => {
 
 	return (
 		<Link href="/[lang]/" as={`/${locale}/`}>
-			<a>
+			<a aria-label="Brand logo">
 				<Wrapper>
-					<Logo width="100%" height="100%" />
+					<Logo width="100%" height={24} />
 				</Wrapper>
 			</a>
 		</Link>

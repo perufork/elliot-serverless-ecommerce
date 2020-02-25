@@ -10,3 +10,4 @@ export * from "./MenuIcon";
 export * from "./MinusIcon";
 export * from "./PlusIcon";
 export * from "./SearchIcon";
+export * from "./MapPin";

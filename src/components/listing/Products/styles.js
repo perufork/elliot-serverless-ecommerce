@@ -64,6 +64,11 @@ export const Products = styled.section`
 		grid-template-columns: 1fr;
 	}
 
+	@media (max-width: 680px) {
+		grid-template-columns: repeat(1, 1fr);
+		grid-column-gap: unset;
+	}
+
 	${({ grid }) =>
 		!grid &&
 		`
