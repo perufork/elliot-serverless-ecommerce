@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import Swiper from "react-id-swiper";
 import { Wrapper, Arrow } from "./styles";
-import { CarouselArrow } from "components/common/Icons";
 
 const Carousel = ({ name, images }) => {
 	const renderNavIcon = useCallback(
@@ -10,9 +9,7 @@ const Carousel = ({ name, images }) => {
 				className={`swiper-button-${flip ? "next" : "prev"}`}
 				prev={flip}
 				role="button"
-			>
-				<CarouselArrow width={16} height={16} />
-			</Arrow>
+			></Arrow>
 		),
 		[]
 	);
