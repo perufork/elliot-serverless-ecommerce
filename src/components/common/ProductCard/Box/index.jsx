@@ -1,6 +1,7 @@
+import Label from "../Label";
 import Link from "next/link";
 import Stars from "components/common/Stars";
-import { Thumbnail, Details } from "./styles";
+import { Details, Thumbnail } from "./styles";
 import { HeartIcon } from "components/common/Icons";
 
 export default ({ id, name, images, gender, skus, onClick, locale }) => (
@@ -28,6 +29,9 @@ export default ({ id, name, images, gender, skus, onClick, locale }) => (
 					</li>
 				</ul>
 			</div>
+			<Label>
+				<span>Sale</span>
+			</Label>
 		</Thumbnail>
 		<div>
 			<Details>

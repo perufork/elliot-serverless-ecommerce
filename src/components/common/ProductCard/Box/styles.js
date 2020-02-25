@@ -13,7 +13,7 @@ export const Thumbnail = styled.div`
 
 	img {
 		width: 100%;
-		transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		transition: ${({ theme: { transitions } }) => transitions.custom400};
 		opacity: 1;
 
 		&.secondary {
@@ -33,8 +33,8 @@ export const Thumbnail = styled.div`
 		padding: 0.3rem 0 0;
 		display: flex;
 		justify-content: space-between;
-		background-color: #ffffff;
-		transition: all 0.75s cubic-bezier(0.77, 0, 0.175, 1);
+		background-color: ${({ theme: { colors } }) => colors.white};
+		transition: ${({ theme: { transitions } }) => transitions.custom750};
 		transform: translateY(100%);
 
 		button {
@@ -44,6 +44,7 @@ export const Thumbnail = styled.div`
 			align-self: center;
 			border: none;
 			background: none;
+			transition: ${({ theme: { transitions } }) => transitions.default400};
 			color: ${({
 				theme: {
 					colors: { black }
@@ -62,9 +63,10 @@ export const Thumbnail = styled.div`
 		ul {
 			li {
 				display: inline-block;
+				cursor: pointer;
 
 				&:first-child {
-					margin-right: 10px;
+					margin-right: 0.625rem;
 				}
 			}
 		}
@@ -118,7 +120,7 @@ export const Body = styled.div`
 
 	p {
 		line-height: 1.6em;
-		font-size: 16px;
+		font-size: 12pt;
 		color: ${({ theme: { colors } }) => colors.darkGray};
 	}
 `;

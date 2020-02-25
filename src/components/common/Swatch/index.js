@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Swatch = styled.div`
-	width: 24px;
-	height: 24px;
+	width: 1.5rem;
+	height: 1.5rem;
 	border-radius: 50%;
-	background: ${({ color }) => color || "#222"};
-	border: 2px solid #eaeaea;
+	background: ${({ color, theme: { colors } }) => color || colors.black};
+	border: 2px solid ${({ theme: { colors } }) => colors.lightnessGray};
 `;
 
 export default Swatch;
