@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	max-width: 120px;
+	max-width: 7.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	border: 2px solid #eaeaea;
+	border: 2px solid ${({ theme: { colors } }) => colors.lightnessGray};
 
 	${({ wide }) =>
 		wide &&
 		`
-		max-width: 150px;
+		max-width: 9.375rem;
 		margin: 0;
 		margin-right: auto;
 
@@ -21,25 +21,25 @@ export const Wrapper = styled.div`
 
 	input {
 		border: none;
-		height: 45px;
+		height: 2.8125rem;
 		max-width: calc(100% - 64px);
 		font-size: 14px;
 		font-weight: 600;
 		text-align: center;
-		color: #222;
+		color: ${({ theme: { colors } }) => colors.black};
 		background-color: transparent;
 		outline: none;
-		transition: all 0.4s ease;
+		transition: ${({ theme: { transitions } }) => transitions.default400};
 		display: block;
 
 		&::placeholder {
-			color: #222;
+			color: ${({ theme: { colors } }) => colors.black};
 		}
 	}
 `;
 
 export const Controller = styled.button`
-	font-size: 30px;
+	font-size: 1.875rem;
 	border: none;
 	background: none;
 `;

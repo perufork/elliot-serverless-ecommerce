@@ -5,7 +5,13 @@ export const Wrapper = styled.div`
 	position: relative;
 	cursor: pointer;
 	padding: 0;
-	margin: 0 30px;
+	margin: 0 1.875rem;
+	${({ standalone }) =>
+		standalone &&
+		`
+		max-width: 70%;
+		margin: 0;
+	`}
 
 	ul {
 		list-style: none;
@@ -18,7 +24,7 @@ export const Label = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	font-size: 16px;
+	font-size: 12pt;
 	font-weight: 600;
 `;
 
@@ -27,30 +33,30 @@ export const List = styled.ul`
 	top: 130%;
 	right: 0;
 	width: 100%;
-	background-color: #fff;
-	border: 1px solid #6f6f6f;
+	background-color: ${({ theme: { colors } }) => colors.white};
+	border: 1px solid ${({ theme: { colors } }) => colors.darkGray};
 `;
 
 export const Arrow = styled.span`
-	margin: 0 10px;
+	margin: 0 0.625rem;
 `;
 
 export const Item = styled.li`
-	font-size: 16px;
-	padding: 6px 16px;
+	font-size: 12pt;
+	padding: 0.375rem 1rem;
 	line-height: 1.5;
-	transition: all 200ms ease;
+	transition: ${({ theme: { transitions } }) => transitions.default200};
 
 	&:hover {
-		color: #fff;
-		background-color: #f68773;
+		color: ${({ theme: { colors } }) => colors.white};
+		background-color: ${({ theme: { colors } }) => colors.accent};
 	}
 `;
 
 export const DefaultValue = styled.p`
-	font-size: 16px;
-	color: #6f6f6f;
-	min-width: 60px;
+	font-size: 12pt;
+	color: ${({ theme: { colors } }) => colors.darkGray};
+	min-width: 3.75rem;
 	text-align: center;
-	margin: 0 0 0 5px;
+	margin: 0 0 0 0.3125rem;
 `;

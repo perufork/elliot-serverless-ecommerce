@@ -1,10 +1,8 @@
 const path = require("path");
 const withImages = require("next-images");
-
 require("dotenv").config({
 	path: `.env.${process.env.NODE_ENV}`
 });
-
 module.exports = withImages({
 	env: {
 		BASE_URL: process.env.BASE_URL,
@@ -34,4 +32,14 @@ module.exports = withImages({
 			];
 		}
 	}
+	// experimental: {
+	//  async headers() {
+	//    return [
+	//      {
+	//        source: "/",
+	//        headers: []
+	//      }
+	//    ];
+	//  }
+	// }
 });

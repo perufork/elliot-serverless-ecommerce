@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	padding-right: 100px;
+	padding-right: 6.25rem;
 
 	@media (min-width: 1200px) {
-		padding-right: 10px;
+		padding-right: 0.625rem;
 	}
 
 	@media (min-width: 1366px) {
-		padding-right: 100px;
+		padding-right: 6.25rem;
 	}
 
 	@media (max-width: 960px) {
-		padding-right: 4px;
+		padding-right: 0.25rem;
 	}
 `;
 
@@ -21,8 +21,8 @@ export const StyledForm = styled.form`
 
 	input {
 		outline: none;
-		padding: 0 20px 0 0;
-		height: 40px;
+		padding: 0 1.25rem 0 0;
+		height: 2.5rem;
 		border: none;
 		font-size: 15px;
 		border-bottom: 1px solid transparent;
@@ -32,17 +32,18 @@ export const StyledForm = styled.form`
 		display: block;
 		line-height: 1.5;
 		color: #495057;
+		transition: ${({ theme: { transitions } }) => transitions.default400};
 
 		&::placeholder {
-			color: #bbbbbb;
+			color: ${({ theme: { colors } }) => colors.lightGray};
 			font-size: 15px;
 		}
 
 		&:focus {
 			outline: none;
-			box-shadow: 0 0 0 #000;
-			border-color: #222;
-			border-bottom-color: #bbb;
+			box-shadow: 0 0 0 ${({ theme: { colors } }) => colors.darkBlack};
+			border-color: ${({ theme: { colors } }) => colors.black};
+			border-bottom-color: ${({ theme: { colors } }) => colors.lightGray};
 		}
 
 		@media (max-width: 960px) {
@@ -60,8 +61,8 @@ export const StyledForm = styled.form`
 		right: 0;
 		border: none;
 		background-color: transparent;
-		width: 40px;
-		height: 40px;
+		width: 2.5rem;
+		height: 2.5rem;
 
 		@media (max-width: 960px) {
 			position: unset;

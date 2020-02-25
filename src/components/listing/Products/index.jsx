@@ -4,6 +4,7 @@ import { FiltersWrapper, Header, Products, Result, Filters } from "./styles";
 import Container from "components/common/Container";
 import PageTitle from "components/common/PageTitle";
 import Dropdown from "components/common/Dropdown";
+import ShowMore from "components/common/ShowMore";
 import { GridIcon, ListIcon } from "components/common/Icons";
 import ProductCard from "components/common/ProductCard";
 import { useDispatchCart, useCart } from "providers/CartProvider";
@@ -76,7 +77,7 @@ export default ({ products, collection }) => {
 				</FiltersWrapper>
 			</Header>
 			<Products grid={grid}>
-				{products.edges.map(({ node }, i) => {
+				{products?.edges.map(({ node }, i) => {
 					const product =
 						state.data && state.data.find(item => item.id === node.id);
 					return (
@@ -96,6 +97,7 @@ export default ({ products, collection }) => {
 					);
 				})}
 			</Products>
+			<ShowMore />
 		</Container>
 	);
 };

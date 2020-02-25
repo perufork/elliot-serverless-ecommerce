@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Menu = styled.ul`
-	margin-left: 115px;
+	margin-left: 7.1875rem;
 	margin-right: auto;
 
 	@media screen and (max-width: 1200px) {
@@ -11,7 +11,7 @@ export const Menu = styled.ul`
 	li {
 		position: relative;
 		display: inline-block;
-		padding-right: 40px;
+		padding-right: 2.5rem;
 
 		&:hover ul {
 			visibility: visible;
@@ -22,7 +22,7 @@ export const Menu = styled.ul`
 		a {
 			position: relative;
 			display: inline-block;
-			padding: 30px 0;
+			padding: 1.875rem 0;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 20px;
@@ -37,7 +37,7 @@ export const Menu = styled.ul`
 			&:after {
 				content: "";
 				position: absolute;
-				bottom: 20px;
+				bottom: 1.25rem;
 				left: 0;
 				width: 100%;
 				height: 2px;

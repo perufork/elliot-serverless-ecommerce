@@ -1,9 +1,10 @@
+import Label from "../Label";
 import Link from "next/link";
 // import Stars from "components/common/Stars";
 import { Thumbnail, Details } from "./styles";
 // import { HeartIcon } from "components/common/Icons";
 
-export default ({ slug, id, name, images, skus, onClick, locale }) => (
+export default ({ slug, name, images, skus, onClick, locale }) => (
 	<div>
 		<Thumbnail>
 			<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
@@ -28,6 +29,9 @@ export default ({ slug, id, name, images, skus, onClick, locale }) => (
 					</li>
 				</ul> */}
 			</div>
+			<Label>
+				<span>Sale</span>
+			</Label>
 		</Thumbnail>
 		<div>
 			<Details>

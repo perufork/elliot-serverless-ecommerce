@@ -4,20 +4,26 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
-import Stars from "components/common/Stars";
+// import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 import { HeartIcon } from "components/common/Icons";
 import {
-	Wrapper,
-	Review,
-	Sku,
 	ButtonGroup,
-	MainAction,
-	Shop,
 	Favorite,
-	Specs
+	MainAction,
+	// Review,
+	Shop,
+	Sku,
+	SocialShares,
+	Specs,
+	Wrapper
 } from "./styles";
+import {
+	FacebookIcon,
+	PinterestIcon,
+	TwiterIcon
+} from "components/common/Icons/SocialIcon";
 
 const Details = ({
 	id,
@@ -25,8 +31,8 @@ const Details = ({
 	skus,
 	price,
 	description,
-	rating = 4,
-	review = 1,
+	// rating = 4,
+	// review = 1,
 	categories,
 	tags,
 	images
@@ -42,24 +48,16 @@ const Details = ({
 	return (
 		<Wrapper>
 			<div>
-				<Review>
+				{/* <Review>
 					<Stars stars={rating} />
 					<span>
 						{review} <FormattedMessage id="product.review" />
 					</span>
-				</Review>
+				</Review> */}
 				<h2>{name}</h2>
-				{skus &&
-					skus.edges &&
-					skus.edges[0].node &&
-					skus.edges[0].node.orderSkus &&
-					skus.edges[0].node.orderSkus.edges &&
-					skus.edges[0].node.orderSkus.edges.length > 0 &&
-					skus.edges[0].node.orderSkus.edges[0].node &&
-					skus.edges[0].node.orderSkus.edges[0].node.sku &&
-					skus.edges[0].node.orderSkus.edges[0].node.sku.sku && (
-						<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
-					)}
+				{skus?.edges[0]?.node?.orderSkus?.edges[0]?.node?.sku?.sku && (
+					<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
+				)}
 				{skus.edges[0].node.salePrice && (
 					<p>
 						<span>$</span> {skus.edges[0].node.salePrice / 100}
@@ -102,7 +100,7 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 					<Favorite>
-						<HeartIcon height={21} width={24} />
+						<HeartIcon height={24} width={24} />
 					</Favorite>
 				</ButtonGroup>
 				<MainAction>
@@ -142,17 +140,17 @@ const Details = ({
 					</p>
 				)}
 			</Specs>
-			{/* <div class="ps-product__sharing">
+			<SocialShares>
 				<a href="#">
-					<i class="fa fa-facebook"></i>
+					<FacebookIcon />
 				</a>
 				<a href="#">
-					<i class="fa fa-twitter"></i>
+					<TwiterIcon />
 				</a>
 				<a href="#">
-					<i class="fa fa-pinterest"></i>
+					<PinterestIcon />
 				</a>
-			</div> */}
+			</SocialShares>
 		</Wrapper>
 	);
 };

@@ -1,33 +1,78 @@
+// import { addToCart } from "components/cart/actions";
+// import { useDispatchCart } from "providers/CartProvider";
+// import { useDispatchSidebar } from "providers/SidebarProvider";
+import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
 import Container from "components/common/Container";
 import Content from "components/product/components/Content";
-import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
+// import ProductCard from "components/common/ProductCard";
+import Tabs from "components/common/Tabs";
+import {
+	TabAdditionInformation,
+	TabDescription,
+	TabReview
+} from "components/product/components/Tab";
+// import { Products, Section, SectionTitle } from "./styles";
 
-const ProductItem = ({
+export default ({
+	categories,
+	description,
 	id,
 	slug,
 	name,
 	price,
+	// products,
 	quantity,
 	skus,
-	description,
-	categories,
 	tags,
 	images
-}) => (
-	<Container>
-		<BreadcumbsHeader slug={slug} title={name} />
-		<Content
-			id={id}
-			name={name}
-			price={price}
-			quantity={quantity}
-			skus={skus}
-			images={images}
-			description={description}
-			categories={categories}
-			tags={tags}
-		/>
-	</Container>
-);
+}) => {
+	// const { dispatch } = useDispatchCart();
+	// const { dispatch: dispatchSidebar } = useDispatchSidebar();
 
-export default ProductItem;
+	return (
+		<>
+			<Container>
+				<BreadcumbsHeader slug={slug} title={name} />
+				<Content
+					id={id}
+					name={name}
+					price={price}
+					quantity={quantity}
+					skus={skus}
+					images={images}
+					description={description}
+					categories={categories}
+					tags={tags}
+				/>
+			</Container>
+			<Container>
+				<Tabs
+					content={[
+						{ title: "Description", content: <TabDescription /> },
+						{
+							title: "Additional Information",
+							content: <TabAdditionInformation />
+						},
+						{ title: "Review", content: <TabReview /> }
+					]}
+				/>
+			</Container>
+			{/* <Section as={Container}>
+				<SectionTitle>Related Products</SectionTitle>
+				<Products grid={true}>
+					{products?.edges.map(({ node }, i) => (
+						<ProductCard
+							key={i}
+							onClick={() => {
+								addToCart({ dispatch, payload: node });
+								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+							}}
+							grid={grid}
+							{...node}
+						/>
+					))}
+				</Products>
+			</Section> */}
+		</>
+	);
+};

@@ -10,16 +10,16 @@ export const Wrapper = styled.div`
 	img {
 		background-color: #f7f7f7;
 		width: 100%;
-		max-width: 300px;
+		max-width: 18.75rem;
 	}
 `;
 
 export const Arrow = styled.div`
 	background-image: none;
-	width: 35px;
-	height: 35px;
+	width: 2.1875rem;
+	height: 2.1875rem;
 	background-color: white;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	display: flex;
 	justify-content: center;
 
@@ -42,7 +42,7 @@ export const Arrow = styled.div`
 		}) => accent};
 
 		svg path {
-			fill: "#fff";
+			fill: ${({ theme: { colors } }) => colors.white};
 		}
 	}
 `;

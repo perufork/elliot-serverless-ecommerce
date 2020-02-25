@@ -7,7 +7,7 @@ export const Navigation = styled.div`
 		li {
 			a {
 				display: block;
-				color: #6f6f6f;
+				color: ${({ theme: { colors } }) => colors.darkGray};
 				line-height: 20px;
 
 				&:hover {
@@ -35,12 +35,12 @@ export const DesktopMenu = styled.ul`
 
 	li {
 		list-style: none;
-		padding: 15px 0;
+		padding: 0.9375rem 0;
 
 		a {
 			font-size: 36px;
 			font-weight: 600;
-			color: #6f6f6f;
+			color: ${({ theme: { colors } }) => colors.darkGray};
 
 			&:hover {
 				color: ${({
@@ -54,39 +54,39 @@ export const DesktopMenu = styled.ul`
 `;
 
 export const Menu = styled.div`
-	padding-bottom: 60px;
+	padding-bottom: 3.75rem;
 `;
 
 export const Options = styled.div`
 	display: flex;
-	padding-bottom: 60px;
+	padding-bottom: 3.75rem;
 `;
 
 export const MenuBottom = styled.div`
 	figcaption {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 		font-size: 20px;
 		font-weight: 600;
-		color: #222;
+		color: ${({ theme: { colors } }) => colors.black};
 	}
 
 	p {
 		font-size: 16px;
 		line-height: 1.6em;
-		color: #6f6f6f;
+		color: ${({ theme: { colors } }) => colors.darkGray};
 	}
 `;
 
 export const List = styled.ul`
-	max-width: 200px;
+	max-width: 12.5rem;
 
 	li {
-		padding: 10px 0;
+		padding: 0.625rem 0;
 		list-style: none;
 
 		a {
 			display: block;
-			color: #6f6f6f;
+			color: ${({ theme: { colors } }) => colors.darkGray};
 			line-height: 20px;
 			font-size: 16px;
 
