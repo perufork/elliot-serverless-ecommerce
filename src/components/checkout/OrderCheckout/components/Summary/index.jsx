@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { useIntl } from "react-intl";
+import NumberFormat from "react-number-format";
+import { useCurrency } from "providers/CurrencyProvider";
 import { useCart } from "providers/CartProvider";
-import { Wrapper, Flex, Product, Item, Price, Card } from "./styles";
 import getTotal from "helpers/getTotal";
+import { Wrapper, Flex, Product, Item, Price, Card } from "./styles";
 
 export default () => {
+	const { state: currency } = useCurrency();
 	const { state } = useCart();
 	const { locale } = useIntl();
 
@@ -30,7 +33,16 @@ export default () => {
 									<span>x{quantity}</span>
 								</a>
 							</Link>
-							<Price>${(skus.edges[0].node.salePrice / 100) * quantity}</Price>
+							{skus?.edges[0]?.node?.salePrice && (
+								<Price>
+									<NumberFormat
+										value={(skus.edges[0].node.salePrice / 100) * quantity}
+										displayType={"text"}
+										thousandSeparator={true}
+										prefix={currency}
+									/>
+								</Price>
+							)}
 						</Product>
 					))}
 				<Flex border>

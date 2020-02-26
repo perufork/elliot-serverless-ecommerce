@@ -46,6 +46,10 @@ export const Wrapper = styled.div`
 			margin-bottom: 1rem;
 		}
 	}
+
+	.css-2b097c-container {
+		margin-bottom: 1rem;
+	}
 `;
 
 export const Review = styled.div`

@@ -44,8 +44,11 @@ const Product = ({ product, collections }) => (
 		{product.id ? (
 			<>
 				<SEO
-					title={product.name}
-					description={product.description.replace(/(<([^>]+)>)/gi, "")}
+					title={product.productSeo?.edges[0]?.node?.title || product.name}
+					description={
+						product.productSeo?.edges[0]?.node?.description ||
+						product.description.replace(/(<([^>]+)>)/gi, "")
+					}
 					location={product.slug}
 					cover={`${process.env.ELLIOT_BASE_IMAGE_URL}${product.images?.edges[0]?.node?.image}`}
 				/>

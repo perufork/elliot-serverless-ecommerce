@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 // import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
+import Select from "react-select";
+import NumberFormat from "react-number-format";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
+import { useCurrency } from "providers/CurrencyProvider";
 import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
 // import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 // import { HeartIcon } from "components/common/Icons";
+import {
+	FacebookIcon,
+	PinterestIcon,
+	TwiterIcon
+} from "components/common/Icons/SocialIcon";
 import {
 	ButtonGroup,
 	// Favorite,
@@ -19,17 +27,11 @@ import {
 	// Specs,
 	Wrapper
 } from "./styles";
-import {
-	FacebookIcon,
-	PinterestIcon,
-	TwiterIcon
-} from "components/common/Icons/SocialIcon";
 
 const Details = ({
 	id,
 	name,
 	skus,
-	price,
 	description,
 	// rating = 4,
 	// review = 1,
@@ -38,11 +40,13 @@ const Details = ({
 	images,
 	slug
 }) => {
+	const { state: currency } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const { locale } = useIntl();
 	const [quantity, setQuantity] = useState(1);
+	// const [attributes, setAttributes] = useState(null)
 
 	const product = state.data && state.data.find(item => item.id === id);
 
@@ -59,13 +63,29 @@ const Details = ({
 				{skus?.edges[0]?.node?.orderSkus?.edges[0]?.node?.sku?.sku && (
 					<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
 				)}
-				{skus.edges[0].node.salePrice && (
+				{skus?.edges[0]?.node?.salePrice && (
 					<p>
-						<span>$</span> {skus.edges[0].node.salePrice / 100}
+						<NumberFormat
+							value={skus.edges[0].node.salePrice / 100}
+							displayType={"text"}
+							thousandSeparator={true}
+							prefix={currency}
+						/>
 					</p>
 				)}
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }} />
+			{/* {skus &&
+				skus?.edges?.map(
+					({ node: { attributes } }) =>
+						attributes &&
+						Object.entries(attributes).map((value, i) => (
+							<Fragment key={i}>
+								<label>{value[0]}</label>
+								<Select options={[{ value: value[1], label: value[1] }]} />
+							</Fragment>
+						))
+				)} */}
 			<Shop>
 				<QuantityController
 					wide
@@ -85,7 +105,7 @@ const Details = ({
 										id,
 										name,
 										skus,
-										price,
+										price: skus?.edges[0]?.node?.salePrice / 100,
 										description,
 										images,
 										quantity

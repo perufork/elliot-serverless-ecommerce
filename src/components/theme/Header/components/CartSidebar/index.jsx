@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
+import NumberFormat from "react-number-format";
+import { useCurrency } from "providers/CurrencyProvider";
+import { useCart, useDispatchCart } from "providers/CartProvider";
 import { CancelIcon } from "components/common/Icons";
 import Button from "components/common/Button";
-import { useCart, useDispatchCart } from "providers/CartProvider";
 import { removeFromCart } from "components/cart/actions";
 import getTotal from "helpers/getTotal";
 import { Wrapper, CartItem, Thumbnail, Content, CartFooter } from "./styles";
 
 const CartSidebar = ({ toggleSidebar }) => {
+	const { state: currency } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
@@ -40,8 +43,13 @@ const CartSidebar = ({ toggleSidebar }) => {
 										<a onClick={toggleSidebar}>{name}</a>
 									</Link>
 									<p>Qty: {quantity}</p>
-									{skus.edges[0].node.salePrice && (
-										<span>${skus.edges[0].node.salePrice / 100}</span>
+									{skus?.edges[0]?.node?.salePrice && (
+										<NumberFormat
+											value={skus.edges[0].node.salePrice / 100}
+											displayType={"text"}
+											thousandSeparator={true}
+											prefix={currency}
+										/>
 									)}
 								</Content>
 							</CartItem>

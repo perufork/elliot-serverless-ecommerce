@@ -1,11 +1,24 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Wrapper, Label, List, Item, Arrow, DefaultValue } from "./styles";
 import { ChevronDownIcon } from "../Icons";
+import Link from "next/link";
+import { useIntl } from "react-intl";
 
-const Dropdown = ({ displayDefaultValue, label, options, standalone }) => {
+const Dropdown = ({
+	displayDefaultValue,
+	label,
+	options,
+	standalone,
+	languages,
+	currency,
+	setCurrency
+}) => {
+	const { locale } = useIntl();
 	const listEl = useRef(null);
 	const [labelOrValue, setLabelOrValue] = useState(label);
-	const [defaultValue, setDefaultValue] = useState(options[0]);
+	const [defaultValue, setDefaultValue] = useState(
+		languages ? locale : options[0]
+	);
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
@@ -41,17 +54,43 @@ const Dropdown = ({ displayDefaultValue, label, options, standalone }) => {
 		<Wrapper ref={listEl} open={open} standalone={standalone}>
 			<Label onClick={toggleOpen}>
 				{labelOrValue}
-				{displayDefaultValue && <DefaultValue>{defaultValue}</DefaultValue>}
+				{displayDefaultValue && (
+					<DefaultValue>
+						{languages
+							? options.find(({ code }) => code === locale).title
+							: currency
+							? options.find(({ symbol }) => symbol === currency).value
+							: defaultValue}
+					</DefaultValue>
+				)}
 				<Arrow>
 					<ChevronDownIcon width={10} height={10} color="#6f6f6f" />
 				</Arrow>
 			</Label>
 			<List hidden={!open}>
-				{options.map((item, index) => (
-					<Item key={`option-${index}`} onClick={pickElement}>
-						{item}
-					</Item>
-				))}
+				{options.map((item, index) =>
+					languages ? (
+						<Item key={`option-${index}`} onClick={pickElement}>
+							<Link href="/[lang]/" as={`/${item.code}/`}>
+								<a>{item.title}</a>
+							</Link>
+						</Item>
+					) : currency ? (
+						<Item
+							key={`option-${index}`}
+							onClick={e => {
+								setCurrency(item.symbol);
+								pickElement(e);
+							}}
+						>
+							{item.value}
+						</Item>
+					) : (
+						<Item key={`option-${index}`} onClick={pickElement}>
+							{item}
+						</Item>
+					)
+				)}
 			</List>
 		</Wrapper>
 	);

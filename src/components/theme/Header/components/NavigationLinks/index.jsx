@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useIntl } from "react-intl";
+import languages from "helpers/languages";
 import {
 	Navigation,
 	Menu,
@@ -9,17 +10,6 @@ import {
 	List
 } from "./styles";
 
-const Languages = [
-	{
-		title: "English",
-		code: "en"
-	},
-	{
-		title: "French",
-		code: "fr"
-	}
-];
-
 const NavigationLinks = ({ toggleSidebar }) => {
 	const { locale } = useIntl();
 
@@ -27,7 +17,7 @@ const NavigationLinks = ({ toggleSidebar }) => {
 		<Navigation>
 			<Options>
 				<List>
-					{Languages.map(({ title, code }, i) => (
+					{languages.map(({ title, code }, i) => (
 						<li key={i}>
 							<Link href="/[lang]/" as={`/${code}/`}>
 								<a

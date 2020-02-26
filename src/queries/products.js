@@ -12,10 +12,19 @@ query checkout($id: ID!) {
             description
             quantity
             slug
+            productSeo {
+              edges {
+                node {
+                  title
+                  description
+                }
+              }
+            }
             ... on ProductNode {
               skus {
                 edges {
                   node {
+                    id
                     width
                     height
                     length

@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { useIntl } from "react-intl";
+import NumberFormat from "react-number-format";
+import { useCurrency } from "providers/CurrencyProvider";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import Container from "components/common/Container";
 import Swatch from "components/common/Swatch";
@@ -15,9 +18,9 @@ import {
 	Thumbnail,
 	Content
 } from "./styles";
-import { useIntl } from "react-intl";
 
 const ShoppingCart = ({ handleQuantity, quantities }) => {
+	const { state: currency } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
@@ -80,8 +83,13 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											</td>
 											<td>M</td>
 											<td>
-												{skus.edges[0].node.salePrice && (
-													<strong>${skus.edges[0].node.salePrice / 100}</strong>
+												{skus?.edges[0]?.node?.salePrice && (
+													<NumberFormat
+														value={skus.edges[0].node.salePrice / 100}
+														displayType={"text"}
+														thousandSeparator={true}
+														prefix={currency}
+													/>
 												)}
 											</td>
 											<td>
@@ -96,9 +104,17 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											</td>
 											<td>
 												<p>
-													{skus.edges[0].node.salePrice && (
+													{skus?.edges[0]?.node?.salePrice && (
 														<strong>
-															${(skus.edges[0].node.salePrice / 100) * quantity}
+															<NumberFormat
+																value={
+																	(skus.edges[0].node.salePrice / 100) *
+																	quantity
+																}
+																displayType={"text"}
+																thousandSeparator={true}
+																prefix={currency}
+															/>
 														</strong>
 													)}
 												</p>
