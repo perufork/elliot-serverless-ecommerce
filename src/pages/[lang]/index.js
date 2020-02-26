@@ -8,7 +8,7 @@ import Error from "next/error";
 
 const Index = ({ products, collections }) => (
 	<Layout collections={collections}>
-		{products?.edges?.length > 0 && collections?.edges?.length > 0 ? (
+		{products?.edges?.length > 0 ? (
 			<>
 				<SEO
 					localizedTitle="shop.page.title"

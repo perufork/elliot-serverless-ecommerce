@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
@@ -7,10 +7,10 @@ import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
 // import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
-import { HeartIcon } from "components/common/Icons";
+// import { HeartIcon } from "components/common/Icons";
 import {
 	ButtonGroup,
-	Favorite,
+	// Favorite,
 	MainAction,
 	// Review,
 	Shop,
@@ -100,9 +100,9 @@ const Details = ({
 					>
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
-					<Favorite>
+					{/* <Favorite>
 						<HeartIcon height={24} width={24} />
-					</Favorite>
+					</Favorite> */}
 				</ButtonGroup>
 				<MainAction>
 					<Button

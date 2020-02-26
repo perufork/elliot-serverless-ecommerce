@@ -45,7 +45,6 @@ export default ({
 				/>
 			</Container>
 			<Container>
-				{console.log(skus)}
 				<Tabs
 					content={[
 						{

@@ -9,7 +9,7 @@ export default ({ slug, name, images, skus, onClick, locale }) => (
 		<Thumbnail>
 			<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 				<a>
-					{images.edges.map(({ node }, i) => (
+					{images?.edges?.map(({ node }, i) => (
 						<img
 							key={node.id}
 							className={i === 1 ? "secondary" : 0}
@@ -41,7 +41,7 @@ export default ({ slug, name, images, skus, onClick, locale }) => (
 					</a>
 				</Link>
 				{/* <Stars stars={stars} /> */}
-				{skus.edges[0].node.salePrice && (
+				{skus?.edges[0]?.node?.salePrice && (
 					<p>
 						<span>$</span> {skus.edges[0].node.salePrice / 100}
 					</p>

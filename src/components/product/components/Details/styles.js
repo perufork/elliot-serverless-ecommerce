@@ -81,8 +81,8 @@ export const Shop = styled.div`
 
 export const ButtonGroup = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 45px;
-	grid-gap: 15px;
+	grid-template-columns: 1fr auto;
+	grid-gap: 0;
 `;
 
 export const MainAction = styled.div`
