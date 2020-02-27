@@ -41,7 +41,8 @@ const Footer = ({ collections }) => {
 				<List>
 					<ListTitle>Online Shop</ListTitle>
 					{collections &&
-						collections.edges
+						collections.edges &&
+						collections?.edges
 							.filter(({ node: { products } }) => products?.edges?.length > 0)
 							.map(({ node: { id, name, slug } }) => (
 								<Item key={id}>
