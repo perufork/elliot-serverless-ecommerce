@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useMemo, useEffect } from "react";
 // import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import Select from "react-select";
@@ -11,6 +11,7 @@ import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
 // import { HeartIcon } from "components/common/Icons";
+import Label from "components/common/Label";
 import {
 	FacebookIcon,
 	PinterestIcon,
@@ -25,7 +26,8 @@ import {
 	Sku,
 	SocialShares,
 	// Specs,
-	Wrapper
+	Wrapper,
+	LabelField
 } from "./styles";
 
 const Details = ({
@@ -38,7 +40,9 @@ const Details = ({
 	// categories,
 	// tags,
 	images,
-	slug
+	slug,
+	attributes,
+	quantity: inventoryQuantity
 }) => {
 	const { state: currency } = useCurrency();
 	const { state } = useCart();
@@ -46,9 +50,21 @@ const Details = ({
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const { locale } = useIntl();
 	const [quantity, setQuantity] = useState(1);
-	// const [attributes, setAttributes] = useState(null)
+	const [selectedVariant, setSelectedVariant] = useState(
+		skus?.edges[0]?.node || null
+	);
 
 	const product = state.data && state.data.find(item => item.id === id);
+
+	const handleVariant = (attributeKey, value) => {
+		skus.edges.map(({ node }) => {
+			Object.keys(node.attributes).map(item => {
+				if (item === attributeKey && node.attributes[item] === value) {
+					setSelectedVariant(node);
+				}
+			});
+		});
+	};
 
 	return (
 		<Wrapper>
@@ -60,32 +76,51 @@ const Details = ({
 					</span>
 				</Review> */}
 				<h2>{name}</h2>
-				{skus?.edges[0]?.node?.orderSkus?.edges[0]?.node?.sku?.sku && (
-					<Sku>SKU: {skus.edges[0].node.orderSkus.edges[0].node.sku.sku}</Sku>
+				{selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku && (
+					<Sku>SKU: {selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku}</Sku>
 				)}
-				{skus?.edges[0]?.node?.salePrice && (
+				{selectedVariant?.salePrice && (
 					<p>
 						<NumberFormat
-							value={skus.edges[0].node.salePrice / 100}
+							value={selectedVariant.salePrice / 100}
 							displayType={"text"}
 							thousandSeparator={true}
 							prefix={currency}
 						/>
+						{parseInt(inventoryQuantity) <= 0 && (
+							<Label>
+								<span>OUT OF STOCK</span>
+							</Label>
+						)}
 					</p>
 				)}
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }} />
-			{/* {skus &&
-				skus?.edges?.map(
-					({ node: { attributes } }) =>
-						attributes &&
-						Object.entries(attributes).map((value, i) => (
-							<Fragment key={i}>
-								<label>{value[0]}</label>
-								<Select options={[{ value: value[1], label: value[1] }]} />
-							</Fragment>
-						))
-				)} */}
+			{attributes &&
+				attributes.map(({ attributeKey, attributeValues }, i) => {
+					const options = attributeValues.map((_item, i) => {
+						return { value: attributeValues[i], label: attributeValues[i] };
+					});
+					return (
+						<Fragment key={i}>
+							<LabelField>{attributeKey}</LabelField>
+							<Select
+								onChange={e => handleVariant(attributeKey, e.value)}
+								options={options}
+								defaultValue={{
+									label:
+										selectedVariant.attributes[
+											Object.keys(selectedVariant.attributes)[0]
+										],
+									value:
+										selectedVariant.attributes[
+											Object.keys(selectedVariant.attributes)[0]
+										]
+								}}
+							/>
+						</Fragment>
+					);
+				})}
 			<Shop>
 				<QuantityController
 					wide

@@ -20,6 +20,7 @@ query checkout($id: ID!) {
                 }
               }
             }
+            attributes
             ... on ProductNode {
               skus {
                 edges {
@@ -35,6 +36,7 @@ query checkout($id: ID!) {
                       edges {
                         node {
                           sku {
+                            id
                             sku
                           }
                         }

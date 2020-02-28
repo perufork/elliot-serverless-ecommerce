@@ -170,3 +170,8 @@ export const SocialShares = styled.div`
 		margin-right: 0.3125rem;
 	}
 `;
+
+export const LabelField = styled.label`
+	display: inline-block;
+	margin-bottom: 1rem;
+`;

@@ -23,7 +23,8 @@ export default ({
 	quantity,
 	skus,
 	tags,
-	images
+	images,
+	attributes
 }) => {
 	// const { dispatch } = useDispatchCart();
 	// const { dispatch: dispatchSidebar } = useDispatchSidebar();
@@ -42,6 +43,7 @@ export default ({
 					categories={categories}
 					tags={tags}
 					slug={slug}
+					attributes={attributes}
 				/>
 			</Container>
 			<Container>
