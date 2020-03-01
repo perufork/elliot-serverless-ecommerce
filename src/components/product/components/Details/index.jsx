@@ -1,4 +1,4 @@
-import { useState, Fragment, useMemo, useEffect } from "react";
+import { useState, Fragment } from "react";
 // import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import Select from "react-select";
@@ -54,7 +54,9 @@ const Details = ({
 		skus?.edges[0]?.node || null
 	);
 
-	const product = state.data && state.data.find(item => item.id === id);
+	const itemProduct = state?.data?.find(
+		item => item.product.id === id && item.sku.id === selectedVariant.id
+	);
 
 	const handleVariant = (attributeKey, value) => {
 		skus.edges.map(({ node }) => {
@@ -64,6 +66,34 @@ const Details = ({
 				}
 			});
 		});
+	};
+
+	const handleCart = () => {
+		if (itemProduct?.quantity > 0) {
+			addCustomQuantityByProduct({
+				dispatch,
+				id,
+				skuId: selectedVariant.id,
+				quantity
+			});
+		} else {
+			addToCart({
+				dispatch,
+				payload: {
+					product: {
+						id,
+						name,
+						description,
+						images,
+						slug,
+						attributes
+					},
+					quantity,
+					sku: selectedVariant
+				}
+			});
+		}
+		dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
 	};
 
 	return (
@@ -130,25 +160,8 @@ const Details = ({
 				/>
 				<ButtonGroup>
 					<Button
-						onClick={() => {
-							if (product && product.quantity > 0) {
-								addCustomQuantityByProduct({ dispatch, id, quantity });
-							} else {
-								addToCart({
-									dispatch,
-									payload: {
-										id,
-										name,
-										skus,
-										price: skus?.edges[0]?.node?.salePrice / 100,
-										description,
-										images,
-										quantity
-									}
-								});
-							}
-							dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-						}}
+						disabled={parseInt(inventoryQuantity) <= 0}
+						onClick={handleCart}
 						type="button"
 						variant="primary"
 						wide

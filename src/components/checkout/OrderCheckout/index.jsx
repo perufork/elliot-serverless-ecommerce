@@ -32,7 +32,7 @@ const Items = () => {
 				breadcrumbs={breadcrumbs}
 				breadCrumbsAlign="center"
 			/>
-			{state.data && state.data.length > 0 ? (
+			{state?.data?.length > 0 ? (
 				<Flex as={Container} align="flex-start">
 					<Item col={6} colTablet={12} colMobile={12} gap={2}>
 						<PaymentForm />

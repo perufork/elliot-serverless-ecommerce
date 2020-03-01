@@ -1,24 +1,27 @@
 import { MinusIcon, PlusIcon } from "components/common/Icons";
 import { Wrapper, Controller } from "./styles";
 
-export default ({ wide, id, quantity, setQuantity, cart }) => {
+export default ({ wide, id, skuId, quantity, setQuantity, cart }) => {
 	const handleQuantity = ({ type, value }) => {
 		if (cart) {
 			switch (type) {
 				case "add":
 					return setQuantity({
 						quantity: quantity + 1,
-						id
+						id,
+						skuId
 					});
 				case "subtract":
 					return setQuantity({
 						quantity: quantity - 1,
-						id
+						id,
+						skuId
 					});
 				default:
 					return setQuantity({
 						quantity: value,
-						id
+						id,
+						skuId
 					});
 			}
 		} else {

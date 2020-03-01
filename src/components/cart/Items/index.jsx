@@ -48,8 +48,8 @@ const Items = () => {
 	};
 
 	const handleSubmit = () => {
-		quantities.forEach(({ id, quantity }) => {
-			addCustomQuantityByProduct({ dispatch, id, quantity });
+		quantities.forEach(({ id, quantity, skuId }) => {
+			addCustomQuantityByProduct({ dispatch, id, quantity, skuId });
 		});
 	};
 
@@ -61,9 +61,7 @@ const Items = () => {
 				breadCrumbsAlign="center"
 			/>
 			<ShoppingCart handleQuantity={handleQuantity} quantities={quantities} />
-			{state.data && state.data.length > 0 && (
-				<Checkout handleSubmit={handleSubmit} />
-			)}
+			{state?.data?.length > 0 && <Checkout handleSubmit={handleSubmit} />}
 		</>
 	);
 };

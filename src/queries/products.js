@@ -32,6 +32,7 @@ query checkout($id: ID!) {
                     salePrice
                     weight
                     attributes
+                    stripeId
                     orderSkus {
                       edges {
                         node {

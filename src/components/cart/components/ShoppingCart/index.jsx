@@ -27,7 +27,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 
 	return (
 		<Container>
-			{state.data && state.data.length > 0 ? (
+			{state?.data?.length > 0 ? (
 				<TableWrapper>
 					<Table>
 						<Thead>
@@ -43,13 +43,17 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 						</Thead>
 						<Tbody>
 							{state.data.map(
-								({ id, images, name, slug, skus, description, quantity }) => {
+								({
+									product: { id, images, name, slug, description },
+									quantity,
+									sku
+								}) => {
 									const quantityByProduct =
 										quantities.length > 0 &&
 										quantities.find(item => item.id === id);
 
 									return (
-										<tr key={id}>
+										<tr key={sku.id}>
 											<td>
 												<Product>
 													<Thumbnail>
@@ -83,9 +87,9 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											</td>
 											<td>M</td>
 											<td>
-												{skus?.edges[0]?.node?.salePrice && (
+												{sku?.salePrice && (
 													<NumberFormat
-														value={skus.edges[0].node.salePrice / 100}
+														value={sku.salePrice / 100}
 														displayType={"text"}
 														thousandSeparator={true}
 														prefix={currency}
@@ -96,6 +100,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<QuantityController
 													cart
 													id={id}
+													skuId={sku.id}
 													quantity={
 														quantityByProduct ? quantityByProduct.quantity : 1
 													}
@@ -104,13 +109,10 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											</td>
 											<td>
 												<p>
-													{skus?.edges[0]?.node?.salePrice && (
+													{sku?.salePrice && (
 														<strong>
 															<NumberFormat
-																value={
-																	(skus.edges[0].node.salePrice / 100) *
-																	quantity
-																}
+																value={(sku.salePrice / 100) * quantity}
 																displayType={"text"}
 																thousandSeparator={true}
 																prefix={currency}
@@ -122,7 +124,9 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											<td>
 												<button
 													type="button"
-													onClick={() => removeFromCart({ dispatch, id })}
+													onClick={() =>
+														removeFromCart({ dispatch, id, skuId: sku.id })
+													}
 												>
 													<CancelIcon width={16} height={16} color="#a5a5a5" />
 												</button>

@@ -17,6 +17,26 @@ export default ({ products, collection }) => {
 	const [grid, setGrid] = useState(true);
 	const { locale } = useIntl();
 
+	const handleCart = (node, item) => {
+		if (item?.quantity >= 1) {
+			addQuantityByProduct({
+				dispatch,
+				id: item.product.id,
+				skuId: item.sku.id
+			});
+		} else {
+			addToCart({
+				dispatch,
+				payload: {
+					product: node,
+					quantity: 1,
+					sku: node.skus?.edges[0]?.node
+				}
+			});
+		}
+		dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+	};
+
 	return (
 		<Container>
 			<Header>
@@ -77,18 +97,14 @@ export default ({ products, collection }) => {
 			</Header>
 			<Products grid={grid}>
 				{products?.edges?.map(({ node }, i) => {
-					const product = state?.data?.find(item => item.id === node.id);
+					const item = state?.data?.find(
+						({ product }) => product.id === node.id
+					);
+
 					return (
 						<ProductCard
 							key={i}
-							onClick={() => {
-								if (product && product.quantity >= 1) {
-									addQuantityByProduct({ dispatch, id: product.id });
-								} else {
-									addToCart({ dispatch, payload: { ...node, quantity: 1 } });
-								}
-								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-							}}
+							onClick={() => handleCart(node, item)}
 							grid={grid}
 							{...node}
 						/>

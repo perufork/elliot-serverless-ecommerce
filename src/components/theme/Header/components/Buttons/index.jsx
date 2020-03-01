@@ -35,7 +35,7 @@ const Buttons = ({ toggleSidebar }) => {
 				>
 					<Cart>
 						<CartIcon width={20} height={20} />
-						{state.data && state.data.length > 0 && (
+						{state?.data?.length > 0 && (
 							<CartItems>{state.data.length}</CartItems>
 						)}
 					</Cart>

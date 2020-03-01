@@ -19,37 +19,36 @@ export default () => {
 					<p>product</p>
 					<p>total</p>
 				</Flex>
-				{state.data &&
-					state.data.length > 0 &&
-					state.data.map(({ id, slug, name, skus, quantity }, i) => (
-						<Product key={id}>
-							<Link
-								href="/[lang]/product/[slug]"
-								as={`/${locale}/product/${slug}`}
-								key={i}
-							>
-								<a>
-									<p>{name}</p>
-									<span>x{quantity}</span>
-								</a>
-							</Link>
-							{skus?.edges[0]?.node?.salePrice && (
-								<Price>
-									<NumberFormat
-										value={(skus.edges[0].node.salePrice / 100) * quantity}
-										displayType={"text"}
-										thousandSeparator={true}
-										prefix={currency}
-									/>
-								</Price>
-							)}
-						</Product>
-					))}
+				{state?.data?.length > 0 &&
+					state.data.map(
+						({ product: { id, slug, name, skus }, quantity, sku }, i) => (
+							<Product key={id}>
+								<Link
+									href="/[lang]/product/[slug]"
+									as={`/${locale}/product/${slug}`}
+									key={i}
+								>
+									<a>
+										<p>{name}</p>
+										<span>x{quantity}</span>
+									</a>
+								</Link>
+								{sku?.salePrice && (
+									<Price>
+										<NumberFormat
+											value={(sku.salePrice / 100) * quantity}
+											displayType={"text"}
+											thousandSeparator={true}
+											prefix={currency}
+										/>
+									</Price>
+								)}
+							</Product>
+						)
+					)}
 				<Flex border>
 					<p>sub total</p>
-					{state.data && state.data.length > 0 && (
-						<Price>${getTotal(state.data)}</Price>
-					)}
+					{state?.data?.length > 0 && <Price>${getTotal(state.data)}</Price>}
 				</Flex>
 				<Item>
 					<h3>Shipping & Taxes</h3>
@@ -57,9 +56,7 @@ export default () => {
 				</Item>
 				<Flex>
 					<h5>Total</h5>
-					{state.data && state.data.length > 0 && (
-						<Price>${getTotal(state.data)}</Price>
-					)}
+					{state?.data?.length > 0 && <Price>${getTotal(state.data)}</Price>}
 				</Flex>
 			</Card>
 		</Wrapper>

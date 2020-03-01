@@ -28,12 +28,10 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 			({ node: { slug: _slug } }) => _slug === slug
 		);
 		return {
-			revalidate: 10,
 			props: { product: product.node, locale: lang, collections: collections }
 		};
 	} catch (error) {
 		return {
-			revalidate: 10,
 			props: { product: {}, locale: lang, collections: [] }
 		};
 	}
