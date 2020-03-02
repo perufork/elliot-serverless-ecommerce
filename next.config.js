@@ -15,7 +15,10 @@ module.exports = withImages({
 		ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL:
 			process.env.ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL,
 		PLACES_API_KEY: process.env.PLACES_API_KEY,
-		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID
+		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID,
+		ELLIOT_ALGOLIA_APP_ID: process.env.ELLIOT_ALGOLIA_APP_ID,
+		ELLIOT_ALGOLIA_API_KEY: process.env.ELLIOT_ALGOLIA_API_KEY,
+		ENVIRONMENT: process.env.ENVIRONMENT
 	},
 	webpack: config => {
 		if (config.resolve.modules)

@@ -5,7 +5,7 @@ import {
 	CartIcon,
 	MenuIcon
 } from "components/common/Icons";
-// import Search from "components/theme/Header/components/Search";
+import Search from "components/theme/Header/components/Search";
 // import Link from "next/link";
 import { useCart } from "providers/CartProvider";
 // import { useIntl } from "react-intl";
@@ -16,7 +16,7 @@ const Buttons = ({ toggleSidebar }) => {
 
 	return (
 		<Wrapper>
-			{/* <Search /> */}
+			<Search />
 			<Actions>
 				{/* <Link href="/[lang]/" as={`/${locale}/`}>
 					<a>
