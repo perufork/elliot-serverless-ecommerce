@@ -18,7 +18,8 @@ module.exports = withImages({
 		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID,
 		ELLIOT_ALGOLIA_APP_ID: process.env.ELLIOT_ALGOLIA_APP_ID,
 		ELLIOT_ALGOLIA_API_KEY: process.env.ELLIOT_ALGOLIA_API_KEY,
-		ENVIRONMENT: process.env.ENVIRONMENT
+		ENVIRONMENT: process.env.ENVIRONMENT,
+		ELLIOT_STORE_FRONT_NAME: process.env.ELLIOT_STORE_FRONT_NAME
 	},
 	webpack: config => {
 		if (config.resolve.modules)

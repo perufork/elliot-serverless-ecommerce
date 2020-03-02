@@ -42,7 +42,7 @@ const Search = () => {
 			>
 				<Configure
 					hitsPerPage={20}
-					filters={`'domain_id':${process.env.ELLIOT_DOMAIN_ID} AND 'filter_param':'PUBLISHED' AND 'productCheckouts.slug':'test'`}
+					filters={`'domain_id':${process.env.ELLIOT_DOMAIN_ID} AND 'filter_param':'PUBLISHED' AND 'productCheckouts.slug':${process.env.ELLIOT_STORE_FRONT_NAME}`}
 				/>
 				<SearchBox
 					autoFocus={false}
