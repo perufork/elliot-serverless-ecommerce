@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { CardElement } from "react-stripe-elements";
+import { CardElement, injectStripe } from "react-stripe-elements";
 import { Flex, Item } from "react-flex-ready";
 // import axios from "axios";
 import { Formik, Field, Form, FastField, ErrorMessage } from "formik";
@@ -16,42 +16,36 @@ import ErrorField from "components/common/ErrorField";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
 import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
 import { FieldWrapper, CreditCardWrap } from "./styles";
+import getCartTotal from "helpers/getCartTotal";
+import getOrderTaxAndShippingCost from "helpers/getOrderTaxAndShippingCost";
+import getVendors from "helpers/getVendors";
+import getVendorParcels from "helpers/getVendorParcels";
+import getShippingPayload from "helpers/getShippingPayload";
+import getCartTotalWithPromo from "helpers/getCartTotalWithPromo";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const CreditCardForm = ({ stripe }) => {
+const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
 	const {
-		// updateOrderTaxAndShippingCost,
-		// selectedShippingOptionIndex,
-		// cart,
-		// checkout,
-		// shippingOptions,
-		// orderTax,
-		// vendorShippingOptions,
-		// cartPriceSumWithPromo,
-		// cartPriceSumRaw,
-		// parcels,
-		// freeShipping,
-		// setSelectedShippingOptionIndex,
-		// cartPriceSumWithPromoAndTax,
-		// displayCurrency,
-		// displayExchangeRate,
-		// checkoutId,
-		// onOrderSubmitted,
-		// onOrderLoading,
-		// duty,
-		// vendors,
-		// domainOwnerHasItemsInCart,
-		// isFullyHosted,
-		// flatRateShipping
-		state
+		state,
+		state: { data: cart }
 	} = useCart();
-
 	const [loadingShippingInfo, setLoadingShippingInfo] = useState(false);
+	const [paymentLoading, setPaymentLoading] = useState(false);
 	const [cardError, setCardError] = useState(false);
+	const [paymentState, setPaymentState] = useState("");
+	const [domainOwnerShippingOption, setDomainOwnerShippingOption] = useState();
 	const [validCard, setCardValidity] = useState(false);
 	const [cardOnBlurMessage, setCardOnBlurMessage] = useState("");
+	const [shippingOptions, setShippingOptions] = useState([]);
+	const [freeShipping, setFreeShipping] = useState(false);
+	const [
+		selectedShippingOptionIndex,
+		setSelectedShippingOptionIndex
+	] = useState(-1);
+	const [flatRateShipping, setFlatRate] = useState({});
+	const [orderTax, setOrderTax] = useState(0);
+	const [duty, setDuty] = useState(0);
+	const [vendorShippingOptions, setVendorShippingOptions] = useState({});
 	const [
 		lastAddressUsedToFetchShipping,
 		setLastAddressUsedToFetchShipping
@@ -61,6 +55,7 @@ const CreditCardForm = ({ stripe }) => {
 		country: "",
 		zipCode: ""
 	});
+	const [touchedErrors, setTouchedErrors] = useState({});
 
 	const hasAddressErrors = errors => {
 		return (
@@ -80,6 +75,29 @@ const CreditCardForm = ({ stripe }) => {
 		);
 	};
 
+	const parcels = useMemo(() => getVendorParcels({ cart, checkout }), [
+		JSON.stringify(cart)
+	]);
+
+	const vendors = useMemo(() => {
+		const vendors = {
+			cart,
+			checkout,
+			shippingOptions,
+			selectedShippingOptionIndex,
+			freeShipping,
+			flatRateShipping,
+			orderTax,
+			duty,
+			vendorShippingOptions
+		};
+
+		return getVendors(vendors);
+	}, [
+		JSON.stringify([cart, selectedShippingOptionIndex, vendorShippingOptions])
+	]);
+
+	const cartPriceSumRaw = getCartTotal(cart);
 	const handleAddressSelected = async (
 		addressLine1,
 		addressLine2,
@@ -89,14 +107,31 @@ const CreditCardForm = ({ stripe }) => {
 		zipCode
 	) => {
 		setLoadingShippingInfo(true);
-		// await updateOrderTaxAndShippingCost({
-		// 	line1: addressLine1,
-		// 	line2: addressLine2,
-		// 	city,
-		// 	state: selectedState,
-		// 	country: selectedCountry,
-		// 	postal_code: zipCode
-		// });
+		const shippingDestination = {
+			line1: addressLine1,
+			line2: addressLine2,
+			city,
+			state: selectedState,
+			country: selectedCountry,
+			postal_code: zipCode
+		};
+
+		await getOrderTaxAndShippingCost({
+			shippingDestination,
+			cartPriceSumRaw,
+			setDomainOwnerShippingOption,
+			parcels,
+			vendors,
+			cart,
+			checkout,
+			setFreeShipping,
+			setFlatRate,
+			setVendorShippingOptions,
+			setDuty,
+			setOrderTax,
+			setShippingOptions,
+			setSelectedShippingOptionIndex
+		});
 
 		setLoadingShippingInfo(false);
 		setLastAddressUsedToFetchShipping({
@@ -114,21 +149,39 @@ const CreditCardForm = ({ stripe }) => {
 		} else if (fieldName in touchedErrors) {
 			delete updatedTouchedErrors[fieldName];
 		}
+
+		const shippingDestination = {
+			line1: values.addressLine1,
+			line2: values.addressLine2,
+			city: values.city,
+			state: values.state,
+			country: values.country,
+			postal_code: values.zipCode
+		};
+
 		setTouchedErrors(updatedTouchedErrors);
 		if (dirty && !hasAddressErrors(errors)) {
-			// if (
-			// 	selectedShippingOptionIndex === -1 ||
-			// 	isAddressDirty(fieldName, values[fieldName])
-			// ) {
-			// 	updateOrderTaxAndShippingCost({
-			// 		line1: values.addressLine1,
-			// 		line2: values.addressLine2,
-			// 		city: values.city,
-			// 		state: values.state,
-			// 		country: values.country,
-			// 		postal_code: values.zipCode
-			// 	});
-			// }
+			if (
+				selectedShippingOptionIndex === -1 ||
+				isAddressDirty(fieldName, values[fieldName])
+			) {
+				getOrderTaxAndShippingCost({
+					shippingDestination,
+					cartPriceSumRaw,
+					setDomainOwnerShippingOption,
+					parcels,
+					vendors,
+					cart,
+					checkout,
+					setFreeShipping,
+					setFlatRate,
+					setVendorShippingOptions,
+					setDuty,
+					setOrderTax,
+					setShippingOptions,
+					setSelectedShippingOptionIndex
+				});
+			}
 			const updatedLastAddressUsedToFetchShipping = {
 				...lastAddressUsedToFetchShipping
 			};
@@ -185,9 +238,7 @@ const CreditCardForm = ({ stripe }) => {
 				email: Yup.string()
 					.email("Invalid email")
 					.required("Required"),
-				phone: Yup.string()
-					.matches(phoneRegExp, "Invalid phone number")
-					.required("Required"),
+				phone: Yup.string(),
 				addressLine1: Yup.string().required("Required"),
 				addressLine2: Yup.string(),
 				city: Yup.string().required("Required"),
@@ -199,74 +250,88 @@ const CreditCardForm = ({ stripe }) => {
 				try {
 					// Within the context of `Elements`, this call to createToken knows which Element to
 					// tokenize, since there's only one in this group.
+					console.log("submitting");
 					const { token } = await stripe.createToken({ name: values.name });
-					onOrderLoading();
+					setPaymentLoading(true);
 
 					if (!token) {
-						onOrderSubmitted(OrderStatus.FAILED);
+						console.error("NO TOKEN");
 						return;
 					}
 
 					console.log(token);
 
-					// const {
-					// 	name,
-					// 	addressLine1: line1,
-					// 	addressLine2: line2,
-					// 	city,
-					// 	state,
-					// 	country,
-					// 	zipCode: postalCode,
-					// 	phone,
-					// 	email
-					// } = values;
+					const {
+						name,
+						addressLine1: line1,
+						addressLine2: line2,
+						city,
+						state,
+						country,
+						zipCode: postalCode,
+						phone,
+						email,
+						shipToAddress,
+						shipToCity,
+						shipToCountry,
+						shipToState,
+						shipToZipCode
+					} = values;
 
-					// const data = {
-					// 	email,
-					// 	line1,
-					// 	line2,
-					// 	city,
-					// 	state,
-					// 	country,
-					// 	postalCode,
-					// 	phone,
-					// 	name: name.slice(0, 100)
-					// };
+					const data = {
+						email,
+						line1,
+						line2,
+						city,
+						state,
+						country,
+						postalCode,
+						phone,
+						name: name.slice(0, 100),
+						shipToAddress,
+						shipToCity,
+						shipToCountry,
+						shipToState,
+						shipToZipCode
+					};
 
-					// const payload = getShippingPayload({
-					// 	checkout,
-					// 	cart,
-					// 	data,
-					// 	orderTax,
-					// 	cartPriceSumWithPromoAndTax,
-					// 	cartPriceSumWithPromo,
-					// 	cartPriceSumRaw,
-					// 	duty,
-					// 	vendorShippingOptions,
-					// 	selectedShippingOptionIndex,
-					// 	shippingOptions,
-					// 	parcels,
-					// 	vendors,
-					// 	mode,
-					// 	token,
-					// 	domainOwnerHasItemsInCart
-					// });
+					const payload = getShippingPayload({
+						checkout,
+						cart,
+						data,
+						cartPriceSumWithPromo: getCartTotalWithPromo(
+							cartPriceSumRaw,
+							checkout.promotion
+						),
+						vendorShippingOptions,
+						domainOwnerShippingOption,
+						vendors,
+						token,
+						cartPriceSumRaw,
+						parcels
+					});
 
-					// const functionURL = process.env.ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL;
-					// const res = await fetch(functionURL, {
-					// 	method: 'post',
-					// 	body: JSON.stringify(payload),
-					// 	headers: { 'Content-Type': 'application/json' }
-					// });
+					console.log(payload, null, 2);
+					const functionURL =
+						process.env.ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL;
+					const res = await fetch(functionURL, {
+						method: "post",
+						body: JSON.stringify(payload),
+						headers: { "Content-Type": "application/json" }
+					});
 
-					// if (res.ok) {
-					// 	onOrderSubmitted(OrderStatus.SUCCEEDED);
-					// } else {
-					// 	onOrderSubmitted(OrderStatus.FAILED);
-					// }
+					if (res.ok) {
+						setPaymentState("SUCCESS");
+						console.log("PAYMENT SUCCEEDED");
+					} else {
+						setPaymentState("FAIL");
+						console.error("PAYMENT FAILED");
+					}
 				} catch (error) {
-					onOrderSubmitted(OrderStatus.FAILED);
+					console.error("PAYMENT FAILED");
 					console.error(error);
+				} finally {
+					setPaymentLoading(false);
 				}
 			}}
 			render={({ dirty, errors, setFieldValue, values, setFieldTouched }) => {
@@ -275,7 +340,8 @@ const CreditCardForm = ({ stripe }) => {
 					isEmpty(errors) &&
 					validCard &&
 					!cardError &&
-					selectedShippingOptionIndex !== -1;
+					selectedShippingOptionIndex !== -1 &&
+					!paymentLoading;
 
 				return (
 					<Form>
@@ -416,6 +482,66 @@ const CreditCardForm = ({ stripe }) => {
 									</FieldWrapper>
 								</Item>
 							</Flex>
+							<div className="form-group">
+								<label className="shipping-preference-label">
+									<span>Method</span>
+									{loadingShippingInfo && (
+										<span className="loader--simple"></span>
+									)}
+									{loadingShippingInfo ? "LOADING..." : ""}
+								</label>
+								{freeShipping ? (
+									<select
+										onChange={() => {}}
+										value="free"
+										className="ps-select form-control"
+										style={{
+											backgroundImage: `url(${process.env.ELLIOT_IMAGE_URL}/checkout/select-icon.png)`
+										}}
+									>
+										<option value="free">Free Shipping</option>
+									</select>
+								) : selectedShippingOptionIndex !== -1 ? (
+									<select
+										className="ps-select form-control"
+										onChange={e =>
+											setSelectedShippingOptionIndex(e.target.value)
+										}
+										value={selectedShippingOptionIndex}
+										style={{
+											backgroundImage: `url(${process.env.ELLIOT_IMAGE_URL}/checkout/select-icon.png)`
+										}}
+									>
+										<option value={0}>
+											{`${shippingOptions[0].provider} ${shippingOptions[0].type}`}
+											{shippingOptions[0] && shippingOptions[0].days
+												? ` - Arrives in ${shippingOptions[0].days} day(s)`
+												: null}
+										</option>
+										{shippingOptions.length > 1 && (
+											<option value={1}>
+												{`${shippingOptions[1].provider} ${shippingOptions[1].type}`}
+												{shippingOptions[1] && shippingOptions[1].days
+													? ` - Arrives in ${shippingOptions[1].days} day(s)`
+													: null}
+											</option>
+										)}
+									</select>
+								) : (
+									<div className="shipping-preference--initial">
+										<Field
+											className="form-control"
+											name="shipping-preference"
+											placeholder={
+												loadingShippingInfo
+													? ""
+													: "Complete Shipping Information"
+											}
+											disabled
+										/>
+									</div>
+								)}
+							</div>
 							<FieldWrapper>
 								<label>
 									Credit Card
@@ -455,6 +581,7 @@ const CreditCardForm = ({ stripe }) => {
 								</CreditCardWrap>
 							</FieldWrapper>
 							<div>
+								<div>{paymentLoading ? "LOADING..." : paymentState}</div>
 								<BuyButton canSubmit={canSubmit} price={getTotal(state.data)} />
 								<Link href="/[lang]/" as={`/${locale}/`}>
 									<Button as="a" wide variant="secondary">
@@ -470,4 +597,4 @@ const CreditCardForm = ({ stripe }) => {
 	);
 };
 
-export default CreditCardForm;
+export default injectStripe(CreditCardForm);
