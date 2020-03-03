@@ -27,7 +27,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 
 	return (
 		<Container>
-			{state?.data?.length > 0 ? (
+			{state && state.data && state.data.length > 0 ? (
 				<TableWrapper>
 					<Table>
 						<Thead>
@@ -125,7 +125,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<button
 													type="button"
 													onClick={() =>
-														removeFromCart({ dispatch, id, skuId: sku.id })
+														removeFromCart({ dispatch, skuId: sku.id })
 													}
 												>
 													<CancelIcon width={16} height={16} color="#a5a5a5" />
