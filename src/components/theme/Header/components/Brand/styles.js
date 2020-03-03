@@ -11,4 +11,8 @@ export const Wrapper = styled.div`
 	@media (max-width: 1200px) {
 		margin-left: 0.9375rem;
 	}
+
+	@media (max-width: 960px) {
+		margin-left: 0;
+	}
 `;

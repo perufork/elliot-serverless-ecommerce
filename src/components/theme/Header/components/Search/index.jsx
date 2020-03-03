@@ -7,7 +7,7 @@ import {
 	connectStateResults,
 	Configure
 } from "react-instantsearch-dom";
-import { Wrapper } from "./styles";
+import { Wrapper, Error } from "./styles";
 import Hit from "./components/Hit";
 
 const searchClient = algoliasearch(
@@ -20,7 +20,7 @@ const Results = connectStateResults(
 		searchResults && searchResults.nbHits !== 0 ? (
 			children
 		) : (
-			<div>No results have been found for {searchState.query}.</div>
+			<Error>No results have been found for {searchState.query}.</Error>
 		)
 );
 
