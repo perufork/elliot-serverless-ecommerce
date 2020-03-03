@@ -106,7 +106,7 @@ export default ({
 						: title
 					: "Elliot Headless Pacakge"}
 			</title>
-			<html lang={locale} dir="ltr" />
+			{/* <html lang={locale} dir="ltr" /> */}
 		</Head>
 	);
 };
