@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import { IntlProvider } from "react-intl";
+
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const pageProps = await super.getInitialProps(ctx);
@@ -15,7 +15,6 @@ export default class MyDocument extends Document {
 						styleSheet.collectStyles(<App {...pageProps} />)
 				});
 
-			pageProps.lang = IntlProvider.defaultProps.defaultLocale;
 			pageProps.styles = (
 				<>
 					{pageProps.styles}
@@ -31,7 +30,7 @@ export default class MyDocument extends Document {
 
 	render() {
 		return (
-			<Html lang={this.props.lang}>
+			<Html>
 				<Head>
 					{/* <link
 						rel="stylesheet"
