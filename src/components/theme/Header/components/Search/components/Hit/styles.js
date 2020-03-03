@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const CartItem = styled.div`
-	padding-bottom: 1.875rem;
-	margin-bottom: 1rem;
-	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	display: flex;
 	justify-content: space-between;
 `;
