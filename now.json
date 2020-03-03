@@ -12,7 +12,8 @@
 			"ENVIRONMENT": "@environement",
 			"ELLIOT_ALGOLIA_APP_ID": "@elliot_algolia_app_id",
 			"ELLIOT_ALGOLIA_API_KEY": "@elliot_algolia_api_key",
-			"ELLIOT_STORE_FRONT_NAME": "@elliot_store_front_name"
+			"ELLIOT_STORE_FRONT_NAME": "@elliot_store_front_name",
+			"ELLIOT_EXCHANGE_RATES_URL": "@elliot_exchange_rates_url"
 		}
 	}
 }

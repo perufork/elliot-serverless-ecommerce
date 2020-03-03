@@ -19,7 +19,8 @@ module.exports = withImages({
 		ELLIOT_ALGOLIA_APP_ID: process.env.ELLIOT_ALGOLIA_APP_ID,
 		ELLIOT_ALGOLIA_API_KEY: process.env.ELLIOT_ALGOLIA_API_KEY,
 		ENVIRONMENT: process.env.ENVIRONMENT,
-		ELLIOT_STORE_FRONT_NAME: process.env.ELLIOT_STORE_FRONT_NAME
+		ELLIOT_STORE_FRONT_NAME: process.env.ELLIOT_STORE_FRONT_NAME,
+		ELLIOT_EXCHANGE_RATES_URL: process.env.ELLIOT_EXCHANGE_RATES_URL
 	},
 	webpack: config => {
 		if (config.resolve.modules)

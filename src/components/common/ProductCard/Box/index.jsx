@@ -7,7 +7,7 @@ import { Thumbnail, Details } from "./styles";
 // import { HeartIcon } from "components/common/Icons";
 
 export default ({ slug, name, images, skus, onClick, locale }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	return (
 		<div>
 			<Thumbnail>
@@ -47,12 +47,16 @@ export default ({ slug, name, images, skus, onClick, locale }) => {
 					{/* <Stars stars={stars} /> */}
 					{skus?.edges[0]?.node?.salePrice && (
 						<p>
-							<NumberFormat
-								value={skus.edges[0].node.salePrice / 100}
-								displayType={"text"}
-								thousandSeparator={true}
-								prefix={currency}
-							/>
+							{loading ? (
+								"..."
+							) : (
+								<NumberFormat
+									value={(skus.edges[0].node.salePrice * exchangeRate) / 100}
+									displayType={"text"}
+									thousandSeparator={true}
+									prefix={currency}
+								/>
+							)}
 						</p>
 					)}
 				</Details>

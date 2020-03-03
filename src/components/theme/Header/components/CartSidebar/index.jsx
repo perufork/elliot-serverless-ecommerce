@@ -10,7 +10,7 @@ import getTotal from "helpers/getTotal";
 import { Wrapper, CartItem, Thumbnail, Content, CartFooter } from "./styles";
 
 const CartSidebar = ({ toggleSidebar }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
@@ -43,9 +43,11 @@ const CartSidebar = ({ toggleSidebar }) => {
 										<a onClick={toggleSidebar}>{name}</a>
 									</Link>
 									<p>Qty: {quantity}</p>
-									{sku?.salePrice && (
+									{sku?.salePrice && loading ? (
+										"..."
+									) : (
 										<NumberFormat
-											value={sku.salePrice / 100}
+											value={(sku.salePrice * exchangeRate) / 100}
 											displayType={"text"}
 											thousandSeparator={true}
 											prefix={currency}
@@ -57,7 +59,19 @@ const CartSidebar = ({ toggleSidebar }) => {
 					</div>
 					<CartFooter>
 						<h3>
-							Sub Total: <strong>${getTotal(state.data)}</strong>
+							Sub Total:{" "}
+							<strong>
+								{loading ? (
+									"..."
+								) : (
+									<NumberFormat
+										value={getTotal(state.data, exchangeRate)}
+										displayType={"text"}
+										thousandSeparator={true}
+										prefix={currency}
+									/>
+								)}
+							</strong>
 						</h3>
 						<div>
 							<Link href="/[lang]/cart" as={`/${locale}/cart`}>

@@ -7,7 +7,7 @@ import { CartItem, Thumbnail, Content } from "./styles";
 export default ({
 	hit: { name, slug, product_image_url, productSkus, product_gender }
 }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { locale } = useIntl();
 
 	return (
@@ -24,9 +24,11 @@ export default ({
 					<a>{name}</a>
 				</Link>
 				<p>{product_gender}</p>
-				{productSkus && productSkus[0]?.sale_price && (
+				{productSkus && productSkus[0]?.sale_price && loading ? (
+					"..."
+				) : (
 					<NumberFormat
-						value={productSkus[0].sale_price / 100}
+						value={(productSkus[0].sale_price * exchangeRate) / 100}
 						displayType={"text"}
 						thousandSeparator={true}
 						prefix={currency}

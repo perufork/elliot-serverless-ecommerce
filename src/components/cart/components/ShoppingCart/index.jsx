@@ -20,7 +20,7 @@ import {
 } from "./styles";
 
 const ShoppingCart = ({ handleQuantity, quantities }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
@@ -89,7 +89,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											<td>
 												{sku?.salePrice && (
 													<NumberFormat
-														value={sku.salePrice / 100}
+														value={(sku.salePrice * exchangeRate) / 100}
 														displayType={"text"}
 														thousandSeparator={true}
 														prefix={currency}
@@ -111,12 +111,19 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<p>
 													{sku?.salePrice && (
 														<strong>
-															<NumberFormat
-																value={(sku.salePrice / 100) * quantity}
-																displayType={"text"}
-																thousandSeparator={true}
-																prefix={currency}
-															/>
+															{loading ? (
+																"..."
+															) : (
+																<NumberFormat
+																	value={
+																		((sku.salePrice * exchangeRate) / 100) *
+																		quantity
+																	}
+																	displayType={"text"}
+																	thousandSeparator={true}
+																	prefix={currency}
+																/>
+															)}
 														</strong>
 													)}
 												</p>
