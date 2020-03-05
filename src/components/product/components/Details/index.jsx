@@ -44,7 +44,7 @@ const Details = ({
 	attributes,
 	quantity: inventoryQuantity
 }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
@@ -111,12 +111,16 @@ const Details = ({
 				)}
 				{selectedVariant?.salePrice && (
 					<p>
-						<NumberFormat
-							value={selectedVariant.salePrice / 100}
-							displayType={"text"}
-							thousandSeparator={true}
-							prefix={currency}
-						/>
+						{loading ? (
+							"..."
+						) : (
+							<NumberFormat
+								value={(selectedVariant.salePrice * exchangeRate) / 100}
+								displayType={"text"}
+								thousandSeparator={true}
+								prefix={currency}
+							/>
+						)}
 						{parseInt(inventoryQuantity) <= 0 && (
 							<Label>
 								<span>OUT OF STOCK</span>

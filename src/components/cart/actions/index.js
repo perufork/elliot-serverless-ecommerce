@@ -1,8 +1,7 @@
-export const removeFromCart = async ({ dispatch, id, skuId }) => {
+export const removeFromCart = async ({ dispatch, skuId }) => {
 	try {
 		await dispatch({
 			type: "REMOVE_FROM_CART",
-			id,
 			skuId
 		});
 	} catch (err) {

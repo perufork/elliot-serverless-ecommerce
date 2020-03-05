@@ -15,7 +15,7 @@ export default ({ products, collection }) => {
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const [grid, setGrid] = useState(true);
-	const { locale } = useIntl();
+	const { locale, formatMessage } = useIntl();
 
 	const handleCart = (node, item) => {
 		if (item?.quantity >= 1) {
@@ -46,7 +46,7 @@ export default ({ products, collection }) => {
 						collection
 							? [
 									{
-										name: "Shop",
+										name: "shop.page.title",
 										link: `/[lang]/`,
 										as: `/${locale}`,
 										active: false
@@ -60,7 +60,7 @@ export default ({ products, collection }) => {
 							  ]
 							: [
 									{
-										name: "Shop",
+										name: "shop.page.title",
 										link: `/[lang]/`,
 										as: `/${locale}`,
 										active: false
@@ -72,7 +72,7 @@ export default ({ products, collection }) => {
 				<FiltersWrapper>
 					<Result>
 						<span>{(products && products.edges.length) || 0}</span>
-						Products Found
+						{formatMessage({ id: "products.found" })}
 					</Result>
 					<Filters>
 						<Dropdown

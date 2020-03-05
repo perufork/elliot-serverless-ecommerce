@@ -11,7 +11,7 @@ const BreadcumbsHeader = ({ slug, title }) => {
 				flexAlign="start"
 				links={[
 					{
-						name: "Shop",
+						name: "shop.page.title",
 						link: `/[lang]/`,
 						as: `/${locale}/`
 					},

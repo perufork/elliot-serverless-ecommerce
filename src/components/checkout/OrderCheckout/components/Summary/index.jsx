@@ -7,7 +7,7 @@ import getTotal from "helpers/getTotal";
 import { Wrapper, Flex, Product, Item, Price, Card } from "./styles";
 
 export default () => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { locale } = useIntl();
 
@@ -21,7 +21,7 @@ export default () => {
 				</Flex>
 				{state?.data?.length > 0 &&
 					state.data.map(
-						({ product: { id, slug, name, skus }, quantity, sku }, i) => (
+						({ product: { id, slug, name }, quantity, sku }, i) => (
 							<Product key={id}>
 								<Link
 									href="/[lang]/product/[slug]"
@@ -35,12 +35,18 @@ export default () => {
 								</Link>
 								{sku?.salePrice && (
 									<Price>
-										<NumberFormat
-											value={(sku.salePrice / 100) * quantity}
-											displayType={"text"}
-											thousandSeparator={true}
-											prefix={currency}
-										/>
+										{loading ? (
+											"..."
+										) : (
+											<NumberFormat
+												value={
+													((sku.salePrice * exchangeRate) / 100) * quantity
+												}
+												displayType={"text"}
+												thousandSeparator={true}
+												prefix={currency}
+											/>
+										)}
 									</Price>
 								)}
 							</Product>
@@ -48,7 +54,20 @@ export default () => {
 					)}
 				<Flex border>
 					<p>sub total</p>
-					{state?.data?.length > 0 && <Price>${getTotal(state.data)}</Price>}
+					{state?.data?.length > 0 && (
+						<Price>
+							{loading ? (
+								"..."
+							) : (
+								<NumberFormat
+									value={getTotal(state.data, exchangeRate)}
+									displayType={"text"}
+									thousandSeparator={true}
+									prefix={currency}
+								/>
+							)}
+						</Price>
+					)}
 				</Flex>
 				<Item>
 					<h3>Shipping & Taxes</h3>
@@ -56,7 +75,20 @@ export default () => {
 				</Item>
 				<Flex>
 					<h5>Total</h5>
-					{state?.data?.length > 0 && <Price>${getTotal(state.data)}</Price>}
+					{state?.data?.length > 0 && (
+						<Price>
+							{loading ? (
+								"..."
+							) : (
+								<NumberFormat
+									value={getTotal(state.data, exchangeRate)}
+									displayType={"text"}
+									thousandSeparator={true}
+									prefix={currency}
+								/>
+							)}
+						</Price>
+					)}
 				</Flex>
 			</Card>
 		</Wrapper>

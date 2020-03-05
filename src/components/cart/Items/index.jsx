@@ -14,12 +14,12 @@ const Items = () => {
 
 	const breadcrumbs = [
 		{
-			name: "Shop",
+			name: "shop.page.title",
 			link: `/[lang]/`,
 			as: `/${locale}/`
 		},
 		{
-			name: "Cart",
+			name: "cart.page.title",
 			link: `/[lang]/cart/`,
 			as: `/${locale}/cart/`,
 			active: true

@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
 
 	render() {
 		return (
-			<html>
+			<Html>
 				<Head>
 					{/* <link
 						rel="stylesheet"
@@ -41,12 +41,18 @@ export default class MyDocument extends Document {
 						src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_API_KEY}&libraries=places`}
 					/>
 					<script async src="https://js.stripe.com/v3/" />
+					<link
+						rel="stylesheet"
+						href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+						integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
+						crossOrigin="anonymous"
+					/>
 				</Head>
 				<body>
 					<Main />
 					<NextScript />
 				</body>
-			</html>
+			</Html>
 		);
 	}
 }

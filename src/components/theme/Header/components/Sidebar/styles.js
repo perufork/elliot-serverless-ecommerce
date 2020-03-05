@@ -108,7 +108,7 @@ export const Close = styled.div`
 `;
 
 export const Content = styled.div`
-	height: 90%;
+	height: 100%;
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;

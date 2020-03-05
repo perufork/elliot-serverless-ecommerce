@@ -10,10 +10,7 @@ const cartReducer = (state = initialState, action) => {
 		case "REMOVE_FROM_CART":
 			return {
 				...state,
-				data: state.data.filter(
-					({ product: { id }, sku }) =>
-						id !== action.id && sku.id !== action.skuId
-				)
+				data: state.data.filter(({ sku }) => sku.id !== action.skuId)
 			};
 		case "ADD_CUSTOM_QUANTITY":
 			return {
