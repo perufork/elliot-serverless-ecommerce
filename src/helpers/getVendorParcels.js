@@ -1,5 +1,5 @@
 import getVendorCart from "./getVendorCart";
-import { getParcels } from "./getParcels";
+import getParcels from "./getParcels";
 
 const getVendorParcels = ({ cart, checkout }) => {
 	const vendorCart = getVendorCart(cart);

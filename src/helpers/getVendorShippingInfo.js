@@ -5,7 +5,6 @@ import ShippingPreference from "./constants/ShippingPreference";
 import ProductTypes from "./constants/ProductTypes";
 import FlatRateShippingOptions from "./constants/FlatRateShippingOptions";
 import FreeShippingThresholdTarget from "./constants/FreeShippingThresholdTarget";
-import addShippingSurchargeToTax from "./addShippingSurchargeToTax";
 
 export const getVendorShippingInfo = ({
 	vendors,
@@ -28,9 +27,6 @@ export const getVendorShippingInfo = ({
 			international: internationalFlatRate
 		} = flatRateShippingOption);
 	}
-	const printifyCart = cart.filter(
-		({ product: { printify_id } }) => printify_id
-	);
 
 	const shippingOptionPromises = vendors.map(vendor => {
 		const vendorCart = getVendorCart(cart);
@@ -131,12 +127,20 @@ export const getVendorShippingInfo = ({
 				}
 
 				flatRate = (() => {
-					const type =
-						!internationalShipping && domesticFlatRate
-							? FlatRateShippingOptions.DOMESTIC
-							: internationalShipping && internationalFlatRate
-							? FlatRateShippingOptions.INTERNATIONAL
-							: false;
+					const isDomestic = !internationalShipping && domesticFlatRate;
+					const isInternational =
+						internationalShipping && internationalFlatRate;
+
+					let type = false;
+
+					if (isDomestic) {
+						type = FlatRateShippingOptions.DOMESTIC;
+					}
+
+					if (isInternational) {
+						type = FlatRateShippingOptions.DOMESTIC;
+					}
+
 					return {
 						type,
 						value:
@@ -148,12 +152,6 @@ export const getVendorShippingInfo = ({
 				})();
 
 				let taxAmount = Math.round(resJson.data.tax.amount);
-
-				taxAmount = await addShippingSurchargeToTax({
-					tax: taxAmount,
-					currency: domainCurrency,
-					isPrintifyProduct: !!printifyCart.length
-				});
 
 				resolve({
 					flatRate: !!flatRate.type && flatRate,
