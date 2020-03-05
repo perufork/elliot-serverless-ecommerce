@@ -28,13 +28,16 @@ export const Label = styled.div`
 	font-weight: 600;
 `;
 
+// I used 99% to do a visual hack to keep border right in the overflow case
 export const List = styled.ul`
-	position: absolute;
-	top: 130%;
-	right: 0;
-	width: 100%;
 	background-color: ${({ theme: { colors } }) => colors.white};
 	border: 1px solid ${({ theme: { colors } }) => colors.darkGray};
+	max-height: 6.25rem;
+	overflow-y: auto;
+	position: absolute;
+	right: 0;
+	top: 130%;
+	width: 99%;
 `;
 
 export const Arrow = styled.span`
