@@ -37,14 +37,4 @@ module.exports = withImages({
 			];
 		}
 	}
-	// experimental: {
-	//  async headers() {
-	//    return [
-	//      {
-	//        source: "/",
-	//        headers: []
-	//      }
-	//    ];
-	//  }
-	// }
 });

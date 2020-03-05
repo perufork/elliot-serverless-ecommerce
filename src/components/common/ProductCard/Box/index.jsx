@@ -1,4 +1,5 @@
 // import Label from "../Label";
+import { FormattedMessage } from "react-intl";
 import Link from "next/link";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
@@ -25,7 +26,9 @@ export default ({ slug, name, images, skus, onClick, locale }) => {
 				</Link>
 				<div>
 					<button type="button" onClick={onClick}>
-						<strong>Add to cart</strong>
+						<strong>
+							<FormattedMessage id="button.add_to_cart" />
+						</strong>
 					</button>
 					{/* <ul>
 					<li>

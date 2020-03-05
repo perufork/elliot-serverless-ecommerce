@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import { Fragment } from "react";
 import Link from "next/link";
 import { Flex, Item } from "./styles";
@@ -8,11 +9,13 @@ const Breadcrumbs = ({ links, flexAlign }) => (
 			<Fragment key={id}>
 				{active ? (
 					<Item active as="span">
-						{name}
+						<FormattedMessage id={name} />
 					</Item>
 				) : (
 					<Link href={link} as={as} key={id}>
-						<Item as="a">{name}</Item>
+						<Item as="a">
+							<FormattedMessage id={name} />
+						</Item>
 					</Link>
 				)}
 			</Fragment>
