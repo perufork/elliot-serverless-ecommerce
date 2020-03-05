@@ -10,7 +10,7 @@ export default ({
 	location = "",
 	cover
 }) => {
-	const { formatMessage, locale } = useIntl();
+	const { formatMessage } = useIntl();
 
 	return (
 		<Head>
@@ -106,7 +106,6 @@ export default ({
 						: title
 					: "Elliot Headless Pacakge"}
 			</title>
-			<html lang={locale} dir="ltr" />
 		</Head>
 	);
 };

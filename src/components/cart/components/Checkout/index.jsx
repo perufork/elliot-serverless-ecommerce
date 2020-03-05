@@ -11,8 +11,6 @@ const Checkout = ({ handleSubmit }) => {
 	const { locale } = useIntl();
 	const { state } = useCart();
 
-	console.log({ cartState: state });
-
 	return (
 		<Wrapper as={Container}>
 			<Actions>

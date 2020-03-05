@@ -17,9 +17,13 @@ module.exports = withImages({
 		PLACES_API_KEY: process.env.PLACES_API_KEY,
 		ELLIOT_DOMAIN_ID: process.env.ELLIOT_DOMAIN_ID,
 		ELLIOT_ORDER_DETAILS_URL: process.env.ELLIOT_ORDER_DETAILS_URL,
-		ELLIOT_EXCHANGE_RATES_URL: process.env.ELLIOT_EXCHANGE_RATES_URL,
 		ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL:
-			process.env.ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL
+			process.env.ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL,
+		ELLIOT_ALGOLIA_APP_ID: process.env.ELLIOT_ALGOLIA_APP_ID,
+		ELLIOT_ALGOLIA_API_KEY: process.env.ELLIOT_ALGOLIA_API_KEY,
+		ENVIRONMENT: process.env.ENVIRONMENT,
+		ELLIOT_STORE_FRONT_NAME: process.env.ELLIOT_STORE_FRONT_NAME,
+		ELLIOT_EXCHANGE_RATES_URL: process.env.ELLIOT_EXCHANGE_RATES_URL
 	},
 	webpack: config => {
 		if (config.resolve.modules)
@@ -36,14 +40,4 @@ module.exports = withImages({
 			];
 		}
 	}
-	// experimental: {
-	//  async headers() {
-	//    return [
-	//      {
-	//        source: "/",
-	//        headers: []
-	//      }
-	//    ];
-	//  }
-	// }
 });

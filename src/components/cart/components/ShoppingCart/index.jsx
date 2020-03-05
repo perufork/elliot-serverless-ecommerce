@@ -1,5 +1,6 @@
+import { Fragment } from "react";
 import Link from "next/link";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart, useDispatchCart } from "providers/CartProvider";
@@ -20,24 +21,44 @@ import {
 } from "./styles";
 
 const ShoppingCart = ({ handleQuantity, quantities }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
 
+	const uniqueAttributes = array => [...new Set(array)];
+	const uniqueKeys = array =>
+		Object.keys(array.reduce((result, obj) => Object.assign(result, obj), {}));
+
 	return (
 		<Container>
-			{state?.data?.length > 0 ? (
+			{state && state.data && state.data.length > 0 ? (
 				<TableWrapper>
 					<Table>
 						<Thead>
 							<tr>
-								<th>Product</th>
-								<th>Color</th>
-								<th>Size</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th>Total</th>
+								<th>
+									<FormattedMessage id="cart.th.product" />
+								</th>
+								{uniqueKeys(
+									uniqueAttributes(
+										state.data.map(({ sku: { attributes } }) => attributes)
+									)
+								).map((value, i) => (
+									<th key={i}>{value}</th>
+								))}
+								<th>
+									<FormattedMessage id="cart.th.price" />
+								</th>
+								<th>
+									<FormattedMessage id="cart.th.product" />
+								</th>
+								<th>
+									<FormattedMessage id="cart.th.quantity" />
+								</th>
+								<th>
+									<FormattedMessage id="cart.th.total" />
+								</th>
 								<th></th>
 							</tr>
 						</Thead>
@@ -82,14 +103,20 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 													</Content>
 												</Product>
 											</td>
-											<td>
-												<Swatch color="#70849d" />
-											</td>
-											<td>M</td>
+											{sku.attributes &&
+												Object.entries(sku.attributes).map((value, i) => (
+													<td key={i}>
+														{value[0] === "Color" ? (
+															<Swatch color={value[1]} />
+														) : (
+															value[1]
+														)}
+													</td>
+												))}
 											<td>
 												{sku?.salePrice && (
 													<NumberFormat
-														value={sku.salePrice / 100}
+														value={(sku.salePrice * exchangeRate) / 100}
 														displayType={"text"}
 														thousandSeparator={true}
 														prefix={currency}
@@ -111,12 +138,19 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<p>
 													{sku?.salePrice && (
 														<strong>
-															<NumberFormat
-																value={(sku.salePrice / 100) * quantity}
-																displayType={"text"}
-																thousandSeparator={true}
-																prefix={currency}
-															/>
+															{loading ? (
+																"..."
+															) : (
+																<NumberFormat
+																	value={
+																		((sku.salePrice * exchangeRate) / 100) *
+																		quantity
+																	}
+																	displayType={"text"}
+																	thousandSeparator={true}
+																	prefix={currency}
+																/>
+															)}
 														</strong>
 													)}
 												</p>
@@ -125,7 +159,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<button
 													type="button"
 													onClick={() =>
-														removeFromCart({ dispatch, id, skuId: sku.id })
+														removeFromCart({ dispatch, skuId: sku.id })
 													}
 												>
 													<CancelIcon width={16} height={16} color="#a5a5a5" />
@@ -139,7 +173,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 					</Table>
 				</TableWrapper>
 			) : (
-				<BackToShop title="No items on cart" />
+				<BackToShop title="cart.empty_state" />
 			)}
 		</Container>
 	);

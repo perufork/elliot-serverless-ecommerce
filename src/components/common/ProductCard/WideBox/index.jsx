@@ -25,7 +25,7 @@ export default ({
 	onClick,
 	locale
 }) => {
-	const { state: currency } = useCurrency();
+	const { state: currency, exchangeRate, loading } = useCurrency();
 
 	return (
 		<Wrapper>
@@ -60,12 +60,16 @@ export default ({
 						</Link>
 						{skus?.edges[0]?.node?.salePrice && (
 							<p>
-								<NumberFormat
-									value={skus.edges[0].node.salePrice / 100}
-									displayType={"text"}
-									thousandSeparator={true}
-									prefix={currency}
-								/>
+								{loading ? (
+									"..."
+								) : (
+									<NumberFormat
+										value={(skus.edges[0].node.salePrice * exchangeRate) / 100}
+										displayType={"text"}
+										thousandSeparator={true}
+										prefix={currency}
+									/>
+								)}
 							</p>
 						)}
 					</Details>
