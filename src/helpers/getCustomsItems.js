@@ -3,25 +3,25 @@ import getSkuPrice from "./getSkuPrice";
 import UnitsOfDimension from "./constants/UnitsOfDimension";
 import UnitsOfWeight from "./constants/UnitsOfWeight";
 
-export const getZonosItems = async (cart, domainCurrency) => {
+const getCustomsItems = async (cart, domainCurrency) => {
 	let conversionRate = 1;
 	if (domainCurrency.toLowerCase() !== "usd") {
 		({ rate: conversionRate } = await getExchangeRate(domainCurrency, "usd"));
 	}
 
 	const items = cart.map(({ quantity, product, sku }, cartItemId) => {
+		const metadata = product.metadata?.edges[0]?.node;
 		const {
-			product_category_tag_1: category1 = "",
-			product_category_tag_2: category2 = "",
-			product_category_tag_3: category3 = ""
-		} = product.metadata || {};
+			productCategoryTag1: category1 = "",
+			productCategoryTag2: category2 = "",
+			productCategoryTag3: category3 = ""
+		} = metadata || {};
 
-		const unitOfDimensions =
-			product.unit_of_dimensions || sku.unit_of_dimensions;
+		const unitOfDimensions = product.unitOfDimensions || sku.unitOfDimensions;
 		const dimensionalUnits =
 			UnitsOfDimension.properties[unitOfDimensions].label;
 
-		const unitOfWeight = product.unit_of_weight || sku.unit_of_weight;
+		const unitOfWeight = product.unitOfWeight || sku.unitOfWeight;
 		const weightUnits = UnitsOfWeight.properties[unitOfWeight].label;
 
 		return {
@@ -43,3 +43,5 @@ export const getZonosItems = async (cart, domainCurrency) => {
 
 	return { items, conversionRate };
 };
+
+export default getCustomsItems;

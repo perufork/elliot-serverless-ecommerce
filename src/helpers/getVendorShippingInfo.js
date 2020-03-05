@@ -1,6 +1,8 @@
 import getVendorCart from "./getVendorCart";
 import getShippingAmount from "./getShippingAmount";
-import { getZonosItems } from "./getZonosItems";
+import getCustomsItems from "./getCustomsItems";
+import ShippingPreference from "./constants/ShippingPreference";
+import ProductTypes from "./constants/ProductTypes";
 import FlatRateShippingOptions from "./constants/FlatRateShippingOptions";
 import FreeShippingThresholdTarget from "./constants/FreeShippingThresholdTarget";
 import addShippingSurchargeToTax from "./addShippingSurchargeToTax";
@@ -47,13 +49,34 @@ export const getVendorShippingInfo = ({
 
 		return new Promise(async (resolve, reject) => {
 			const domainCurrency = checkout.domain.company.currency;
+			const isSelfCheckout =
+				checkout.shipping_preference === ShippingPreference.IN_STORE;
+
+			let conversionRate = 1;
+			let customsInfo = [];
+
+			const internationalShipping = isSelfCheckout
+				? vendor.country !== "US"
+				: vendor.country !== destination.country;
+
+			if (internationalShipping) {
+				({ items: customsInfo, conversionRate } = await getCustomsItems(
+					vendorCart[vendor.id].filter(
+						({ product: { type } }) => type !== ProductTypes.DOWNLOADABLE
+					),
+					domainCurrency
+				));
+			}
+
 			try {
 				const payload = {
 					shipping_preference: checkout.shippingPreference,
 					amount: vendor.cartPriceSumWithPromo,
 					source: vendorShippingInfo,
 					destination,
-					...(parcels && { parcels: parcels[vendor.id] })
+					...(parcels && { parcels: parcels[vendor.id] }),
+					exchange_rate: conversionRate,
+					customs_info: customsInfo
 				};
 
 				const url = process.env.ELLIOT_ORDER_DETAILS_URL;
@@ -88,56 +111,6 @@ export const getVendorShippingInfo = ({
 				}
 
 				const internationalShipping = vendor.country !== destination.country;
-
-				let duty = 0;
-				let zonosTax = 0;
-
-				if (internationalShipping) {
-					const { items, conversionRate } = await getZonosItems(
-						vendorCart[vendor.id],
-						domainCurrency
-					);
-					const zonosPayload = {
-						shipFromAddress: {
-							name: checkout.shippingLocation.name,
-							address1: checkout.shipFromLocation.address1,
-							address2: checkout.shipFromLocation.address2,
-							city: checkout.shipFromLocation.city,
-							stateCode: checkout.shipFromLocation.state,
-							countryCode: checkout.shipFromLocation.country,
-							postalCode: checkout.shipFromLocation.zipCode
-						},
-						shipToAddress: {
-							address1: destination.street1,
-							city: destination.city,
-							stateCode: destination.state,
-							countryCode: destination.country,
-							postalCode: destination.zip
-						},
-						items
-					};
-
-					let zonosRes = await fetch("/duty", {
-						method: "post",
-						body: JSON.stringify(zonosPayload),
-						headers: {
-							"Content-Type": "application/json"
-						}
-					});
-
-					zonosRes = await zonosRes.json();
-
-					if (zonosRes && zonosRes.shippingQuotes) {
-						const {
-							dutyTaxTotal,
-							duty: zonosDuty
-						} = zonosRes.shippingQuotes[0];
-						duty = Math.round((zonosDuty / conversionRate) * 100);
-						zonosTax = Math.round(
-							((dutyTaxTotal - zonosDuty) / conversionRate) * 100
-						);
-					}
-				}
 
 				let freeShippingThreshold;
 				let shippingOptions;
@@ -174,9 +147,7 @@ export const getVendorShippingInfo = ({
 					};
 				})();
 
-				let taxAmount = !internationalShipping
-					? Math.round(resJson.data.tax.amount)
-					: zonosTax;
+				let taxAmount = Math.round(resJson.data.tax.amount);
 
 				taxAmount = await addShippingSurchargeToTax({
 					tax: taxAmount,
@@ -190,7 +161,7 @@ export const getVendorShippingInfo = ({
 						freeShippingThreshold && freeShippingThreshold <= cartPriceSumRaw,
 					vendor: vendor.id,
 					tax: taxAmount,
-					duty,
+					duty: Math.round(resJson.data.tax.amount),
 					shippingOptions
 				});
 			} catch (error) {

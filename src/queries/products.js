@@ -36,6 +36,7 @@ query checkout($id: ID! $domainId: ID!) {
                     unitOfDimensions
                     unitOfWeight
                     salePrice
+                    basePrice
                     weight
                     attributes
                     stripeId
@@ -76,6 +77,15 @@ query checkout($id: ID! $domainId: ID!) {
                     domainCommission
                     slug
                   }
+                }
+              }
+            }
+            metadata {
+              edges {
+                node {
+                  productCategoryTag1
+                  productCategoryTag2
+                  productCategoryTag3
                 }
               }
             }
