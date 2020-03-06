@@ -3,11 +3,18 @@ import { FormattedMessage, useIntl } from "react-intl";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart, useDispatchCart } from "providers/CartProvider";
-import { CancelIcon } from "components/common/Icons";
+import { CancelIcon, EmptyCart } from "components/common/Icons";
 import Button from "components/common/Button";
 import { removeFromCart } from "components/cart/actions";
 import getTotal from "helpers/getTotal";
-import { Wrapper, CartItem, Thumbnail, Content, CartFooter } from "./styles";
+import {
+	Wrapper,
+	CartItem,
+	Thumbnail,
+	Content,
+	CartFooter,
+	EmptyState
+} from "./styles";
 
 const CartSidebar = ({ toggleSidebar }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -94,7 +101,10 @@ const CartSidebar = ({ toggleSidebar }) => {
 					</CartFooter>
 				</div>
 			) : (
-				<h4>No items on Cart</h4>
+				<EmptyState>
+					<EmptyCart />
+					<h4>Your cart is empty</h4>
+				</EmptyState>
 			)}
 		</Wrapper>
 	);

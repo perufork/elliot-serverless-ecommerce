@@ -6,7 +6,7 @@ import { Wrapper, Burger, Close, Nav, Overlay, Content } from "./styles";
 export default ({ visibleSidebar, toggleSidebar, content }) => {
 	const renderContent = () => {
 		switch (content) {
-			case "sidebar":
+			case "cart":
 				return (
 					<CartSidebar
 						toggleSidebar={() =>

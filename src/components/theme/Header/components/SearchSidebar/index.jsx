@@ -1,27 +1,13 @@
 import { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
-import {
-	InstantSearch,
-	SearchBox,
-	// connectStateResults,
-	Configure
-} from "react-instantsearch-dom";
-import { Wrapper, Error } from "./styles";
+import { InstantSearch, SearchBox, Configure } from "react-instantsearch-dom";
+import { Wrapper } from "./styles";
 import Results from "./components/Results";
 
 const searchClient = algoliasearch(
 	process.env.ELLIOT_ALGOLIA_APP_ID,
 	process.env.ELLIOT_ALGOLIA_API_KEY
 );
-
-// const Results = connectStateResults(
-// 	({ searchState, searchResults, children }) =>
-// 		searchResults && searchResults.nbHits !== 0 ? (
-// 			children
-// 		) : (
-// 			<Error>No results have been found for {searchState.query}.</Error>
-// 		)
-// );
 
 const Search = () => {
 	const [search, toggleSearch] = useState(false);
@@ -49,11 +35,6 @@ const Search = () => {
 					onChange={e => handleSearchChange(e)}
 					onReset={() => toggleSearch(false)}
 				/>
-				{/* {search && (
-					<Results>
-						<Hits hitComponent={Hit} />
-					</Results>
-				)} */}
 				{search && <Results />}
 			</InstantSearch>
 		</Wrapper>
