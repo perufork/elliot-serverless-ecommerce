@@ -9,10 +9,10 @@ export default ({ collections }) => {
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
 
-	const toggleSidebar = ({ type, cart }) => {
+	const toggleSidebar = ({ type, content }) => {
 		dispatch({
 			type,
-			cartContent: cart
+			content
 		});
 	};
 
@@ -21,7 +21,7 @@ export default ({ collections }) => {
 			<Sidebar
 				visibleSidebar={state.open}
 				toggleSidebar={toggleSidebar}
-				showCartContent={state.cartContent}
+				content={state.content}
 			/>
 			<Wrapper>
 				<Brand />

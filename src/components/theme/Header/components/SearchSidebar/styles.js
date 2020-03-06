@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		top: 50%;
+		top: 15px;
 		transform: translateY(-50%);
 		right: 0;
 		border: none;
