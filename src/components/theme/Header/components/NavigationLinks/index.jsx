@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { useIntl } from "react-intl";
+import { useCurrency } from "providers/CurrencyProvider";
 import languages from "helpers/languages";
+import currencies from "helpers/currencies.json";
+import Dropdown from "../../../../common/Dropdown";
 import {
 	Navigation,
 	Menu,
@@ -11,35 +14,27 @@ import {
 } from "./styles";
 
 const NavigationLinks = ({ toggleSidebar }) => {
-	const { locale } = useIntl();
+	const { state: currency, setState: setCurrency } = useCurrency();
 
 	return (
 		<Navigation>
 			<Options>
 				<List>
-					{languages.map(({ title, code }, i) => (
-						<li key={i}>
-							<Link href="/[lang]/" as={`/${code}/`}>
-								<a
-									className={code === locale ? "active" : 0}
-									onClick={toggleSidebar}
-								>
-									{title}
-								</a>
-							</Link>
-						</li>
-					))}
+					<Dropdown
+						standalone
+						options={languages}
+						displayDefaultValue
+						languages
+					/>
 				</List>
 				<List>
-					{["USD", "GPB"].map((item, i) => (
-						<li key={i}>
-							<Link href="/" as="/">
-								<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
-									{item}
-								</a>
-							</Link>
-						</li>
-					))}
+					<Dropdown
+						standalone
+						options={currencies}
+						currency={currency}
+						setCurrency={setCurrency}
+						displayDefaultValue
+					/>
 				</List>
 			</Options>
 			<Menu>

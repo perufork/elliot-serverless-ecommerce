@@ -79,9 +79,10 @@ export const MenuBottom = styled.div`
 
 export const List = styled.ul`
 	max-width: 12.5rem;
+	width: 130px;
 
 	li {
-		padding: 0.625rem 0;
+		width: 100% !important;
 		list-style: none;
 
 		a {
