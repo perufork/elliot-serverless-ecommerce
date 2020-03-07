@@ -1,14 +1,9 @@
 import { useState /* useEffect */ } from "react";
 import Button from "components/common/Button";
+import NumberFormat from "react-number-format";
 
-const BuyButton = ({ canSubmit, price }) => {
+const BuyButton = ({ canSubmit, price, currency, loadingCurrency }) => {
 	const [loading /* setLoading */] = useState(false);
-
-	const buttonContent = loading ? (
-		<span className="loader--simple"></span>
-	) : (
-		`PAY $${price}`
-	);
 
 	// useEffect(() => {
 	//   if (checkout.shipping_preference === ShippingPreference.IN_STORE) {
@@ -40,7 +35,19 @@ const BuyButton = ({ canSubmit, price }) => {
 			wide
 			marginBottom={1}
 		>
-			{buttonContent}
+			{loading || loadingCurrency ? (
+				<span className="loader--simple"></span>
+			) : (
+				<>
+					PAY{" "}
+					<NumberFormat
+						value={price}
+						displayType={"text"}
+						thousandSeparator={true}
+						prefix={currency}
+					/>
+				</>
+			)}
 		</Button>
 	);
 };

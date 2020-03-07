@@ -20,7 +20,7 @@ import {
 import {
 	ButtonGroup,
 	// Favorite,
-	MainAction,
+	// MainAction,
 	// Review,
 	Shop,
 	Sku,
@@ -178,7 +178,7 @@ const Details = ({
 						<HeartIcon height={24} width={24} />
 					</Favorite> */}
 				</ButtonGroup>
-				<MainAction>
+				{/* <MainAction>
 					<Button
 						onClick={() => alert("buy now")}
 						type="button"
@@ -187,7 +187,7 @@ const Details = ({
 					>
 						<FormattedMessage id="button.buy_now" />
 					</Button>
-				</MainAction>
+				</MainAction> */}
 			</Shop>
 			{/* <Specs>
 				{categories && (

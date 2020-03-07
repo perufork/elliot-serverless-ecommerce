@@ -22,6 +22,7 @@ import getVendors from "helpers/getVendors";
 import getVendorParcels from "helpers/getVendorParcels";
 import getShippingPayload from "helpers/getShippingPayload";
 import getCartTotalWithPromo from "helpers/getCartTotalWithPromo";
+import { useCurrency } from "providers/CurrencyProvider";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
@@ -29,6 +30,11 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		state,
 		state: { data: cart }
 	} = useCart();
+	const {
+		state: currency,
+		exchangeRate,
+		loading: loadingCurrency
+	} = useCurrency();
 	const [loadingShippingInfo, setLoadingShippingInfo] = useState(false);
 	const [paymentLoading, setPaymentLoading] = useState(false);
 	const [cardError, setCardError] = useState(false);
@@ -582,7 +588,12 @@ const CreditCardForm = ({ stripe, checkout }) => {
 							</FieldWrapper>
 							<div>
 								<div>{paymentLoading ? "LOADING..." : paymentState}</div>
-								<BuyButton canSubmit={canSubmit} price={getTotal(state.data)} />
+								<BuyButton
+									canSubmit={canSubmit}
+									price={getTotal(state.data, exchangeRate)}
+									currency={currency}
+									loadingCurrency={loadingCurrency}
+								/>
 								<Link href="/[lang]/" as={`/${locale}/`}>
 									<Button as="a" wide variant="secondary">
 										<FormattedMessage id="button.go_back" />

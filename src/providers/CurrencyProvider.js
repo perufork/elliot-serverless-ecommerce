@@ -18,7 +18,7 @@ export const CurrencyProvider = ({ children }) => {
 
 			const { data } = await axios.get(url);
 
-			setRate(Number.parseFloat(data.rate).toFixed(4));
+			setRate(Number.parseFloat(data.rate).toFixed(2));
 			setLoading(false);
 		};
 
