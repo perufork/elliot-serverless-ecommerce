@@ -69,7 +69,7 @@ export default ({
 							key={i}
 							onClick={() => {
 								addToCart({ dispatch, payload: node });
-								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+								dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 							}}
 							grid={grid}
 							{...node}

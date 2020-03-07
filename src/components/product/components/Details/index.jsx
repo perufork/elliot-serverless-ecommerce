@@ -93,7 +93,7 @@ const Details = ({
 				}
 			});
 		}
-		dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
+		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 	};
 
 	return (
