@@ -1,38 +1,56 @@
 import NavigationLinks from "components/theme/Header/components/NavigationLinks";
 import CartSidebar from "components/theme/Header/components/CartSidebar";
+import SearchSidebar from "components/theme/Header/components/SearchSidebar";
 import { Wrapper, Burger, Close, Nav, Overlay, Content } from "./styles";
 
-export default ({ visibleSidebar, toggleSidebar, showCartContent }) => (
-	<>
-		<Overlay
-			visible={visibleSidebar}
-			onClick={() => toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })}
-		/>
-		<Wrapper>
-			<Nav visible={visibleSidebar}>
-				<Burger>
-					<Close
-						onClick={() =>
-							toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })
+export default ({ visibleSidebar, toggleSidebar, content }) => {
+	const renderContent = () => {
+		switch (content) {
+			case "cart":
+				return (
+					<CartSidebar
+						toggleSidebar={() =>
+							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
 						}
 					/>
-				</Burger>
-				<Content>
-					{showCartContent ? (
-						<CartSidebar
-							toggleSidebar={() =>
-								toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })
+				);
+			case "search":
+				return (
+					<SearchSidebar
+						toggleSidebar={() =>
+							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
+						}
+					/>
+				);
+			default:
+				return (
+					<NavigationLinks
+						toggleSidebar={() =>
+							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
+						}
+					/>
+				);
+		}
+	};
+
+	return (
+		<>
+			<Overlay
+				visible={visibleSidebar}
+				onClick={() => toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })}
+			/>
+			<Wrapper>
+				<Nav visible={visibleSidebar}>
+					<Burger>
+						<Close
+							onClick={() =>
+								toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
 							}
 						/>
-					) : (
-						<NavigationLinks
-							toggleSidebar={() =>
-								toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })
-							}
-						/>
-					)}
-				</Content>
-			</Nav>
-		</Wrapper>
-	</>
-);
+					</Burger>
+					<Content>{renderContent()}</Content>
+				</Nav>
+			</Wrapper>
+		</>
+	);
+};

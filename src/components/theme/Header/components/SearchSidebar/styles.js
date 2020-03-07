@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		top: 50%;
+		top: 15px;
 		transform: translateY(-50%);
 		right: 0;
 		border: none;
@@ -91,27 +91,5 @@ export const Wrapper = styled.div`
 			border-color: ${({ theme: { colors } }) => colors.black};
 			border-bottom-color: ${({ theme: { colors } }) => colors.lightGray};
 		}
-	}
-`;
-
-export const Error = styled.div`
-	position: absolute;
-	font-size: 1rem;
-	text-align: center;
-	top: 38px;
-	width: 344px;
-	z-index: 7;
-	background: #fff;
-	max-height: 500px;
-	box-shadow: 0 7px 10px 0px rgba(0, 0, 0, 0.09);
-	border-radius: 2px;
-	right: 0;
-	padding: 1rem;
-
-	@media (max-width: 960px) {
-		position: fixed;
-		top: 45px;
-		left: 0;
-		width: 100vw;
 	}
 `;

@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const CartItem = styled.div`
 	display: flex;
 	justify-content: space-between;
+	border-bottom: 1px solid #e9e6e6;
+	padding: 1rem 0;
+
+	&:last-child {
+		border-bottom: unset;
+	}
 `;
 
 export const Thumbnail = styled.div`

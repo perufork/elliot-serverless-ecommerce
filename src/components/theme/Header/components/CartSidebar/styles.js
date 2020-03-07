@@ -99,3 +99,7 @@ export const CartFooter = styled.div`
 		}
 	}
 `;
+
+export const EmptyState = styled.div`
+	text-align: center;
+`;
