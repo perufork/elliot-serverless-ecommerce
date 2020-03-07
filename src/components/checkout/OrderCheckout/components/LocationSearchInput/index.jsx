@@ -30,7 +30,8 @@ const LocationSearchInput = ({
 					}
 				}
 
-				form.setFieldValue("addressLine1", address);
+				form.setFieldValue("addressLine1", locationValues["addressLine1"]);
+
 				onSelect(
 					locationValues["addressLine1"],
 					locationValues["addressLine2"],

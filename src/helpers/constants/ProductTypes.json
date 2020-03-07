@@ -1,0 +1,8 @@
+{
+	"NON_DOWNLOADABLE": 1,
+	"DOWNLOADABLE": 2,
+	"properties": {
+		"1": { "label": "Non-Downloadable" },
+		"2": { "label": "Downloadable" }
+	}
+}

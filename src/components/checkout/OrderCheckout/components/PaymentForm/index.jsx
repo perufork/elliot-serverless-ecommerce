@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import CreditCardForm from "components/checkout/OrderCheckout/components/CreditCardForm";
 
-const PaymentForm = () => {
+const PaymentForm = ({ checkout }) => {
 	const [stripe, setStripe] = useState(null);
 
 	useEffect(() => {
@@ -10,9 +10,9 @@ const PaymentForm = () => {
 	}, []);
 
 	return (
-		<StripeProvider stripe={stripe}>
+		<StripeProvider stripe={stripe} checkout={checkout}>
 			<Elements>
-				<CreditCardForm />
+				<CreditCardForm checkout={checkout} />
 			</Elements>
 		</StripeProvider>
 	);

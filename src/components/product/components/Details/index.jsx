@@ -40,6 +40,7 @@ const Details = ({
 	// categories,
 	// tags,
 	images,
+	metadata,
 	slug,
 	attributes,
 	quantity: inventoryQuantity
@@ -86,7 +87,8 @@ const Details = ({
 						description,
 						images,
 						slug,
-						attributes
+						attributes,
+						metadata
 					},
 					quantity,
 					sku: selectedVariant

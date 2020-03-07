@@ -1,0 +1,8 @@
+{
+	"INCHES": 1,
+	"CENTIMETERS": 2,
+	"properties": {
+		"1": { "label": "in" },
+		"2": { "label": "cm" }
+	}
+}

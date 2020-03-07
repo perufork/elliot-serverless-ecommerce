@@ -1,0 +1,10 @@
+{
+	"PROFILE_NODE": 1,
+	"DOMAIN_NODE": 2,
+	"CHECKOUT_NODE": 3,
+	"properties": {
+		"1": { "label": "ProfileNode" },
+		"2": { "label": "DomainNode" },
+		"3": { "label": "CheckoutNode" }
+	}
+}

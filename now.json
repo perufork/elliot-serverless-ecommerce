@@ -9,6 +9,8 @@
 			"STRIPE_API_PUBLISHABLE_KEY_TEST": "@stripe_api_publishable_key_test",
 			"PLACES_API_KEY": "@places_api_key",
 			"ELLIOT_DOMAIN_ID": "@elliot_domain_id",
+			"ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL": "@elliot_create_order_shipping_function_url",
+			"ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL": "@elliot_create_order_self_checkout_function_url",
 			"ENVIRONMENT": "@environement",
 			"ELLIOT_ALGOLIA_APP_ID": "@elliot_algolia_app_id",
 			"ELLIOT_ALGOLIA_API_KEY": "@elliot_algolia_api_key",

@@ -7,7 +7,7 @@ import Container from "components/common/Container";
 import BackToShop from "components/common/BackToShop";
 import { useCart } from "providers/CartProvider";
 
-const Items = () => {
+const Items = ({ checkout }) => {
 	const { locale } = useIntl();
 	const { state } = useCart();
 
@@ -35,7 +35,7 @@ const Items = () => {
 			{state?.data?.length > 0 ? (
 				<Flex as={Container} align="flex-start">
 					<Item col={6} colTablet={12} colMobile={12} gap={2}>
-						<PaymentForm />
+						<PaymentForm checkout={checkout} />
 					</Item>
 					<Item col={6} colTablet={12} colMobile={12} gap={2}>
 						<Summary />

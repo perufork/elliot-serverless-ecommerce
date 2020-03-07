@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState /* useEffect */ } from "react";
 import Button from "components/common/Button";
 
 const BuyButton = ({ canSubmit, price }) => {
-	const [loading, setLoading] = useState(false);
+	const [loading /* setLoading */] = useState(false);
 
 	const buttonContent = loading ? (
 		<span className="loader--simple"></span>

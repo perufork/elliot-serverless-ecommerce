@@ -1,17 +1,15 @@
 import axios from "axios";
-import productsQuery from "queries/products";
+import checkoutQuery from "queries/checkout";
 
 export default async () => {
 	const {
 		data: {
-			data: {
-				node: { products }
-			}
+			data: { node: checkout }
 		}
 	} = await axios.post(
 		process.env.ELLIOT_API,
 		{
-			query: productsQuery,
+			query: checkoutQuery,
 			variables: {
 				id: process.env.ELLIOT_STORE_FRONT_ID,
 				domainId: process.env.ELLIOT_DOMAIN_ID
@@ -25,5 +23,5 @@ export default async () => {
 		}
 	);
 
-	return products;
+	return checkout;
 };
