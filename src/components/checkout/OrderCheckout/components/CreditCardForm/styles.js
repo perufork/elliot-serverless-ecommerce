@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const FieldWrapper = styled.div`
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 
 	input {
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
 	}
 
 	label {

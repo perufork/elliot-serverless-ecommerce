@@ -95,6 +95,34 @@ const Button = styled.button`
 				return null;
 		}
 	}}
+
+	${({ state }) => {
+		switch (state) {
+			case "PAYMENT SUCCESSFUL":
+				return `
+					background: #4CAF50;
+
+					&:hover {
+							background: #81C784;
+					}
+			`;
+			case "PAYMENT FAILED":
+				return `
+					background: #f44336;
+
+					&:hover {
+							background: #ef9a9a;
+					}
+			`;
+			default:
+				return null;
+		}
+	}}
+
+	&:disabled {
+		background-color: #cccccc;
+		color: #666666;
+	}
 `;
 
 export default Button;

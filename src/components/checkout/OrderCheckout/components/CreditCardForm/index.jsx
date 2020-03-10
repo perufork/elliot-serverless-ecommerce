@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { Flex, Item } from "react-flex-ready";
+import Select from "react-select";
 // import axios from "axios";
 import { Formik, Field, Form, FastField, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -13,6 +14,7 @@ import { useCart } from "providers/CartProvider";
 import InputField from "components/common/InputField";
 import Button from "components/common/Button";
 import ErrorField from "components/common/ErrorField";
+import Loader from "components/common/Loader";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
 import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
 import { FieldWrapper, CreditCardWrap } from "./styles";
@@ -38,7 +40,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 	const [loadingShippingInfo, setLoadingShippingInfo] = useState(false);
 	const [paymentLoading, setPaymentLoading] = useState(false);
 	const [cardError, setCardError] = useState(false);
-	const [paymentState, setPaymentState] = useState("");
+	const [paymentState, setPaymentState] = useState(null);
 	const [domainOwnerShippingOption, setDomainOwnerShippingOption] = useState();
 	const [validCard, setCardValidity] = useState(false);
 	const [cardOnBlurMessage, setCardOnBlurMessage] = useState("");
@@ -148,7 +150,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		});
 	};
 
-	const onFieldBlur = (fieldName, values, dirty, errors) => {
+	const onFieldBlur = async (fieldName, values, dirty, errors) => {
 		const updatedTouchedErrors = { ...touchedErrors };
 		if (fieldName in errors) {
 			updatedTouchedErrors[fieldName] = true;
@@ -171,7 +173,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 				selectedShippingOptionIndex === -1 ||
 				isAddressDirty(fieldName, values[fieldName])
 			) {
-				getOrderTaxAndShippingCost({
+				await getOrderTaxAndShippingCost({
 					shippingDestination,
 					cartPriceSumRaw,
 					setDomainOwnerShippingOption,
@@ -256,7 +258,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 				try {
 					// Within the context of `Elements`, this call to createToken knows which Element to
 					// tokenize, since there's only one in this group.
-					console.log("submitting");
 					const { token } = await stripe.createToken({ name: values.name });
 					setPaymentLoading(true);
 
@@ -265,7 +266,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						return;
 					}
 
-					console.log(token);
+					// console.log(token);
 
 					const {
 						name,
@@ -317,7 +318,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						parcels
 					});
 
-					console.log(payload, null, 2);
+					// console.log(payload, null, 2);
 					const functionURL =
 						process.env.ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL;
 					const res = await fetch(functionURL, {
@@ -327,15 +328,13 @@ const CreditCardForm = ({ stripe, checkout }) => {
 					});
 
 					if (res.ok) {
-						setPaymentState("SUCCESS");
-						console.log("PAYMENT SUCCEEDED");
+						setPaymentState("PAYMENT SUCCESSFUL");
 					} else {
-						setPaymentState("FAIL");
-						console.error("PAYMENT FAILED");
+						setPaymentState("PAYMENT FAILED");
 					}
 				} catch (error) {
-					console.error("PAYMENT FAILED");
-					console.error(error);
+					setPaymentState("PAYMENT FAILED");
+					// console.error({ error });
 				} finally {
 					setPaymentLoading(false);
 				}
@@ -488,66 +487,73 @@ const CreditCardForm = ({ stripe, checkout }) => {
 									</FieldWrapper>
 								</Item>
 							</Flex>
-							<div className="form-group">
-								<label className="shipping-preference-label">
-									<span>Method</span>
-									{loadingShippingInfo && (
-										<span className="loader--simple"></span>
-									)}
-									{loadingShippingInfo ? "LOADING..." : ""}
-								</label>
+							<FieldWrapper>
+								<label>Shipping method</label>
+								{loadingShippingInfo && <Loader />}
 								{freeShipping ? (
-									<select
-										onChange={() => {}}
-										value="free"
-										className="ps-select form-control"
-										style={{
-											backgroundImage: `url(${process.env.ELLIOT_IMAGE_URL}/checkout/select-icon.png)`
+									<Select
+										options={{
+											label: "Free Shipping",
+											value: "free"
 										}}
-									>
-										<option value="free">Free Shipping</option>
-									</select>
+										defaultValue={{
+											label: "Free Shipping",
+											value: "free"
+										}}
+									/>
 								) : selectedShippingOptionIndex !== -1 ? (
-									<select
-										className="ps-select form-control"
-										onChange={e =>
-											setSelectedShippingOptionIndex(e.target.value)
+									<Select
+										onChange={e => setSelectedShippingOptionIndex(e.value)}
+										options={
+											shippingOptions.length > 1
+												? [
+														{
+															label: `${shippingOptions[0].provider} ${
+																shippingOptions[0].type
+															} ${shippingOptions[0] &&
+																shippingOptions[0].days &&
+																` - Arrives in ${shippingOptions[0].days} day(s)`}`,
+															value: 0
+														},
+														{
+															label: `${shippingOptions[1].provider} ${
+																shippingOptions[1].type
+															} ${shippingOptions[1] &&
+																shippingOptions[1].days &&
+																` - Arrives in ${shippingOptions[1].days} day(s)`}`,
+															value: 1
+														}
+												  ]
+												: [
+														{
+															label: `${shippingOptions[0].provider} ${
+																shippingOptions[0].type
+															} ${shippingOptions[0] &&
+																shippingOptions[0].days &&
+																` - Arrives in ${shippingOptions[0].days} day(s)`}`,
+															value: 0
+														}
+												  ]
 										}
-										value={selectedShippingOptionIndex}
-										style={{
-											backgroundImage: `url(${process.env.ELLIOT_IMAGE_URL}/checkout/select-icon.png)`
+										defaultValue={{
+											label: `${shippingOptions[0].provider} ${
+												shippingOptions[0].type
+											} ${shippingOptions[0] &&
+												shippingOptions[0].days &&
+												` - Arrives in ${shippingOptions[0].days} day(s)`}`,
+											value: 0
 										}}
-									>
-										<option value={0}>
-											{`${shippingOptions[0].provider} ${shippingOptions[0].type}`}
-											{shippingOptions[0] && shippingOptions[0].days
-												? ` - Arrives in ${shippingOptions[0].days} day(s)`
-												: null}
-										</option>
-										{shippingOptions.length > 1 && (
-											<option value={1}>
-												{`${shippingOptions[1].provider} ${shippingOptions[1].type}`}
-												{shippingOptions[1] && shippingOptions[1].days
-													? ` - Arrives in ${shippingOptions[1].days} day(s)`
-													: null}
-											</option>
-										)}
-									</select>
+									/>
 								) : (
-									<div className="shipping-preference--initial">
-										<Field
-											className="form-control"
-											name="shipping-preference"
-											placeholder={
-												loadingShippingInfo
-													? ""
-													: "Complete Shipping Information"
-											}
-											disabled
-										/>
-									</div>
+									<Field
+										component={InputField}
+										placeholder={
+											loadingShippingInfo ? "" : "Complete Shipping Information"
+										}
+										disabled
+									/>
 								)}
-							</div>
+							</FieldWrapper>
 							<FieldWrapper>
 								<label>
 									Credit Card
@@ -587,12 +593,13 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								</CreditCardWrap>
 							</FieldWrapper>
 							<div>
-								<div>{paymentLoading ? "LOADING..." : paymentState}</div>
 								<BuyButton
 									canSubmit={canSubmit}
 									price={getTotal(state.data, exchangeRate)}
 									currency={currency}
+									paymentState={paymentState}
 									loadingCurrency={loadingCurrency}
+									paymentLoading={paymentLoading}
 								/>
 								<Link href="/[lang]/" as={`/${locale}/`}>
 									<Button as="a" wide variant="secondary">
