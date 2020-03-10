@@ -1,17 +1,31 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+	width: 100%;
+	z-index: 6;
+	position: fixed;
+	top: 0;
+	left: 0;
+`;
+
+export const Banner = styled.div`
+	padding: 1.2rem 0;
+	text-align: center;
+	color: #fff;
+	background: ${({
+		theme: {
+			colors: { accent }
+		}
+	}) => accent};
+`;
+
 export const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
-	width: 100%;
-	z-index: 6;
 	background-color: ${({ theme: { colors } }) => colors.white};
 	padding: 1rem;
 	transition: ${({ theme: { transitions } }) => transitions.default200};
-	position: fixed;
-	top: 0;
-	left: 0;
 
 	ul {
 		margin-top: 0;

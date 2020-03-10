@@ -1,16 +1,23 @@
 import Link from "next/link";
 import Logo from "components/common/Logo";
-import { Wrapper } from "./styles";
 import { useIntl } from "react-intl";
+import { Wrapper, Img } from "./styles";
 
-const Brand = () => {
+const Brand = ({ seoDetails }) => {
 	const { locale } = useIntl();
 
 	return (
 		<Link href="/[lang]/" as={`/${locale}/`}>
 			<a aria-label="Brand logo">
 				<Wrapper>
-					<Logo width="100%" height={24} />
+					{seoDetails.lookAndFeel ? (
+						<Img
+							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${seoDetails.lookAndFeel.seo.logo}`}
+							alt={seoDetails.lookAndFeel.seo.title}
+						/>
+					) : (
+						<Logo width="100%" height={24} />
+					)}
 				</Wrapper>
 			</a>
 		</Link>

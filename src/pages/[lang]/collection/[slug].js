@@ -1,12 +1,14 @@
+import Error from "next/error";
 import Layout from "components/common/Layout";
+import SEO from "components/common/SEO";
+import Products from "components/listing/Products";
 import withLocale from "hoc/withLocale";
 import locales from "helpers/locales";
 import getCollections from "helpers/getCollections";
-import Products from "components/listing/Products";
-import Error from "next/error";
-import SEO from "components/common/SEO";
+import getSeoDetails from "helpers/getSeoDetails";
+import getPromotion from "helpers/getPromotion";
 
-export const unstable_getStaticPaths = async () => {
+export const getStaticPaths = async () => {
 	const collections = await getCollections();
 
 	const localizedCollections = collections.edges.map(({ node: { slug } }) =>
@@ -14,13 +16,17 @@ export const unstable_getStaticPaths = async () => {
 	);
 
 	return {
-		paths: localizedCollections.flatMap(item => item)
+		paths: localizedCollections.flatMap(item => item),
+		fallback: false
 	};
 };
 
-export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
+export const getStaticProps = async ({ params: { slug, lang } }) => {
 	try {
 		const collections = await getCollections();
+		const seoDetails = await getSeoDetails();
+		const promotion = await getPromotion();
+
 		const collection = collections.edges.find(
 			({ node: { slug: _slug } }) => _slug === slug
 		);
@@ -28,21 +34,37 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 			props: {
 				collection: collection.node,
 				locale: lang,
-				collections: collections
+				collections,
+				seoDetails,
+				promotion
 			}
 		};
 	} catch (error) {
 		return {
-			props: { collection: {}, locale: lang, collections: [] }
+			props: {
+				collection: {},
+				locale: lang,
+				collections: [],
+				seoDetails: {},
+				promotion: {}
+			}
 		};
 	}
 };
 
-const Product = ({ collection, collections }) => (
-	<Layout collections={collections}>
+const Product = ({ collection, collections, seoDetails, promotion }) => (
+	<Layout
+		collections={collections}
+		seoDetails={seoDetails}
+		promotion={promotion}
+	>
 		{collection.products ? (
 			<>
-				<SEO title={collection.name} location={collection.slug} />
+				<SEO
+					title={collection.name}
+					location={collection.slug}
+					seoDetails={seoDetails}
+				/>
 				<Products products={collection.products} collection={collection} />
 			</>
 		) : (

@@ -34,5 +34,6 @@
 	"shipping.local": "Local Delivery",
 	"shipping.calculate": "Calculate Shipping",
 	"shipping.total": "Total",
-	"products.found": "Products Found"
+	"products.found": "Products Found",
+	"banner.free_shipping_over": "Free shipping for all orders over"
 }

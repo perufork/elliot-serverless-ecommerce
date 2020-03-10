@@ -8,12 +8,20 @@ export default ({
 	localizedTitle,
 	localizedDescription,
 	location = "",
-	cover
+	cover,
+	seoDetails
 }) => {
 	const { formatMessage } = useIntl();
 
 	return (
 		<Head>
+			{seoDetails?.lookAndFeel?.seo?.favicon && (
+				<link
+					rel="shortcut icon"
+					type="image/x-icon"
+					href={`${process.env.ELLIOT_BASE_IMAGE_URL}${seoDetails.lookAndFeel.seo.favicon}`}
+				/>
+			)}
 			<meta
 				name="title"
 				content={
@@ -72,8 +80,18 @@ export default ({
 			{/* <meta property="fb:app_id" content={social.facebook} /> */}
 
 			<meta name="twitter:card" content="summary" />
-			{/* <meta name="twitter:creator" content={socialLinks.twitter} />
-			<meta name="twitter:site" content={social.twitter} /> */}
+			{seoDetails?.lookAndFeel?.seo?.twitter_tittle && (
+				<>
+					<meta
+						name="twitter:creator"
+						content={seoDetails.lookAndFeel.seo.twitter_account_id}
+					/>
+					<meta
+						name="twitter:site"
+						content={seoDetails.lookAndFeel.seo.twitter_tittle}
+					/>
+				</>
+			)}
 			<meta
 				name="twitter:title"
 				content={
@@ -81,6 +99,8 @@ export default ({
 						? localizedTitle
 							? formatMessage({ id: localizedTitle })
 							: title
+						: seoDetails?.lookAndFeel?.seo?.twitter_tittle
+						? seoDetails.lookAndFeel.seo.twitter_tittle
 						: "Elliot Headless Pacakge"
 				}
 			/>

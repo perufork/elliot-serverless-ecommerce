@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useCart } from "providers/CartProvider";
 import Button from "components/common/Button";
 import Container from "components/common/Container";
-import Coupon from "components/cart/components/Coupon";
+// import Coupon from "components/cart/components/Coupon";
 import Shipping from "components/cart/components/Shipping";
 import { Wrapper, Actions, Flex } from "./styles";
 
@@ -23,7 +23,7 @@ const Checkout = ({ handleSubmit }) => {
 					<Link href="/[lang]/cart" as={`/${locale}/cart`}>
 						<Button
 							type="button"
-							onClick={() => handleSubmit()}
+							onClick={handleSubmit}
 							wide
 							marginBottom={2}
 							variant="outlined"
@@ -32,7 +32,7 @@ const Checkout = ({ handleSubmit }) => {
 						</Button>
 					</Link>
 				</Flex>
-				<Coupon />
+				{/* <Coupon /> */}
 			</Actions>
 			<Shipping state={state} locale={locale} />
 		</Wrapper>

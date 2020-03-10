@@ -23,14 +23,12 @@ export const addQuantityByProduct = async ({ dispatch, id, skuId }) => {
 
 export const addCustomQuantityByProduct = async ({
 	dispatch,
-	id,
 	quantity,
 	skuId
 }) => {
 	try {
 		await dispatch({
 			type: "ADD_CUSTOM_QUANTITY",
-			id,
 			quantity,
 			skuId
 		});

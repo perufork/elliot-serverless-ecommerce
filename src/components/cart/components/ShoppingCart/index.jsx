@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import NumberFormat from "react-number-format";
@@ -129,7 +128,9 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 													id={id}
 													skuId={sku.id}
 													quantity={
-														quantityByProduct ? quantityByProduct.quantity : 1
+														quantityByProduct
+															? quantityByProduct.quantity
+															: quantity
 													}
 													setQuantity={handleQuantity}
 												/>

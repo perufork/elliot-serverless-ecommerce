@@ -3,32 +3,51 @@ import Items from "components/cart/Items";
 import withLocale from "hoc/withLocale";
 import getCollections from "helpers/getCollections";
 import SEO from "components/common/SEO";
+import getSeoDetails from "helpers/getSeoDetails";
+import getPromotion from "helpers/getPromotion";
+import locales from "helpers/locales";
 
-const Cart = ({ collections }) => (
-	<Layout collections={collections}>
+const Cart = ({ collections, seoDetails, promotion }) => (
+	<Layout
+		collections={collections}
+		seoDetails={seoDetails}
+		promotion={promotion}
+	>
 		<SEO
 			localizedTitle="shop.page.cart_title"
 			localizedDescription="shop.page.description"
+			seoDetails={seoDetails}
 		/>
 		<Items />
 	</Layout>
 );
 
-export const unstable_getStaticProps = async ({ params }) => {
+export const getStaticPaths = async () => ({
+	paths: locales.map(locale => `/${locale}/cart/`),
+	fallback: false
+});
+
+export const getStaticProps = async ({ params }) => {
 	try {
 		const collections = await getCollections();
+		const seoDetails = await getSeoDetails();
+		const promotion = await getPromotion();
 
 		return {
 			props: {
 				collections: collections,
-				locale: params.lang
+				seoDetails,
+				locale: params.lang,
+				promotion
 			}
 		};
 	} catch (error) {
 		return {
 			props: {
 				collections: [],
-				locale: params.lang
+				seoDetails: {},
+				locale: params.lang,
+				promotion: {}
 			}
 		};
 	}

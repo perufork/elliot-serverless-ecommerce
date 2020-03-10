@@ -2,6 +2,7 @@ export default `
 query checkout($id: ID! $domainId: ID!) {
   node(id: $id) {
     ... on CheckoutNode {
+      
       products {
         edges {
           node {

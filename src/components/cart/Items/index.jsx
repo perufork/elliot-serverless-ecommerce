@@ -48,8 +48,8 @@ const Items = () => {
 	};
 
 	const handleSubmit = () => {
-		quantities.forEach(({ id, quantity, skuId }) => {
-			addCustomQuantityByProduct({ dispatch, id, quantity, skuId });
+		quantities.forEach(({ quantity, skuId }) => {
+			addCustomQuantityByProduct({ dispatch, quantity, skuId });
 		});
 	};
 

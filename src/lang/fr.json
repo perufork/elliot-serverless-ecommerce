@@ -34,5 +34,6 @@
 	"shipping.local": "Livraison à domicile",
 	"shipping.calculate": "Calculer Frais de port",
 	"shipping.total": "Total",
-	"products.found": "Produits trouvés"
+	"products.found": "Produits trouvés",
+	"banner.free_shipping_over": "Livraison gratuite pour toutes les commandes à"
 }

@@ -35,7 +35,9 @@ export default {
 		"shipping.local": "Lokale Lieferung",
 		"shipping.calculate": "Berechnen Sie Versandkosten",
 		"shipping.total": "Gesamt",
-		"products.found": "Produkte gefunden"
+		"products.found": "Produkte gefunden",
+		"banner.free_shipping_over":
+			"Kostenloser Versand für alle Bestellungen über"
 	},
 	en: {
 		"button.add_to_cart": "add to cart",
@@ -73,7 +75,8 @@ export default {
 		"shipping.local": "Local Delivery",
 		"shipping.calculate": "Calculate Shipping",
 		"shipping.total": "Total",
-		"products.found": "Products Found"
+		"products.found": "Products Found",
+		"banner.free_shipping_over": "Free shipping for all orders over"
 	},
 	fr: {
 		"button.add_to_cart": "ajouter au chariot",
@@ -111,6 +114,8 @@ export default {
 		"shipping.local": "Livraison à domicile",
 		"shipping.calculate": "Calculer Frais de port",
 		"shipping.total": "Total",
-		"products.found": "Produits trouvés"
+		"products.found": "Produits trouvés",
+		"banner.free_shipping_over":
+			"Livraison gratuite pour toutes les commandes à"
 	}
 };

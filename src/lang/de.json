@@ -34,5 +34,6 @@
 	"shipping.local": "Lokale Lieferung",
 	"shipping.calculate": "Berechnen Sie Versandkosten",
 	"shipping.total": "Gesamt",
-	"products.found": "Produkte gefunden"
+	"products.found": "Produkte gefunden",
+	"banner.free_shipping_over": "Kostenloser Versand für alle Bestellungen über"
 }

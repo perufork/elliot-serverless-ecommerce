@@ -16,3 +16,9 @@ export const Wrapper = styled.div`
 		margin-left: 0;
 	}
 `;
+
+export const Img = styled.img`
+	width: 48px;
+	height: 48px;
+	object-fit: cover;
+`;
