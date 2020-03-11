@@ -140,7 +140,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 													{sku?.salePrice && (
 														<strong>
 															{loading ? (
-																"...."
+																"..."
 															) : (
 																<NumberFormat
 																	value={
