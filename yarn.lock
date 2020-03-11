@@ -1294,10 +1294,10 @@
   resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-2.2.0.tgz#ba6e12fe64ff7fd160be392007c47d24b7ae5c75"
   integrity sha512-+Az7tR1av1DHZu9668D8uh9atT6vp+FFmEF8BrEssv0OqzpVjpVBGVmcgPzQP8k2PQjVlm/h2w8cTt0knn132w==
 
-"@next/polyfill-nomodule@9.3.1-canary.0":
-  version "9.3.1-canary.0"
-  resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.3.1-canary.0.tgz#a3c1d87f3d1eb5f036cb40308463c3a70a056ad3"
-  integrity sha512-+iDJHtns/on4ygdo/8RQCmVp20AgImZcqaJZ/r4ore8VY8lg6q+iH0Pr6ygr0JG2tr5orhOJZXsIYgjN80tRTg==
+"@next/polyfill-nomodule@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.3.0.tgz#5d564a6af7f80f95dba30281dd3420a4a170e219"
+  integrity sha512-CPYTirQylgrtXNHfQriy5V/ur4xURkF5PNRiBg5Tac1fQtCFc6mCJzK4+K0eKcn8mPKdo+20stnr9dvOtrajXw==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -5865,15 +5865,23 @@ next-images@^1.2.0:
     file-loader "^5.0.2"
     url-loader "^3.0.0"
 
+next-page-transitions@^1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/next-page-transitions/-/next-page-transitions-1.0.0-beta.2.tgz#7dc305ba956b5e5e4d80ecd58ccaf01bc65fddc0"
+  integrity sha512-j5BIwytcZV3N90brzHRsjOw7AOMZ4JvgK8aeSjanFIEt+tLYoF1LI/LuxlS+B2EQOXSBgxHbxBbUmPZPQEL4Xw==
+  dependencies:
+    prop-types "^15.6.1"
+    react-transition-group "^2.3.1"
+
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next@9.3.1-canary.0:
-  version "9.3.1-canary.0"
-  resolved "https://registry.yarnpkg.com/next/-/next-9.3.1-canary.0.tgz#fe43eb0b4e54ec563198e2253b2076f01501f929"
-  integrity sha512-a/ZeToFdVhcEppgTM/zxR2HkGSquZKIcdYmXg2GoKpwBhnhmCI0UCEn8fblwuLbT4X10LI3qVt++XWf3d1q01Q==
+next@^9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/next/-/next-9.3.0.tgz#7be6ebbddd154214c523fb9e7b88c8e88d553378"
+  integrity sha512-dGuL9xufFqebF0CtbUrOaLXurEjLoqv8Si9U5Yi2ovzsfq2RPjQs8UmgOFYYRjGM4jhJOFCUK0bxLwvSb4uzBg==
   dependencies:
     "@ampproject/toolbox-optimizer" "2.0.0"
     "@babel/core" "7.7.2"
@@ -5891,7 +5899,7 @@ next@9.3.1-canary.0:
     "@babel/preset-typescript" "7.7.2"
     "@babel/runtime" "7.7.2"
     "@babel/types" "7.7.4"
-    "@next/polyfill-nomodule" "9.3.1-canary.0"
+    "@next/polyfill-nomodule" "9.3.0"
     amphtml-validator "1.0.30"
     async-retry "1.2.3"
     async-sema "3.0.0"
@@ -6065,6 +6073,11 @@ npm-run-path@^4.0.0:
   integrity sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==
   dependencies:
     path-key "^3.0.0"
+
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
 
 num2fraction@^1.2.2:
   version "1.2.2"
@@ -6957,7 +6970,7 @@ prop-types-exact@1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@15.7.2, prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -7253,7 +7266,7 @@ react-tabs@^3.1.0:
     classnames "^2.2.0"
     prop-types "^15.5.0"
 
-react-transition-group@^2.2.1:
+react-transition-group@^2.2.1, react-transition-group@^2.3.1:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
   integrity sha512-+HzNTCHpeQyl4MJ/bdE0u6XRMe9+XG/+aL4mCxVN4DnPBQ0/5bfHWPDuOZUzYdMj94daZaZdCCc1Dzt9R/xSSg==

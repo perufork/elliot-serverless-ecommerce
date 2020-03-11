@@ -20,17 +20,15 @@ const Checkout = ({ handleSubmit }) => {
 							<FormattedMessage id="button.continue_shopping" />
 						</Button>
 					</Link>
-					<Link href="/[lang]/cart" as={`/${locale}/cart`}>
-						<Button
-							type="button"
-							onClick={handleSubmit}
-							wide
-							marginBottom={2}
-							variant="outlined"
-						>
-							<FormattedMessage id="button.update_cart" />
-						</Button>
-					</Link>
+					<Button
+						type="button"
+						onClick={handleSubmit}
+						wide
+						marginBottom={2}
+						variant="outlined"
+					>
+						<FormattedMessage id="button.update_cart" />
+					</Button>
 				</Flex>
 				{/* <Coupon /> */}
 			</Actions>
