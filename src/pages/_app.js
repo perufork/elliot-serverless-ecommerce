@@ -1,5 +1,6 @@
 import App from "next/app";
-import { PageTransition } from "next-page-transitions";
+import NProgress from "nprogress";
+import Router from "next/router";
 import { ThemeProvider } from "styled-components";
 import theme from "components/theme";
 import { CartProvider } from "providers/CartProvider";
@@ -7,6 +8,13 @@ import { SidebarProvider } from "providers/SidebarProvider";
 import { CurrencyProvider } from "providers/CurrencyProvider";
 import "react-phone-input-2/lib/style.css";
 import "swiper/css/swiper.css";
+import "nprogress/nprogress.css";
+
+Router.events.on("routeChangeStart", () => {
+	NProgress.start();
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 export default class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
@@ -23,33 +31,15 @@ export default class MyApp extends App {
 		const { Component, pageProps } = this.props;
 		return (
 			<>
-				<PageTransition timeout={300} classNames="page-transition">
-					<CurrencyProvider>
-						<CartProvider>
-							<SidebarProvider>
-								<ThemeProvider theme={theme}>
-									<Component {...pageProps} key={pageProps.route} />
-								</ThemeProvider>
-							</SidebarProvider>
-						</CartProvider>
-					</CurrencyProvider>
-				</PageTransition>
-				<style jsx global>{`
-					.page-transition-enter {
-						opacity: 0;
-					}
-					.page-transition-enter-active {
-						opacity: 1;
-						transition: opacity 300ms;
-					}
-					.page-transition-exit {
-						opacity: 1;
-					}
-					.page-transition-exit-active {
-						opacity: 0;
-						transition: opacity 300ms;
-					}
-				`}</style>
+				<CurrencyProvider>
+					<CartProvider>
+						<SidebarProvider>
+							<ThemeProvider theme={theme}>
+								<Component {...pageProps} />
+							</ThemeProvider>
+						</SidebarProvider>
+					</CartProvider>
+				</CurrencyProvider>
 			</>
 		);
 	}

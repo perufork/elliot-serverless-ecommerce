@@ -26,6 +26,15 @@ query checkout($id: ID! $domainId: ID!) {
             }
             attributes
             ... on ProductNode {
+              collections {
+                edges {
+                  node {
+                    id
+                    name
+                    slug
+                  }
+                }
+              }
               skus {
                 edges {
                   node {

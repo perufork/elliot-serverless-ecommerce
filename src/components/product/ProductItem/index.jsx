@@ -1,34 +1,57 @@
-// import { addToCart } from "components/cart/actions";
-// import { useDispatchCart } from "providers/CartProvider";
-// import { useDispatchSidebar } from "providers/SidebarProvider";
+import { useDispatchCart, useCart } from "providers/CartProvider";
+import { useDispatchSidebar } from "providers/SidebarProvider";
+import { addQuantityByProduct, addToCart } from "components/cart/actions";
 import BreadcumbsHeader from "components/product/components/BreadcumbsHeader";
 import Container from "components/common/Container";
 import Content from "components/product/components/Content";
-// import ProductCard from "components/common/ProductCard";
+import ProductCard from "components/common/ProductCard";
 import Tabs from "components/common/Tabs";
 import {
 	TabAdditionInformation,
 	TabDescription
-	// TabReview
 } from "components/product/components/Tab";
-// import { Products, Section, SectionTitle } from "./styles";
+import { Products, Section, SectionTitle } from "./styles";
 
 export default ({
-	categories,
+	globalCollections,
+	collections,
 	description,
 	id,
 	slug,
 	name,
-	// products,
 	quantity,
 	skus,
 	tags,
 	images,
 	attributes,
-	metadata
+	metadata,
+	gender
 }) => {
-	// const { dispatch } = useDispatchCart();
-	// const { dispatch: dispatchSidebar } = useDispatchSidebar();
+	const { state } = useCart();
+	const { dispatch } = useDispatchCart();
+	const { dispatch: dispatchSidebar } = useDispatchSidebar();
+
+	const handleCart = (node, item) => {
+		if (item?.quantity >= 1) {
+			addQuantityByProduct({
+				dispatch,
+				id: item.product.id,
+				skuId: item.sku.id
+			});
+		} else {
+			addToCart({
+				dispatch,
+				payload: {
+					product: node,
+					quantity: 1,
+					sku: node.skus?.edges[0]?.node
+				}
+			});
+		}
+		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
+	};
+
+	const ids = [];
 
 	return (
 		<>
@@ -41,7 +64,8 @@ export default ({
 					skus={skus}
 					images={images}
 					description={description}
-					categories={categories}
+					collections={collections}
+					gender={gender}
 					tags={tags}
 					slug={slug}
 					attributes={attributes}
@@ -59,26 +83,42 @@ export default ({
 							title: "Additional Information",
 							content: <TabAdditionInformation skus={skus} />
 						}
-						// { title: "Review", content: <TabReview  /> }
 					]}
 				/>
 			</Container>
-			{/* <Section as={Container}>
+			<Section as={Container}>
 				<SectionTitle>Related Products</SectionTitle>
 				<Products grid={true}>
-					{products?.edges.map(({ node }, i) => (
-						<ProductCard
-							key={i}
-							onClick={() => {
-								addToCart({ dispatch, payload: node });
-								dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
-							}}
-							grid={grid}
-							{...node}
-						/>
-					))}
+					{globalCollections?.edges
+						.filter(collection =>
+							collections.edges.find(
+								item => item.node.id === collection.node.id
+							)
+						)
+						.map(({ node: { products } }) =>
+							products?.edges
+								.filter(({ node }) => node.id !== id)
+								.map(({ node }, i) => {
+									const item = state?.data?.find(
+										({ product }) => product.id === node.id
+									);
+
+									if (ids.includes(node.id)) return null;
+
+									ids.push(node.id);
+
+									return (
+										<ProductCard
+											key={i}
+											onClick={() => handleCart(node, item)}
+											grid
+											{...node}
+										/>
+									);
+								})
+						)}
 				</Products>
-			</Section> */}
+			</Section>
 		</>
 	);
 };

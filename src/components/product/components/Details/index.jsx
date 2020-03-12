@@ -1,5 +1,5 @@
 import { useState, Fragment } from "react";
-// import Link from "next/link";
+import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import Select from "react-select";
 import NumberFormat from "react-number-format";
@@ -7,10 +7,8 @@ import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
-// import Stars from "components/common/Stars";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
-// import { HeartIcon } from "components/common/Icons";
 import Label from "components/common/Label";
 import {
 	FacebookIcon,
@@ -19,13 +17,10 @@ import {
 } from "components/common/Icons/SocialIcon";
 import {
 	ButtonGroup,
-	// Favorite,
-	// MainAction,
-	// Review,
 	Shop,
 	Sku,
 	SocialShares,
-	// Specs,
+	Specs,
 	Wrapper,
 	LabelField
 } from "./styles";
@@ -35,10 +30,7 @@ const Details = ({
 	name,
 	skus,
 	description,
-	// rating = 4,
-	// review = 1,
-	// categories,
-	// tags,
+	collections,
 	images,
 	metadata,
 	slug,
@@ -101,12 +93,6 @@ const Details = ({
 	return (
 		<Wrapper>
 			<div>
-				{/* <Review>
-					<Stars stars={rating} />
-					<span>
-						{review} <FormattedMessage id="product.review" />
-					</span>
-				</Review> */}
 				<h2>{name}</h2>
 				{selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku && (
 					<Sku>SKU: {selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku}</Sku>
@@ -123,7 +109,7 @@ const Details = ({
 								prefix={currency}
 							/>
 						)}
-						{parseInt(inventoryQuantity) <= 0 && (
+						{parseInt(inventoryQuantity) > 0 && (
 							<Label>
 								<span>OUT OF STOCK</span>
 							</Label>
@@ -174,47 +160,26 @@ const Details = ({
 					>
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
-					{/* <Favorite>
-						<HeartIcon height={24} width={24} />
-					</Favorite> */}
 				</ButtonGroup>
-				{/* <MainAction>
-					<Button
-						onClick={() => alert("buy now")}
-						type="button"
-						variant="primary"
-						wide
-					>
-						<FormattedMessage id="button.buy_now" />
-					</Button>
-				</MainAction> */}
 			</Shop>
-			{/* <Specs>
-				{categories && (
+			<Specs>
+				{collections && (
 					<p>
 						<strong>
 							<FormattedMessage id="product.category" />:
 						</strong>
-						{categories.map((item, i) => (
-							<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
-								<a>{item}</a>
+						{collections.edges.map(({ node }) => (
+							<Link
+								key={node.id}
+								href={`/[lang]/collection/[slug]`}
+								as={`/${locale}/collection/${node.slug}`}
+							>
+								<a>{node.name}</a>
 							</Link>
 						))}
 					</p>
 				)}
-				{tags && (
-					<p>
-						<strong>
-							<FormattedMessage id="product.tags" />:
-						</strong>
-						{tags.map((item, i) => (
-							<Link key={i} href={`/[lang]/`} as={`/${locale}/`}>
-								<a>{item}</a>
-							</Link>
-						))}
-					</p>
-				)}
-			</Specs> */}
+			</Specs>
 			<SocialShares>
 				<a
 					href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.BASE_URL}/${locale}/product/${slug}`}

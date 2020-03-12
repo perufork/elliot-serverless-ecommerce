@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	margin-top: 3.8125rem;
+	margin-top: 7.8125rem;
 	padding: 3.75rem 0;
 
 	@media (min-width: 1200px) {

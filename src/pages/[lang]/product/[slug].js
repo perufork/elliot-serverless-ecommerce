@@ -72,7 +72,7 @@ const Product = ({ product, collections, seoDetails, promotion }) => (
 					cover={`${process.env.ELLIOT_BASE_IMAGE_URL}${product.images?.edges[0]?.node?.image}`}
 					seoDetails={seoDetails}
 				/>
-				<ProductItem {...product} />
+				<ProductItem {...product} globalCollections={collections} />
 			</>
 		) : (
 			<Error statusCode={404} />
