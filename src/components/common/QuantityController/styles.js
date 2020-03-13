@@ -12,7 +12,6 @@ export const Wrapper = styled.div`
 		`
 		max-width: 9.375rem;
 		margin: 0;
-		margin-right: auto;
 
 		@media (max-width: 960px) {
 			max-width: 100%;
