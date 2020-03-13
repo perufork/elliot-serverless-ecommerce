@@ -7,7 +7,6 @@ import getProducts from "helpers/getProducts";
 import getCollections from "helpers/getCollections";
 import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
-import locales from "helpers/locales";
 
 const Index = ({ products, collections, seoDetails, promotion }) => (
 	<Layout
@@ -30,12 +29,7 @@ const Index = ({ products, collections, seoDetails, promotion }) => (
 	</Layout>
 );
 
-export const getStaticPaths = async () => ({
-	paths: locales.map(locale => `/${locale}/`),
-	fallback: false
-});
-
-export const getStaticProps = async ({ params: { lang } }) => {
+export const unstable_getStaticProps = async ({ params: { lang } }) => {
 	try {
 		const products = await getProducts();
 		const collections = await getCollections();

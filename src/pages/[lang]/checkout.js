@@ -6,7 +6,6 @@ import getCollections from "helpers/getCollections";
 import getCheckout from "helpers/getCheckout";
 import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
-import locales from "helpers/locales";
 
 const Checkout = ({ collections, checkout, seoDetails, promotion }) => (
 	<Layout
@@ -23,12 +22,7 @@ const Checkout = ({ collections, checkout, seoDetails, promotion }) => (
 	</Layout>
 );
 
-export const getStaticPaths = async () => ({
-	paths: locales.map(locale => `/${locale}/checkout/`),
-	fallback: false
-});
-
-export const getStaticProps = async ({ params }) => {
+export const unstable_getStaticProps = async ({ params }) => {
 	try {
 		const collections = await getCollections();
 		const checkout = await getCheckout();
