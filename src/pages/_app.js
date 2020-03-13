@@ -9,6 +9,7 @@ import { CurrencyProvider } from "providers/CurrencyProvider";
 import "react-phone-input-2/lib/style.css";
 import "swiper/css/swiper.css";
 import "nprogress/nprogress.css";
+import { CheckoutProvider } from "providers/CheckoutProvider";
 
 Router.events.on("routeChangeStart", () => {
 	NProgress.start();
@@ -34,9 +35,11 @@ export default class MyApp extends App {
 				<CurrencyProvider>
 					<CartProvider>
 						<SidebarProvider>
-							<ThemeProvider theme={theme}>
-								<Component {...pageProps} />
-							</ThemeProvider>
+							<CheckoutProvider checkout={pageProps.checkout}>
+								<ThemeProvider theme={theme}>
+									<Component {...pageProps} />
+								</ThemeProvider>
+							</CheckoutProvider>
 						</SidebarProvider>
 					</CartProvider>
 				</CurrencyProvider>

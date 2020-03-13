@@ -1,8 +1,0 @@
-{
-	"TEST": 1,
-	"DEFAULT": 2,
-	"properties": {
-		"1": { "label": "test" },
-		"2": { "label": "default" }
-	}
-}

@@ -18,13 +18,11 @@ import Loader from "components/common/Loader";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
 import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
 import { FieldWrapper, CreditCardWrap } from "./styles";
-import getCartTotal from "helpers/getCartTotal";
-import getOrderTaxAndShippingCost from "helpers/getOrderTaxAndShippingCost";
-import getVendors from "helpers/getVendors";
-import getVendorParcels from "helpers/getVendorParcels";
 import getShippingPayload from "helpers/getShippingPayload";
-import getCartTotalWithPromo from "helpers/getCartTotalWithPromo";
 import { useCurrency } from "providers/CurrencyProvider";
+import getShippingOptions from "helpers/getShippingOptions";
+import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
+import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
@@ -41,19 +39,13 @@ const CreditCardForm = ({ stripe, checkout }) => {
 	const [paymentLoading, setPaymentLoading] = useState(false);
 	const [cardError, setCardError] = useState(false);
 	const [paymentState, setPaymentState] = useState(null);
-	const [domainOwnerShippingOption, setDomainOwnerShippingOption] = useState();
 	const [validCard, setCardValidity] = useState(false);
 	const [cardOnBlurMessage, setCardOnBlurMessage] = useState("");
 	const [shippingOptions, setShippingOptions] = useState([]);
-	const [freeShipping, setFreeShipping] = useState(false);
 	const [
 		selectedShippingOptionIndex,
 		setSelectedShippingOptionIndex
-	] = useState(-1);
-	const [flatRateShipping, setFlatRate] = useState({});
-	const [orderTax, setOrderTax] = useState(0);
-	const [duty, setDuty] = useState(0);
-	const [vendorShippingOptions, setVendorShippingOptions] = useState({});
+	] = useState(0);
 	const [
 		lastAddressUsedToFetchShipping,
 		setLastAddressUsedToFetchShipping
@@ -83,29 +75,14 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		);
 	};
 
-	const parcels = useMemo(() => getVendorParcels({ cart, checkout }), [
-		JSON.stringify(cart)
-	]);
+	const {
+		shippingOptions: displayedShippingOptions,
+		freeShipping
+	} = useMemo(
+		() => getDisplayedShippingOptions({ shippingOptions, checkout }),
+		[JSON.stringify(shippingOptions)]
+	);
 
-	const vendors = useMemo(() => {
-		const vendors = {
-			cart,
-			checkout,
-			shippingOptions,
-			selectedShippingOptionIndex,
-			freeShipping,
-			flatRateShipping,
-			orderTax,
-			duty,
-			vendorShippingOptions
-		};
-
-		return getVendors(vendors);
-	}, [
-		JSON.stringify([cart, selectedShippingOptionIndex, vendorShippingOptions])
-	]);
-
-	const cartPriceSumRaw = getCartTotal(cart);
 	const handleAddressSelected = async (
 		addressLine1,
 		addressLine2,
@@ -121,25 +98,16 @@ const CreditCardForm = ({ stripe, checkout }) => {
 			city,
 			state: selectedState,
 			country: selectedCountry,
-			postal_code: zipCode
+			zip: zipCode
 		};
 
-		await getOrderTaxAndShippingCost({
+		const shippingOptions = await getShippingOptions({
 			shippingDestination,
-			cartPriceSumRaw,
-			setDomainOwnerShippingOption,
-			parcels,
-			vendors,
 			cart,
-			checkout,
-			setFreeShipping,
-			setFlatRate,
-			setVendorShippingOptions,
-			setDuty,
-			setOrderTax,
-			setShippingOptions,
-			setSelectedShippingOptionIndex
+			checkout
 		});
+
+		setShippingOptions(shippingOptions);
 
 		setLoadingShippingInfo(false);
 		setLastAddressUsedToFetchShipping({
@@ -164,31 +132,22 @@ const CreditCardForm = ({ stripe, checkout }) => {
 			city: values.city,
 			state: values.state,
 			country: values.country,
-			postal_code: values.zipCode
+			zip: values.zipCode
 		};
 
 		setTouchedErrors(updatedTouchedErrors);
 		if (dirty && !hasAddressErrors(errors)) {
 			if (
-				selectedShippingOptionIndex === -1 ||
+				!displayedShippingOptions ||
 				isAddressDirty(fieldName, values[fieldName])
 			) {
-				await getOrderTaxAndShippingCost({
+				const shippingOptions = await getShippingOptions({
 					shippingDestination,
-					cartPriceSumRaw,
-					setDomainOwnerShippingOption,
-					parcels,
-					vendors,
 					cart,
-					checkout,
-					setFreeShipping,
-					setFlatRate,
-					setVendorShippingOptions,
-					setDuty,
-					setOrderTax,
-					setShippingOptions,
-					setSelectedShippingOptionIndex
+					checkout
 				});
+
+				setShippingOptions(shippingOptions);
 			}
 			const updatedLastAddressUsedToFetchShipping = {
 				...lastAddressUsedToFetchShipping
@@ -306,16 +265,14 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						checkout,
 						cart,
 						data,
-						cartPriceSumWithPromo: getCartTotalWithPromo(
-							cartPriceSumRaw,
-							checkout.promotion
-						),
-						vendorShippingOptions,
-						domainOwnerShippingOption,
-						vendors,
 						token,
-						cartPriceSumRaw,
-						parcels
+						shippingOptions: adjustShippingOptionsForChoices({
+							displayedShippingOptions,
+							shippingOptions,
+							checkout,
+							selectedShippingOptionIndex
+						}),
+						selectedShippingOptionIndex
 					});
 
 					// console.log(payload, null, 2);
@@ -345,7 +302,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 					isEmpty(errors) &&
 					validCard &&
 					!cardError &&
-					selectedShippingOptionIndex !== -1 &&
+					displayedShippingOptions &&
 					!paymentLoading;
 
 				return (
@@ -501,46 +458,30 @@ const CreditCardForm = ({ stripe, checkout }) => {
 											value: "free"
 										}}
 									/>
-								) : selectedShippingOptionIndex !== -1 ? (
+								) : displayedShippingOptions ? (
 									<Select
 										onChange={e => setSelectedShippingOptionIndex(e.value)}
-										options={
-											shippingOptions.length > 1
-												? [
-														{
-															label: `${shippingOptions[0].provider} ${
-																shippingOptions[0].type
-															} ${shippingOptions[0] &&
-																shippingOptions[0].days &&
-																` - Arrives in ${shippingOptions[0].days} day(s)`}`,
-															value: 0
-														},
-														{
-															label: `${shippingOptions[1].provider} ${
-																shippingOptions[1].type
-															} ${shippingOptions[1] &&
-																shippingOptions[1].days &&
-																` - Arrives in ${shippingOptions[1].days} day(s)`}`,
-															value: 1
-														}
-												  ]
-												: [
-														{
-															label: `${shippingOptions[0].provider} ${
-																shippingOptions[0].type
-															} ${shippingOptions[0] &&
-																shippingOptions[0].days &&
-																` - Arrives in ${shippingOptions[0].days} day(s)`}`,
-															value: 0
-														}
-												  ]
-										}
+										options={displayedShippingOptions.map(
+											({ provider, type, days }) => {
+												let label = `${provider} ${type}`;
+
+												if (days) {
+													label += ` - Arrives in ${shippingOptions[0].days} day(s)`;
+												}
+												return [
+													{
+														label,
+														value: 0
+													}
+												];
+											}
+										)}
 										defaultValue={{
-											label: `${shippingOptions[0].provider} ${
-												shippingOptions[0].type
-											} ${shippingOptions[0] &&
-												shippingOptions[0].days &&
-												` - Arrives in ${shippingOptions[0].days} day(s)`}`,
+											label: `${displayedShippingOptions[0].provider} ${
+												displayedShippingOptions[0].type
+											} ${displayedShippingOptions[0] &&
+												displayedShippingOptions[0].days &&
+												` - Arrives in ${displayedShippingOptions[0].days} day(s)`}`,
 											value: 0
 										}}
 									/>
