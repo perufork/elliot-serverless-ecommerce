@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Loader from "components/common/Loader";
 import ShippingPreference from "helpers/constants/ShippingPreference";
 import { useCart } from "providers/CartProvider";
 import { useCheckout } from "providers/CheckoutProvider";
@@ -21,11 +22,7 @@ const WalletPayBuyButton = ({
 		state: { data: cart }
 	} = useCart();
 
-	const buttonContent = loading ? (
-		<span className="loader--simple"></span>
-	) : (
-		children
-	);
+	const buttonContent = loading ? <Loader /> : children;
 
 	const getTax = async () => {
 		const taxPayload = await getShippingOptions({
