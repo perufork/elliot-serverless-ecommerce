@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	position: relative;
-	overflow: scroll;
+	position: absolute;
 	height: 100%;
-	color: #000;
+	color: ${({ theme: { colors } }) => colors.darkBlack};
 
 	ul:not(:last-child) {
-		border-bottom: 1px solid rgba(214, 214, 214, 0.2);
 		padding-bottom: 1.5rem;
 	}
 
@@ -22,22 +20,26 @@ export const Wrapper = styled.div`
 `;
 
 export const Overlay = styled.div`
-	display: none;
+	display: block;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 200ms ease;
 
 	${({ visible }) =>
 		visible &&
 		`
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  `}
+		pointer-events: initial;
+		opacity: 1;
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0,0.6);
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+	`}
 `;
 
 export const Nav = styled.div`
@@ -45,13 +47,14 @@ export const Nav = styled.div`
 	top: 0;
 	right: 0;
 	width: 100%;
-	max-width: 470px;
+	max-width: 29.375rem;
 	height: 100vh;
+	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 10001;
-	background-color: #fff;
+	background-color: ${({ theme: { colors } }) => colors.white};
 	transform: translateX(100%);
-	border-left: 1px solid #eaeaea;
+	border-left: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1) 0s;
 
 	${({ visible }) =>
@@ -62,59 +65,45 @@ export const Nav = styled.div`
 
 	li {
 		margin-left: 0;
-		width: 250px;
-		transition: all 0.3s ease-in;
+		width: 15.625rem;
+		transition: ${({ theme: { transitions } }) => transitions.default300};
 	}
 `;
 
 export const Burger = styled.div`
-	padding: 2rem 0;
+	padding: 1.25rem 1.875rem 0;
 	width: 100%;
 `;
 
-export const Bar = styled.div`
-	transition: all 0.3s ease-in;
-	border-top: 2px solid;
-	box-sizing: border-box;
+export const Close = styled.div`
+	width: 2.5rem;
+	height: 2.5rem;
+	transition: ${({ theme: { transitions } }) => transitions.default300};
 	cursor: pointer;
-	height: 20px;
-	left: 3rem;
-	position: fixed;
-	top: 26px;
-	width: 25px;
-	z-index: 30;
-	background: #fff;
-	border-top-color: transparent;
-
-	@media screen and (max-width: 576px) {
-		left: 0.5rem;
-	}
+	position: relative;
 
 	&:before {
-		background-color: #000;
-		transition: all 0.3s ease-in;
-		content: "";
 		display: block;
+		content: "";
+		position: absolute;
+		width: 90%;
+		top: 50%;
 		height: 2px;
 		transform: rotate(45deg);
-		left: -2px;
-		width: 28px;
-		position: absolute;
-		top: 7px;
+		background-color: ${({ theme: { colors } }) => colors.darkGray};
+		border-radius: 1px;
 	}
 
 	&:after {
-		background-color: #000;
-		transition: all 0.3s ease-in;
-		bottom: 0;
-		content: "";
 		display: block;
-		height: 2px;
+		content: "";
 		position: absolute;
-		transform: rotate(135deg);
-		bottom: 9px;
-		left: -2px;
-		width: 28px;
+		width: 90%;
+		top: 50%;
+		height: 2px;
+		transform: rotate(-45deg);
+		background-color: ${({ theme: { colors } }) => colors.darkGray};
+		border-radius: 1px;
 	}
 `;
 
@@ -123,5 +112,5 @@ export const Content = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
-	padding: 50px;
+	padding: 3.125rem;
 `;

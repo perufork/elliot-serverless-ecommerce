@@ -5,9 +5,9 @@ export const Wrapper = styled.div`
 `;
 
 export const CartItem = styled.div`
-	padding-bottom: 30px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid #eaeaea;
+	padding-bottom: 1.875rem;
+	margin-bottom: 1.875rem;
+	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 	display: flex;
 	justify-content: space-between;
 
@@ -21,7 +21,7 @@ export const Thumbnail = styled.div`
 	overflow: hidden;
 	z-index: 10;
 	width: 100%;
-	max-width: 120px;
+	max-width: 7.5rem;
 
 	img {
 		width: 100%;
@@ -30,7 +30,7 @@ export const Thumbnail = styled.div`
 
 export const Content = styled.div`
 	position: relative;
-	padding-left: 20px;
+	padding-left: 1.25rem;
 	width: 100%;
 
 	button {
@@ -53,29 +53,29 @@ export const Content = styled.div`
 		position: relative;
 		color: inherit;
 		text-decoration: none;
-		transition: all 0.4s ease;
+		transition: ${({ theme: { transitions } }) => transitions.default400};
 	}
 
 	p {
 		font-size: 16px;
-		color: #999;
+		color: ${({ theme: { colors } }) => colors.darkGray};
 		margin-bottom: 0;
 		line-height: 1.6;
 	}
 `;
 
 export const CartFooter = styled.div`
-	padding-top: 50px;
-	margin-top: 50px;
-	border-top: 1px solid #eaeaea;
+	padding-top: 3.125rem;
+	margin-top: 3.125rem;
+	border-top: 1px solid ${({ theme: { colors } }) => colors.lightnessGray};
 
 	h3 {
 		display: block;
 		font-size: 18px;
 		font-weight: 600;
 		text-transform: capitalize;
-		color: #222;
-		line-height: 30px;
+		color: ${({ theme: { colors } }) => colors.black};
+		line-height: 1.6;
 		margin-top: 0;
 		position: relative;
 
@@ -89,8 +89,8 @@ export const CartFooter = styled.div`
 	}
 
 	button {
-		margin-bottom: 10px;
-		padding: 12px 30px;
+		margin-bottom: 0.625rem;
+		padding: 0.75rem 1.875rem;
 		text-align: center;
 		width: 100%;
 
@@ -98,4 +98,8 @@ export const CartFooter = styled.div`
 			margin-bottom: unset;
 		}
 	}
+`;
+
+export const EmptyState = styled.div`
+	text-align: center;
 `;

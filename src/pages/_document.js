@@ -1,22 +1,9 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import { getServerLocale } from "helpers/locale";
 
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const pageProps = await super.getInitialProps(ctx);
-
-		const { req } = ctx;
-
-		const props = {
-			...pageProps,
-			locale: req.locale,
-			localeDataScript: req.localeDataScript
-		};
-
-		if (!props.locale) {
-			props.locale = getServerLocale(req);
-		}
 
 		const styleSheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
@@ -24,11 +11,11 @@ export default class MyDocument extends Document {
 		try {
 			ctx.renderPage = () =>
 				originalRenderPage({
-					enhanceApp: App => props =>
-						styleSheet.collectStyles(<App {...props} />)
+					enhanceApp: App => pageProps =>
+						styleSheet.collectStyles(<App {...pageProps} />)
 				});
 
-			props.styles = (
+			pageProps.styles = (
 				<>
 					{pageProps.styles}
 					{styleSheet.getStyleElement()}
@@ -38,37 +25,34 @@ export default class MyDocument extends Document {
 			styleSheet.seal();
 		}
 
-		return props;
+		return pageProps;
 	}
 
 	render() {
-		// Polyfill Intl API for older browsers
-		const polyfill = `https://cdn.polyfill.io/v3/polyfill.min.js?features=Intl.~locale.${this.props.locale}`;
-		const fallbackLocaleDataScript = `https://cdn.jsdelivr.net/npm/@formatjs/intl-relativetimeformat/dist/locale-data/${this.props.locale}.js`;
-
 		return (
-			<html lang={this.props.locale}>
+			<Html>
 				<Head>
-					<link
+					{/* <link
 						rel="stylesheet"
 						href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
+					/> */}
+					<script
+						async
+						src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_API_KEY}&libraries=places`}
+					/>
+					<script async src="https://js.stripe.com/v3/" />
+					<link
+						rel="stylesheet"
+						href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+						integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
+						crossOrigin="anonymous"
 					/>
 				</Head>
 				<body>
 					<Main />
-					<script src={polyfill} />
-					{this.props.localeDataScript ? (
-						<script
-							dangerouslySetInnerHTML={{
-								__html: this.props.localeDataScript
-							}}
-						/>
-					) : (
-						<script src={fallbackLocaleDataScript} />
-					)}
 					<NextScript />
 				</body>
-			</html>
+			</Html>
 		);
 	}
 }

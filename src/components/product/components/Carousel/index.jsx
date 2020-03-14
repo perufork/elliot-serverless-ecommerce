@@ -1,34 +1,15 @@
 import { useCallback } from "react";
 import Swiper from "react-id-swiper";
-import thumbnailImage from "assets/product/product.jpg";
 import { Wrapper, Arrow } from "./styles";
-import { CarouselArrow } from "components/common/Icons";
 
-const productImages = [
-	{
-		image: thumbnailImage
-	},
-	{
-		image: thumbnailImage
-	},
-	{
-		image: thumbnailImage
-	},
-	{
-		image: thumbnailImage
-	}
-];
-
-const Carousel = ({ title }) => {
+const Carousel = ({ name, images }) => {
 	const renderNavIcon = useCallback(
 		flip => (
 			<Arrow
 				className={`swiper-button-${flip ? "next" : "prev"}`}
 				prev={flip}
 				role="button"
-			>
-				<CarouselArrow width={16} height={16} />
-			</Arrow>
+			></Arrow>
 		),
 		[]
 	);
@@ -59,14 +40,18 @@ const Carousel = ({ title }) => {
 
 	return (
 		<Wrapper {...params} as={Swiper}>
-			{productImages.reduce((acc, { image }, i) => {
-				if (i === 0 && productImages.length === 1) {
+			{images.edges.reduce((acc, { node: { image, id } }, i) => {
+				if (i === 0 && images.edges.length === 1) {
 					return acc;
 				}
 				return [
 					...acc,
-					<div className="swiper-zoom-container" key={i}>
-						<img key={i} src={image} alt={title} />
+					<div key={id}>
+						<img
+							className="swiper-zoom-container"
+							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${image}`}
+							alt={name}
+						/>
 					</div>
 				];
 			}, [])}

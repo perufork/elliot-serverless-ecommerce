@@ -7,7 +7,8 @@ export const Flex = styled.div`
 
 export const Item = styled.a`
 	display: inline-block;
-	color: ${({ active }) => (active ? "#222" : "#999")};
+	color: ${({ active, theme: { colors } }) =>
+		active ? colors.black : colors.darkGray};
 	font-size: 14px;
 	cursor: ${({ active }) => (active ? "unset" : "pointer")};
 
@@ -15,11 +16,11 @@ export const Item = styled.a`
 		content: "";
 		display: inline-block;
 		vertical-align: middle;
-		width: 4px;
-		height: 4px;
+		width: 0.25rem;
+		height: 0.25rem;
 		border-radius: 50%;
-		background-color: #bbb;
-		margin: 0 10px;
+		background-color: ${({ theme: { colors } }) => colors.lightGray};
+		margin: 0 0.625rem;
 	}
 
 	&:last-child {

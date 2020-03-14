@@ -2,12 +2,14 @@ import { FormattedMessage } from "react-intl";
 import { Title, Wrapper } from "./styles";
 import Breadcrumbs from "components/common/Breadcrumbs";
 
-const PageTitle = ({ title, breadcumbs }) => (
+const PageTitle = ({ title, breadcrumbs, breadCrumbsAlign = "start" }) => (
 	<Wrapper>
 		<Title>
 			<FormattedMessage id={title} />
 		</Title>
-		{breadcumbs && <Breadcrumbs links={breadcumbs} />}
+		{breadcrumbs && (
+			<Breadcrumbs flexAlign={breadCrumbsAlign} links={breadcrumbs} />
+		)}
 	</Wrapper>
 );
 

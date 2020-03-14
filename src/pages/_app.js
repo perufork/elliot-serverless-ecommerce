@@ -1,63 +1,49 @@
-import React from "react";
 import App from "next/app";
-import { createIntl, createIntlCache, RawIntlProvider } from "react-intl";
+import NProgress from "nprogress";
+import Router from "next/router";
 import { ThemeProvider } from "styled-components";
 import theme from "components/theme";
 import { CartProvider } from "providers/CartProvider";
 import { SidebarProvider } from "providers/SidebarProvider";
-import { getLocale } from "helpers/locale";
+import { CurrencyProvider } from "providers/CurrencyProvider";
+import "react-phone-input-2/lib/style.css";
+import "swiper/css/swiper.css";
+import "nprogress/nprogress.css";
+import { CheckoutProvider } from "providers/CheckoutProvider";
 
-const cache = createIntlCache();
+Router.events.on("routeChangeStart", () => {
+	NProgress.start();
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 export default class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
-		const { req } = ctx;
-
 		let pageProps = {};
 
 		if (Component.getInitialProps) {
 			pageProps = await Component.getInitialProps(ctx);
 		}
 
-		// Get the `locale` and `messages` from the request object on the server.
-		// In the browser, use the same values that the server serialized.
-		const { locale, messages } = req || window.__NEXT_DATA__.props;
-
-		const props = { pageProps, locale, messages };
-
-		if (!props.locale) {
-			props.locale = getLocale(req);
-		}
-
-		if (!props.messages) {
-			const strings = (await import("lang/strings")).default;
-			props.messages = strings[props.locale];
-		}
-
-		return props;
+		return { pageProps };
 	}
 
 	render() {
-		const { Component, pageProps, locale, messages } = this.props;
-
-		const intl = createIntl(
-			{
-				locale,
-				messages
-			},
-			cache
-		);
-
+		const { Component, pageProps } = this.props;
 		return (
-			<RawIntlProvider value={intl}>
-				<CartProvider>
-					<SidebarProvider>
-						<ThemeProvider theme={theme}>
-							<Component {...pageProps} />
-						</ThemeProvider>
-					</SidebarProvider>
-				</CartProvider>
-			</RawIntlProvider>
+			<>
+				<CurrencyProvider>
+					<CartProvider>
+						<SidebarProvider>
+							<CheckoutProvider checkout={pageProps.checkout}>
+								<ThemeProvider theme={theme}>
+									<Component {...pageProps} />
+								</ThemeProvider>
+							</CheckoutProvider>
+						</SidebarProvider>
+					</CartProvider>
+				</CurrencyProvider>
+			</>
 		);
 	}
 }

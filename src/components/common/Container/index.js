@@ -1,17 +1,12 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Container = styled.div`
-  max-width: 1280px;
-	margin: 0 auto;
-	width: 90%;
+	max-width: 75rem;
+	width: 100%;
+	padding-right: 0.9375rem;
+	padding-left: 0.9375rem;
+	margin-right: auto;
+	margin-left: auto;
+`;
 
-	@media (min-width: 601px) {
-		width: 90%;
-	}
-
-	@media (min-width: 993px) {
-		width: 80%;
-	}
-`
-
-export default Container
+export default Container;

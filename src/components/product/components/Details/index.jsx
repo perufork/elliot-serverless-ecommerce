@@ -1,116 +1,205 @@
-import { FormattedMessage } from "react-intl";
-import { Flex, Item } from "react-flex-ready";
+import { useState, Fragment } from "react";
+import Link from "next/link";
+import { FormattedMessage, useIntl } from "react-intl";
+import Select from "react-select";
+import NumberFormat from "react-number-format";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
-import {
-	addQuantityByProduct,
-	subtractQuantityByProduct
-} from "components/cart/actions";
-import { addToCart } from "components/listing/actions";
-import Stars from "components/common/Stars";
+import { useCurrency } from "providers/CurrencyProvider";
+import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
-import { HeartIcon } from "components/common/Icons";
-import { Wrapper, Review, Sku, Shop, Favorite } from "./styles";
+import Label from "components/common/Label";
+import {
+	FacebookIcon,
+	PinterestIcon,
+	TwiterIcon
+} from "components/common/Icons/SocialIcon";
+import {
+	ButtonGroup,
+	Shop,
+	Sku,
+	SocialShares,
+	Specs,
+	Wrapper,
+	LabelField
+} from "./styles";
 
 const Details = ({
 	id,
-	title,
-	sku,
-	price,
+	name,
+	skus,
 	description,
-	rating = 4,
-	review = 1
+	collections,
+	images,
+	metadata,
+	slug,
+	attributes,
+	quantity: inventoryQuantity
 }) => {
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
+	const { locale } = useIntl();
+	const [quantity, setQuantity] = useState(1);
+	const [selectedVariant, setSelectedVariant] = useState(
+		skus?.edges[0]?.node || null
+	);
 
-	const product = state.data && state.data.find(item => item.id === id);
+	const itemProduct = state?.data?.find(
+		item => item.product.id === id && item.sku.id === selectedVariant.id
+	);
+
+	const handleVariant = (attributeKey, value) => {
+		skus.edges.map(({ node }) => {
+			Object.keys(node.attributes).map(item => {
+				if (item === attributeKey && node.attributes[item] === value) {
+					setSelectedVariant(node);
+				}
+			});
+		});
+	};
+
+	const handleCart = () => {
+		if (itemProduct?.quantity > 0) {
+			addCustomQuantityByProduct({
+				dispatch,
+				id,
+				skuId: selectedVariant.id,
+				quantity
+			});
+		} else {
+			addToCart({
+				dispatch,
+				payload: {
+					product: {
+						id,
+						name,
+						description,
+						images,
+						slug,
+						attributes,
+						metadata
+					},
+					quantity,
+					sku: selectedVariant
+				}
+			});
+		}
+		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
+	};
 
 	return (
 		<Wrapper>
 			<div>
-				<Review>
-					<Stars stars={rating} />
-					<span>{review} Review</span>
-				</Review>
-				<h2>{title}</h2>
-				<Sku>SKU: {sku}</Sku>
-				<h4>${price}</h4>
+				<h2>{name}</h2>
+				{selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku && (
+					<Sku>SKU: {selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku}</Sku>
+				)}
+				{selectedVariant?.salePrice && (
+					<p>
+						{loading ? (
+							"..."
+						) : (
+							<NumberFormat
+								value={(selectedVariant.salePrice * exchangeRate) / 100}
+								displayType={"text"}
+								thousandSeparator={true}
+								prefix={currency}
+							/>
+						)}
+						{parseInt(inventoryQuantity) > 0 && (
+							<Label>
+								<span>OUT OF STOCK</span>
+							</Label>
+						)}
+					</p>
+				)}
 			</div>
-			<div>
-				<p>{description}</p>
-			</div>
+			<div dangerouslySetInnerHTML={{ __html: description }} />
+			{attributes &&
+				attributes.map(({ attributeKey, attributeValues }, i) => {
+					const options = attributeValues.map((_item, i) => {
+						return { value: attributeValues[i], label: attributeValues[i] };
+					});
+					return (
+						<Fragment key={i}>
+							<LabelField>{attributeKey}</LabelField>
+							<Select
+								onChange={e => handleVariant(attributeKey, e.value)}
+								options={options}
+								defaultValue={{
+									label:
+										selectedVariant.attributes[
+											Object.keys(selectedVariant.attributes)[0]
+										],
+									value:
+										selectedVariant.attributes[
+											Object.keys(selectedVariant.attributes)[0]
+										]
+								}}
+							/>
+						</Fragment>
+					);
+				})}
 			<Shop>
-				<Flex css="margin-bottom: 2rem;">
-					<Item col={3} colTablet={3} colMobile={12} gap={1} stretch>
-						<QuantityController
-							wide
-							id={id}
-							dispatch={dispatch}
-							subtractQuantityByProduct={subtractQuantityByProduct}
-							addQuantityByProduct={addQuantityByProduct}
-							quantity={product ? product.quantity : 0}
-						/>
-					</Item>
-					<Item col={7} colTablet={7} colMobile={12} gap={1} stretch>
-						<Button
-							onClick={() => {
-								addToCart({
-									dispatch,
-									payload: { id, title, price, description }
-								});
-								dispatchSidebar({ type: "OPEN_SIDEBAR", cartContent: true });
-							}}
-							type="button"
-							variant="primary"
-							wide
-						>
-							<FormattedMessage id="button.add_to_cart" />
-						</Button>
-					</Item>
-					<Item col={2} colTablet={2} colMobile={12} gap={1} stretch>
-						<Favorite>
-							<HeartIcon />
-						</Favorite>
-					</Item>
-				</Flex>
-				<Button
-					onClick={() => alert("buy now")}
-					type="button"
-					variant="primary"
+				<QuantityController
 					wide
-				>
-					<FormattedMessage id="button.buy_now" />
-				</Button>
+					id={id}
+					setQuantity={setQuantity}
+					quantity={quantity}
+				/>
+				<ButtonGroup>
+					<Button
+						disabled={parseInt(inventoryQuantity) <= 0}
+						onClick={handleCart}
+						type="button"
+						variant="primary"
+						wide
+					>
+						<FormattedMessage id="button.add_to_cart" />
+					</Button>
+				</ButtonGroup>
 			</Shop>
-			{/* <div class="ps-product__specification">
-				<p>
-					<strong>CATEGORY:</strong>
-					<a href="shop-4-column.html">Women</a>
-					<a href="shop-4-column.html"> Top</a>
-					<a href="shop-4-column.html"> Accessories</a>
-					<a href="shop-4-column.html"> Jewellery</a>
-				</p>
-				<p>
-					<strong>Tags:</strong>
-					<a href="shop-4-column.html">clothing</a>
-					<a href="shop-4-column.html"> t-shirt</a>
-					<a href="shop-4-column.html"> woman</a>
-				</p>
-			</div>
-			<div class="ps-product__sharing">
-				<a href="#">
-					<i class="fa fa-facebook"></i>
+			<Specs>
+				{collections && (
+					<p>
+						<strong>
+							<FormattedMessage id="product.category" />:
+						</strong>
+						{collections.edges.map(({ node }) => (
+							<Link
+								key={node.id}
+								href={`/[lang]/collection/[slug]`}
+								as={`/${locale}/collection/${node.slug}`}
+							>
+								<a>{node.name}</a>
+							</Link>
+						))}
+					</p>
+				)}
+			</Specs>
+			<SocialShares>
+				<a
+					href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.BASE_URL}/${locale}/product/${slug}`}
+					aria-label="share to Facebook"
+				>
+					<FacebookIcon />
 				</a>
-				<a href="#">
-					<i class="fa fa-twitter"></i>
+				<a
+					href={`https://twitter.com/home?status=${process.env.BASE_URL}/${locale}/product/${slug}`}
+					aria-label="share to Twitter"
+				>
+					<TwiterIcon />
 				</a>
-				<a href="#">
-					<i class="fa fa-pinterest"></i>
+				<a
+					href={`https://pinterest.com/pin/create/button/?url=${process.env.BASE_URL}/${locale}/product/${slug}`}
+					aria-label="share to Pinterest"
+				>
+					<PinterestIcon />
 				</a>
-			</div> */}
+			</SocialShares>
 		</Wrapper>
 	);
 };

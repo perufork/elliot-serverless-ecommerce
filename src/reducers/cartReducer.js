@@ -10,13 +10,25 @@ const cartReducer = (state = initialState, action) => {
 		case "REMOVE_FROM_CART":
 			return {
 				...state,
-				data: state.data.filter(({ id }) => id !== action.id)
+				data: state.data.filter(({ sku }) => sku.id !== action.skuId)
+			};
+		case "ADD_CUSTOM_QUANTITY":
+			return {
+				...state,
+				data: state.data.map(item =>
+					item.sku.id === action.skuId
+						? {
+								...item,
+								quantity: item.quantity + action.quantity
+						  }
+						: item
+				)
 			};
 		case "ADD_QUANTITY":
 			return {
 				...state,
 				data: state.data.map(item =>
-					item.id === action.id
+					item.product.id === action.id && item.sku.id === action.skuId
 						? {
 								...item,
 								quantity: item.quantity + 1
@@ -28,10 +40,10 @@ const cartReducer = (state = initialState, action) => {
 			return {
 				...state,
 				data: state.data.map(item =>
-					item.id === action.id
+					item.product.id === action.id && item.sku.id === action.skuId
 						? {
 								...item,
-								quantity: item.quantity - 1
+								quantity: item.product.quantity - 1
 						  }
 						: item
 				)

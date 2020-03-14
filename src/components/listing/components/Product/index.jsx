@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { Card, CardHeader, CardFooter } from "./styles";
+import { useIntl } from "react-intl";
 
-export default ({ product: { id, price, name } }) => (
-	<Card>
-		<CardHeader>
-			<Link href={`/product?id=${id}`} as={`/product/${id}`}>
-				<a>{name}</a>
-			</Link>
-		</CardHeader>
-		<CardFooter>
-			<span>${price}</span>
-		</CardFooter>
-	</Card>
-);
+export default ({ product: { id, price, name } }) => {
+	const { locale } = useIntl();
+	return (
+		<Card>
+			<CardHeader>
+				<Link href={`/[lang]/product?id=${id}`} as={`/${locale}/product/${id}`}>
+					<a>{name}</a>
+				</Link>
+			</CardHeader>
+			<CardFooter>
+				<span>${price}</span>
+			</CardFooter>
+		</Card>
+	);
+};

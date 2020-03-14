@@ -1,25 +1,30 @@
 import { Wrapper } from "./styles";
 import Breadcrumbs from "components/common/Breadcrumbs";
+import { useIntl } from "react-intl";
 
-const BreadcumbsHeader = ({ id, title }) => (
-	<Wrapper>
-		<Breadcrumbs
-			flexAlign="start"
-			links={[
-				{
-					name: "Shop",
-					link: "/",
-					as: "/"
-				},
-				{
-					name: title,
-					link: `/product?id=${id}`,
-					as: `/product/${id}`,
-					active: true
-				}
-			]}
-		/>
-	</Wrapper>
-);
+const BreadcumbsHeader = ({ slug, title }) => {
+	const { locale } = useIntl();
+
+	return (
+		<Wrapper>
+			<Breadcrumbs
+				flexAlign="start"
+				links={[
+					{
+						name: "shop.page.title",
+						link: `/[lang]/`,
+						as: `/${locale}/`
+					},
+					{
+						name: title,
+						link: `/[lang]/product/[slug]`,
+						as: `/${locale}/product/${slug}`,
+						active: true
+					}
+				]}
+			/>
+		</Wrapper>
+	);
+};
 
 export default BreadcumbsHeader;

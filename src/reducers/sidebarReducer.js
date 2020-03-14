@@ -1,6 +1,6 @@
 const initialState = {
 	open: false,
-	cartContent: false
+	content: ""
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -9,13 +9,13 @@ const cartReducer = (state = initialState, action) => {
 			return {
 				...state,
 				open: true,
-				cartContent: action.cartContent
+				content: action.content
 			};
 		case "CLOSE_SIDEBAR":
 			return {
 				...state,
 				open: false,
-				cartContent: setTimeout(() => action.cartContent, 200)
+				content: setTimeout(() => action.content, 200)
 			};
 		default:
 			return {

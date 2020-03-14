@@ -13,14 +13,16 @@ export const Actions = styled.div`
 	a,
 	button {
 		display: flex;
-		width: 40px;
-		height: 40px;
+		width: 2.5rem;
+		height: 2.5rem;
 		justify-content: center;
 		align-items: center;
 		vertical-align: top;
-		width: 40px;
+		width: 2.5rem;
 		font-size: 22px;
-		margin-right: 4px;
+		margin-right: 0.25rem;
+		padding-right: 0;
+		padding-left: 0;
 
 		&:last-child {
 			margin-right: 0;
@@ -41,28 +43,28 @@ export const Actions = styled.div`
 export const Cart = styled.a`
 	position: relative;
 	display: flex;
-	height: 40px;
+	height: 2.5rem;
 	justify-content: center;
 	align-items: center;
 	vertical-align: top;
-	width: 40px;
+	width: 2.5rem;
 	font-size: 22px;
-	margin-right: 4px;
+	margin-right: 0.25rem;
 	cursor: pointer;
 `;
 
 export const CartItems = styled.span`
 	position: absolute;
 	top: 0;
-	right: 2px;
+	right: 0.125rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	vertical-align: top;
-	width: 16px;
-	height: 16px;
+	width: 1rem;
+	height: 1rem;
 	border-radius: 50%;
-	background-color: #f68773;
+	background-color: ${({ theme: { colors } }) => colors.accent};
 	font-size: 10px;
-	color: #ffffff;
+	color: ${({ theme: { colors } }) => colors.white};
 `;

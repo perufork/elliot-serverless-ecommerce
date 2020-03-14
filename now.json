@@ -1,7 +1,22 @@
 {
 	"build": {
 		"env": {
-			"BASE_URL": "@base_url"
+			"BASE_URL": "@base_url",
+			"ELLIOT_API": "@elliot_api",
+			"ELLIOT_BASE_IMAGE_URL": "@elliot_base_image_url",
+			"ELLIOT_API_KEY": "@elliot_api_key",
+			"ELLIOT_STORE_FRONT_ID": "@elliot_store_front_id",
+			"STRIPE_API_PUBLISHABLE_KEY_TEST": "@stripe_api_publishable_key_test",
+			"PLACES_API_KEY": "@places_api_key",
+			"ELLIOT_DOMAIN_ID": "@elliot_domain_id",
+			"ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL": "@elliot_create_order_shipping_function_url",
+			"ELLIOT_CREATE_ORDER_SELF_CHECKOUT_FUNCTION_URL": "@elliot_create_order_self_checkout_function_url",
+			"ENVIRONMENT": "@environement",
+			"ELLIOT_ALGOLIA_APP_ID": "@elliot_algolia_app_id",
+			"ELLIOT_ALGOLIA_API_KEY": "@elliot_algolia_api_key",
+			"ELLIOT_STORE_FRONT_NAME": "@elliot_store_front_name",
+			"ELLIOT_EXCHANGE_RATES_URL": "@elliot_exchange_rates_url",
+			"ELLIOT_ORDER_DETAILS_URL": "@elliot_order_details_url"
 		}
 	}
 }

@@ -6,7 +6,10 @@ export const products = [
 		description:
 			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
 		rating: 3,
-		currency: "$"
+		categories: ["Tech", "Apple"],
+		tags: ["Apple", "Tech"],
+		color: "#70849d",
+		size: "XL"
 	},
 	{
 		id: "2",
@@ -15,7 +18,10 @@ export const products = [
 		description:
 			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
 		rating: 4,
-		currency: "$"
+		categories: ["Tech", "Apple"],
+		tags: ["Apple", "Tech"],
+		color: "#cc9900",
+		size: "L"
 	},
 	{
 		id: "3",
@@ -24,7 +30,10 @@ export const products = [
 		description:
 			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
 		rating: 2,
-		currency: "$"
+		categories: ["Tech", "Apple"],
+		tags: ["Apple", "Tech"],
+		color: "#70849d",
+		size: "XL"
 	},
 	{
 		id: "4",
@@ -33,7 +42,10 @@ export const products = [
 		description:
 			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
 		rating: 5,
-		currency: "$"
+		categories: ["Tech", "Apple"],
+		tags: ["Apple", "Tech"],
+		color: "#cc9900",
+		size: "M"
 	},
 	{
 		id: "5",
@@ -42,6 +54,9 @@ export const products = [
 		description:
 			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
 		rating: 3,
-		currency: "$"
+		categories: ["Tech", "Apple"],
+		tags: ["Apple", "Tech"],
+		color: "#70849d",
+		size: "XL"
 	}
 ];

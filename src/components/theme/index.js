@@ -3,11 +3,22 @@ export default {
 		primary: "Roboto"
 	},
 	colors: {
+		accent: "#f68773",
 		black: "#222",
-		white: "#fff",
-		lightGray: "#bbb",
+		darkBlack: "#000",
 		darkGray: "#999",
-		accent: "#f68773"
+		lightGray: "#bbb",
+		lightnessGray: "#eaeaea",
+		red: "#ff1d5d",
+		white: "#fff"
+	},
+	transitions: {
+		custom400: "all 400ms cubic-bezier(0.7, 0, 0.3, 1)",
+		custom750: "all 750ms cubic-bezier(0.77, 0, 0.175, 1)",
+		default200: "all 200ms ease",
+		default300: "all 300ms ease",
+		default400: "all 400ms ease",
+		default800: "all 800ms ease"
 	},
 	button: {
 		lineHeight: "20px",
@@ -34,6 +45,32 @@ export default {
 				hover: {
 					bg: "#f68773",
 					color: "#fff"
+				}
+			},
+			outlined: {
+				color: "#bbb",
+				padding: "12px 10px",
+				border: "2px solid #eaeaea",
+				hover: {
+					color: "#222"
+				}
+			},
+			flat: {
+				color: "#222",
+				border: "none",
+				bg: "#e4e4e4",
+				hover: {
+					color: "#fff",
+					bg: "#f68773"
+				}
+			},
+			ghost: {
+				color: "#fff",
+				border: "none",
+				bg: "#222",
+				hover: {
+					color: "#fff",
+					bg: "#f68773"
 				}
 			}
 		}

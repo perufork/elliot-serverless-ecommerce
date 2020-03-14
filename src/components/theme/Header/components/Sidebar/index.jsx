@@ -1,34 +1,56 @@
 import NavigationLinks from "components/theme/Header/components/NavigationLinks";
 import CartSidebar from "components/theme/Header/components/CartSidebar";
-import { Wrapper, Burger, Bar, Nav, Overlay, Content } from "./styles";
+import SearchSidebar from "components/theme/Header/components/SearchSidebar";
+import { Wrapper, Burger, Close, Nav, Overlay, Content } from "./styles";
 
-export default ({ visibleSidebar, toggleSidebar, showCartContent }) => (
-	<Wrapper>
-		<Overlay
-			visible={visibleSidebar}
-			onClick={() => toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })}
-		/>
-		<Nav visible={visibleSidebar}>
-			<Burger>
-				<Bar
-					onClick={() => toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })}
-				/>
-			</Burger>
-			<Content>
-				{showCartContent ? (
+export default ({ visibleSidebar, toggleSidebar, content }) => {
+	const renderContent = () => {
+		switch (content) {
+			case "cart":
+				return (
 					<CartSidebar
 						toggleSidebar={() =>
-							toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })
+							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
 						}
 					/>
-				) : (
+				);
+			case "search":
+				return (
+					<SearchSidebar
+						toggleSidebar={() =>
+							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
+						}
+					/>
+				);
+			default:
+				return (
 					<NavigationLinks
 						toggleSidebar={() =>
-							toggleSidebar({ type: "CLOSE_SIDEBAR", cart: false })
+							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
 						}
 					/>
-				)}
-			</Content>
-		</Nav>
-	</Wrapper>
-);
+				);
+		}
+	};
+
+	return (
+		<>
+			<Overlay
+				visible={visibleSidebar}
+				onClick={() => toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })}
+			/>
+			<Wrapper>
+				<Nav visible={visibleSidebar}>
+					<Burger>
+						<Close
+							onClick={() =>
+								toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
+							}
+						/>
+					</Burger>
+					<Content>{renderContent()}</Content>
+				</Nav>
+			</Wrapper>
+		</>
+	);
+};

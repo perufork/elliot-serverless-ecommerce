@@ -10,39 +10,39 @@ export const Wrapper = styled.div`
 	img {
 		background-color: #f7f7f7;
 		width: 100%;
-		max-width: 300px;
+		max-width: 18.75rem;
 	}
 `;
 
 export const Arrow = styled.div`
 	background-image: none;
-	width: 35px;
-	height: 35px;
-	background-color: white;
-	border-radius: 4px;
+	width: 2.1875rem;
+	height: 2.1875rem;
+	background-color: transparent;
+	border-radius: 0.25rem;
 	display: flex;
 	justify-content: center;
-
-	svg {
-		align-self: center;
-		display: flex;
-	}
+	transition: all 300ms ease;
 
 	${({ prev }) =>
 		!prev &&
 		`
-    transform: scaleX(-1);
-  `}
+    transform: rotate(0deg);
+	`}
+
+	&:after {
+		color: #000;
+		transition: color 200ms ease;
+	}
 
 	&:hover {
-		background-color: ${({
-			theme: {
-				colors: { accent }
-			}
-		}) => accent};
-
-		svg path {
-			fill: "#fff";
+		&:after {
+			background-color: transparent;
+			color: ${({
+				theme: {
+					colors: { accent }
+				}
+			}) => accent};
 		}
 	}
 `;

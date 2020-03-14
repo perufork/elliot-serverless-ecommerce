@@ -1,15 +1,15 @@
 // Combines the other two utility functions
-export const getLocale = (req, defaultLocale) => {
-	if (req) {
-		return getServerLocale(req, defaultLocale);
+export const getLocale = (query, defaultLocale) => {
+	if (query && query.lang) {
+		return getServerLocale(query.lang, defaultLocale);
 	} else {
 		return getBrowserLocale(defaultLocale);
 	}
 };
 
-export const getServerLocale = (req, defaultLocale) => {
+export const getServerLocale = (query, defaultLocale) => {
 	const accepts = require("accepts");
-	const accept = accepts(req);
+	const accept = accepts(query.lang);
 	return accept.languages()[0].split("-")[0] || defaultLocale || "en";
 };
 

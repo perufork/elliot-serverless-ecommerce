@@ -1,53 +1,94 @@
 import Link from "next/link";
-import { FormattedMessage } from "react-intl";
-import { CancelIcon } from "components/common/Icons";
-import Button from "components/common/Button";
+import dynamic from "next/dynamic";
+import { FormattedMessage, useIntl } from "react-intl";
+import NumberFormat from "react-number-format";
+import { useCurrency } from "providers/CurrencyProvider";
 import { useCart, useDispatchCart } from "providers/CartProvider";
+import { CancelIcon, EmptyCart } from "components/common/Icons";
+import Button from "components/common/Button";
 import { removeFromCart } from "components/cart/actions";
 import getTotal from "helpers/getTotal";
-import { Wrapper, CartItem, Thumbnail, Content, CartFooter } from "./styles";
-import thumbnailImage from "assets/product/product.jpg";
+import {
+	Wrapper,
+	CartItem,
+	Thumbnail,
+	Content,
+	CartFooter,
+	EmptyState
+} from "./styles";
+const PaymentButtons = dynamic(
+	() => import("components/checkout/PaymentButtons"),
+	{
+		ssr: false
+	}
+);
 
 const CartSidebar = ({ toggleSidebar }) => {
+	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
+	const { locale } = useIntl();
 
 	return (
 		<Wrapper>
-			{state.data && state.data.length > 0 ? (
+			{state && state.data && state.data.length > 0 ? (
 				<div>
 					<div>
-						{state.data.map(({ id, title, price, quantity }) => (
-							<CartItem key={id}>
+						{state.data.map(({ product: { name, images }, sku, quantity }) => (
+							<CartItem key={sku.id}>
 								<Thumbnail>
-									<Link href="/">
+									<Link href="/[lang]/" as={`/${locale}/`}>
 										<a onClick={toggleSidebar}>
-											<img src={thumbnailImage} alt="title" />
+											<img
+												src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+												alt={name}
+											/>
 										</a>
 									</Link>
 								</Thumbnail>
 								<Content>
 									<button
 										type="button"
-										onClick={() => removeFromCart({ dispatch, id })}
+										onClick={() => removeFromCart({ dispatch, skuId: sku.id })}
 									>
-										<CancelIcon width={16} height={16} color="#a5a5a5" />
+										<CancelIcon width={14} height={14} color="#a5a5a5" />
 									</button>
-									<Link href="/">
-										<a onClick={toggleSidebar}>{title}</a>
+									<Link href="/[lang]/" as={`/${locale}/`}>
+										<a onClick={toggleSidebar}>{name}</a>
 									</Link>
 									<p>Qty: {quantity}</p>
-									<span>${price}</span>
+									{sku?.salePrice && loading ? (
+										"..."
+									) : (
+										<NumberFormat
+											value={(sku.salePrice * exchangeRate) / 100}
+											displayType={"text"}
+											thousandSeparator={true}
+											prefix={currency}
+										/>
+									)}
 								</Content>
 							</CartItem>
 						))}
 					</div>
 					<CartFooter>
 						<h3>
-							Sub Total: <strong>${getTotal(state.data)}</strong>
+							Sub Total:{" "}
+							<strong>
+								{loading ? (
+									"..."
+								) : (
+									<NumberFormat
+										value={getTotal(state.data, exchangeRate)}
+										displayType={"text"}
+										thousandSeparator={true}
+										prefix={currency}
+									/>
+								)}
+							</strong>
 						</h3>
 						<div>
-							<Link href="/cart">
+							<Link href="/[lang]/cart" as={`/${locale}/cart`}>
 								<Button
 									as="a"
 									wide
@@ -58,16 +99,20 @@ const CartSidebar = ({ toggleSidebar }) => {
 									<FormattedMessage id="button.view_cart" />
 								</Button>
 							</Link>
-							<Link href="/">
+							<Link href="/[lang]/checkout" as={`/${locale}/checkout`}>
 								<Button as="a" wide variant="primary" onClick={toggleSidebar}>
 									<FormattedMessage id="button.checkout" />
 								</Button>
 							</Link>
+							<PaymentButtons />
 						</div>
 					</CartFooter>
 				</div>
 			) : (
-				<h4>No items on Cart</h4>
+				<EmptyState>
+					<EmptyCart />
+					<h4>Your cart is empty</h4>
+				</EmptyState>
 			)}
 		</Wrapper>
 	);

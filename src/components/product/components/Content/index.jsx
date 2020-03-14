@@ -5,10 +5,20 @@ import { Wrapper } from "./styles";
 
 const Content = props => (
 	<Wrapper as={Flex} align="start">
-		<Item col={6} colTablet={12} colMobile={12} gap={2}>
-			<Carousel title={props.title} />
+		<Item
+			col={6}
+			colTablet={12}
+			colMobile={12}
+			className="item__container item__container--carousel"
+		>
+			<Carousel title={props.name} images={props.images} />
 		</Item>
-		<Item col={6} colTablet={12} colMobile={12} gap={2}>
+		<Item
+			col={6}
+			colTablet={12}
+			colMobile={12}
+			className="item__container item__container--details"
+		>
 			<Details {...props} />
 		</Item>
 	</Wrapper>
