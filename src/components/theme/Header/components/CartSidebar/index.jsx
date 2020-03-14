@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { FormattedMessage, useIntl } from "react-intl";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
@@ -15,6 +16,12 @@ import {
 	CartFooter,
 	EmptyState
 } from "./styles";
+const PaymentButtons = dynamic(
+	() => import("components/checkout/PaymentButtons"),
+	{
+		ssr: false
+	}
+);
 
 const CartSidebar = ({ toggleSidebar }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -97,6 +104,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 									<FormattedMessage id="button.checkout" />
 								</Button>
 							</Link>
+							<PaymentButtons />
 						</div>
 					</CartFooter>
 				</div>

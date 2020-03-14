@@ -42,6 +42,7 @@ query checkout($id: ID! $domainId: ID!) {
         freeShippingThresholdTarget
         company {
           currency
+          name
         }
         vendors {
           edges {
@@ -54,18 +55,6 @@ query checkout($id: ID! $domainId: ID!) {
                   }
                 }
               }
-            }
-          }
-        }
-        customPackageTypes {
-          edges {
-            node {
-              id
-              length
-              width
-              weight
-              height
-              unitOfDimensions
             }
           }
         }

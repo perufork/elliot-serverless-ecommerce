@@ -17,6 +17,7 @@
 		"axios": "^0.19.2",
 		"convert-units": "^2.3.4",
 		"country-currency-map": "^2.1.6",
+		"detect-browser": "^5.0.0",
 		"dotenv": "^8.2.0",
 		"formik": "^2.0.8",
 		"glob": "^7.1.6",

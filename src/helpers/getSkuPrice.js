@@ -1,9 +1,9 @@
-export const getSkuPrice = sku => {
+const getSkuPrice = sku => {
 	if (!sku) return 0;
-	const { basePrice } = sku;
-	const { salePrice } = sku;
+	const basePrice = sku.basePrice;
+	const salePrice = sku.salePrice;
 
-	return (salePrice || basePrice).toFixed(2);
+	return salePrice || basePrice;
 };
 
 export default getSkuPrice;

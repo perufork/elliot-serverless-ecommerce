@@ -8,6 +8,7 @@ import getProducts from "helpers/getProducts";
 import getCollections from "helpers/getCollections";
 import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
+import getCheckout from "helpers/getCheckout";
 
 export const unstable_getStaticPaths = async () => {
 	const products = await getProducts();
@@ -27,6 +28,7 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 		const products = await getProducts();
 		const seoDetails = await getSeoDetails();
 		const promotion = await getPromotion();
+		const checkout = await getCheckout();
 
 		const product = products.edges.find(
 			({ node: { slug: _slug } }) => _slug === slug
@@ -37,7 +39,8 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 				locale: lang,
 				collections,
 				seoDetails,
-				promotion
+				promotion,
+				checkout
 			}
 		};
 	} catch (error) {
@@ -47,7 +50,8 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 				locale: lang,
 				collections: [],
 				seoDetails: {},
-				promotion: {}
+				promotion: {},
+				checkout: {}
 			}
 		};
 	}

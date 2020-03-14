@@ -102,7 +102,6 @@ const TabReview = () => (
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				setTimeout(() => {
-					console.log(JSON.stringify(values, null, 2));
 					setSubmitting(false);
 				}, 400);
 			}}
