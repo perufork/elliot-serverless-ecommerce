@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 import { useCurrency } from "providers/CurrencyProvider";
 import languages from "helpers/languages";
 import currencies from "helpers/currencies.json";
-import Dropdown from "../../../../common/Dropdown";
+import Dropdown from "components/common/Dropdown";
 import {
 	Navigation,
 	Menu,
@@ -13,8 +13,9 @@ import {
 	List
 } from "./styles";
 
-const NavigationLinks = ({ toggleSidebar }) => {
+const NavigationLinks = ({ toggleSidebar, checkout }) => {
 	const { state: currency, setState: setCurrency } = useCurrency();
+	const { locale } = useIntl();
 
 	return (
 		<Navigation>
@@ -39,24 +40,31 @@ const NavigationLinks = ({ toggleSidebar }) => {
 			</Options>
 			<Menu>
 				<DesktopMenu>
-					{["Shop", "Collection", "Contact"].map((item, i) => (
-						<li key={i}>
-							<Link href="/en/" as="/en/">
-								<a className={i === 0 ? "active" : 0} onClick={toggleSidebar}>
-									{item}
-								</a>
-							</Link>
-						</li>
-					))}
+					<li>
+						<Link href="/en/" as="/en/">
+							<a onClick={toggleSidebar}>Shop</a>
+						</Link>
+					</li>
+					<li>
+						<Link href="/[lang]/about" as={`/${locale}/about`}>
+							<a onClick={toggleSidebar}>About us</a>
+						</Link>
+					</li>
 				</DesktopMenu>
 			</Menu>
-			<MenuBottom>
-				<figcaption>Contact Us</figcaption>
-				<p>
-					69 Halsey St, Ny 10002, New York, United States
-					support.center@unero.co (0091) 8547 632521
-				</p>
-			</MenuBottom>
+			{checkout?.domain?.company?.address?.address1 && (
+				<MenuBottom>
+					<figcaption>Contact Us</figcaption>
+					<p>
+						{checkout?.domain?.company?.address.address1},{" "}
+						{checkout?.domain?.company?.address.city},{" "}
+						{checkout?.domain?.company?.address.country},{" "}
+						{checkout?.domain?.company?.address.zipCode},{" "}
+						{checkout?.domain?.company?.address.email},{" "}
+						{checkout?.domain?.company?.address.phoneNumber}
+					</p>
+				</MenuBottom>
+			)}
 		</Navigation>
 	);
 };

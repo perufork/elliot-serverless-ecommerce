@@ -12,6 +12,7 @@ const Checkout = ({ collections, checkout, seoDetails, promotion }) => (
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
+		checkout={checkout}
 	>
 		<SEO
 			localizedTitle="shop.page.checkout_title"

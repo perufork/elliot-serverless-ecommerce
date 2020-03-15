@@ -25,15 +25,18 @@ const Footer = ({ collections, seoDetails }) => {
 				<List>
 					<ListTitle>Help &amp; Information</ListTitle>
 					<Item>
-						<Link href="">
+						<Link href="/[lang]/faqs" as={`/${locale}/faqs`}>
 							<a>FAQs</a>
+						</Link>
+						<Link href="/[lang]/return-policy" as={`/${locale}/return-policy`}>
+							<a>Return policy</a>
 						</Link>
 					</Item>
 				</List>
 				<List>
 					<ListTitle>About {seoDetails?.lookAndFeel?.seo?.name}</ListTitle>
 					<Item>
-						<Link href="">
+						<Link href="/[lang]/about" as={`/${locale}/about`}>
 							<a>About us</a>
 						</Link>
 					</Item>
@@ -85,12 +88,18 @@ const Footer = ({ collections, seoDetails }) => {
 					</p>
 					<ul>
 						<li>
-							<Link href="">
+							<Link
+								href="/[lang]/privacy-policy"
+								as={`/${locale}/privacy-policy`}
+							>
 								<a>Privacy Policy</a>
 							</Link>
 						</li>
 						<li>
-							<Link href="">
+							<Link
+								href="/[lang]/terms-and-conditions"
+								as={`/${locale}/terms-and-conditions`}
+							>
 								<a>Terms of Use</a>
 							</Link>
 						</li>

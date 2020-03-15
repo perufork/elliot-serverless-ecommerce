@@ -7,11 +7,12 @@ import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
 import getCheckout from "helpers/getCheckout";
 
-const Cart = ({ collections, seoDetails, promotion }) => (
+const Cart = ({ collections, seoDetails, promotion, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
+		checkout={checkout}
 	>
 		<SEO
 			localizedTitle="shop.page.cart_title"

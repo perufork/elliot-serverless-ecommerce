@@ -8,7 +8,7 @@ import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import { Container, Banner, Wrapper, Options } from "./styles";
 
-export default ({ collections, seoDetails, promotion }) => {
+export default ({ collections, seoDetails, promotion, checkout }) => {
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -26,6 +26,7 @@ export default ({ collections, seoDetails, promotion }) => {
 				visibleSidebar={state.open}
 				toggleSidebar={toggleSidebar}
 				content={state.content}
+				checkout={checkout}
 			/>
 			<Container>
 				{promotion && (
