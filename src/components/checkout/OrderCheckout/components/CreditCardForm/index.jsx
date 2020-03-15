@@ -17,12 +17,12 @@ import ErrorField from "components/common/ErrorField";
 import Loader from "components/common/Loader";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
 import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
-import { FieldWrapper, CreditCardWrap } from "./styles";
 import getShippingPayload from "helpers/getShippingPayload";
 import { useCurrency } from "providers/CurrencyProvider";
 import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
+import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
@@ -327,7 +327,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								/>
 							))}
 						</>
-						<div>
+						<Wrapper>
 							<h4>Enter Payment Details</h4>
 							<Flex align="flex-start">
 								<Item col={6} colTablet={12} colMobile={12} gap={2}>
@@ -548,7 +548,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 									</Button>
 								</Link>
 							</div>
-						</div>
+						</Wrapper>
 					</Form>
 				);
 			}}

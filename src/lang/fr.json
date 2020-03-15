@@ -35,5 +35,6 @@
 	"shipping.calculate": "Calculer Frais de port",
 	"shipping.total": "Total",
 	"products.found": "Produits trouvés",
-	"banner.free_shipping_over": "Livraison gratuite pour toutes les commandes à"
+	"banner.free_shipping_over": "Livraison gratuite pour toutes les commandes à",
+	"product.related_products": "Produits connexes"
 }

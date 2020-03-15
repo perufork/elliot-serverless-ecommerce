@@ -40,10 +40,10 @@ export const Wrapper = styled.div`
 		color: #777777;
 		font-size: 12pt;
 		line-height: 1.6;
+		margin-bottom: 2rem;
 
 		@media screen and (min-width: 992px) {
 			font-size: 11pt;
-			margin-bottom: 1rem;
 		}
 	}
 

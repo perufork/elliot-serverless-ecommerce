@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import { useDispatchCart, useCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 import { addQuantityByProduct, addToCart } from "components/cart/actions";
@@ -87,7 +88,9 @@ export default ({
 				/>
 			</Container>
 			<Section as={Container}>
-				<SectionTitle>Related Products</SectionTitle>
+				<SectionTitle>
+					<FormattedMessage id="product.related_products" />
+				</SectionTitle>
 				<Products grid={true}>
 					{globalCollections?.edges
 						.filter(collection =>

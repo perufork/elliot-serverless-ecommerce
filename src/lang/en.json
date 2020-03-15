@@ -35,5 +35,6 @@
 	"shipping.calculate": "Calculate Shipping",
 	"shipping.total": "Total",
 	"products.found": "Products Found",
-	"banner.free_shipping_over": "Free shipping for all orders over"
+	"banner.free_shipping_over": "Free shipping for all orders over",
+	"product.related_products": "Related Products"
 }

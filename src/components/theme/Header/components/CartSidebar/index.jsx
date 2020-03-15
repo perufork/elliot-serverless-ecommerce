@@ -92,7 +92,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 								<Button
 									as="a"
 									wide
-									marginBottom={2}
+									marginBottom={1}
 									variant="secondary"
 									onClick={toggleSidebar}
 								>

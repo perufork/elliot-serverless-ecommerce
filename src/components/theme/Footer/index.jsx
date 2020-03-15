@@ -15,7 +15,7 @@ import {
 	Wrapper
 } from "./styles";
 
-const Footer = ({ collections }) => {
+const Footer = ({ collections, seoDetails }) => {
 	const { locale } = useIntl();
 	const { state: currency, setState: setCurrency } = useCurrency();
 
@@ -31,7 +31,7 @@ const Footer = ({ collections }) => {
 					</Item>
 				</List>
 				<List>
-					<ListTitle>About Elliot</ListTitle>
+					<ListTitle>About {seoDetails?.lookAndFeel?.seo?.name}</ListTitle>
 					<Item>
 						<Link href="">
 							<a>About us</a>
@@ -79,7 +79,9 @@ const Footer = ({ collections }) => {
 			<Container>
 				<CopyWrapper>
 					<p>
-						© 2020 <span>Elliot.</span> All rights reserved.
+						© {new Date().getFullYear()}{" "}
+						<span>{seoDetails?.lookAndFeel?.seo?.name}.</span> All rights
+						reserved.
 					</p>
 					<ul>
 						<li>

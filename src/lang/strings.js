@@ -37,7 +37,8 @@ export default {
 		"shipping.total": "Gesamt",
 		"products.found": "Produkte gefunden",
 		"banner.free_shipping_over":
-			"Kostenloser Versand für alle Bestellungen über"
+			"Kostenloser Versand für alle Bestellungen über",
+		"product.related_products": "Verwandte Produkte"
 	},
 	en: {
 		"button.add_to_cart": "add to cart",
@@ -76,7 +77,8 @@ export default {
 		"shipping.calculate": "Calculate Shipping",
 		"shipping.total": "Total",
 		"products.found": "Products Found",
-		"banner.free_shipping_over": "Free shipping for all orders over"
+		"banner.free_shipping_over": "Free shipping for all orders over",
+		"product.related_products": "Related Products"
 	},
 	fr: {
 		"button.add_to_cart": "ajouter au chariot",
@@ -116,6 +118,7 @@ export default {
 		"shipping.total": "Total",
 		"products.found": "Produits trouvés",
 		"banner.free_shipping_over":
-			"Livraison gratuite pour toutes les commandes à"
+			"Livraison gratuite pour toutes les commandes à",
+		"product.related_products": "Produits connexes"
 	}
 };
