@@ -117,53 +117,53 @@ const Details = ({
 					</p>
 				)}
 			</div>
+			<div dangerouslySetInnerHTML={{ __html: description }} />
+			{attributes &&
+				attributes.map(({ attributeKey, attributeValues }, i) => {
+					const options = attributeValues.map((_item, i) => {
+						return { value: attributeValues[i], label: attributeValues[i] };
+					});
+					return (
+						<Fragment key={i}>
+							<LabelField>{attributeKey}</LabelField>
+							<Select
+								styles={{
+									container: provided => {
+										const height = "50px";
+										return { ...provided, height };
+									},
+									control: provided => {
+										const height = "50px";
+										const border = "2px solid #eaeaea";
+										return { ...provided, height, border };
+									}
+								}}
+								theme={theme => ({
+									...theme,
+									borderRadius: 0,
+									colors: {
+										...theme.colors,
+										primary: "#000",
+										primary25: "#eaeaea"
+									}
+								})}
+								onChange={e => handleVariant(attributeKey, e.value)}
+								options={options}
+								defaultValue={{
+									label:
+										selectedVariant.attributes[
+											Object.keys(selectedVariant.attributes)[0]
+										],
+									value:
+										selectedVariant.attributes[
+											Object.keys(selectedVariant.attributes)[0]
+										]
+								}}
+							/>
+						</Fragment>
+					);
+				})}
 			<Shop>
-				<div dangerouslySetInnerHTML={{ __html: description }} />
-				{attributes &&
-					attributes.map(({ attributeKey, attributeValues }, i) => {
-						const options = attributeValues.map((_item, i) => {
-							return { value: attributeValues[i], label: attributeValues[i] };
-						});
-						return (
-							<Fragment key={i}>
-								<LabelField>{attributeKey}</LabelField>
-								<Select
-									styles={{
-										container: provided => {
-											const height = "50px";
-											return { ...provided, height };
-										},
-										control: provided => {
-											const height = "50px";
-											const border = "2px solid #eaeaea";
-											return { ...provided, height, border };
-										}
-									}}
-									theme={theme => ({
-										...theme,
-										borderRadius: 0,
-										colors: {
-											...theme.colors,
-											primary: "#000",
-											primary25: "#eaeaea"
-										}
-									})}
-									onChange={e => handleVariant(attributeKey, e.value)}
-									options={options}
-									defaultValue={{
-										label:
-											selectedVariant.attributes[
-												Object.keys(selectedVariant.attributes)[0]
-											],
-										value:
-											selectedVariant.attributes[
-												Object.keys(selectedVariant.attributes)[0]
-											]
-									}}
-								/>
-							</Fragment>
-						);
-					})}
 				<QuantityController
 					wide
 					id={id}
