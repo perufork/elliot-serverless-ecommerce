@@ -1,14 +1,20 @@
 # Elliot's ZEIT Next.js Ecommerce Boilerplate
 
+![ELLIOT X ZEIT](elliot-zeit.jpg)
+
 [![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/new/project?template=https://github.com/helloiamelliot/zeit-checkout-boilerplate)
 
 ## Features
 
-- Static SSR products, collections, products pages, collections pages and all pages by language
-- Scores GOOD on a11y / Performance / SEO
-- Easy to customize
-- Nice project structure
-- Tablet & mobile friendly
+- Deploy, sell & fulfill in seconds
+- Fully localized: multi-currency & language, duties & taxes (DDP - Delivered Duty Paid)
+- Native cross border fulfillment: packing, shipping and return labels, commercial invoices and custom declarations forms
+- Instant global payments: Apple, Google, Ali & WeChat Pay, plus all major credit cards and leading payment options (Klarna, iDEAL)
+- Static SSR for collections, products and all simple pages, in 100+ languages
+- Fast and high performing (90%+ across a11y, Performance, and SEO)
+- Fully customizable
+- Mobile-first and fully responsive
+- Cutting-edge project structure and architecture (GraphQL, Next.js and serverless)
 - Continuous deployment with [ZEIT Now](https://zeit.co)
 
 ## Structure
