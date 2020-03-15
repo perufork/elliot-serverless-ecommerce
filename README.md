@@ -68,3 +68,7 @@ When deploying on [ZEIT Now](https://zeit.co), you will have to set the [Now sec
 - React
 - VSCode
 - And these useful of JavaScript libraries [package.json](package.json)
+
+## Want to contribute?
+
+Deloyable on ZEIT in Spring 2020. To contribute, email us at devs@elliot.store.
