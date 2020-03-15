@@ -1,1 +1,23 @@
-export default ["en", "fr", "de"];
+export default [
+	"en",
+	"fr",
+	"de",
+	"da",
+	"el",
+	"es",
+	"fi",
+	"hi",
+	"it",
+	"ja",
+	"ko",
+	"ms",
+	"nl",
+	"no",
+	"pl",
+	"pt",
+	"ru",
+	"sv",
+	"tr",
+	"vi",
+	"zh"
+];
