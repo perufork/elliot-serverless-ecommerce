@@ -25,9 +25,14 @@ module.exports = withImages({
 		ELLIOT_STORE_FRONT_NAME: process.env.ELLIOT_STORE_FRONT_NAME,
 		ELLIOT_EXCHANGE_RATES_URL: process.env.ELLIOT_EXCHANGE_RATES_URL
 	},
-	webpack: config => {
+	webpack: (config, { isServer }) => {
 		if (config.resolve.modules)
 			config.resolve.modules.unshift(path.resolve(__dirname, "src"));
+
+		if (isServer) {
+			// we're in build mode so enable fs caching for data
+			process.env.USE_BUILD_CACHE = "true";
+		}
 		return config;
 	},
 	experimental: {
@@ -36,6 +41,15 @@ module.exports = withImages({
 				{
 					source: "/",
 					destination: "/index.html"
+				}
+			];
+		},
+		async redirects() {
+			return [
+				{
+					source: "/:path+/",
+					destination: "/:path+",
+					permanent: false
 				}
 			];
 		}
