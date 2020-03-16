@@ -24,6 +24,7 @@ import {
 	Wrapper,
 	LabelField
 } from "./styles";
+import getProductById from "helpers/getProductById";
 import isEmpty from "helpers/isEmpty";
 import dynamic from "next/dynamic";
 import ToggleHidden from "components/common/ToggleHidden";
@@ -88,16 +89,36 @@ const Details = ({
 		}
 	};
 
-	const handleCart = () => {
+	const handleCart = async () => {
 		if (itemProduct?.quantity > 0) {
-			addCustomQuantityByProduct({
-				dispatch,
-				id,
-				skuId: selectedVariant.id,
-				quantity
-			});
+			const { skus: fetchedSkus } = await getProductById(id);
+
+			const productFound = fetchedSkus.edges.find(
+				item => item.node.id === selectedVariant.id
+			);
+
+			if (productFound.node.quantity + itemProduct.quantity >= quantity) {
+				addCustomQuantityByProduct({
+					dispatch,
+					id,
+					skuId: selectedVariant.id,
+					quantity
+				});
+			} else {
+				alert("Out of stock");
+			}
 		} else {
-			addToCart(addToCartPayload);
+			const { skus: fetchedSkus } = await getProductById(id);
+
+			const productFound = fetchedSkus.edges.find(
+				item => item.node.id === selectedVariant.id
+			);
+
+			if (productFound.node.quantity >= quantity) {
+				addToCart(addToCartPayload);
+			} else {
+				alert("Out of Stock");
+			}
 		}
 		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 	};

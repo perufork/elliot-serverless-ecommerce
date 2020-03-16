@@ -1,30 +1,37 @@
 import Error from "next/error";
 import Layout from "components/common/Layout";
 import SEO from "components/common/SEO";
-import Products from "components/listing/Products";
+import Container from "components/common/Container";
 import withLocale from "hoc/withLocale";
-import getProducts from "helpers/getProducts";
 import getCollections from "helpers/getCollections";
 import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
 import getCheckout from "helpers/getCheckout";
-import locales from "helpers/locales";
+import getLegal from "helpers/getLegal";
 
-const Index = ({ products, collections, seoDetails, promotion, checkout }) => (
+const Index = ({
+	termsAndConditions,
+	collections,
+	seoDetails,
+	promotion,
+	checkout
+}) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
 		checkout={checkout}
 	>
-		{products?.edges?.length > 0 ? (
+		{termsAndConditions ? (
 			<>
 				<SEO
 					localizedTitle="shop.page.title"
 					localizedDescription="shop.page.description"
 					seoDetails={seoDetails}
 				/>
-				<Products products={products} />
+				<Container>
+					<div dangerouslySetInnerHTML={{ __html: termsAndConditions }} />
+				</Container>
 			</>
 		) : (
 			<Error statusCode={404} />
@@ -32,23 +39,17 @@ const Index = ({ products, collections, seoDetails, promotion, checkout }) => (
 	</Layout>
 );
 
-export const unstable_getStaticPaths = () => {
-	return {
-		paths: locales.map(locale => `/${locale}/`)
-	};
-};
-
 export const unstable_getStaticProps = async ({ params: { lang } }) => {
 	try {
-		const products = await getProducts();
 		const collections = await getCollections();
 		const seoDetails = await getSeoDetails();
 		const promotion = await getPromotion();
 		const checkout = await getCheckout();
+		const { termsAndConditions } = await getLegal();
 
 		return {
 			props: {
-				products,
+				termsAndConditions,
 				collections,
 				seoDetails,
 				locale: lang,
@@ -60,7 +61,7 @@ export const unstable_getStaticProps = async ({ params: { lang } }) => {
 		console.log(error);
 		return {
 			props: {
-				products: [],
+				termsAndConditions: "",
 				collections: [],
 				seoDetails: {},
 				locale: lang,

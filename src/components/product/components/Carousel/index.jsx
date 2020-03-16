@@ -38,23 +38,34 @@ const Carousel = ({ name, images }) => {
 		rebuildOnUpdate: true
 	};
 
-	return (
+	return images.edges.length > 1 ? (
 		<Wrapper {...params} as={Swiper}>
-			{images.edges.reduce((acc, { node: { image, id } }, i) => {
-				if (i === 0 && images.edges.length === 1) {
-					return acc;
-				}
-				return [
-					...acc,
-					<div key={id}>
-						<img
-							className="swiper-zoom-container"
-							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${image}`}
-							alt={name}
-						/>
-					</div>
-				];
-			}, [])}
+			{images.edges.length > 1 &&
+				images.edges.reduce((acc, { node: { image, id } }, i) => {
+					if (i === 0 && images.edges.length === 1) {
+						return acc;
+					}
+					return [
+						...acc,
+						<div key={id}>
+							<img
+								className="swiper-zoom-container"
+								src={`${process.env.ELLIOT_BASE_IMAGE_URL}${image}`}
+								alt={name}
+							/>
+						</div>
+					];
+				}, [])}
+		</Wrapper>
+	) : (
+		<Wrapper single>
+			<div>
+				<img
+					className="swiper-zoom-container"
+					src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+					alt={name}
+				/>
+			</div>
 		</Wrapper>
 	);
 };

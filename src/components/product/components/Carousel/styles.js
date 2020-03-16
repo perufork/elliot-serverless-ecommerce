@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	max-width: 50%;
+	max-width: ${({ single }) => (single ? "100%" : "50%")};
 	margin: 0;
 	padding: 0;
-	min-width: 50%;
+	min-width: ${({ single }) => (single ? "100%" : "50%")};
 	border-radius: 0;
 
 	img {
 		background-color: #f7f7f7;
 		width: 100%;
-		max-width: 18.75rem;
+		max-width: ${({ single }) => (single ? "100%" : "18.75rem")};
 	}
 `;
 

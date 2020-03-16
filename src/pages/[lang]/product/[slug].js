@@ -57,11 +57,12 @@ export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
 	}
 };
 
-const Product = ({ product, collections, seoDetails, promotion }) => (
+const Product = ({ product, collections, seoDetails, promotion, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
+		checkout={checkout}
 	>
 		{product.id ? (
 			<>

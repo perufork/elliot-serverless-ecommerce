@@ -12,13 +12,14 @@ const Checkout = ({ collections, checkout, seoDetails, promotion }) => (
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
+		checkout={checkout}
 	>
 		<SEO
 			localizedTitle="shop.page.checkout_title"
 			localizedDescription="shop.page.description"
 			seoDetails={seoDetails}
 		/>
-		<OrderCheckout checkout={checkout} />
+		<OrderCheckout checkout={checkout} promotion={promotion} />
 	</Layout>
 );
 

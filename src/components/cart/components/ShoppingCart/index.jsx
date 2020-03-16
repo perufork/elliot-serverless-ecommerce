@@ -44,7 +44,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 										state.data.map(({ sku: { attributes } }) => attributes)
 									)
 								).map((value, i) => (
-									<th key={i}>{value}</th>
+									<th key={i}>{value || null}</th>
 								))}
 								<th>
 									<FormattedMessage id="cart.th.price" />
@@ -64,13 +64,13 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 						<Tbody>
 							{state.data.map(
 								({
-									product: { id, images, name, slug, description },
+									product: { images, name, slug, description },
 									quantity,
 									sku
 								}) => {
 									const quantityByProduct =
 										quantities.length > 0 &&
-										quantities.find(item => item.id === id);
+										quantities.find(item => item.skuId === sku.id);
 
 									return (
 										<tr key={sku.id}>
@@ -102,7 +102,7 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 													</Content>
 												</Product>
 											</td>
-											{sku.attributes &&
+											{Object.entries(sku.attributes).length > 0 ? (
 												Object.entries(sku.attributes).map((value, i) => (
 													<td key={i}>
 														{value[0] === "Color" ? (
@@ -111,7 +111,10 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 															value[1]
 														)}
 													</td>
-												))}
+												))
+											) : (
+												<td></td>
+											)}
 											<td>
 												{sku?.salePrice && (
 													<NumberFormat
@@ -125,7 +128,6 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 											<td>
 												<QuantityController
 													cart
-													id={id}
 													skuId={sku.id}
 													quantity={
 														quantityByProduct

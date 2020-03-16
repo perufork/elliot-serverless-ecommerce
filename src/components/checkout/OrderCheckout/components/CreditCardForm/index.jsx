@@ -25,7 +25,7 @@ import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForCho
 import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
 import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 
-const CreditCardForm = ({ stripe, checkout }) => {
+const CreditCardForm = ({ stripe, checkout, promotion }) => {
 	const { locale } = useIntl();
 	const {
 		state,
@@ -463,12 +463,17 @@ const CreditCardForm = ({ stripe, checkout }) => {
 							<FieldWrapper>
 								<label>Shipping method</label>
 								{loadingShippingInfo && <Loader />}
-								{freeShipping ? (
+								{freeShipping ||
+								(promotion.discountValue &&
+									getTotal(state.data, exchangeRate) >
+										promotion.discountValue * exchangeRate) ? (
 									<Select
-										options={{
-											label: "Free Shipping",
-											value: "free"
-										}}
+										options={[
+											{
+												label: "Free Shipping",
+												value: "free"
+											}
+										]}
 										defaultValue={{
 											label: "Free Shipping",
 											value: "free"
