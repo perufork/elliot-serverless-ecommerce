@@ -75,7 +75,11 @@ export const Sku = styled.span`
 export const Shop = styled.div`
 	display: grid;
 	grid-template-columns: 150px 1fr;
+	grid-template-rows: 1fr 1fr;
 	grid-gap: 15px;
+	grid-template-areas:
+		"a b"
+		"c c";
 	margin: 30px 0;
 
 	@media (max-width: 450px) {
@@ -87,6 +91,7 @@ export const ButtonGroup = styled.div`
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-gap: 0;
+	grid-area: ${({ gridArea }) => gridArea};
 `;
 
 export const MainAction = styled.div`

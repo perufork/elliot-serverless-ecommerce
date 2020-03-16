@@ -3,6 +3,7 @@
 	"button.checkout": "checkout",
 	"button.view_cart": "voir le panier",
 	"button.buy_now": "Acheter maintenant",
+	"button.buy_now_with": "acheter avec",
 	"button.continue_shopping": "continuer vos achats",
 	"button.update_cart": "mise à jour panier",
 	"button.update_total": "mettre à jour le total",

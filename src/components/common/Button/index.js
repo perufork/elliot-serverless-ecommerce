@@ -20,7 +20,7 @@ const Button = styled.button`
 		`
       width: 100%;
       text-align: center;
-    `}
+	`}
 
     ${({ marginBottom }) =>
 			marginBottom &&
