@@ -127,6 +127,26 @@ const Details = ({
 						<Fragment key={i}>
 							<LabelField>{attributeKey}</LabelField>
 							<Select
+								styles={{
+									container: provided => {
+										const height = "50px";
+										return { ...provided, height };
+									},
+									control: provided => {
+										const height = "50px";
+										const border = "2px solid #eaeaea";
+										return { ...provided, height, border };
+									}
+								}}
+								theme={theme => ({
+									...theme,
+									borderRadius: 0,
+									colors: {
+										...theme.colors,
+										primary: "#000",
+										primary25: "#eaeaea"
+									}
+								})}
 								onChange={e => handleVariant(attributeKey, e.value)}
 								options={options}
 								defaultValue={{
