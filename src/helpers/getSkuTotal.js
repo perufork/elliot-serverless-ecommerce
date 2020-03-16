@@ -1,11 +1,11 @@
 import PromotionDiscountType from "helpers/constants/PromotionDiscountType";
-import getPromotionValidity from "./constants/getPromotionValidity";
+import getPromotionValidity from "./getPromotionValidity";
 
 const getSkuTotal = (orderTotal, promotion) => {
 	let updatedOrderTotal = orderTotal;
 	if (promotion && getPromotionValidity(promotion)) {
 		if (promotion.discountType === PromotionDiscountType.PERCENTAGE) {
-			updatedOrderTotal = parseInt(
+			updatedOrderTotal = parseFloat(
 				(orderTotal * (100 - promotion.discountValue)) / 100
 			);
 		} else {

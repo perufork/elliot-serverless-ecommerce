@@ -3,18 +3,29 @@ import { useIntl } from "react-intl";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart } from "providers/CartProvider";
-import getTotal from "helpers/getTotal";
 import { Wrapper, Flex, Product, Item, Price, Card } from "./styles";
 import useShippingInfo from "hooks/useShippingInfo";
 import isEmpty from "helpers/isEmpty";
 import formatMoney from "helpers/formatMoney";
+import SummaryItem from "./SummaryItem";
+import { useCheckout } from "providers/CheckoutProvider";
+import usePromotionLabel from "hooks/usePromotionLabel";
+import useOrderSummary from "hooks/useOrderSummary";
 
 export default () => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { locale } = useIntl();
 	const shippingInfo = useShippingInfo();
+	const { promotion } = useCheckout();
+	const cart = state.data || [];
 	const { duty, tax, shippingCost, shippingTotal } = shippingInfo;
+	const { orderTotal, subTotal, promotion: promotionSum } = useOrderSummary({
+		shippingTotal,
+		exchangeRate,
+		cart,
+		promotion
+	});
 
 	return (
 		<Wrapper>
@@ -57,23 +68,12 @@ export default () => {
 							</Product>
 						)
 					)}
-				<Flex border>
-					<p>sub total</p>
-					{state?.data?.length > 0 && (
-						<Price>
-							{loading ? (
-								"..."
-							) : (
-								<NumberFormat
-									value={getTotal(state.data, exchangeRate)}
-									displayType={"text"}
-									thousandSeparator={true}
-									prefix={currency}
-								/>
-							)}
-						</Price>
-					)}
-				</Flex>
+				<SummaryItem display label="sub total" sum={subTotal} />
+				<SummaryItem
+					display={!!promotion}
+					label={usePromotionLabel()}
+					sum={promotionSum}
+				/>
 				<Item>
 					<h3>Shipping & Taxes</h3>
 					{isEmpty(shippingInfo) && (
@@ -82,55 +82,21 @@ export default () => {
 				</Item>
 				{!isEmpty(shippingInfo) && (
 					<>
-						<Flex border>
-							<p>shipping</p>
-							<Price>
-								{loading ? (
-									"..."
-								) : (
-									<NumberFormat
-										value={formatMoney({ sum: shippingCost, exchangeRate })}
-										displayType={"text"}
-										thousandSeparator={true}
-										prefix={currency}
-									/>
-								)}
-							</Price>
-						</Flex>
-						{parseInt(tax) > 0 && (
-							<Flex border>
-								<p>tax</p>
-								<Price>
-									{loading ? (
-										"..."
-									) : (
-										<NumberFormat
-											value={formatMoney({ sum: tax, exchangeRate })}
-											displayType={"text"}
-											thousandSeparator={true}
-											prefix={currency}
-										/>
-									)}
-								</Price>
-							</Flex>
-						)}
-						{parseInt(duty) > 0 && (
-							<Flex border>
-								<p>duty</p>
-								<Price>
-									{loading ? (
-										"..."
-									) : (
-										<NumberFormat
-											value={formatMoney({ sum: duty, exchangeRate })}
-											displayType={"text"}
-											thousandSeparator={true}
-											prefix={currency}
-										/>
-									)}
-								</Price>
-							</Flex>
-						)}
+						<SummaryItem
+							display
+							label="shipping"
+							sum={formatMoney({ sum: shippingCost, exchangeRate })}
+						/>
+						<SummaryItem
+							display={parseFloat(tax) > 0}
+							label="tax"
+							sum={formatMoney({ sum: tax, exchangeRate })}
+						/>
+						<SummaryItem
+							display={parseFloat(duty) > 0}
+							label="duty"
+							sum={formatMoney({ sum: duty, exchangeRate })}
+						/>
 					</>
 				)}
 				<Flex>
@@ -141,7 +107,7 @@ export default () => {
 								"..."
 							) : (
 								<NumberFormat
-									value={getTotal(state.data, exchangeRate) + shippingTotal}
+									value={orderTotal}
 									displayType={"text"}
 									thousandSeparator={true}
 									prefix={currency}

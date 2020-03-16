@@ -1,5 +1,5 @@
 import NumberFormat from "react-number-format";
-import { FormattedMessage } from "react-intl";
+import FreeShippingThresholdTarget from "helpers/constants/FreeShippingThresholdTarget";
 import Brand from "./components/Brand";
 import Links from "./components/Links";
 import Buttons from "./components/Buttons";
@@ -7,6 +7,7 @@ import Sidebar from "components/theme/Header/components/Sidebar";
 import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import { Container, Banner, Wrapper, Options } from "./styles";
+import { useCheckout } from "providers/CheckoutProvider";
 
 export default ({ collections, seoDetails, promotion, checkout }) => {
 	const { state } = useSidebar();
@@ -20,6 +21,33 @@ export default ({ collections, seoDetails, promotion, checkout }) => {
 		});
 	};
 
+	const {
+		domain: { freeShippingThreshold, freeShippingThresholdTarget },
+		shipFromLocation: { country }
+	} = useCheckout();
+
+	const FreeShippingText = () => {
+		const threshold = loading ? (
+			"..."
+		) : (
+			<NumberFormat
+				value={(parseInt(freeShippingThreshold) / 100) * parseInt(exchangeRate)}
+				displayType={"text"}
+				thousandSeparator={true}
+				prefix={currency}
+			/>
+		);
+
+		if (freeShippingThresholdTarget === FreeShippingThresholdTarget.DOMESTIC) {
+			return (
+				<span>
+					Free Shipping for all {country} orders over {threshold}
+				</span>
+			);
+		}
+		return <span>Free Shipping for all orders over {threshold}</span>;
+	};
+
 	return (
 		<>
 			<Sidebar
@@ -31,17 +59,7 @@ export default ({ collections, seoDetails, promotion, checkout }) => {
 			<Container>
 				{promotion && (
 					<Banner>
-						<FormattedMessage id="banner.free_shipping_over" />{" "}
-						{loading ? (
-							"..."
-						) : (
-							<NumberFormat
-								value={promotion.discountValue * exchangeRate}
-								displayType={"text"}
-								thousandSeparator={true}
-								prefix={currency}
-							/>
-						)}
+						<FreeShippingText />
 					</Banner>
 				)}
 				<Wrapper>

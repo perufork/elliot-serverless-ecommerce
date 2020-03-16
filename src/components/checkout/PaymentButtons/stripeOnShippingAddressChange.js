@@ -2,11 +2,11 @@ import getShippingOptions from "helpers/getShippingOptions";
 import getTaxAndDutyFromShippingOptions from "helpers/getTaxFromShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import FlatRateShippingOptions from "helpers/constants/FlatRateShippingOptions";
-import getPromotionValidity from "helpers/constants/getPromotionValidity";
 import getSkuTotal from "helpers/getSkuTotal";
 import PromotionDiscountType from "helpers/constants/PromotionDiscountType";
 import getRawCartPrice from "helpers/getRawCartPrice";
 import getWalletDisplayItems from "helpers/getWalletDisplayItems";
+import getPromotionValidity from "helpers/getPromotionValidity";
 
 const stripeOnShippingAddressChange = async ({
 	ev,
@@ -89,7 +89,7 @@ const stripeOnShippingAddressChange = async ({
 		}
 
 		const shippingAmount = shippingOptions.reduce(
-			(acc, { shippingOptions: [{ amount }] }) => parseInt(amount) + acc,
+			(acc, { shippingOptions: [{ amount }] }) => parseFloat(amount) + acc,
 			0
 		);
 

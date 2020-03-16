@@ -7,7 +7,6 @@ import { useCart, useDispatchCart } from "providers/CartProvider";
 import { CancelIcon, EmptyCart } from "components/common/Icons";
 import Button from "components/common/Button";
 import { removeFromCart } from "components/cart/actions";
-import getTotal from "helpers/getTotal";
 import {
 	Wrapper,
 	CartItem,
@@ -19,6 +18,9 @@ import {
 import formatMoney from "helpers/formatMoney";
 import useShippingInfo from "hooks/useShippingInfo";
 import isEmpty from "helpers/isEmpty";
+import useOrderSummary from "hooks/useOrderSummary";
+import SummaryItem from "./SummaryItem";
+import { useCheckout } from "providers/CheckoutProvider";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
@@ -28,12 +30,20 @@ const PaymentButtons = dynamic(
 
 const CartSidebar = ({ toggleSidebar }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
+	const { promotion } = useCheckout();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
 
 	const shippingInfo = useShippingInfo();
 	const { duty, tax, shippingCost, shippingTotal } = shippingInfo;
+
+	const { orderTotal, subTotal, promotion: promotionValue } = useOrderSummary({
+		shippingTotal,
+		exchangeRate,
+		cart: state.data || [],
+		promotion
+	});
 
 	return (
 		<Wrapper>
@@ -78,97 +88,35 @@ const CartSidebar = ({ toggleSidebar }) => {
 						))}
 					</div>
 					<CartFooter>
-						<h3>
-							Sub Total:{" "}
-							<strong>
-								{loading ? (
-									"..."
-								) : (
-									<NumberFormat
-										value={getTotal(state.data, exchangeRate)}
-										displayType={"text"}
-										thousandSeparator={true}
-										prefix={currency}
-									/>
-								)}
-							</strong>
-						</h3>
+						<SummaryItem sum={subTotal} display label="Sub Total" />
+						<SummaryItem
+							sum={promotionValue}
+							display={!!promotion}
+							label="Promotion"
+						/>
 						{!isEmpty(shippingInfo) && (
 							<>
-								{shippingCost > 0 && (
-									<h3>
-										Shipping:{" "}
-										<strong>
-											{loading ? (
-												"..."
-											) : (
-												<NumberFormat
-													value={formatMoney({
-														sum: shippingCost,
-														exchangeRate
-													})}
-													displayType={"text"}
-													thousandSeparator={true}
-													prefix={currency}
-												/>
-											)}
-										</strong>
-									</h3>
-								)}
-								{tax > 0 && (
-									<h3>
-										Tax:{" "}
-										<strong>
-											{loading ? (
-												"..."
-											) : (
-												<NumberFormat
-													value={formatMoney({ sum: tax, exchangeRate })}
-													displayType={"text"}
-													thousandSeparator={true}
-													prefix={currency}
-												/>
-											)}
-										</strong>
-									</h3>
-								)}
-								{duty > 0 && (
-									<h3>
-										Duty:{" "}
-										<strong>
-											{loading ? (
-												"..."
-											) : (
-												<NumberFormat
-													value={formatMoney({ sum: duty, exchangeRate })}
-													displayType={"text"}
-													thousandSeparator={true}
-													prefix={currency}
-												/>
-											)}
-										</strong>
-									</h3>
-								)}
-
-								<h3>
-									Total:{" "}
-									<strong>
-										{loading ? (
-											"..."
-										) : (
-											<NumberFormat
-												value={
-													getTotal(state.data, exchangeRate) + shippingTotal
-												}
-												displayType={"text"}
-												thousandSeparator={true}
-												prefix={currency}
-											/>
-										)}
-									</strong>
-								</h3>
+								<SummaryItem
+									sum={formatMoney({
+										sum: shippingCost,
+										exchangeRate
+									})}
+									display
+									label="Shipping"
+								/>
+								<SummaryItem
+									sum={formatMoney({ sum: tax, exchangeRate })}
+									display={tax > 0}
+									label="Tax"
+								/>
+								<SummaryItem
+									sum={formatMoney({ sum: duty, exchangeRate })}
+									display={duty > 0}
+									label="Duty"
+								/>
 							</>
 						)}
+						<SummaryItem sum={orderTotal} display label="Total" />
 						<div>
 							<Link href="/[lang]/cart" as={`/${locale}/cart`}>
 								<Button

@@ -9,7 +9,6 @@ import { Formik, Field, Form, FastField, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import isEmpty from "helpers/isEmpty";
-import getTotal from "helpers/getTotal";
 import { useCart } from "providers/CartProvider";
 import InputField from "components/common/InputField";
 import Button from "components/common/Button";
@@ -24,11 +23,13 @@ import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
 import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
 import useShippingStateUpdater from "hooks/useShippingStateUpdater";
+import useOrderSummary from "hooks/useOrderSummary";
+import useShippingInfo from "hooks/useShippingInfo";
+import { useCheckout } from "providers/CheckoutProvider";
 
-const CreditCardForm = ({ stripe, checkout, promotion }) => {
+const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
 	const {
-		state,
 		state: { data: cart }
 	} = useCart();
 	const {
@@ -85,6 +86,16 @@ const CreditCardForm = ({ stripe, checkout, promotion }) => {
 		shippingOptions: displayedShippingOptions,
 		freeShipping
 	} = shippingOption;
+
+	const { shippingTotal } = useShippingInfo();
+	const { promotion } = useCheckout();
+
+	const { orderTotal } = useOrderSummary({
+		shippingTotal,
+		exchangeRate,
+		cart,
+		promotion
+	});
 
 	useShippingStateUpdater({
 		selectedShippingOptionIndex,
@@ -463,10 +474,7 @@ const CreditCardForm = ({ stripe, checkout, promotion }) => {
 							<FieldWrapper>
 								<label>Shipping method</label>
 								{loadingShippingInfo && <Loader />}
-								{freeShipping ||
-								(promotion.discountValue &&
-									getTotal(state.data, exchangeRate) >
-										promotion.discountValue * exchangeRate) ? (
+								{freeShipping ? (
 									<Select
 										options={[
 											{
@@ -557,7 +565,7 @@ const CreditCardForm = ({ stripe, checkout, promotion }) => {
 							<div>
 								<BuyButton
 									canSubmit={canSubmit}
-									price={getTotal(state.data, exchangeRate)}
+									price={orderTotal}
 									currency={currency}
 									paymentState={paymentState}
 									loadingCurrency={loadingCurrency}
