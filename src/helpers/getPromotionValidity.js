@@ -1,7 +1,7 @@
 const getPromotionValidity = promotion => {
-	const start = Date.parse(promotion.start_datetime);
-	const end = promotion.end_datetime
-		? Date.parse(promotion.end_datetime)
+	const start = Date.parse(promotion.startDatetime);
+	const end = promotion.endDatetime
+		? Date.parse(promotion.endDatetime)
 		: Infinity;
 	const now = Date.now();
 	if (now >= start && now <= end) {

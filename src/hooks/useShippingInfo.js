@@ -10,21 +10,22 @@ const useShippingInfo = () => {
 
 	const { duty = 0, tax = 0, flatRateShipping, freeShipping } = globalState;
 
-	const shippingInfoExists = parseInt(shippingCost) > 0;
+	const shippingInfoExists = parseFloat(shippingCost) > 0;
 
 	if (!shippingInfoExists) {
 		return {};
 	}
 
 	if (flatRateShipping) {
-		shippingCost = parseInt(flatRateShipping.value);
+		shippingCost = parseFloat(flatRateShipping.value);
 	}
 
 	if (freeShipping) {
 		shippingCost = 0;
 	}
 
-	let shippingTotal = parseInt(duty) + parseInt(tax) + parseInt(shippingCost);
+	let shippingTotal =
+		parseFloat(duty) + parseFloat(tax) + parseFloat(shippingCost);
 	shippingTotal = formatMoney({ sum: shippingTotal, exchangeRate });
 
 	return {

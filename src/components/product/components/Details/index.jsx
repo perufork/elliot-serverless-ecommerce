@@ -142,7 +142,7 @@ const Details = ({
 								prefix={currency}
 							/>
 						)}
-						{parseInt(inventoryQuantity) > 0 && (
+						{parseFloat(inventoryQuantity) > 0 && (
 							<Label>
 								<span>OUT OF STOCK</span>
 							</Label>
@@ -205,7 +205,7 @@ const Details = ({
 				/>
 				<ButtonGroup gridArea="b">
 					<Button
-						disabled={parseInt(inventoryQuantity) <= 0}
+						disabled={parseFloat(inventoryQuantity) <= 0}
 						onClick={handleCart}
 						type="button"
 						variant="primary"
