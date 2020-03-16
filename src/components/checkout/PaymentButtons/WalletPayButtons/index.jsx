@@ -81,8 +81,8 @@ class WalletPayButtons extends React.Component {
 					setOrderTax={orderTax => this.setState({ orderTax })}
 					addToCartPayload={addToCartPayload}
 				>
-					<IconWrapper paddingLeft={0.5}>
-						<ApplePayIcon />
+					<IconWrapper>
+						<GooglePayIcon />
 					</IconWrapper>
 				</WalletPayBuyButton>
 			);

@@ -101,6 +101,8 @@ const WalletPayBuyButton = ({
 		}
 	};
 
+	console.log("foo bar");
+
 	return (
 		<ButtonGroup>
 			<Button
