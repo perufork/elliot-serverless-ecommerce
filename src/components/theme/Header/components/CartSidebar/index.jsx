@@ -16,7 +16,9 @@ import {
 	CartFooter,
 	EmptyState
 } from "./styles";
-import { useGlobalState } from "providers/GlobalStateProvider";
+import formatMoney from "helpers/formatMoney";
+import useShippingInfo from "hooks/useShippingInfo";
+import isEmpty from "helpers/isEmpty";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
@@ -29,9 +31,9 @@ const CartSidebar = ({ toggleSidebar }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
-	const { state: globalState } = useGlobalState();
 
-	console.log(globalState);
+	const shippingInfo = useShippingInfo();
+	const { duty, tax, shippingCost, shippingTotal } = shippingInfo;
 
 	return (
 		<Wrapper>
@@ -91,6 +93,82 @@ const CartSidebar = ({ toggleSidebar }) => {
 								)}
 							</strong>
 						</h3>
+						{!isEmpty(shippingInfo) && (
+							<>
+								{shippingCost > 0 && (
+									<h3>
+										Shipping:{" "}
+										<strong>
+											{loading ? (
+												"..."
+											) : (
+												<NumberFormat
+													value={formatMoney({
+														sum: shippingCost,
+														exchangeRate
+													})}
+													displayType={"text"}
+													thousandSeparator={true}
+													prefix={currency}
+												/>
+											)}
+										</strong>
+									</h3>
+								)}
+								{tax > 0 && (
+									<h3>
+										Tax:{" "}
+										<strong>
+											{loading ? (
+												"..."
+											) : (
+												<NumberFormat
+													value={formatMoney({ sum: tax, exchangeRate })}
+													displayType={"text"}
+													thousandSeparator={true}
+													prefix={currency}
+												/>
+											)}
+										</strong>
+									</h3>
+								)}
+								{duty > 0 && (
+									<h3>
+										Duty:{" "}
+										<strong>
+											{loading ? (
+												"..."
+											) : (
+												<NumberFormat
+													value={formatMoney({ sum: duty, exchangeRate })}
+													displayType={"text"}
+													thousandSeparator={true}
+													prefix={currency}
+												/>
+											)}
+										</strong>
+									</h3>
+								)}
+
+								<h3>
+									Total:{" "}
+									<strong>
+										{loading ? (
+											"..."
+										) : (
+											<NumberFormat
+												value={
+													getTotal(state.data, exchangeRate) + shippingTotal
+												}
+												displayType={"text"}
+												thousandSeparator={true}
+												prefix={currency}
+											/>
+										)}
+									</strong>
+								</h3>
+							</>
+						)}
 						<div>
 							<Link href="/[lang]/cart" as={`/${locale}/cart`}>
 								<Button

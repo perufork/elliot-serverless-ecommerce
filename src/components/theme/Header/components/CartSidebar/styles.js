@@ -84,6 +84,9 @@ export const CartFooter = styled.div`
 			color: #c00;
 			font-size: 18px;
 			font-weight: 500;
+		}
+
+		&:last-of-type {
 			margin-bottom: 2rem;
 		}
 	}

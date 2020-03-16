@@ -23,15 +23,7 @@ import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
 import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
-import {
-	useDispatchGlobalState,
-	useGlobalState
-} from "providers/GlobalStateProvider";
-import {
-	BULK_UPDATE,
-	CLEAR_SHIPPING_INFO
-} from "reducers/globalStateReducer.js/types";
-import { useEffect } from "react";
+import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
@@ -65,8 +57,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		zipCode: ""
 	});
 	const [touchedErrors, setTouchedErrors] = useState({});
-	const { dispatch } = useDispatchGlobalState();
-	const { state: globalState } = useGlobalState();
 
 	const hasAddressErrors = errors => {
 		return (
@@ -86,37 +76,20 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		);
 	};
 
-	const {
-		shippingOptions: displayedShippingOptions,
-		freeShipping,
-		tax,
-		duty,
-		flatRate: flatRateShipping
-	} = useMemo(
+	const shippingOption = useMemo(
 		() => getDisplayedShippingOptions({ shippingOptions, checkout }),
 		[JSON.stringify(shippingOptions)]
 	);
 
-	useEffect(() => {
-		const { shippingCost: existingShippingInfo } = globalState;
+	const {
+		shippingOptions: displayedShippingOptions,
+		freeShipping
+	} = shippingOption;
 
-		if (!isEmpty(displayedShippingOptions)) {
-			dispatch({
-				type: BULK_UPDATE,
-				payload: {
-					tax,
-					duty,
-					shippingCost: displayedShippingOptions[selectedShippingOptionIndex],
-					freeShipping,
-					flatRateShipping
-				}
-			});
-		} else if (existingShippingInfo) {
-			dispatch({
-				type: CLEAR_SHIPPING_INFO
-			});
-		}
-	}, [JSON.stringify(displayedShippingOptions)]);
+	useShippingStateUpdater({
+		selectedShippingOptionIndex,
+		shippingOption
+	});
 
 	const handleAddressSelected = async (
 		addressLine1,

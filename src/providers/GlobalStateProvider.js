@@ -5,7 +5,7 @@ const GlobalStateContext = createContext();
 const GlobalStateDispatchContext = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(globalStateReducer, []);
+	const [state, dispatch] = useReducer(globalStateReducer, {});
 
 	return (
 		<GlobalStateDispatchContext.Provider value={{ dispatch }}>
