@@ -23,7 +23,7 @@ const Checkout = ({ collections, checkout, seoDetails, promotion }) => (
 	</Layout>
 );
 
-export const unstable_getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
 	try {
 		const collections = await getCollections();
 		const checkout = await getCheckout();
@@ -50,5 +50,7 @@ export const unstable_getStaticProps = async ({ params }) => {
 		};
 	}
 };
+
+export { getStaticPaths } from "./index";
 
 export default withLocale(Checkout);

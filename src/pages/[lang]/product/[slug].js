@@ -10,7 +10,7 @@ import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
 import getCheckout from "helpers/getCheckout";
 
-export const unstable_getStaticPaths = async () => {
+export const getStaticPaths = async () => {
 	const products = await getProducts();
 
 	const localizedProducts = products.edges.map(({ node: { slug } }) =>
@@ -18,11 +18,12 @@ export const unstable_getStaticPaths = async () => {
 	);
 
 	return {
-		paths: localizedProducts.flatMap(item => item)
+		paths: localizedProducts.flatMap(item => item),
+		fallback: true
 	};
 };
 
-export const unstable_getStaticProps = async ({ params: { slug, lang } }) => {
+export const getStaticProps = async ({ params: { slug, lang } }) => {
 	try {
 		const collections = await getCollections();
 		const products = await getProducts();

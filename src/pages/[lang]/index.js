@@ -32,13 +32,14 @@ const Index = ({ products, collections, seoDetails, promotion, checkout }) => (
 	</Layout>
 );
 
-export const unstable_getStaticPaths = () => {
+export const getStaticPaths = () => {
 	return {
-		paths: locales.map(locale => `/${locale}/`)
+		paths: locales.map(locale => ({ params: { lang: locale } })),
+		fallback: true
 	};
 };
 
-export const unstable_getStaticProps = async ({ params: { lang } }) => {
+export const getStaticProps = async ({ params: { lang } }) => {
 	try {
 		const products = await getProducts();
 		const collections = await getCollections();

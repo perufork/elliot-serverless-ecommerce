@@ -23,7 +23,7 @@ const Cart = ({ collections, seoDetails, promotion, checkout }) => (
 	</Layout>
 );
 
-export const unstable_getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
 	try {
 		const collections = await getCollections();
 		const seoDetails = await getSeoDetails();
@@ -51,5 +51,7 @@ export const unstable_getStaticProps = async ({ params }) => {
 		};
 	}
 };
+
+export { getStaticPaths } from "./index";
 
 export default withLocale(Cart);

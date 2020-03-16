@@ -33,7 +33,7 @@ const Index = ({ about, collections, seoDetails, promotion, checkout }) => (
 	</Layout>
 );
 
-export const unstable_getStaticProps = async ({ params: { lang } }) => {
+export const getStaticProps = async ({ params: { lang } }) => {
 	try {
 		const collections = await getCollections();
 		const seoDetails = await getSeoDetails();
@@ -65,5 +65,7 @@ export const unstable_getStaticProps = async ({ params: { lang } }) => {
 		};
 	}
 };
+
+export { getStaticPaths } from "./index";
 
 export default withLocale(Index);
