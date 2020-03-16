@@ -5,13 +5,18 @@ import { useCart } from "providers/CartProvider";
 import { useCheckout } from "providers/CheckoutProvider";
 import getTaxAndDutyFromShippingOptions from "helpers/getTaxFromShippingOptions";
 import getShippingOptions from "helpers/getShippingOptions";
+import Button from "components/common/Button";
+import { ButtonGroup } from "components/product/components/Details/styles";
+import { FormattedMessage } from "react-intl";
+import { addToCart } from "components/cart/actions";
+import isEmpty from "helpers/isEmpty";
 
 const WalletPayBuyButton = ({
 	children,
 	paymentRequest,
-	className,
 	orderTax,
-	setOrderTax
+	setOrderTax,
+	addToCartPayload
 }) => {
 	const [loading, setLoading] = useState(false);
 	const [listenForCartUpdate, setCartUpdateListening] = useState(false);
@@ -19,10 +24,17 @@ const WalletPayBuyButton = ({
 
 	const checkout = useCheckout();
 	const {
-		state: { data: cart }
+		state: { data: cart = [] }
 	} = useCart();
 
-	const buttonContent = loading ? <Loader /> : children;
+	const buttonContent = loading ? (
+		<Loader />
+	) : (
+		<>
+			<FormattedMessage id="button.buy_now_with" />
+			{children}
+		</>
+	);
 
 	const getTax = async () => {
 		const taxPayload = await getShippingOptions({
@@ -75,10 +87,13 @@ const WalletPayBuyButton = ({
 				}
 			})();
 		}
-	}, [listenForCartUpdate, cart.length === 1]);
+	}, [listenForCartUpdate, isEmpty(cart)]);
 
 	const handleClick = async () => {
-		if (checkout.shippingPpreference === ShippingPreference.IN_STORE) {
+		if (isEmpty(cart) && addToCartPayload) {
+			addToCart(addToCartPayload);
+			setCartUpdateListening(true);
+		} else if (checkout.shippingPreference === ShippingPreference.IN_STORE) {
 			setTaxUpdateListening(true);
 			await paymentRequestActions();
 		} else {
@@ -87,9 +102,17 @@ const WalletPayBuyButton = ({
 	};
 
 	return (
-		<button disabled={loading} onClick={handleClick} className={className}>
-			{buttonContent}
-		</button>
+		<ButtonGroup>
+			<Button
+				disabled={loading}
+				onClick={handleClick}
+				type="button"
+				variant="primary"
+				wide
+			>
+				{buttonContent}
+			</Button>
+		</ButtonGroup>
 	);
 };
 

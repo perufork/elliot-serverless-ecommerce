@@ -3,6 +3,7 @@
 	"button.checkout": "checkout",
 	"button.view_cart": "view cart",
 	"button.buy_now": "buy now",
+	"button.buy_now_with": "buy now with",
 	"button.continue_shopping": "continue shopping",
 	"button.update_cart": "update cart",
 	"button.update_total": "update total",

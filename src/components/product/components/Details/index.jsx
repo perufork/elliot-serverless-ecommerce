@@ -24,6 +24,15 @@ import {
 	Wrapper,
 	LabelField
 } from "./styles";
+import isEmpty from "helpers/isEmpty";
+import dynamic from "next/dynamic";
+import ToggleHidden from "components/common/ToggleHidden";
+const PaymentButtons = dynamic(
+	() => import("components/checkout/PaymentButtons"),
+	{
+		ssr: false
+	}
+);
 
 const Details = ({
 	id,
@@ -39,6 +48,7 @@ const Details = ({
 }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
+	const cart = state?.data || [];
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const { locale } = useIntl();
@@ -61,6 +71,23 @@ const Details = ({
 		});
 	};
 
+	const addToCartPayload = {
+		dispatch,
+		payload: {
+			product: {
+				id,
+				name,
+				description,
+				images,
+				slug,
+				attributes,
+				metadata
+			},
+			quantity,
+			sku: selectedVariant
+		}
+	};
+
 	const handleCart = () => {
 		if (itemProduct?.quantity > 0) {
 			addCustomQuantityByProduct({
@@ -70,22 +97,7 @@ const Details = ({
 				quantity
 			});
 		} else {
-			addToCart({
-				dispatch,
-				payload: {
-					product: {
-						id,
-						name,
-						description,
-						images,
-						slug,
-						attributes,
-						metadata
-					},
-					quantity,
-					sku: selectedVariant
-				}
-			});
+			addToCart(addToCartPayload);
 		}
 		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 	};
@@ -170,7 +182,7 @@ const Details = ({
 					setQuantity={setQuantity}
 					quantity={quantity}
 				/>
-				<ButtonGroup>
+				<ButtonGroup gridArea="b">
 					<Button
 						disabled={parseInt(inventoryQuantity) <= 0}
 						onClick={handleCart}
@@ -181,6 +193,9 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 				</ButtonGroup>
+				<ToggleHidden gridArea="c" hidden={!isEmpty(cart)}>
+					<PaymentButtons addToCartPayload={addToCartPayload} />
+				</ToggleHidden>
 			</Shop>
 			<Specs>
 				{collections && (
