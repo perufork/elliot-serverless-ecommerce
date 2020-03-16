@@ -23,6 +23,7 @@ import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
 import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
+import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
@@ -75,13 +76,20 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		);
 	};
 
-	const {
-		shippingOptions: displayedShippingOptions,
-		freeShipping
-	} = useMemo(
+	const shippingOption = useMemo(
 		() => getDisplayedShippingOptions({ shippingOptions, checkout }),
 		[JSON.stringify(shippingOptions)]
 	);
+
+	const {
+		shippingOptions: displayedShippingOptions,
+		freeShipping
+	} = shippingOption;
+
+	useShippingStateUpdater({
+		selectedShippingOptionIndex,
+		shippingOption
+	});
 
 	const handleAddressSelected = async (
 		addressLine1,
@@ -224,8 +232,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						console.error("NO TOKEN");
 						return;
 					}
-
-					// console.log(token);
 
 					const {
 						name,
