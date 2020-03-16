@@ -43,6 +43,14 @@ query checkout($id: ID! $domainId: ID!) {
         company {
           currency
           name
+          address {
+            address1
+            city
+            country
+            zipCode
+            phoneNumber
+            email
+          }
         }
         vendors {
           edges {

@@ -15,7 +15,7 @@ import {
 	Wrapper
 } from "./styles";
 
-const Footer = ({ collections }) => {
+const Footer = ({ collections, seoDetails }) => {
 	const { locale } = useIntl();
 	const { state: currency, setState: setCurrency } = useCurrency();
 
@@ -25,15 +25,27 @@ const Footer = ({ collections }) => {
 				<List>
 					<ListTitle>Help &amp; Information</ListTitle>
 					<Item>
-						<Link href="">
-							<a>FAQs</a>
-						</Link>
+						<ul>
+							<li>
+								<Link href="/[lang]/faqs" as={`/${locale}/faqs`}>
+									<a>FAQs</a>
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="/[lang]/return-policy"
+									as={`/${locale}/return-policy`}
+								>
+									<a>Return policy</a>
+								</Link>
+							</li>
+						</ul>
 					</Item>
 				</List>
 				<List>
-					<ListTitle>About Elliot</ListTitle>
+					<ListTitle>About {seoDetails?.lookAndFeel?.seo?.name}</ListTitle>
 					<Item>
-						<Link href="">
+						<Link href="/[lang]/about" as={`/${locale}/about`}>
 							<a>About us</a>
 						</Link>
 					</Item>
@@ -79,16 +91,24 @@ const Footer = ({ collections }) => {
 			<Container>
 				<CopyWrapper>
 					<p>
-						© 2020 <span>Elliot.</span> All rights reserved.
+						© {new Date().getFullYear()}{" "}
+						<span>{seoDetails?.lookAndFeel?.seo?.name}.</span> All rights
+						reserved.
 					</p>
 					<ul>
 						<li>
-							<Link href="">
+							<Link
+								href="/[lang]/privacy-policy"
+								as={`/${locale}/privacy-policy`}
+							>
 								<a>Privacy Policy</a>
 							</Link>
 						</li>
 						<li>
-							<Link href="">
+							<Link
+								href="/[lang]/terms-and-conditions"
+								as={`/${locale}/terms-and-conditions`}
+							>
 								<a>Terms of Use</a>
 							</Link>
 						</li>

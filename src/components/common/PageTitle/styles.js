@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
+	text-transform: capitalize;
 	font-size: calc(36px + (48 - 36) * ((100vw - 300px) / (1600 - 300)));
 	text-align: center;
 	font-weight: 700;

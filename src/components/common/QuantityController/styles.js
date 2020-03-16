@@ -6,6 +6,8 @@ export const Wrapper = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	border: 2px solid ${({ theme: { colors } }) => colors.lightnessGray};
+	height: 50px;
+	grid-area: a;
 
 	${({ wide }) =>
 		wide &&

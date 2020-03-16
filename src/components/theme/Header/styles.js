@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Banner = styled.div`
 	padding: 1.2rem 0;
 	text-align: center;
-	color: #fff;
+	color: #000;
 	background: ${({
 		theme: {
 			colors: { accent }

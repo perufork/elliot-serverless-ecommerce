@@ -28,9 +28,14 @@ export const Flex = styled.div`
 
 	@media (max-width: 680px) {
 		flex-direction: column;
+		margin-bottom: 15px;
 	}
 
 	a:first-child {
 		margin-right: 0.5rem;
+
+		@media (max-width: 680px) {
+			margin-right: unset;
+		}
 	}
 `;

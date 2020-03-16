@@ -3,6 +3,7 @@
 	"button.checkout": "checkout",
 	"button.view_cart": "view cart",
 	"button.buy_now": "buy now",
+	"button.buy_now_with": "buy now with",
 	"button.continue_shopping": "continue shopping",
 	"button.update_cart": "update cart",
 	"button.update_total": "update total",
@@ -35,5 +36,6 @@
 	"shipping.calculate": "Calculate Shipping",
 	"shipping.total": "Total",
 	"products.found": "Products Found",
-	"banner.free_shipping_over": "Free shipping for all orders over"
+	"banner.free_shipping_over": "Free shipping for all orders over",
+	"product.related_products": "Related Products"
 }

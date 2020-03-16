@@ -22,7 +22,8 @@ export const Products = styled.section`
 `;
 
 export const Section = styled.section`
-	padding: 2.5rem 0 9.375rem;
+	padding: 2.5rem 0;
+	max-width: 90%;
 `;
 
 export const SectionTitle = styled.h3`

@@ -5,11 +5,16 @@ import { useCurrency } from "providers/CurrencyProvider";
 import { useCart } from "providers/CartProvider";
 import getTotal from "helpers/getTotal";
 import { Wrapper, Flex, Product, Item, Price, Card } from "./styles";
+import useShippingInfo from "hooks/useShippingInfo";
+import isEmpty from "helpers/isEmpty";
+import formatMoney from "helpers/formatMoney";
 
 export default () => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { locale } = useIntl();
+	const shippingInfo = useShippingInfo();
+	const { duty, tax, shippingCost, shippingTotal } = shippingInfo;
 
 	return (
 		<Wrapper>
@@ -71,8 +76,63 @@ export default () => {
 				</Flex>
 				<Item>
 					<h3>Shipping & Taxes</h3>
-					<span>Input an address to get shipping summary</span>
+					{isEmpty(shippingInfo) && (
+						<span>Input an address to get shipping summary</span>
+					)}
 				</Item>
+				{!isEmpty(shippingInfo) && (
+					<>
+						<Flex border>
+							<p>shipping</p>
+							<Price>
+								{loading ? (
+									"..."
+								) : (
+									<NumberFormat
+										value={formatMoney({ sum: shippingCost, exchangeRate })}
+										displayType={"text"}
+										thousandSeparator={true}
+										prefix={currency}
+									/>
+								)}
+							</Price>
+						</Flex>
+						{parseInt(tax) > 0 && (
+							<Flex border>
+								<p>tax</p>
+								<Price>
+									{loading ? (
+										"..."
+									) : (
+										<NumberFormat
+											value={formatMoney({ sum: tax, exchangeRate })}
+											displayType={"text"}
+											thousandSeparator={true}
+											prefix={currency}
+										/>
+									)}
+								</Price>
+							</Flex>
+						)}
+						{parseInt(duty) > 0 && (
+							<Flex border>
+								<p>duty</p>
+								<Price>
+									{loading ? (
+										"..."
+									) : (
+										<NumberFormat
+											value={formatMoney({ sum: duty, exchangeRate })}
+											displayType={"text"}
+											thousandSeparator={true}
+											prefix={currency}
+										/>
+									)}
+								</Price>
+							</Flex>
+						)}
+					</>
+				)}
 				<Flex>
 					<h5>Total</h5>
 					{state?.data?.length > 0 && (
@@ -81,7 +141,7 @@ export default () => {
 								"..."
 							) : (
 								<NumberFormat
-									value={getTotal(state.data, exchangeRate)}
+									value={getTotal(state.data, exchangeRate) + shippingTotal}
 									displayType={"text"}
 									thousandSeparator={true}
 									prefix={currency}

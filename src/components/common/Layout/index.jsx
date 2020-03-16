@@ -6,7 +6,14 @@ import { withTheme } from "styled-components";
 import GlobalStyle from "components/theme/global-style";
 import { Wrapper } from "./styles";
 
-const Layout = ({ children, collections, theme, seoDetails, promotion }) => {
+const Layout = ({
+	children,
+	collections,
+	theme,
+	seoDetails,
+	promotion,
+	checkout
+}) => {
 	return (
 		<>
 			<Head>
@@ -28,6 +35,7 @@ const Layout = ({ children, collections, theme, seoDetails, promotion }) => {
 					collections={collections}
 					seoDetails={seoDetails}
 					promotion={promotion}
+					checkout={checkout}
 				/>
 				<Wrapper>{children}</Wrapper>
 				<Footer collections={collections} seoDetails={seoDetails} />

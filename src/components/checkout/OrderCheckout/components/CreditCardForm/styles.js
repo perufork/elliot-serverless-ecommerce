@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+	h4 {
+		font-weight: bold;
+	}
+`;
+
 export const FieldWrapper = styled.div`
 	margin-bottom: 1rem;
 

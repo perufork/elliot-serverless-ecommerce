@@ -29,24 +29,35 @@ export default ({
 
 	return (
 		<Wrapper>
-			{images?.edges?.length > 1 && (
-				<Thumbnail>
-					<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
-						<a>
-							{images.edges.map(({ node }) => (
+			<Thumbnail>
+				<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
+					<a>
+						{images?.edges?.length > 1 ? (
+							images.edges.map(({ node }) => (
 								<img
 									key={node.id}
 									src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
 									alt={name}
 								/>
-							))}
-						</a>
-					</Link>
-					{/* <Label>
+							))
+						) : (
+							<>
+								<img
+									src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+									alt={name}
+								/>
+								<img
+									src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+									alt={name}
+								/>
+							</>
+						)}
+					</a>
+				</Link>
+				{/* <Label>
 						<span>Sale</span>
 					</Label> */}
-				</Thumbnail>
-			)}
+			</Thumbnail>
 			<Content>
 				<Header>
 					<Details>

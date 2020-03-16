@@ -26,13 +26,13 @@ const Items = () => {
 		}
 	];
 
-	const handleQuantity = ({ id, quantity }) => {
-		const product = quantities.find(item => item.id === id);
+	const handleQuantity = ({ skuId, quantity }) => {
+		const product = quantities.find(item => item.skuId === skuId);
 
 		if (product) {
 			setQuantities(
 				quantities.map(item => {
-					if (item.id === id) return { id, quantity };
+					if (item.skuId === skuId) return { skuId, quantity };
 					return item;
 				})
 			);
@@ -40,7 +40,7 @@ const Items = () => {
 			setQuantities([
 				...quantities,
 				{
-					id,
+					skuId,
 					quantity
 				}
 			]);

@@ -17,14 +17,15 @@ import ErrorField from "components/common/ErrorField";
 import Loader from "components/common/Loader";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
 import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
-import { FieldWrapper, CreditCardWrap } from "./styles";
 import getShippingPayload from "helpers/getShippingPayload";
 import { useCurrency } from "providers/CurrencyProvider";
 import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
+import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
+import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 
-const CreditCardForm = ({ stripe, checkout }) => {
+const CreditCardForm = ({ stripe, checkout, promotion }) => {
 	const { locale } = useIntl();
 	const {
 		state,
@@ -75,13 +76,20 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		);
 	};
 
-	const {
-		shippingOptions: displayedShippingOptions,
-		freeShipping
-	} = useMemo(
+	const shippingOption = useMemo(
 		() => getDisplayedShippingOptions({ shippingOptions, checkout }),
 		[JSON.stringify(shippingOptions)]
 	);
+
+	const {
+		shippingOptions: displayedShippingOptions,
+		freeShipping
+	} = shippingOption;
+
+	useShippingStateUpdater({
+		selectedShippingOptionIndex,
+		shippingOption
+	});
 
 	const handleAddressSelected = async (
 		addressLine1,
@@ -225,8 +233,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						return;
 					}
 
-					// console.log(token);
-
 					const {
 						name,
 						addressLine1: line1,
@@ -327,7 +333,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								/>
 							))}
 						</>
-						<div>
+						<Wrapper>
 							<h4>Enter Payment Details</h4>
 							<Flex align="flex-start">
 								<Item col={6} colTablet={12} colMobile={12} gap={2}>
@@ -355,10 +361,20 @@ const CreditCardForm = ({ stripe, checkout }) => {
 											placeholder={3477150728}
 											onBlur={() => setFieldTouched("phone")}
 											onChange={value => setFieldValue("phone", value)}
+											buttonStyle={{
+												background: "#fafafa",
+												border: "2px solid #eaeaea",
+												borderRadius: 0
+											}}
+											dropdownStyle={{ background: "#fff" }}
 											inputStyle={{
 												width: "100%",
 												lineHeight: 49,
-												height: 49
+												fontSize: "12px",
+												color: "#222",
+												height: 50,
+												border: "2px solid #eaeaea",
+												borderRadius: "0"
 											}}
 										/>
 										<ErrorMessage component={ErrorField} name="phone" />
@@ -447,12 +463,17 @@ const CreditCardForm = ({ stripe, checkout }) => {
 							<FieldWrapper>
 								<label>Shipping method</label>
 								{loadingShippingInfo && <Loader />}
-								{freeShipping ? (
+								{freeShipping ||
+								(promotion.discountValue &&
+									getTotal(state.data, exchangeRate) >
+										promotion.discountValue * exchangeRate) ? (
 									<Select
-										options={{
-											label: "Free Shipping",
-											value: "free"
-										}}
+										options={[
+											{
+												label: "Free Shipping",
+												value: "free"
+											}
+										]}
 										defaultValue={{
 											label: "Free Shipping",
 											value: "free"
@@ -548,7 +569,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 									</Button>
 								</Link>
 							</div>
-						</div>
+						</Wrapper>
 					</Form>
 				);
 			}}

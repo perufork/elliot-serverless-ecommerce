@@ -8,12 +8,14 @@ import getCollections from "helpers/getCollections";
 import getSeoDetails from "helpers/getSeoDetails";
 import getPromotion from "helpers/getPromotion";
 import getCheckout from "helpers/getCheckout";
+import locales from "helpers/locales";
 
-const Index = ({ products, collections, seoDetails, promotion }) => (
+const Index = ({ products, collections, seoDetails, promotion, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
+		checkout={checkout}
 	>
 		{products?.edges?.length > 0 ? (
 			<>
@@ -29,6 +31,12 @@ const Index = ({ products, collections, seoDetails, promotion }) => (
 		)}
 	</Layout>
 );
+
+export const unstable_getStaticPaths = () => {
+	return {
+		paths: locales.map(locale => `/${locale}/`)
+	};
+};
 
 export const unstable_getStaticProps = async ({ params: { lang } }) => {
 	try {

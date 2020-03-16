@@ -10,6 +10,7 @@ import "react-phone-input-2/lib/style.css";
 import "swiper/css/swiper.css";
 import "nprogress/nprogress.css";
 import { CheckoutProvider } from "providers/CheckoutProvider";
+import { GlobalStateProvider } from "providers/GlobalStateProvider";
 
 Router.events.on("routeChangeStart", () => {
 	NProgress.start();
@@ -37,7 +38,9 @@ export default class MyApp extends App {
 						<SidebarProvider>
 							<CheckoutProvider checkout={pageProps.checkout}>
 								<ThemeProvider theme={theme}>
-									<Component {...pageProps} />
+									<GlobalStateProvider>
+										<Component {...pageProps} />
+									</GlobalStateProvider>
 								</ThemeProvider>
 							</CheckoutProvider>
 						</SidebarProvider>

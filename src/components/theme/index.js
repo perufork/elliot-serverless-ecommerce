@@ -6,7 +6,7 @@ export default {
 		accent: "#f68773",
 		black: "#222",
 		darkBlack: "#000",
-		darkGray: "#999",
+		darkGray: "#585858",
 		lightGray: "#bbb",
 		lightnessGray: "#eaeaea",
 		red: "#ff1d5d",

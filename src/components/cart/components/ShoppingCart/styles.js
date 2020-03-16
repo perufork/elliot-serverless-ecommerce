@@ -118,7 +118,6 @@ export const Tbody = styled.tbody`
 	tr {
 		td {
 			padding: 1.875rem 0.9375rem;
-			border: none;
 			vertical-align: middle;
 			font-size: 14px;
 			font-weight: 600;
