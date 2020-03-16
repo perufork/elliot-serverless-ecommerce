@@ -19,5 +19,6 @@ export default [
 	"sv",
 	"tr",
 	"vi",
-	"zh"
+	"zh",
+	"ar"
 ];

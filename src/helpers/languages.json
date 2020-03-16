@@ -82,5 +82,9 @@
 	{
 		"title": "Chinese",
 		"code": "zh"
+	},
+	{
+		"title": "Arabic",
+		"code": "ar"
 	}
 ]
