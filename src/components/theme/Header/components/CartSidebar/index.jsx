@@ -100,7 +100,13 @@ const CartSidebar = ({ toggleSidebar }) => {
 								</Button>
 							</Link>
 							<Link href="/[lang]/checkout" as={`/${locale}/checkout`}>
-								<Button as="a" wide variant="primary" onClick={toggleSidebar}>
+								<Button
+									as="a"
+									wide
+									variant="primary"
+									onClick={toggleSidebar}
+									marginBottom={1}
+								>
 									<FormattedMessage id="button.checkout" />
 								</Button>
 							</Link>

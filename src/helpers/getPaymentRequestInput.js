@@ -9,7 +9,7 @@ export const getShippingPaymentRequestInput = (checkout, cart) => ({
 	currency: checkout.domain.company.currency,
 	total: {
 		label: checkout.domain.company.name,
-		amount: getSkuPrice(cart[0].sku),
+		amount: getSkuPrice(cart[0]?.sku),
 		pending: true
 	},
 	displayItems: getWalletDisplayItems(cart),

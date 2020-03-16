@@ -355,10 +355,20 @@ const CreditCardForm = ({ stripe, checkout }) => {
 											placeholder={3477150728}
 											onBlur={() => setFieldTouched("phone")}
 											onChange={value => setFieldValue("phone", value)}
+											buttonStyle={{
+												background: "#fafafa",
+												border: "2px solid #eaeaea",
+												borderRadius: 0
+											}}
+											dropdownStyle={{ background: "#fff" }}
 											inputStyle={{
 												width: "100%",
 												lineHeight: 49,
-												height: 49
+												fontSize: "12px",
+												color: "#222",
+												height: 50,
+												border: "2px solid #eaeaea",
+												borderRadius: "0"
 											}}
 										/>
 										<ErrorMessage component={ErrorField} name="phone" />

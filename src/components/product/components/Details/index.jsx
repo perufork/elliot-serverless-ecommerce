@@ -25,6 +25,15 @@ import {
 	LabelField
 } from "./styles";
 import getProductById from "helpers/getProductById";
+import isEmpty from "helpers/isEmpty";
+import dynamic from "next/dynamic";
+import ToggleHidden from "components/common/ToggleHidden";
+const PaymentButtons = dynamic(
+	() => import("components/checkout/PaymentButtons"),
+	{
+		ssr: false
+	}
+);
 
 const Details = ({
 	id,
@@ -40,6 +49,7 @@ const Details = ({
 }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
+	const cart = state?.data || [];
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 	const { locale } = useIntl();
@@ -60,6 +70,23 @@ const Details = ({
 				}
 			});
 		});
+	};
+
+	const addToCartPayload = {
+		dispatch,
+		payload: {
+			product: {
+				id,
+				name,
+				description,
+				images,
+				slug,
+				attributes,
+				metadata
+			},
+			quantity,
+			sku: selectedVariant
+		}
 	};
 
 	const handleCart = async () => {
@@ -88,22 +115,7 @@ const Details = ({
 			);
 
 			if (productFound.node.quantity >= quantity) {
-				addToCart({
-					dispatch,
-					payload: {
-						product: {
-							id,
-							name,
-							description,
-							images,
-							slug,
-							attributes,
-							metadata
-						},
-						quantity,
-						sku: selectedVariant
-					}
-				});
+				addToCart(addToCartPayload);
 			} else {
 				alert("Out of Stock");
 			}
@@ -148,6 +160,26 @@ const Details = ({
 						<Fragment key={i}>
 							<LabelField>{attributeKey}</LabelField>
 							<Select
+								styles={{
+									container: provided => {
+										const height = "50px";
+										return { ...provided, height };
+									},
+									control: provided => {
+										const height = "50px";
+										const border = "2px solid #eaeaea";
+										return { ...provided, height, border };
+									}
+								}}
+								theme={theme => ({
+									...theme,
+									borderRadius: 0,
+									colors: {
+										...theme.colors,
+										primary: "#000",
+										primary25: "#eaeaea"
+									}
+								})}
 								onChange={e => handleVariant(attributeKey, e.value)}
 								options={options}
 								defaultValue={{
@@ -171,7 +203,7 @@ const Details = ({
 					setQuantity={setQuantity}
 					quantity={quantity}
 				/>
-				<ButtonGroup>
+				<ButtonGroup gridArea="b">
 					<Button
 						disabled={parseInt(inventoryQuantity) <= 0}
 						onClick={handleCart}
@@ -182,6 +214,9 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 				</ButtonGroup>
+				<ToggleHidden gridArea="c" hidden={!isEmpty(cart)}>
+					<PaymentButtons addToCartPayload={addToCartPayload} />
+				</ToggleHidden>
 			</Shop>
 			<Specs>
 				{collections && (

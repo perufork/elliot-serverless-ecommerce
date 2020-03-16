@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 import { injectStripe } from "react-stripe-elements";
-import StripePaymentButton from "./WalletPayButtons";
+import StripePaymentButton from "./WalletPayButtons/index";
 import { useCheckout } from "providers/CheckoutProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart } from "providers/CartProvider";
@@ -13,12 +13,12 @@ import {
 import ShippingPreference from "helpers/constants/ShippingPreference";
 import getWalletDisplayItems from "helpers/getWalletDisplayItems";
 
-const PaymentButtonsWrapper = ({ stripe }) => {
+const PaymentButtonsWrapper = ({ stripe, addToCartPayload }) => {
 	const checkout = useCheckout();
 	const { state: displayCurrency } = useCurrency();
-	const {
-		state: { data: cart }
-	} = useCart();
+	const { state } = useCart();
+
+	const cart = state?.data || [];
 
 	const cartPriceSumRaw = getRawCartPrice(cart);
 
@@ -31,6 +31,7 @@ const PaymentButtonsWrapper = ({ stripe }) => {
 		() => getShippingPaymentRequestInput(checkout, cart),
 		[]
 	);
+
 	const paymentRequest = useMemo(
 		() => stripe.paymentRequest(paymentRequestInput),
 		[]
@@ -80,20 +81,15 @@ const PaymentButtonsWrapper = ({ stripe }) => {
 	}, [cartPriceSumWithPromo]);
 
 	return (
-		<>
-			<div>
-				<StripePaymentButton
-					cart={cart}
-					displayCurrency={displayCurrency}
-					checkout={checkout}
-					paymentRequest={paymentRequest}
-					onOrderLoading={() => console.log("order loading")}
-					onOrderSubmitted={status =>
-						console.log("order submitted", { status })
-					}
-				/>
-			</div>
-		</>
+		<StripePaymentButton
+			addToCartPayload={addToCartPayload}
+			cart={cart}
+			displayCurrency={displayCurrency}
+			checkout={checkout}
+			paymentRequest={paymentRequest}
+			onOrderLoading={() => console.log("order loading")}
+			onOrderSubmitted={status => console.log("order submitted", { status })}
+		/>
 	);
 };
 

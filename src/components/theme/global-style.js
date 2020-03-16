@@ -50,6 +50,9 @@ const GlobalStyle = createGlobalStyle`
   h5 {
     font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1600 - 300)));
   }
-  `;
+  input {
+    border-radius: 0;
+  }
+`;
 
 export default GlobalStyle;
