@@ -23,6 +23,15 @@ import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
 import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
+import {
+	useDispatchGlobalState,
+	useGlobalState
+} from "providers/GlobalStateProvider";
+import {
+	BULK_UPDATE,
+	CLEAR_SHIPPING_INFO
+} from "reducers/globalStateReducer.js/types";
+import { useEffect } from "react";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
@@ -56,6 +65,8 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		zipCode: ""
 	});
 	const [touchedErrors, setTouchedErrors] = useState({});
+	const { dispatch } = useDispatchGlobalState();
+	const { state: globalState } = useGlobalState();
 
 	const hasAddressErrors = errors => {
 		return (
@@ -77,11 +88,35 @@ const CreditCardForm = ({ stripe, checkout }) => {
 
 	const {
 		shippingOptions: displayedShippingOptions,
-		freeShipping
+		freeShipping,
+		tax,
+		duty,
+		flatRate: flatRateShipping
 	} = useMemo(
 		() => getDisplayedShippingOptions({ shippingOptions, checkout }),
 		[JSON.stringify(shippingOptions)]
 	);
+
+	useEffect(() => {
+		const { shippingCost: existingShippingInfo } = globalState;
+
+		if (!isEmpty(displayedShippingOptions)) {
+			dispatch({
+				type: BULK_UPDATE,
+				payload: {
+					tax,
+					duty,
+					shippingCost: displayedShippingOptions[selectedShippingOptionIndex],
+					freeShipping,
+					flatRateShipping
+				}
+			});
+		} else if (existingShippingInfo) {
+			dispatch({
+				type: CLEAR_SHIPPING_INFO
+			});
+		}
+	}, [JSON.stringify(displayedShippingOptions)]);
 
 	const handleAddressSelected = async (
 		addressLine1,
@@ -224,8 +259,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						console.error("NO TOKEN");
 						return;
 					}
-
-					// console.log(token);
 
 					const {
 						name,

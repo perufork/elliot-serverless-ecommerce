@@ -16,6 +16,7 @@ import {
 	CartFooter,
 	EmptyState
 } from "./styles";
+import { useGlobalState } from "providers/GlobalStateProvider";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
@@ -28,6 +29,9 @@ const CartSidebar = ({ toggleSidebar }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
+	const { state: globalState } = useGlobalState();
+
+	console.log(globalState);
 
 	return (
 		<Wrapper>
