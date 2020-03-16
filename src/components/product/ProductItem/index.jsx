@@ -11,6 +11,7 @@ import {
 	TabAdditionInformation,
 	TabDescription
 } from "components/product/components/Tab";
+import getProductById from "helpers/getProductById";
 import { Products, Section, SectionTitle } from "./styles";
 
 export default ({
@@ -32,22 +33,42 @@ export default ({
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
 
-	const handleCart = (node, item) => {
+	const handleCart = async (node, item) => {
 		if (item?.quantity >= 1) {
-			addQuantityByProduct({
-				dispatch,
-				id: item.product.id,
-				skuId: item.sku.id
-			});
+			const { skus: fetchedSkus } = await getProductById(id);
+
+			const productFound = fetchedSkus.edges.find(
+				item => item.node.id === item.sku.id
+			);
+
+			if (productFound.node.quantity + item.quanity >= item.quanity + 1) {
+				addQuantityByProduct({
+					dispatch,
+					id: item.product.id,
+					skuId: item.sku.id
+				});
+			} else {
+				alert("Out of stock");
+			}
 		} else {
-			addToCart({
-				dispatch,
-				payload: {
-					product: node,
-					quantity: 1,
-					sku: node.skus?.edges[0]?.node
-				}
-			});
+			const { skus: fetchedSkus } = await getProductById(id);
+
+			const productFound = fetchedSkus.edges.find(
+				item => item.node.id === node.skus?.edges[0]?.id
+			);
+
+			if (productFound.node.quantity >= 1) {
+				addToCart({
+					dispatch,
+					payload: {
+						product: node,
+						quantity: 1,
+						sku: node.skus?.edges[0]?.node
+					}
+				});
+			} else {
+				alert("Out of Stock");
+			}
 		}
 		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 	};
