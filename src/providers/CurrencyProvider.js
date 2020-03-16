@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import currencies from "helpers/currencies.json";
 import axios from "axios";
+import getDefaultCurrency from "helpers/getDefaultCurrency";
 
 const CurrencyContext = createContext();
 
@@ -8,6 +9,17 @@ export const CurrencyProvider = ({ children }) => {
 	const [state, setState] = useState("$");
 	const [loading, setLoading] = useState(true);
 	const [exchangeRate, setRate] = useState(1);
+
+	useEffect(() => {
+		const fetchDefaultCurency = async () => {
+			const currency = await getDefaultCurrency();
+			setState(
+				currencies.find(({ value }) => value === currency.toUpperCase()).symbol
+			);
+		};
+
+		fetchDefaultCurency();
+	}, []);
 
 	useEffect(() => {
 		const fetchExchangeRate = async () => {
