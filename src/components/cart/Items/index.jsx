@@ -27,7 +27,6 @@ const Items = () => {
 	];
 
 	const handleQuantity = ({ skuId, quantity }) => {
-		console.log({ skuId, quantity });
 		const product = quantities.find(item => item.skuId === skuId);
 
 		if (product) {

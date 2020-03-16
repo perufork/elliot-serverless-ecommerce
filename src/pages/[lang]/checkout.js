@@ -19,7 +19,7 @@ const Checkout = ({ collections, checkout, seoDetails, promotion }) => (
 			localizedDescription="shop.page.description"
 			seoDetails={seoDetails}
 		/>
-		<OrderCheckout checkout={checkout} />
+		<OrderCheckout checkout={checkout} promotion={promotion} />
 	</Layout>
 );
 

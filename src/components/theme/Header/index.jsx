@@ -36,7 +36,7 @@ export default ({ collections, seoDetails, promotion, checkout }) => {
 							"..."
 						) : (
 							<NumberFormat
-								value={(promotion.discountValue * exchangeRate) / 100}
+								value={promotion.discountValue * exchangeRate}
 								displayType={"text"}
 								thousandSeparator={true}
 								prefix={currency}
