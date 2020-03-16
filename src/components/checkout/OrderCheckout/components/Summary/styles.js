@@ -13,7 +13,7 @@ export const Card = styled.div`
 	p {
 		font-size: 12px;
 		text-transform: uppercase;
-		color: #bbb;
+		color: #585858;
 	}
 
 	h5 {

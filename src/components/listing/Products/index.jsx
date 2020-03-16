@@ -85,6 +85,7 @@ export default ({ products, collection }) => {
 							style={{ background: "none", border: "none" }}
 							type="button"
 							onClick={() => setGrid(!grid)}
+							aria-label="Change the grid layout"
 						>
 							{grid ? (
 								<ListIcon width={20} height={20} />

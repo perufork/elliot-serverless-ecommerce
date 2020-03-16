@@ -53,6 +53,10 @@ const GlobalStyle = createGlobalStyle`
   input {
     border-radius: 0;
   }
+
+  button:focus {
+    outline: none;
+  }
 `;
 
 export default GlobalStyle;

@@ -44,7 +44,7 @@ export default ({ wide, skuId, quantity, setQuantity, cart }) => {
 				}
 			>
 				<MinusIcon
-					color={quantity <= 1 ? "#bbb" : "#000"}
+					color={quantity <= 1 ? "#585858" : "#000"}
 					width={16}
 					height={16}
 				/>

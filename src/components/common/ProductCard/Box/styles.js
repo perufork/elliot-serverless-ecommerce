@@ -116,7 +116,7 @@ export const Details = styled.div`
 		font-size: 10pt;
 		font-weight: 400;
 		margin-top: 0.6rem;
-		color: ${({ theme: { colors } }) => colors.lightGray};
+		color: ${({ theme: { colors } }) => colors.darkGray};
 
 		span {
 			margin-right: 0.04rem;

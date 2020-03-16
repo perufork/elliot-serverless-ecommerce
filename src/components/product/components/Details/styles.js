@@ -69,7 +69,7 @@ export const Sku = styled.span`
 	display: block;
 	margin-bottom: 1rem;
 	font-size: 10pt;
-	color: ${({ theme: { colors } }) => colors.lightGray};
+	color: ${({ theme: { colors } }) => colors.darkGray};
 `;
 
 export const Shop = styled.div`
