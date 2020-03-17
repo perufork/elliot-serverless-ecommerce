@@ -51,13 +51,13 @@
 
 1. Create dev environment file from template `./.env.development.tempate` by running `cp .env.development.template .env.development`
 2. Create prod environment file from template `./.env.production.tempate` by running `cp .env.production.template .env.production`
-3. Use [Elliot CLI](https://github.com/helloiamelliot/elliot-cli) to get:
+3. Use the [Elliot CLI](https://github.com/helloiamelliot/elliot-cli) to fetch your account's:
    1. ELLIOT_API_KEY
    2. ELLIOT_STORE_FRONT_ID
    3. ELLIOT_DOMAIN_ID
    4. ELLIOT_STORE_FRONT_NAME
 4. Or get them via the [Elliot Dashboard](https://admin-dev.elliot.store/)
-5. Get your Google Places API key from: [Google](https://developers.google.com/places/web-service/get-api-key)
+5. Get your Google Places API key from the [Google Cloud Console](https://developers.google.com/places/web-service/get-api-key)
 6. To enable Apple Pay, you will have to get the Apple verification file, follow this [Guide](https://github.com/helloiamelliot/zeit-checkout-boilerplate#Apple)
 
 7.
@@ -66,7 +66,7 @@
 npm i && npm run dev
 ```
 
-When deploying on [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so make sure to add them
+When deploying on [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added.
 
 ## Built with
 
