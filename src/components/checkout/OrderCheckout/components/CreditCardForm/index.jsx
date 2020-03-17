@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CardElement, injectStripe } from "react-stripe-elements";
@@ -25,10 +26,11 @@ import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
 import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 import useOrderSummary from "hooks/useOrderSummary";
 import useShippingInfo from "hooks/useShippingInfo";
-import { useCheckout } from "providers/CheckoutProvider";
+import { useDispatchCheckout, useCheckout } from "providers/CheckoutProvider";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale } = useIntl();
+	const router = useRouter();
 	const {
 		state: { data: cart }
 	} = useCart();
@@ -37,6 +39,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		exchangeRate,
 		loading: loadingCurrency
 	} = useCurrency();
+	const { setOrderStatus } = useDispatchCheckout();
 	const [loadingShippingInfo, setLoadingShippingInfo] = useState(false);
 	const [paymentLoading, setPaymentLoading] = useState(false);
 	const [cardError, setCardError] = useState(false);
@@ -303,11 +306,17 @@ const CreditCardForm = ({ stripe, checkout }) => {
 
 					if (res.ok) {
 						setPaymentState("PAYMENT SUCCESSFUL");
+						setOrderStatus("PAYMENT SUCCESSFUL");
+						router.push(`/${locale}/successful-order`);
 					} else {
 						setPaymentState("PAYMENT FAILED");
+						setOrderStatus("PAYMENT FAILED");
+						router.push(`/${locale}/order-failed`);
 					}
 				} catch (error) {
 					setPaymentState("PAYMENT FAILED");
+					setOrderStatus("PAYMENT FAILED");
+					router.push(`/${locale}/order-failed`);
 					// console.error({ error });
 				} finally {
 					setPaymentLoading(false);
