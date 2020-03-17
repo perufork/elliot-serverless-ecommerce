@@ -6,16 +6,24 @@
 
 ## Features
 
-- Deploy, sell & fulfill in seconds
-- Fully localized: multi-currency & language, duties & taxes (DDP - Delivered Duty Paid)
+- Deploy, sell and fulfill in seconds
+- Fully localized: multi-currency and language, duties and taxes (DDP - Delivered Duty Paid)
 - Native cross border fulfillment: packing, shipping and return labels, commercial invoices and custom declarations forms
-- Instant global payments: Apple, Google, Ali & WeChat Pay, plus all major credit cards and leading payment options (Klarna, iDEAL)
+- Instant global payments: Apple, Google, Ali and WeChat Pay, plus all major credit cards and leading payment options (Klarna, iDEAL)
 - Static SSR for collections, products and all simple pages, in 100+ languages
 - Fast and high performing (90%+ across a11y, Performance, and SEO)
 - Fully customizable
 - Mobile-first and fully responsive
 - Cutting-edge project structure and architecture (GraphQL, Next.js and serverless)
 - Continuous deployment with [ZEIT Now](https://zeit.co)
+
+## Core Team
+
+If you're new and need some guidance feel free reach out to any of our core team members: 
+
+- [Franco Arza](https://github.com/arzafran): `@arzafran`
+- [Ismail Ghallou](https://github.com/smakosh): `@smakosh`
+- [Omoefe Dukuye](https://github.com/un-tethered): `@un-tethered`
 
 ## Structure
 
@@ -77,4 +85,6 @@ When deploying on [ZEIT Now](https://zeit.co), you will have to set the [Now sec
 
 ## Want to contribute?
 
-To contribute, email us at devs@elliot.store.
+Want to invest some time in building the future of global commerce? Email us at devs@elliot.store.
+
+If you have discovered a 🐜 or have a feature suggestion, feel free to create an issue on Github.
