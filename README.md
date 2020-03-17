@@ -43,9 +43,9 @@
 
 ## Prerequisites
 
-[Elliot store](https://admin-dev.elliot.store/)
+[Create an Elliot account](https://admin-dev.elliot.store/)
 
-> Start by creating a store at Elliot and add few products to it
+> Start by creating a store and adding a few products to it!
 
 [Yarn](https://yarnpkg.com/en/) or [NPM](https://nodejs.org/)
 
@@ -56,7 +56,7 @@
    2. ELLIOT_STORE_FRONT_ID
    3. ELLIOT_DOMAIN_ID
    4. ELLIOT_STORE_FRONT_NAME
-4. Or get them at [Elliot Dashboard](https://admin-dev.elliot.store/)
+4. Or get them via the [Elliot Dashboard](https://admin-dev.elliot.store/)
 5. Get your Google Places API key from: [Google](https://developers.google.com/places/web-service/get-api-key)
 6. To enable Apple Pay, you will have to get the Apple verification file, follow this [Guide](https://github.com/helloiamelliot/zeit-checkout-boilerplate#Apple)
 
@@ -77,4 +77,4 @@ When deploying on [ZEIT Now](https://zeit.co), you will have to set the [Now sec
 
 ## Want to contribute?
 
-Deloyable on ZEIT in Spring 2020. To contribute, email us at devs@elliot.store.
+To contribute, email us at devs@elliot.store.
