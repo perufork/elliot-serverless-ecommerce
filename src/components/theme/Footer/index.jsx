@@ -25,21 +25,19 @@ const Footer = ({ collections, seoDetails }) => {
 				<List>
 					<ListTitle>Help &amp; Information</ListTitle>
 					<Item>
-						<ul>
-							<li>
-								<Link href="/[lang]/faqs" as={`/${locale}/faqs`}>
-									<a>FAQs</a>
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/[lang]/return-policy"
-									as={`/${locale}/return-policy`}
-								>
-									<a>Return policy</a>
-								</Link>
-							</li>
-						</ul>
+						<li>
+							<Link href="/[lang]/faqs" as={`/${locale}/faqs`}>
+								<a>FAQs</a>
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/[lang]/return-policy"
+								as={`/${locale}/return-policy`}
+							>
+								<a>Return policy</a>
+							</Link>
+						</li>
 					</Item>
 				</List>
 				<List>

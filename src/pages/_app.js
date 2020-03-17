@@ -9,6 +9,7 @@ import { CurrencyProvider } from "providers/CurrencyProvider";
 import "react-phone-input-2/lib/style.css";
 import "swiper/css/swiper.css";
 import "nprogress/nprogress.css";
+import "components/theme/normalize.css";
 import { CheckoutProvider } from "providers/CheckoutProvider";
 import { GlobalStateProvider } from "providers/GlobalStateProvider";
 

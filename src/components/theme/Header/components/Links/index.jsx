@@ -12,14 +12,19 @@ const Links = ({ collections }) => {
 					<a>Shop</a>
 				</Link>
 			</li>
-			<li>
-				<Link
-					href="/[lang]/collection/[slug]"
-					as={`/${locale}/collection/all-12`}
-				>
-					<a>Collections</a>
-				</Link>
-				{collections && collections.edges && (
+			{collections && collections.edges && (
+				<li>
+					<Link
+						href="/[lang]/collection/[slug]"
+						as={`/${locale}/collection/${
+							collections.edges.filter(
+								({ node: { products } }) => products?.edges?.length > 0
+							)[0].node.slug
+						}`}
+					>
+						<a>Collections</a>
+					</Link>
+
 					<InnerMenu>
 						{collections.edges
 							.filter(({ node: { products } }) => products?.edges?.length > 0)
@@ -34,13 +39,8 @@ const Links = ({ collections }) => {
 								</li>
 							))}
 					</InnerMenu>
-				)}
-			</li>
-			<li>
-				<Link href="/[lang]/" as={`/${locale}/`}>
-					<a>Contact</a>
-				</Link>
-			</li>
+				</li>
+			)}
 		</Menu>
 	);
 };

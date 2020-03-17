@@ -54,6 +54,10 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0;
   }
 
+  button, input {
+    -webkit-appearance: none;
+  }
+
   button:focus {
     outline: none;
   }
