@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next --port 3001",
+		"dev": "next",
 		"build": "next build",
 		"extract": "node ./src/scripts/default-lang && node ./src/scripts/extract"
 	},

@@ -17,6 +17,7 @@ export default async id => {
 		},
 		{
 			headers: {
+				Accept: "application/json",
 				"Content-Type": "application/json",
 				KEY: `KEY ${process.env.ELLIOT_API_KEY}`
 			}
