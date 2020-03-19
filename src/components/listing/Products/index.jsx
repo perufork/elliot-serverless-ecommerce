@@ -76,8 +76,13 @@ export default ({ products, collection }) => {
 					</Result>
 					<Filters>
 						<Dropdown
-							label="Sort by"
-							options={["Default", "Average Rating", "Newest", "Oldest"]}
+							label={formatMessage({ id: "dropdown.sort_by" })}
+							options={[
+								formatMessage({ id: "dropdown.sort_by.default" }),
+								formatMessage({ id: "dropdown.sort_by.average_rating" }),
+								formatMessage({ id: "dropdown.sort_by.newest" }),
+								formatMessage({ id: "dropdown.sort_by.oldest" })
+							]}
 							displayDefaultValue
 						/>
 

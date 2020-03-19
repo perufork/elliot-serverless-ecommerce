@@ -1,8 +1,9 @@
-import { useCurrency } from "providers/CurrencyProvider";
 import NumberFormat from "react-number-format";
+import { useCurrency } from "providers/CurrencyProvider";
 
 const SummaryItem = ({ sum, display, label }) => {
 	const { loading, state: currency } = useCurrency();
+
 	return display ? (
 		<h3>
 			{label}:{" "}

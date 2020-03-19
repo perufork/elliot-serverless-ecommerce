@@ -106,3 +106,17 @@ export const CartFooter = styled.div`
 export const EmptyState = styled.div`
 	text-align: center;
 `;
+
+export const Attribute = styled.div`
+	margin-top: 0.5rem;
+
+	span {
+		color: ${({
+			theme: {
+				colors: { darkGray }
+			}
+		}) => darkGray};
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+`;

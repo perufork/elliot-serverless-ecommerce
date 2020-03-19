@@ -53,7 +53,15 @@ export const Table = styled.table`
 			}
 
 			&:nth-child(2) {
-				min-width: 14.375rem;
+				min-width: 12rem;
+			}
+
+			&:nth-child(3) {
+				min-width: 10rem;
+			}
+
+			&:nth-child(4) {
+				min-width: 6rem;
 			}
 
 			&:last-child {
@@ -116,17 +124,23 @@ export const Content = styled.div`
 
 export const Tbody = styled.tbody`
 	tr {
+		border-bottom: 1px solid #ddd;
+
+		&:last-child {
+			border-bottom: unset;
+		}
+
 		td {
 			padding: 1.875rem 0.9375rem;
 			vertical-align: middle;
 			font-size: 14px;
 			font-weight: 600;
 			color: ${({ theme: { colors } }) => colors.darkGray};
-			border-bottom: 1px solid #ddd;
+
+			padding-left: 0;
 
 			&:first-child {
 				min-width: 21.875rem;
-				padding-left: 0;
 			}
 
 			&:last-child {
@@ -168,5 +182,13 @@ export const Thead = styled.thead`
 				padding-left: 0;
 			}
 		}
+	}
+`;
+
+export const Attribute = styled.div`
+	span {
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-right: 0.5rem;
 	}
 `;

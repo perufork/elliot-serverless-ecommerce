@@ -4,29 +4,31 @@ import { FormattedMessage, useIntl } from "react-intl";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart, useDispatchCart } from "providers/CartProvider";
+import { useCheckout } from "providers/CheckoutProvider";
 import { CancelIcon, EmptyCart } from "components/common/Icons";
 import Button from "components/common/Button";
+import Swatch from "components/common/Swatch";
 import { removeFromCart } from "components/cart/actions";
-import {
-	Wrapper,
-	CartItem,
-	Thumbnail,
-	Content,
-	CartFooter,
-	EmptyState
-} from "./styles";
 import formatMoney from "helpers/formatMoney";
-import useShippingInfo from "hooks/useShippingInfo";
 import isEmpty from "helpers/isEmpty";
+import useShippingInfo from "hooks/useShippingInfo";
 import useOrderSummary from "hooks/useOrderSummary";
-import SummaryItem from "./SummaryItem";
-import { useCheckout } from "providers/CheckoutProvider";
+import SummaryItem from "components/theme/Header/components/CartSidebar/SummaryItem";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
 		ssr: false
 	}
 );
+import {
+	Wrapper,
+	CartItem,
+	Thumbnail,
+	Content,
+	CartFooter,
+	EmptyState,
+	Attribute
+} from "./styles";
 
 const CartSidebar = ({ toggleSidebar }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -50,42 +52,60 @@ const CartSidebar = ({ toggleSidebar }) => {
 			{state && state.data && state.data.length > 0 ? (
 				<div>
 					<div>
-						{state.data.map(({ product: { name, images }, sku, quantity }) => (
-							<CartItem key={sku.id}>
-								<Thumbnail>
-									<Link href="/[lang]/" as={`/${locale}/`}>
-										<a onClick={toggleSidebar}>
-											<img
-												src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
-												alt={name}
+						{state.data.map(
+							({ product: { name, images, slug }, sku, quantity }) => (
+								<CartItem key={sku.id}>
+									<Thumbnail>
+										<Link
+											href="/[lang]/product/[slug]"
+											as={`/${locale}/product/${slug}`}
+										>
+											<a onClick={toggleSidebar}>
+												<img
+													src={`${process.env.ELLIOT_BASE_IMAGE_URL}${images.edges[0].node.image}`}
+													alt={name}
+												/>
+											</a>
+										</Link>
+									</Thumbnail>
+									<Content>
+										<button
+											type="button"
+											onClick={() =>
+												removeFromCart({ dispatch, skuId: sku.id })
+											}
+										>
+											<CancelIcon width={14} height={14} color="#a5a5a5" />
+										</button>
+										<Link href="/[lang]/" as={`/${locale}/`}>
+											<a onClick={toggleSidebar}>{name}</a>
+										</Link>
+										<p>Qty: {quantity}</p>
+										{sku?.salePrice && loading ? (
+											"..."
+										) : (
+											<NumberFormat
+												value={(sku.salePrice * exchangeRate) / 100}
+												displayType={"text"}
+												thousandSeparator={true}
+												prefix={currency}
 											/>
-										</a>
-									</Link>
-								</Thumbnail>
-								<Content>
-									<button
-										type="button"
-										onClick={() => removeFromCart({ dispatch, skuId: sku.id })}
-									>
-										<CancelIcon width={14} height={14} color="#a5a5a5" />
-									</button>
-									<Link href="/[lang]/" as={`/${locale}/`}>
-										<a onClick={toggleSidebar}>{name}</a>
-									</Link>
-									<p>Qty: {quantity}</p>
-									{sku?.salePrice && loading ? (
-										"..."
-									) : (
-										<NumberFormat
-											value={(sku.salePrice * exchangeRate) / 100}
-											displayType={"text"}
-											thousandSeparator={true}
-											prefix={currency}
-										/>
-									)}
-								</Content>
-							</CartItem>
-						))}
+										)}
+										{Object.entries(sku.attributes).length > 0 &&
+											Object.entries(sku.attributes).map((value, i) => (
+												<Attribute key={i}>
+													<span>{value[0]}: </span>
+													{value[0] === "Color" ? (
+														<Swatch color={value[1]} />
+													) : (
+														value[1]
+													)}
+												</Attribute>
+											))}
+									</Content>
+								</CartItem>
+							)
+						)}
 					</div>
 					<CartFooter>
 						<SummaryItem sum={subTotal} display label="Sub Total" />

@@ -16,7 +16,8 @@ import {
 	Tbody,
 	Product,
 	Thumbnail,
-	Content
+	Content,
+	Attribute
 } from "./styles";
 
 const ShoppingCart = ({ handleQuantity, quantities }) => {
@@ -24,10 +25,6 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { locale } = useIntl();
-
-	const uniqueAttributes = array => [...new Set(array)];
-	const uniqueKeys = array =>
-		Object.keys(array.reduce((result, obj) => Object.assign(result, obj), {}));
 
 	return (
 		<Container>
@@ -39,18 +36,8 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 								<th>
 									<FormattedMessage id="cart.th.product" />
 								</th>
-								{uniqueKeys(
-									uniqueAttributes(
-										state.data.map(({ sku: { attributes } }) => attributes)
-									)
-								).map((value, i) => (
-									<th key={i}>{value || null}</th>
-								))}
 								<th>
 									<FormattedMessage id="cart.th.price" />
-								</th>
-								<th>
-									<FormattedMessage id="cart.th.product" />
 								</th>
 								<th>
 									<FormattedMessage id="cart.th.quantity" />
@@ -96,25 +83,23 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 														>
 															<a>{name}</a>
 														</Link>
+														{Object.entries(sku.attributes).length > 0 &&
+															Object.entries(sku.attributes).map((value, i) => (
+																<Attribute key={i}>
+																	<span>{value[0]}</span>
+																	{value[0] === "Color" ? (
+																		<Swatch color={value[1]} />
+																	) : (
+																		value[1]
+																	)}
+																</Attribute>
+															))}
 														<div
 															dangerouslySetInnerHTML={{ __html: description }}
 														/>
 													</Content>
 												</Product>
 											</td>
-											{Object.entries(sku.attributes).length > 0 ? (
-												Object.entries(sku.attributes).map((value, i) => (
-													<td key={i}>
-														{value[0] === "Color" ? (
-															<Swatch color={value[1]} />
-														) : (
-															value[1]
-														)}
-													</td>
-												))
-											) : (
-												<td></td>
-											)}
 											<td>
 												{sku?.salePrice && (
 													<NumberFormat

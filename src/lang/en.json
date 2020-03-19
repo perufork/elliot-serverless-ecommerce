@@ -37,5 +37,22 @@
 	"shipping.total": "Total",
 	"products.found": "Products Found",
 	"banner.free_shipping_over": "Free shipping for all orders over",
-	"product.related_products": "Related Products"
+	"product.related_products": "Related Products",
+	"dropdown.sort_by": "Sort by",
+	"dropdown.sort_by.default": "Default",
+	"dropdown.sort_by.average_rating": "Average Rating",
+	"dropdown.sort_by.newest": "Newest",
+	"dropdown.sort_by.oldest": "Oldest",
+	"footer.help_and_information": "Help &amp; Information",
+	"footer.faqs": "FAQs",
+	"footer.return_policy": "Return policy",
+	"footer.about": "About",
+	"footer.about_us": "About us",
+	"footer.online_shop": "Online Shop",
+	"footer.language": "Language",
+	"footer.currency": "Currency",
+	"footer.privacy_policy": "Privacy Policy",
+	"footer.terms_conditions": "Terms of Use",
+	"footer.rights_reserved": "All rights reserved.",
+	"header.links.collections": "Collections"
 }
