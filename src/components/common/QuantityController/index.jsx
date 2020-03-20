@@ -1,25 +1,31 @@
 import { MinusIcon, PlusIcon } from "components/common/Icons";
 import { Wrapper, Controller } from "./styles";
 
-export default ({ wide, skuId, quantity, setQuantity, cart }) => {
+export default ({
+	wide,
+	addQuantityByProduct,
+	subtractQuantityByProduct,
+	skuId,
+	quantity,
+	setQuantity,
+	cart,
+	dispatch
+}) => {
 	const handleQuantity = ({ type, value }) => {
 		if (cart) {
 			switch (type) {
 				case "add":
-					return setQuantity({
-						quantity: quantity + 1,
+					return addQuantityByProduct({
+						dispatch,
 						skuId
 					});
 				case "subtract":
-					return setQuantity({
-						quantity: quantity - 1,
+					return subtractQuantityByProduct({
+						dispatch,
 						skuId
 					});
 				default:
-					return setQuantity({
-						quantity: value,
-						skuId
-					});
+					return null;
 			}
 		} else {
 			switch (type) {
@@ -52,6 +58,7 @@ export default ({ wide, skuId, quantity, setQuantity, cart }) => {
 			<input
 				type="text"
 				value={quantity}
+				readOnly={cart}
 				onChange={e =>
 					handleQuantity({
 						type: "value",

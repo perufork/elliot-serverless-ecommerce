@@ -1,6 +1,6 @@
-import { Menu, InnerMenu } from "./styles";
 import Link from "next/link";
-import { useIntl } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
+import { Menu, InnerMenu } from "./styles";
 
 const Links = ({ collections }) => {
 	const { locale } = useIntl();
@@ -9,7 +9,9 @@ const Links = ({ collections }) => {
 		<Menu>
 			<li>
 				<Link href="/[lang]/" as={`/${locale}/`}>
-					<a>Shop</a>
+					<a>
+						<FormattedMessage id="shop.page.title" />
+					</a>
 				</Link>
 			</li>
 			{collections && collections.edges && (
@@ -22,7 +24,9 @@ const Links = ({ collections }) => {
 							)[0].node.slug
 						}`}
 					>
-						<a>Collections</a>
+						<a>
+							<FormattedMessage id="header.links.collections" />
+						</a>
 					</Link>
 
 					<InnerMenu>

@@ -1,4 +1,4 @@
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { useDispatchCart, useCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 import { addQuantityByProduct, addToCart } from "components/cart/actions";
@@ -29,6 +29,7 @@ export default ({
 	metadata,
 	gender
 }) => {
+	const { formatMessage } = useIntl();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
 	const { dispatch: dispatchSidebar } = useDispatchSidebar();
@@ -44,7 +45,6 @@ export default ({
 			if (productFound.node.quantity + item.quanity >= item.quanity + 1) {
 				addQuantityByProduct({
 					dispatch,
-					id: item.product.id,
 					skuId: item.sku.id
 				});
 			} else {
@@ -98,11 +98,11 @@ export default ({
 				<Tabs
 					content={[
 						{
-							title: "Description",
+							title: formatMessage({ id: "product.descriotion" }),
 							content: <TabDescription description={description} />
 						},
 						{
-							title: "Additional Information",
+							title: formatMessage({ id: "product.additional_information" }),
 							content: <TabAdditionInformation skus={skus} />
 						}
 					]}
@@ -122,6 +122,8 @@ export default ({
 						.map(({ node: { products } }) =>
 							products?.edges
 								.filter(({ node }) => node.id !== id)
+								.sort(() => Math.random() - 0.5)
+								.slice(0, 2)
 								.map(({ node }, i) => {
 									const item = state?.data?.find(
 										({ product }) => product.id === node.id

@@ -10,16 +10,20 @@ const StyledIcon = styled.svg`
 		transition: ${({ theme: { transitions } }) => transitions.default200};
 	}
 
-	&:hover {
-		path {
-			fill: ${({
-				hover,
-				theme: {
-					colors: { accent }
-				}
-			}) => (hover ? hover : accent)};
+	${({ noHover }) =>
+		!noHover &&
+		`
+		&:hover {
+			path {
+				fill: ${({
+					hover,
+					theme: {
+						colors: { accent }
+					}
+				}) => (hover ? hover : accent)};
+			}
 		}
-	}
+	`}
 `;
 
 export default StyledIcon;

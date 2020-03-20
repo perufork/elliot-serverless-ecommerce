@@ -13,7 +13,9 @@ export default async () => {
 			}
 		}
 	} = await axios.post(
-		`https://cors-anywhere.herokuapp.com/${process.env.ELLIOT_API}`,
+		process.env.ENVIRONMENT === "staging"
+			? `https://cors-anywhere.herokuapp.com/${process.env.ELLIOT_API}`
+			: process.env.ELLIOT_API,
 		{
 			query: defaultCurrencyQuery,
 			variables: {
@@ -22,6 +24,7 @@ export default async () => {
 		},
 		{
 			headers: {
+				Accept: "application/json",
 				"Content-Type": "application/json",
 				KEY: `KEY ${process.env.ELLIOT_API_KEY}`
 			}

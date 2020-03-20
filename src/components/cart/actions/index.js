@@ -9,11 +9,10 @@ export const removeFromCart = async ({ dispatch, skuId }) => {
 	}
 };
 
-export const addQuantityByProduct = async ({ dispatch, id, skuId }) => {
+export const addQuantityByProduct = async ({ dispatch, skuId }) => {
 	try {
 		await dispatch({
 			type: "ADD_QUANTITY",
-			id,
 			skuId
 		});
 	} catch (err) {
@@ -37,11 +36,10 @@ export const addCustomQuantityByProduct = async ({
 	}
 };
 
-export const subtractQuantityByProduct = async ({ dispatch, id, skuId }) => {
+export const subtractQuantityByProduct = async ({ dispatch, skuId }) => {
 	try {
 		await dispatch({
 			type: "SUBTRACT_QUANTITY",
-			id,
 			skuId
 		});
 	} catch (err) {

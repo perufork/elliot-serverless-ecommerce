@@ -20,22 +20,10 @@ export const Actions = styled.div`
 	width: 100%;
 `;
 
-export const Flex = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+export const Buttons = styled.div`
 	margin-bottom: 50px;
 
 	@media (max-width: 680px) {
-		flex-direction: column;
 		margin-bottom: 15px;
-	}
-
-	a:first-child {
-		margin-right: 0.5rem;
-
-		@media (max-width: 680px) {
-			margin-right: unset;
-		}
 	}
 `;

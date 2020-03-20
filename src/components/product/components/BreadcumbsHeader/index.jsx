@@ -3,7 +3,7 @@ import Breadcrumbs from "components/common/Breadcrumbs";
 import { useIntl } from "react-intl";
 
 const BreadcumbsHeader = ({ slug, title }) => {
-	const { locale } = useIntl();
+	const { locale, formatMessage } = useIntl();
 
 	return (
 		<Wrapper>
@@ -11,7 +11,7 @@ const BreadcumbsHeader = ({ slug, title }) => {
 				flexAlign="start"
 				links={[
 					{
-						name: "shop.page.title",
+						name: formatMessage({ id: "shop.page.title" }),
 						link: `/[lang]/`,
 						as: `/${locale}/`
 					},

@@ -21,7 +21,6 @@ export default ({ products, collection }) => {
 		if (item?.quantity >= 1) {
 			addQuantityByProduct({
 				dispatch,
-				id: item.product.id,
 				skuId: item.sku.id
 			});
 		} else {
@@ -41,12 +40,12 @@ export default ({ products, collection }) => {
 		<Container>
 			<Header>
 				<PageTitle
-					title="shop.page.title"
+					title={formatMessage({ id: "shop.page.title" })}
 					breadcrumbs={
 						collection
 							? [
 									{
-										name: "shop.page.title",
+										name: formatMessage({ id: "shop.page.title" }),
 										link: `/[lang]/`,
 										as: `/${locale}`,
 										active: false
@@ -60,7 +59,7 @@ export default ({ products, collection }) => {
 							  ]
 							: [
 									{
-										name: "shop.page.title",
+										name: formatMessage({ id: "shop.page.title" }),
 										link: `/[lang]/`,
 										as: `/${locale}`,
 										active: false
@@ -76,8 +75,13 @@ export default ({ products, collection }) => {
 					</Result>
 					<Filters>
 						<Dropdown
-							label="Sort by"
-							options={["Default", "Average Rating", "Newest", "Oldest"]}
+							label={formatMessage({ id: "dropdown.sort_by" })}
+							options={[
+								formatMessage({ id: "dropdown.sort_by.default" }),
+								formatMessage({ id: "dropdown.sort_by.average_rating" }),
+								formatMessage({ id: "dropdown.sort_by.newest" }),
+								formatMessage({ id: "dropdown.sort_by.oldest" })
+							]}
 							displayDefaultValue
 						/>
 

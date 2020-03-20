@@ -3,7 +3,7 @@ import { StripeProvider, Elements } from "react-stripe-elements";
 import PaymentButtonsRaw from "./PaymentButtonsWrapper";
 
 const PaymentButtons = ({ addToCartPayload }) => {
-	const apiKey = process.env.STRIPE_API_PUBLISHABLE_KEY_TEST;
+	const apiKey = process.env.STRIPE_API_PUBLISHABLE_KEY;
 
 	return (
 		<StripeProvider apiKey={apiKey}>

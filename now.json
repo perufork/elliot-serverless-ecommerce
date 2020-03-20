@@ -6,7 +6,7 @@
 			"ELLIOT_BASE_IMAGE_URL": "@elliot_base_image_url",
 			"ELLIOT_API_KEY": "@elliot_api_key",
 			"ELLIOT_STORE_FRONT_ID": "@elliot_store_front_id",
-			"STRIPE_API_PUBLISHABLE_KEY_TEST": "@stripe_api_publishable_key_test",
+			"STRIPE_API_PUBLISHABLE_KEY": "@stripe_api_publishable_key",
 			"PLACES_API_KEY": "@places_api_key",
 			"ELLIOT_DOMAIN_ID": "@elliot_domain_id",
 			"ELLIOT_CREATE_ORDER_SHIPPING_FUNCTION_URL": "@elliot_create_order_shipping_function_url",

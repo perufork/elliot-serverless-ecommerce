@@ -6,7 +6,7 @@ const PaymentForm = ({ checkout, promotion }) => {
 	const [stripe, setStripe] = useState(null);
 
 	useEffect(() => {
-		setStripe(window.Stripe(process.env.STRIPE_API_PUBLISHABLE_KEY_TEST));
+		setStripe(window.Stripe(process.env.STRIPE_API_PUBLISHABLE_KEY));
 	}, []);
 
 	return (

@@ -54,6 +54,11 @@ export const Content = styled.div`
 		color: inherit;
 		text-decoration: none;
 		transition: ${({ theme: { transitions } }) => transitions.default400};
+		width: 150px;
+		display: inline-block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	p {
@@ -105,4 +110,18 @@ export const CartFooter = styled.div`
 
 export const EmptyState = styled.div`
 	text-align: center;
+`;
+
+export const Attribute = styled.div`
+	margin-top: 0.5rem;
+
+	span {
+		color: ${({
+			theme: {
+				colors: { darkGray }
+			}
+		}) => darkGray};
+		text-transform: uppercase;
+		font-weight: bold;
+	}
 `;
