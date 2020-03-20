@@ -88,5 +88,6 @@
 	"product.related_products": "Verwandte Produkte",
 	"checkout.coupon.placeholder": "Gib deinen Code ein",
 	"product.attribute.Occasion": "Gelegenheit",
-	"shipping.free": "Kostenloser Versand"
+	"shipping.free": "Kostenloser Versand",
+	"checkout.ship_to_different_address": "zu einer anderen Adresse liefern"
 }

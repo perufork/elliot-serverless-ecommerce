@@ -88,5 +88,6 @@
 	"checkout.pay": "PAY",
 	"summary.title": "Summary",
 	"summary.shipping_taxes": "Shipping & Taxes",
-	"summary.input_address": "Input an address to get shipping summary"
+	"summary.input_address": "Input an address to get shipping summary",
+	"checkout.ship_to_different_address": "Ship to a different address"
 }

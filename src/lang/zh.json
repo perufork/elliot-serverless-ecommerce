@@ -88,5 +88,6 @@
 	"checkout.enter_payment_details": "输入付款明细",
 	"footer.about": "关于",
 	"checkout.form.credit_card": "信用卡",
-	"checkout.coupon.label": "优惠码"
+	"checkout.coupon.label": "优惠码",
+	"checkout.ship_to_different_address": "运送到不同的地址"
 }

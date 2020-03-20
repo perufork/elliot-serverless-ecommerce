@@ -88,5 +88,6 @@
 	"product.attribute.Texture": "Tekstur",
 	"summary.title": "Sammendrag",
 	"footer.help_and_information": "Hjelp og informasjon",
-	"checkout.pay": "BETALE"
+	"checkout.pay": "BETALE",
+	"checkout.ship_to_different_address": "Send til en annen adresse"
 }

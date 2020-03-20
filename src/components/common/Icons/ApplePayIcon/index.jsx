@@ -1,7 +1,5 @@
-import StyledIcon from "components/common/StyledIcon";
-
 const ApplePayIcon = ({ width = 49, height = 20 }) => (
-	<StyledIcon
+	<svg
 		height={height}
 		width={width}
 		viewBox="0 0 49 20"
@@ -31,7 +29,7 @@ const ApplePayIcon = ({ width = 49, height = 20 }) => (
 				</g>
 			</g>
 		</g>
-	</StyledIcon>
+	</svg>
 );
 
 export default ApplePayIcon;

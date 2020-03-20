@@ -88,5 +88,6 @@
 	"footer.rights_reserved": "Wszelkie prawa zastrzeżone.",
 	"product.attribute.Occasion": "Okazja",
 	"header.links.collections": "Kolekcje",
-	"product.attribute.Color": "Kolor"
+	"product.attribute.Color": "Kolor",
+	"checkout.ship_to_different_address": "Dostawa na inny adres"
 }

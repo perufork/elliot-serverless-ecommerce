@@ -88,5 +88,6 @@
 	"cart.page.title": "गाड़ी",
 	"footer.faqs": "पूछे जाने वाले प्रश्न",
 	"shop.page.title": "दुकान",
-	"button.back_to_shop": "वापस दुकान में"
+	"button.back_to_shop": "वापस दुकान में",
+	"checkout.ship_to_different_address": "एक अलग पते पर जहाज"
 }

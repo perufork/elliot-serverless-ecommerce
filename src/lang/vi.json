@@ -88,5 +88,6 @@
 	"summary.input_address": "Nhập địa chỉ để nhận tóm tắt vận chuyển",
 	"button.update_total": "Tổng số cập nhật",
 	"cart.th.price": "Giá bán",
-	"checkout.form.address": "Địa chỉ"
+	"checkout.form.address": "Địa chỉ",
+	"checkout.ship_to_different_address": "Gửi đến địa chỉ khác"
 }

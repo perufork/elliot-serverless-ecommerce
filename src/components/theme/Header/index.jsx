@@ -31,7 +31,7 @@ export default ({ collections, seoDetails, promotion, checkout }) => {
 			"..."
 		) : (
 			<NumberFormat
-				value={(parseInt(freeShippingThreshold) / 100) * parseInt(exchangeRate)}
+				value={(parseInt(freeShippingThreshold) / 100) * exchangeRate}
 				displayType={"text"}
 				thousandSeparator={true}
 				prefix={currency}

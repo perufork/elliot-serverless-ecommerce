@@ -88,5 +88,6 @@
 	"footer.help_and_information": "Yardım ve Bilgi",
 	"product.attribute.Texture": "Doku",
 	"dropdown.sort_by.newest": "en yeni",
-	"checkout.form.postal_code": "Posta kodu"
+	"checkout.form.postal_code": "Posta kodu",
+	"checkout.ship_to_different_address": "Farklı bir adrese gönder"
 }

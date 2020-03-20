@@ -89,7 +89,8 @@ export default {
 		"shipping.duty": "مهمة",
 		"shipping.promotion": "ترقية وظيفية",
 		"button.view_cart": "عرض السلة",
-		"checkout.form.address_2": "العنوان 2"
+		"checkout.form.address_2": "العنوان 2",
+		"checkout.ship_to_different_address": "اشحن الى عنوان مختلف"
 	},
 	da: {
 		"button.buy_now": "køb nu",
@@ -182,7 +183,8 @@ export default {
 		"banner.free_shipping_over": "Gratis forsendelse for alle ordrer over",
 		"product.attribute.Size": "Størrelse",
 		"button.proceed_to_checkout": "Gå til kassen",
-		"checkout.form.complete_shipping_info": "Komplet forsendelsesinformation"
+		"checkout.form.complete_shipping_info": "Komplet forsendelsesinformation",
+		"checkout.ship_to_different_address": "Send til en anden adresse"
 	},
 	de: {
 		"button.proceed_to_checkout": "Zur Kasse",
@@ -277,7 +279,8 @@ export default {
 		"product.related_products": "Verwandte Produkte",
 		"checkout.coupon.placeholder": "Gib deinen Code ein",
 		"product.attribute.Occasion": "Gelegenheit",
-		"shipping.free": "Kostenloser Versand"
+		"shipping.free": "Kostenloser Versand",
+		"checkout.ship_to_different_address": "zu einer anderen Adresse liefern"
 	},
 	el: {
 		"button.add_to_cart": "προσθήκη στο καλάθι",
@@ -371,7 +374,8 @@ export default {
 		"checkout.form.address_2": "Διεύθυνση 2",
 		"button.go_back": "Πήγαινε πίσω",
 		"button.back_to_shop": "Επιστροφή στο κατάστημα",
-		"header.links.collections": "Συλλογές"
+		"header.links.collections": "Συλλογές",
+		"checkout.ship_to_different_address": "Αποστολή σε διαφορετική διεύθυνση"
 	},
 	en: {
 		"button.add_to_cart": "add to cart",
@@ -463,7 +467,8 @@ export default {
 		"checkout.pay": "PAY",
 		"summary.title": "Summary",
 		"summary.shipping_taxes": "Shipping & Taxes",
-		"summary.input_address": "Input an address to get shipping summary"
+		"summary.input_address": "Input an address to get shipping summary",
+		"checkout.ship_to_different_address": "Ship to a different address"
 	},
 	es: {
 		"button.add_to_cart": "Añadir al carrito",
@@ -557,7 +562,8 @@ export default {
 		"footer.online_shop": "Tienda en línea",
 		"checkout.form.address_2": "Dirección 2",
 		"shipping.total": "Total",
-		"checkout.form.phone": "Teléfono"
+		"checkout.form.phone": "Teléfono",
+		"checkout.ship_to_different_address": "Envia a una direccion diferente"
 	},
 	fi: {
 		"button.proceed_to_checkout": "Siirry maksamaan",
@@ -649,7 +655,8 @@ export default {
 		"product.out_of_sotck": "LOPPU VARASTOSTA",
 		"button.buy_now": "osta nyt",
 		"dropdown.sort_by.average_rating": "Keskimääräinen arvio",
-		"button.checkout": "Tarkista"
+		"button.checkout": "Tarkista",
+		"checkout.ship_to_different_address": "Toimita toiseen osoitteeseen"
 	},
 	fr: {
 		"button.add_to_cart": "ajouter au chariot",
@@ -743,7 +750,8 @@ export default {
 		"cart.th.quantity": "Quantité",
 		"checkout.page.title": "Check-out",
 		"button.go_back": "retourner",
-		"cart.empty_state": "Aucun article sur le panier"
+		"cart.empty_state": "Aucun article sur le panier",
+		"checkout.ship_to_different_address": "Livrer à une adresse différente"
 	},
 	hi: {
 		"button.update_cart": "कार्ट अपडेट करें",
@@ -836,7 +844,8 @@ export default {
 		"cart.page.title": "गाड़ी",
 		"footer.faqs": "पूछे जाने वाले प्रश्न",
 		"shop.page.title": "दुकान",
-		"button.back_to_shop": "वापस दुकान में"
+		"button.back_to_shop": "वापस दुकान में",
+		"checkout.ship_to_different_address": "एक अलग पते पर जहाज"
 	},
 	it: {
 		"button.update_cart": "aggiorna carrello",
@@ -931,7 +940,8 @@ export default {
 		"shipping.local": "Consegna locale",
 		"shipping.calculate": "Calcola Spedizione",
 		"footer.privacy_policy": "politica sulla riservatezza",
-		"checkout.coupon.label": "Codice di sconto"
+		"checkout.coupon.label": "Codice di sconto",
+		"checkout.ship_to_different_address": "Spedisci a un indirizzo diverso"
 	},
 	ja: {
 		"shop.page.description": "私たちの素晴らしい店",
@@ -1023,7 +1033,8 @@ export default {
 		"footer.faqs": "よくある質問",
 		"footer.about": "約",
 		"checkout.form.city": "市",
-		"product.attribute.Color": "色"
+		"product.attribute.Color": "色",
+		"checkout.ship_to_different_address": "別の住所に発送する"
 	},
 	ko: {
 		"button.checkout.apply": "대다",
@@ -1115,7 +1126,8 @@ export default {
 		"button.buy_now": "지금 구매",
 		"product.attribute.Size": "크기",
 		"product.tags": "태그",
-		"validation.full_name": "성명은 100 자 이하 여야합니다!"
+		"validation.full_name": "성명은 100 자 이하 여야합니다!",
+		"checkout.ship_to_different_address": "다른 주소로 배송"
 	},
 	ms: {
 		"cart.th.product": "Produk",
@@ -1208,7 +1220,8 @@ export default {
 		"button.proceed_to_checkout": "Teruskan ke checkout",
 		"shipping.local": "Penghantaran Tempatan",
 		"product.attribute.Occasion": "Peluang",
-		"shipping.calculate": "Kira Penghantaran"
+		"shipping.calculate": "Kira Penghantaran",
+		"checkout.ship_to_different_address": "Hantar ke alamat lain"
 	},
 	nl: {
 		"shop.page.description": "Onze geweldige winkel",
@@ -1302,7 +1315,8 @@ export default {
 		"footer.about": "Over",
 		"search.no_results": "Er zijn geen resultaten gevonden",
 		"checkout.pay": "BETALEN",
-		"footer.privacy_policy": "Privacybeleid"
+		"footer.privacy_policy": "Privacybeleid",
+		"checkout.ship_to_different_address": "Verzend naar een ander adres"
 	},
 	no: {
 		"button.add_to_cart": "Legg i handlekurv",
@@ -1395,7 +1409,8 @@ export default {
 		"product.attribute.Texture": "Tekstur",
 		"summary.title": "Sammendrag",
 		"footer.help_and_information": "Hjelp og informasjon",
-		"checkout.pay": "BETALE"
+		"checkout.pay": "BETALE",
+		"checkout.ship_to_different_address": "Send til en annen adresse"
 	},
 	pl: {
 		"button.buy_now": "Kup Teraz",
@@ -1489,7 +1504,8 @@ export default {
 		"footer.rights_reserved": "Wszelkie prawa zastrzeżone.",
 		"product.attribute.Occasion": "Okazja",
 		"header.links.collections": "Kolekcje",
-		"product.attribute.Color": "Kolor"
+		"product.attribute.Color": "Kolor",
+		"checkout.ship_to_different_address": "Dostawa na inny adres"
 	},
 	pt: {
 		"cart.th.quantity": "Quantidade",
@@ -1582,7 +1598,8 @@ export default {
 		"button.update_total": "Atualização total",
 		"footer.language": "Língua",
 		"footer.help_and_information": "Ajuda e Informações",
-		"footer.about_us": "Sobre nós"
+		"footer.about_us": "Sobre nós",
+		"checkout.ship_to_different_address": "Envie para um endereço diferente"
 	},
 	ru: {
 		"cart.th.quantity": "Quantidade",
@@ -1675,7 +1692,8 @@ export default {
 		"button.update_total": "Atualização total",
 		"footer.language": "Língua",
 		"footer.help_and_information": "Ajuda e Informações",
-		"footer.about_us": "Sobre nós"
+		"footer.about_us": "Sobre nós",
+		"checkout.ship_to_different_address": "доставить по другому адресу"
 	},
 	sv: {
 		"cart.th.quantity": "Quantidade",
@@ -1768,7 +1786,8 @@ export default {
 		"button.update_total": "Atualização total",
 		"footer.language": "Língua",
 		"footer.help_and_information": "Ajuda e Informações",
-		"footer.about_us": "Sobre nós"
+		"footer.about_us": "Sobre nós",
+		"checkout.ship_to_different_address": "skicka till en annan adress"
 	},
 	tr: {
 		"checkout.form.address": "Adres",
@@ -1861,7 +1880,8 @@ export default {
 		"footer.help_and_information": "Yardım ve Bilgi",
 		"product.attribute.Texture": "Doku",
 		"dropdown.sort_by.newest": "en yeni",
-		"checkout.form.postal_code": "Posta kodu"
+		"checkout.form.postal_code": "Posta kodu",
+		"checkout.ship_to_different_address": "Farklı bir adrese gönder"
 	},
 	vi: {
 		"shipping.total": "Toàn bộ",
@@ -1954,7 +1974,8 @@ export default {
 		"summary.input_address": "Nhập địa chỉ để nhận tóm tắt vận chuyển",
 		"button.update_total": "Tổng số cập nhật",
 		"cart.th.price": "Giá bán",
-		"checkout.form.address": "Địa chỉ"
+		"checkout.form.address": "Địa chỉ",
+		"checkout.ship_to_different_address": "Gửi đến địa chỉ khác"
 	},
 	zh: {
 		"checkout.form.full_name": "全名",
@@ -2046,6 +2067,7 @@ export default {
 		"checkout.enter_payment_details": "输入付款明细",
 		"footer.about": "关于",
 		"checkout.form.credit_card": "信用卡",
-		"checkout.coupon.label": "优惠码"
+		"checkout.coupon.label": "优惠码",
+		"checkout.ship_to_different_address": "运送到不同的地址"
 	}
 };

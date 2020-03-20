@@ -88,5 +88,6 @@
 	"button.proceed_to_checkout": "Teruskan ke checkout",
 	"shipping.local": "Penghantaran Tempatan",
 	"product.attribute.Occasion": "Peluang",
-	"shipping.calculate": "Kira Penghantaran"
+	"shipping.calculate": "Kira Penghantaran",
+	"checkout.ship_to_different_address": "Hantar ke alamat lain"
 }

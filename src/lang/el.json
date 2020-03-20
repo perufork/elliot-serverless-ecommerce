@@ -88,5 +88,6 @@
 	"checkout.form.address_2": "Διεύθυνση 2",
 	"button.go_back": "Πήγαινε πίσω",
 	"button.back_to_shop": "Επιστροφή στο κατάστημα",
-	"header.links.collections": "Συλλογές"
+	"header.links.collections": "Συλλογές",
+	"checkout.ship_to_different_address": "Αποστολή σε διαφορετική διεύθυνση"
 }

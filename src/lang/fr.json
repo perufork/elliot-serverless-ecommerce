@@ -88,5 +88,6 @@
 	"cart.th.quantity": "Quantité",
 	"checkout.page.title": "Check-out",
 	"button.go_back": "retourner",
-	"cart.empty_state": "Aucun article sur le panier"
+	"cart.empty_state": "Aucun article sur le panier",
+	"checkout.ship_to_different_address": "Livrer à une adresse différente"
 }

@@ -119,6 +119,8 @@ export default ({
 								item => item.node.id === collection.node.id
 							)
 						)
+						.sort(() => Math.random() - 0.5)
+						.slice(0, 3)
 						.map(({ node: { products } }) =>
 							products?.edges
 								.filter(({ node }) => node.id !== id)

@@ -88,5 +88,6 @@
 	"button.update_total": "Atualização total",
 	"footer.language": "Língua",
 	"footer.help_and_information": "Ajuda e Informações",
-	"footer.about_us": "Sobre nós"
+	"footer.about_us": "Sobre nós",
+	"checkout.ship_to_different_address": "Envie para um endereço diferente"
 }

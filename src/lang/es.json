@@ -88,5 +88,6 @@
 	"footer.online_shop": "Tienda en línea",
 	"checkout.form.address_2": "Dirección 2",
 	"shipping.total": "Total",
-	"checkout.form.phone": "Teléfono"
+	"checkout.form.phone": "Teléfono",
+	"checkout.ship_to_different_address": "Envia a una direccion diferente"
 }

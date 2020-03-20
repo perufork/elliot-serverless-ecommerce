@@ -10,30 +10,38 @@ import Select from "react-select";
 import { Formik, Field, Form, FastField, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
-import isEmpty from "helpers/isEmpty";
-import InputField from "components/common/InputField";
-import Button from "components/common/Button";
-import ErrorField from "components/common/ErrorField";
-import Loader from "components/common/Loader";
-import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
-import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
-import getShippingPayload from "helpers/getShippingPayload";
 import { useCart } from "providers/CartProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useDispatchCheckout, useCheckout } from "providers/CheckoutProvider";
+import isEmpty from "helpers/isEmpty";
+import getShippingPayload from "helpers/getShippingPayload";
 import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
 import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 import useOrderSummary from "hooks/useOrderSummary";
 import useShippingInfo from "hooks/useShippingInfo";
+import InputField from "components/common/InputField";
+import Button from "components/common/Button";
+import ErrorField from "components/common/ErrorField";
+import Loader from "components/common/Loader";
+import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
+import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
+import ShippingAddress from "components/checkout/OrderCheckout/components/ShippingAddress";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
 		ssr: false
 	}
 );
-import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
+import {
+	Wrapper,
+	FieldWrapper,
+	CreditCardWrap,
+	CheckboxWrapper,
+	CheckBox
+} from "./styles";
+import RadioButton from "components/common/RadioButton";
 
 const CreditCardForm = ({ stripe, checkout }) => {
 	const { locale, formatMessage } = useIntl();
@@ -68,6 +76,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		zipCode: ""
 	});
 	const [touchedErrors, setTouchedErrors] = useState({});
+	const [optionalShippingAddress, setOptionalShippingAddress] = useState(false);
 
 	const hasAddressErrors = errors => {
 		return (
@@ -143,7 +152,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 			city,
 			state: selectedState,
 			country: selectedCountry,
-			zipCode
+			zipCode: zipCode
 		});
 	};
 
@@ -200,12 +209,18 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		}
 	};
 
-	const locationSearchInputComponent = ({ field, form, onBlur, value }) => {
+	const locationSearchInputComponent = ({
+		field,
+		form,
+		onBlur,
+		value,
+		fieldsToUpdate
+	}) => {
 		return (
 			<LocationSearchInput
 				field={field}
 				form={form}
-				fieldsToUpdate={["addressLine1", "city", "state", "country", "zipCode"]}
+				fieldsToUpdate={fieldsToUpdate}
 				placeholder="33 Irving Place"
 				onBlur={onBlur}
 				onSelect={handleAddressSelected}
@@ -225,7 +240,13 @@ const CreditCardForm = ({ stripe, checkout }) => {
 				city: "",
 				state: "",
 				country: "",
-				zipCode: ""
+				zipCode: "",
+				addressLine1_optional: "",
+				addressLine2_optional: "",
+				city_optional: "",
+				state_optional: "",
+				country_optional: "",
+				zipCode_optional: ""
 			}}
 			validationSchema={Yup.object().shape({
 				name: Yup.string()
@@ -248,7 +269,25 @@ const CreditCardForm = ({ stripe, checkout }) => {
 				),
 				zipCode: Yup.string().required(
 					formatMessage({ id: "validation.required" })
-				)
+				),
+				addressLine1_optional: !optionalShippingAddress
+					? Yup.string()
+					: Yup.string().required(formatMessage({ id: "validation.required" })),
+				addressLine2_optional: !optionalShippingAddress
+					? Yup.string()
+					: Yup.string(),
+				city_optional: !optionalShippingAddress
+					? Yup.string()
+					: Yup.string().required(formatMessage({ id: "validation.required" })),
+				state_optional: !optionalShippingAddress
+					? Yup.string()
+					: Yup.string().required(),
+				country_optional: !optionalShippingAddress
+					? Yup.string()
+					: Yup.string().required(formatMessage({ id: "validation.required" })),
+				zipCode_optional: !optionalShippingAddress
+					? Yup.string()
+					: Yup.string().required(formatMessage({ id: "validation.required" }))
 			})}
 			onSubmit={async values => {
 				try {
@@ -276,17 +315,23 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						shipToCity,
 						shipToCountry,
 						shipToState,
-						shipToZipCode
+						shipToZipCode,
+						addressLine1_optional,
+						addressLine2_optional,
+						city_optional,
+						state_optional,
+						country_optional,
+						zipCode_optional
 					} = values;
 
 					const data = {
 						email,
-						line1,
-						line2,
-						city,
-						state,
-						country,
-						postalCode,
+						line1: optionalShippingAddress ? addressLine1_optional : line1,
+						line2: optionalShippingAddress ? addressLine2_optional : line2,
+						city: optionalShippingAddress ? city_optional : city,
+						state: optionalShippingAddress ? state_optional : state,
+						country: optionalShippingAddress ? country_optional : country,
+						postalCode: optionalShippingAddress ? zipCode_optional : postalCode,
 						phone,
 						name: name.slice(0, 100),
 						shipToAddress,
@@ -345,6 +390,8 @@ const CreditCardForm = ({ stripe, checkout }) => {
 					displayedShippingOptions &&
 					!paymentLoading;
 
+				// console.log(values);
+
 				return (
 					<Form>
 						<>
@@ -357,7 +404,13 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								"city",
 								"state",
 								"country",
-								"zipCode"
+								"zipCode",
+								"addressLine1_optional",
+								"addressLine2_optional",
+								"city_optional",
+								"state_optional",
+								"country_optional",
+								"zipCode_optional"
 							].map(field => (
 								<FastField
 									key={field}
@@ -434,131 +487,93 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								/>
 								<ErrorMessage component={ErrorField} name="name" />
 							</FieldWrapper>
-							<FieldWrapper>
-								<label>
-									<FormattedMessage id="checkout.form.address" />
-								</label>
-								<Field
-									name="addressLine1"
-									component={locationSearchInputComponent}
-									onBlur={() => {
-										onFieldBlur("addressLine1", values, dirty, errors);
-									}}
+							<ShippingAddress
+								locationComponent={locationSearchInputComponent}
+								fieldsToUpdate={[
+									"addressLine1",
+									"city",
+									"state",
+									"country",
+									"zipCode"
+								]}
+								onFieldBlur={onFieldBlur}
+								values={values}
+								dirty={dirty}
+								errors={errors}
+							/>
+							<CheckboxWrapper>
+								<CheckBox>
+									<input
+										type="checkbox"
+										onChange={() =>
+											setOptionalShippingAddress(!optionalShippingAddress)
+										}
+									/>
+									<span>
+										<FormattedMessage id="checkout.ship_to_different_address" />
+									</span>
+								</CheckBox>
+							</CheckboxWrapper>
+							{optionalShippingAddress && (
+								<ShippingAddress
+									locationComponent={locationSearchInputComponent}
+									fieldsToUpdate={[
+										"addressLine1_optional",
+										"city_optional",
+										"state_optional",
+										"country_optional",
+										"zipCode_optional"
+									]}
+									onFieldBlur={onFieldBlur}
+									values={values}
+									dirty={dirty}
+									errors={errors}
+									optional
 								/>
-								<ErrorMessage component={ErrorField} name="addressLine1" />
-							</FieldWrapper>
-							<FieldWrapper>
-								<label>
-									<FormattedMessage id="checkout.form.address_2" />
-								</label>
-								<Field
-									name="addressLine2"
-									as={InputField}
-									autoComplete="new-password"
-									placeholder="Suite 101"
-								/>
-								<ErrorMessage component={ErrorField} name="addressLine2" />
-							</FieldWrapper>
-							<FieldWrapper>
-								<label>
-									<FormattedMessage id="checkout.form.city" />
-								</label>
-								<Field
-									name="city"
-									as={InputField}
-									autoComplete="new-password"
-									placeholder="New York"
-								/>
-								<ErrorMessage component={ErrorField} name="city" />
-							</FieldWrapper>
-							<FieldWrapper>
-								<label>
-									<FormattedMessage id="checkout.form.state" />
-								</label>
-								<Field
-									name="state"
-									as={InputField}
-									autoComplete="new-password"
-									placeholder="New York"
-								/>
-								<ErrorMessage component={ErrorField} name="state" />
-							</FieldWrapper>
-							<Flex align="flex-start">
-								<Item col={6} colTablet={12} colMobile={12} gap={2}>
-									<FieldWrapper>
-										<label>
-											<FormattedMessage id="checkout.form.country" />
-										</label>
-										<Field
-											name="country"
-											autoComplete="new-password"
-											as={InputField}
-											placeholder="United State"
-										/>
-										<ErrorMessage component={ErrorField} name="country" />
-									</FieldWrapper>
-								</Item>
-								<Item col={6} colTablet={12} colMobile={12} gap={2}>
-									<FieldWrapper>
-										<label>
-											<FormattedMessage id="checkout.form.postal_code" />
-										</label>
-										<Field
-											name="zipCode"
-											as={InputField}
-											type="number"
-											autoComplete="new-password"
-											placeholder={10003}
-										/>
-										<ErrorMessage component={ErrorField} name="zipCode" />
-									</FieldWrapper>
-								</Item>
-							</Flex>
+							)}
 							<FieldWrapper>
 								<label style={{ marginRight: "1rem" }}>
 									<FormattedMessage id="checkout.shipping_method" />
 								</label>
 								{loadingShippingInfo && <Loader />}
 								{freeShipping ? (
-									<Select
-										options={[
-											{
-												label: formatMessage({ id: "shipping.free" }),
-												value: "free"
-											}
-										]}
-										defaultValue={{
-											label: formatMessage({ id: "shipping.free" }),
-											value: "free"
-										}}
-									/>
+									<RadioButton>
+										<input
+											type="radio"
+											id="shipping-free"
+											value="free"
+											name="shipping"
+											checked
+										/>
+										<label htmlFor="shipping-free">
+											<FormattedMessage id="shipping.free" />
+										</label>
+									</RadioButton>
 								) : displayedShippingOptions ? (
-									<Select
-										onChange={e => setSelectedShippingOptionIndex(e.value)}
-										options={displayedShippingOptions.map(
-											({ provider, type, days }) => {
-												let label = `${provider} ${type}`;
+									displayedShippingOptions.map(
+										({ provider, type, days }, i) => {
+											let label = `${provider} ${type}`;
 
-												if (days) {
-													label += ` - Arrives in ${shippingOptions[0].days} day(s)`;
-												}
-												return [
-													{
-														label,
-														value: 0
-													}
-												];
+											if (days) {
+												label += ` - Arrives in ${shippingOptions[0]?.days} day(s)`;
 											}
-										)}
-										defaultValue={{
-											label: `${displayedShippingOptions[0].provider} ${
-												displayedShippingOptions[0].type
-											} ${displayedShippingOptions[0] &&
-												displayedShippingOptions[0].days &&
-												` - Arrives in ${displayedShippingOptions[0].days} day(s)`}`,
-											value: 0
-										}}
-									/>
+
+											return (
+												<RadioButton key={i}>
+													<input
+														type="radio"
+														id={`shipping-${i}`}
+														value={0}
+														name="shipping"
+														onChange={e =>
+															setSelectedShippingOptionIndex(e.target.value)
+														}
+													/>
+													<label htmlFor={`shipping-${i}`}>{label}</label>
+												</RadioButton>
+											);
+										}
+									)
 								) : (
 									<Field
 										component={InputField}

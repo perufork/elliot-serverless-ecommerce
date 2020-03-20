@@ -88,5 +88,6 @@
 	"footer.faqs": "よくある質問",
 	"footer.about": "約",
 	"checkout.form.city": "市",
-	"product.attribute.Color": "色"
+	"product.attribute.Color": "色",
+	"checkout.ship_to_different_address": "別の住所に発送する"
 }

@@ -88,5 +88,6 @@
 	"shipping.duty": "مهمة",
 	"shipping.promotion": "ترقية وظيفية",
 	"button.view_cart": "عرض السلة",
-	"checkout.form.address_2": "العنوان 2"
+	"checkout.form.address_2": "العنوان 2",
+	"checkout.ship_to_different_address": "اشحن الى عنوان مختلف"
 }
