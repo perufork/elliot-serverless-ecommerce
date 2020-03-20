@@ -1,5 +1,7 @@
+import StyledIcon from "components/common/StyledIcon";
+
 const GooglePayIcon = ({ width = 70, height = 20 }) => (
-	<svg
+	<StyledIcon
 		height={height}
 		width={width}
 		viewBox="0 0 52 20"
@@ -64,7 +66,7 @@ const GooglePayIcon = ({ width = 70, height = 20 }) => (
 				</g>
 			</g>
 		</g>
-	</svg>
+	</StyledIcon>
 );
 
 export default GooglePayIcon;
