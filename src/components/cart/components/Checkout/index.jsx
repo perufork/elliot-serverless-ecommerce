@@ -12,7 +12,7 @@ const PaymentButtons = dynamic(
 		ssr: false
 	}
 );
-import { Wrapper, Actions, Flex } from "./styles";
+import { Wrapper, Actions, Buttons } from "./styles";
 
 const Checkout = () => {
 	const { locale } = useIntl();
@@ -21,14 +21,14 @@ const Checkout = () => {
 	return (
 		<Wrapper as={Container}>
 			<Actions>
-				<Flex>
+				<Buttons>
 					<Link href="/[lang]/" as={`/${locale}/`}>
 						<Button as="a" wide marginBottom={2} variant="outlined">
 							<FormattedMessage id="button.continue_shopping" />
 						</Button>
 					</Link>
 					<PaymentButtons />
-				</Flex>
+				</Buttons>
 				{/* <Coupon /> */}
 			</Actions>
 			<Shipping state={state} locale={locale} />
