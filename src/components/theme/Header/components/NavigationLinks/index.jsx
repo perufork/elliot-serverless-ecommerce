@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useIntl } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
 import { useCurrency } from "providers/CurrencyProvider";
 import languages from "helpers/languages";
 import currencies from "helpers/currencies.json";
@@ -42,19 +42,25 @@ const NavigationLinks = ({ toggleSidebar, checkout }) => {
 				<DesktopMenu>
 					<li>
 						<Link href="/en/" as="/en/">
-							<a onClick={toggleSidebar}>Shop</a>
+							<a onClick={toggleSidebar}>
+								<FormattedMessage id="shop.page.title" />
+							</a>
 						</Link>
 					</li>
 					<li>
 						<Link href="/[lang]/about" as={`/${locale}/about`}>
-							<a onClick={toggleSidebar}>About us</a>
+							<a onClick={toggleSidebar}>
+								<FormattedMessage id="footer.about_us" />
+							</a>
 						</Link>
 					</li>
 				</DesktopMenu>
 			</Menu>
 			{checkout?.domain?.company?.address?.address1 && (
 				<MenuBottom>
-					<figcaption>Contact Us</figcaption>
+					<figcaption>
+						<FormattedMessage id="sidebar.contact_us" />
+					</figcaption>
 					<p>
 						{checkout?.domain?.company?.address.address1},{" "}
 						{checkout?.domain?.company?.address.city},{" "}

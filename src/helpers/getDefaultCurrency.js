@@ -13,8 +13,7 @@ export default async () => {
 			}
 		}
 	} = await axios.post(
-		process.env.ELLIOT_API,
-		// `https://cors-anywhere.herokuapp.com/${process.env.ELLIOT_API}`,
+		`https://cors-anywhere.herokuapp.com/${process.env.ELLIOT_API}`,
 		{
 			query: defaultCurrencyQuery,
 			variables: {

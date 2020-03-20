@@ -8,7 +8,11 @@ import Swatch from "components/common/Swatch";
 import QuantityController from "components/common/QuantityController";
 import { CancelIcon } from "components/common/Icons";
 import BackToShop from "components/common/BackToShop";
-import { removeFromCart } from "components/cart/actions";
+import {
+	removeFromCart,
+	addQuantityByProduct,
+	subtractQuantityByProduct
+} from "components/cart/actions";
 import {
 	TableWrapper,
 	Table,
@@ -20,7 +24,7 @@ import {
 	Attribute
 } from "./styles";
 
-const ShoppingCart = ({ handleQuantity, quantities }) => {
+const ShoppingCart = () => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
@@ -55,10 +59,6 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 									quantity,
 									sku
 								}) => {
-									const quantityByProduct =
-										quantities.length > 0 &&
-										quantities.find(item => item.skuId === sku.id);
-
 									return (
 										<tr key={sku.id}>
 											<td>
@@ -114,12 +114,10 @@ const ShoppingCart = ({ handleQuantity, quantities }) => {
 												<QuantityController
 													cart
 													skuId={sku.id}
-													quantity={
-														quantityByProduct
-															? quantityByProduct.quantity
-															: quantity
-													}
-													setQuantity={handleQuantity}
+													quantity={quantity}
+													addQuantityByProduct={addQuantityByProduct}
+													subtractQuantityByProduct={subtractQuantityByProduct}
+													dispatch={dispatch}
 												/>
 											</td>
 											<td>

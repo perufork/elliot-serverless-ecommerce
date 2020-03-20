@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useState, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -10,7 +11,6 @@ import { Formik, Field, Form, FastField, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import isEmpty from "helpers/isEmpty";
-import { useCart } from "providers/CartProvider";
 import InputField from "components/common/InputField";
 import Button from "components/common/Button";
 import ErrorField from "components/common/ErrorField";
@@ -18,18 +18,25 @@ import Loader from "components/common/Loader";
 import BuyButton from "components/checkout/OrderCheckout/components/BuyButton";
 import LocationSearchInput from "components/checkout/OrderCheckout/components/LocationSearchInput";
 import getShippingPayload from "helpers/getShippingPayload";
+import { useCart } from "providers/CartProvider";
 import { useCurrency } from "providers/CurrencyProvider";
+import { useDispatchCheckout, useCheckout } from "providers/CheckoutProvider";
 import getShippingOptions from "helpers/getShippingOptions";
 import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
 import adjustShippingOptionsForChoices from "helpers/adjustShippingOptionsForChoices";
-import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
 import useShippingStateUpdater from "hooks/useShippingStateUpdater";
 import useOrderSummary from "hooks/useOrderSummary";
 import useShippingInfo from "hooks/useShippingInfo";
-import { useDispatchCheckout, useCheckout } from "providers/CheckoutProvider";
+const PaymentButtons = dynamic(
+	() => import("components/checkout/PaymentButtons"),
+	{
+		ssr: false
+	}
+);
+import { Wrapper, FieldWrapper, CreditCardWrap } from "./styles";
 
 const CreditCardForm = ({ stripe, checkout }) => {
-	const { locale } = useIntl();
+	const { locale, formatMessage } = useIntl();
 	const router = useRouter();
 	const {
 		state: { data: cart }
@@ -187,7 +194,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		setCardError(error && error.message);
 
 		if (!complete) {
-			setCardOnBlurMessage("Required fields are missing");
+			setCardOnBlurMessage(formatMessage({ id: "validation.cc.fields" }));
 		} else {
 			setCardValidity(true);
 		}
@@ -222,18 +229,26 @@ const CreditCardForm = ({ stripe, checkout }) => {
 			}}
 			validationSchema={Yup.object().shape({
 				name: Yup.string()
-					.max(100, "Full Name should be less than 100 characters!")
-					.required("Required"),
+					.max(100, formatMessage({ id: "validation.full_name" }))
+					.required(formatMessage({ id: "validation.required" })),
 				email: Yup.string()
-					.email("Invalid email")
-					.required("Required"),
+					.email(formatMessage({ id: "validation.invalid_email" }))
+					.required(formatMessage({ id: "validation.required" })),
 				phone: Yup.string(),
-				addressLine1: Yup.string().required("Required"),
+				addressLine1: Yup.string().required(
+					formatMessage({ id: "validation.required" })
+				),
 				addressLine2: Yup.string(),
-				city: Yup.string().required("Required"),
+				city: Yup.string().required(
+					formatMessage({ id: "validation.required" })
+				),
 				state: Yup.string().required(),
-				country: Yup.string().required("Required"),
-				zipCode: Yup.string().required("Required")
+				country: Yup.string().required(
+					formatMessage({ id: "validation.required" })
+				),
+				zipCode: Yup.string().required(
+					formatMessage({ id: "validation.required" })
+				)
 			})}
 			onSubmit={async values => {
 				try {
@@ -317,7 +332,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 					setPaymentState("PAYMENT FAILED");
 					setOrderStatus("PAYMENT FAILED");
 					router.push(`/${locale}/order-failed`);
-					// console.error({ error });
 				} finally {
 					setPaymentLoading(false);
 				}
@@ -354,11 +368,16 @@ const CreditCardForm = ({ stripe, checkout }) => {
 							))}
 						</>
 						<Wrapper>
-							<h4>Enter Payment Details</h4>
+							<PaymentButtons />
+							<h4>
+								<FormattedMessage id="checkout.enter_payment_details" />
+							</h4>
 							<Flex align="flex-start">
 								<Item col={6} colTablet={12} colMobile={12} gap={2}>
 									<FieldWrapper>
-										<label>Email</label>
+										<label>
+											<FormattedMessage id="checkout.form.email" />
+										</label>
 										<Field
 											name="email"
 											type="email"
@@ -371,7 +390,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								</Item>
 								<Item col={6} colTablet={12} colMobile={12} gap={2}>
 									<FieldWrapper>
-										<label>Phone</label>
+										<label>
+											<FormattedMessage id="checkout.form.phone" />
+										</label>
 										<Field
 											country="us"
 											name="phone"
@@ -402,7 +423,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								</Item>
 							</Flex>
 							<FieldWrapper>
-								<label>Full Name</label>
+								<label>
+									<FormattedMessage id="checkout.form.full_name" />
+								</label>
 								<Field
 									name="name"
 									as={InputField}
@@ -412,9 +435,10 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								<ErrorMessage component={ErrorField} name="name" />
 							</FieldWrapper>
 							<FieldWrapper>
-								<label>Address</label>
+								<label>
+									<FormattedMessage id="checkout.form.address" />
+								</label>
 								<Field
-									// as={InputField}
 									name="addressLine1"
 									component={locationSearchInputComponent}
 									onBlur={() => {
@@ -424,7 +448,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								<ErrorMessage component={ErrorField} name="addressLine1" />
 							</FieldWrapper>
 							<FieldWrapper>
-								<label>Address 2</label>
+								<label>
+									<FormattedMessage id="checkout.form.address_2" />
+								</label>
 								<Field
 									name="addressLine2"
 									as={InputField}
@@ -434,7 +460,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								<ErrorMessage component={ErrorField} name="addressLine2" />
 							</FieldWrapper>
 							<FieldWrapper>
-								<label>City</label>
+								<label>
+									<FormattedMessage id="checkout.form.city" />
+								</label>
 								<Field
 									name="city"
 									as={InputField}
@@ -444,7 +472,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								<ErrorMessage component={ErrorField} name="city" />
 							</FieldWrapper>
 							<FieldWrapper>
-								<label>State</label>
+								<label>
+									<FormattedMessage id="checkout.form.state" />
+								</label>
 								<Field
 									name="state"
 									as={InputField}
@@ -456,7 +486,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 							<Flex align="flex-start">
 								<Item col={6} colTablet={12} colMobile={12} gap={2}>
 									<FieldWrapper>
-										<label>Country</label>
+										<label>
+											<FormattedMessage id="checkout.form.country" />
+										</label>
 										<Field
 											name="country"
 											autoComplete="new-password"
@@ -468,7 +500,9 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								</Item>
 								<Item col={6} colTablet={12} colMobile={12} gap={2}>
 									<FieldWrapper>
-										<label>Postal code</label>
+										<label>
+											<FormattedMessage id="checkout.form.postal_code" />
+										</label>
 										<Field
 											name="zipCode"
 											as={InputField}
@@ -481,18 +515,20 @@ const CreditCardForm = ({ stripe, checkout }) => {
 								</Item>
 							</Flex>
 							<FieldWrapper>
-								<label>Shipping method</label>
+								<label style={{ marginRight: "1rem" }}>
+									<FormattedMessage id="checkout.shipping_method" />
+								</label>
 								{loadingShippingInfo && <Loader />}
 								{freeShipping ? (
 									<Select
 										options={[
 											{
-												label: "Free Shipping",
+												label: formatMessage({ id: "shipping.free" }),
 												value: "free"
 											}
 										]}
 										defaultValue={{
-											label: "Free Shipping",
+											label: formatMessage({ id: "shipping.free" }),
 											value: "free"
 										}}
 									/>
@@ -527,7 +563,11 @@ const CreditCardForm = ({ stripe, checkout }) => {
 									<Field
 										component={InputField}
 										placeholder={
-											loadingShippingInfo ? "" : "Complete Shipping Information"
+											loadingShippingInfo
+												? ""
+												: formatMessage({
+														id: "checkout.form.complete_shipping_info"
+												  })
 										}
 										disabled
 									/>
@@ -535,7 +575,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 							</FieldWrapper>
 							<FieldWrapper>
 								<label>
-									Credit Card
+									<FormattedMessage id="checkout.form.credit_card" />
 									{cardError && (
 										<span>
 											&nbsp; - &nbsp;

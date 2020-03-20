@@ -8,17 +8,17 @@ import BackToShop from "components/common/BackToShop";
 import { useCart } from "providers/CartProvider";
 
 const Items = ({ checkout, promotion }) => {
-	const { locale } = useIntl();
+	const { locale, formatMessage } = useIntl();
 	const { state } = useCart();
 
 	const breadcrumbs = [
 		{
-			name: "Shop",
+			name: formatMessage({ id: "shop.page.title" }),
 			link: `/[lang]/`,
 			as: `/${locale}/`
 		},
 		{
-			name: "Checkout",
+			name: formatMessage({ id: "checkout.page.title" }),
 			link: `/[lang]/checkout/`,
 			as: `/${locale}/checkout/`,
 			active: true
@@ -28,7 +28,7 @@ const Items = ({ checkout, promotion }) => {
 	return (
 		<>
 			<PageTitle
-				title="title.checkout"
+				title={formatMessage({ id: "title.checkout" })}
 				breadcrumbs={breadcrumbs}
 				breadCrumbsAlign="center"
 			/>

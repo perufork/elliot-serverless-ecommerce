@@ -9,6 +9,7 @@ export const Label = styled.label`
 	left: 1.25rem;
 	z-index: 5;
 	border-radius: 0.1875rem;
+
 	span {
 		display: inline-block;
 		font-size: 9.75pt;

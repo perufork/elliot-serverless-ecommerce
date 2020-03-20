@@ -54,6 +54,11 @@ export const Content = styled.div`
 		color: inherit;
 		text-decoration: none;
 		transition: ${({ theme: { transitions } }) => transitions.default400};
+		width: 150px;
+		display: inline-block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	p {

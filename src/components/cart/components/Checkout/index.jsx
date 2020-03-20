@@ -1,13 +1,20 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useCart } from "providers/CartProvider";
 import Button from "components/common/Button";
 import Container from "components/common/Container";
 // import Coupon from "components/cart/components/Coupon";
 import Shipping from "components/cart/components/Shipping";
+const PaymentButtons = dynamic(
+	() => import("components/checkout/PaymentButtons"),
+	{
+		ssr: false
+	}
+);
 import { Wrapper, Actions, Flex } from "./styles";
 
-const Checkout = ({ handleSubmit }) => {
+const Checkout = () => {
 	const { locale } = useIntl();
 	const { state } = useCart();
 
@@ -20,15 +27,7 @@ const Checkout = ({ handleSubmit }) => {
 							<FormattedMessage id="button.continue_shopping" />
 						</Button>
 					</Link>
-					<Button
-						type="button"
-						onClick={handleSubmit}
-						wide
-						marginBottom={2}
-						variant="outlined"
-					>
-						<FormattedMessage id="button.update_cart" />
-					</Button>
+					<PaymentButtons />
 				</Flex>
 				{/* <Coupon /> */}
 			</Actions>

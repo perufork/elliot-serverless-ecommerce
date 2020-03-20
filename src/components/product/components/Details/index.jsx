@@ -9,12 +9,15 @@ import { useCurrency } from "providers/CurrencyProvider";
 import { addToCart, addCustomQuantityByProduct } from "components/cart/actions";
 import Button from "components/common/Button";
 import QuantityController from "components/common/QuantityController";
-import Label from "components/common/Label";
 import {
 	FacebookIcon,
 	PinterestIcon,
 	TwiterIcon
 } from "components/common/Icons/SocialIcon";
+import getProductById from "helpers/getProductById";
+import isEmpty from "helpers/isEmpty";
+import dynamic from "next/dynamic";
+import ToggleHidden from "components/common/ToggleHidden";
 import {
 	ButtonGroup,
 	Shop,
@@ -22,12 +25,9 @@ import {
 	SocialShares,
 	Specs,
 	Wrapper,
-	LabelField
+	LabelField,
+	OutOfStock
 } from "./styles";
-import getProductById from "helpers/getProductById";
-import isEmpty from "helpers/isEmpty";
-import dynamic from "next/dynamic";
-import ToggleHidden from "components/common/ToggleHidden";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
@@ -127,6 +127,11 @@ const Details = ({
 		<Wrapper>
 			<div>
 				<h2>{name}</h2>
+				{parseFloat(inventoryQuantity) <= 0 && (
+					<OutOfStock>
+						<FormattedMessage id="product.out_of_stock" />
+					</OutOfStock>
+				)}
 				{selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku && (
 					<Sku>SKU: {selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku}</Sku>
 				)}
@@ -142,11 +147,6 @@ const Details = ({
 								prefix={currency}
 							/>
 						)}
-						{parseFloat(inventoryQuantity) > 0 && (
-							<Label>
-								<span>OUT OF STOCK</span>
-							</Label>
-						)}
 					</p>
 				)}
 			</div>
@@ -158,7 +158,9 @@ const Details = ({
 					});
 					return (
 						<Fragment key={i}>
-							<LabelField>{attributeKey}</LabelField>
+							<LabelField>
+								<FormattedMessage id={`product.attribute.${attributeKey}`} />
+							</LabelField>
 							<Select
 								styles={{
 									container: provided => {
@@ -214,9 +216,11 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 				</ButtonGroup>
-				<ToggleHidden gridArea="c" hidden={!isEmpty(cart)}>
-					<PaymentButtons addToCartPayload={addToCartPayload} />
-				</ToggleHidden>
+				{parseFloat(inventoryQuantity) <= 0 && (
+					<ToggleHidden gridArea="c" hidden={!isEmpty(cart)}>
+						<PaymentButtons addToCartPayload={addToCartPayload} />
+					</ToggleHidden>
+				)}
 			</Shop>
 			<Specs>
 				{collections && (

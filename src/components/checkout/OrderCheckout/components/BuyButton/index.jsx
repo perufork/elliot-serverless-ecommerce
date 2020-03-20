@@ -1,9 +1,9 @@
-import { useState /* useEffect */ } from "react";
 import NumberFormat from "react-number-format";
+import { useIntl } from "react-intl";
 import Button from "components/common/Button";
 import Loader from "components/common/Loader";
 
-const BuyButton = ({
+export default ({
 	canSubmit,
 	price,
 	currency,
@@ -11,46 +11,24 @@ const BuyButton = ({
 	paymentLoading,
 	paymentState
 }) => {
-	const [loading /* setLoading */] = useState(false);
-
-	// useEffect(() => {
-	//   if (checkout.shipping_preference === ShippingPreference.IN_STORE) {
-	//     // We only need tax for in-store checkouts so we don't need input from the client before we run this
-	//     setLoading(true);
-	//     (async () => {
-	//       const taxPayload = await getVendorShippingInfo({
-	//         vendors,
-	//         parcels,
-	//         checkout,
-	//         cart,
-	//         cartPriceSumRaw
-	//       });
-
-	//       const taxAmount = getTaxFromShippingOptions(taxPayload);
-	//       const vendorTax = getVendorTax(taxPayload);
-	//       setOrderTax(taxAmount);
-	//       setVendorShippingOptions(vendorTax);
-	//       setLoading(false);
-	//     })();
-	//   }
-	// }, [JSON.stringify(cart)]);
+	const { formatMessage } = useIntl();
 
 	return (
 		<Button
 			variant="primary"
 			type="submit"
-			disabled={!canSubmit || loading}
+			disabled={!canSubmit}
 			wide
 			marginBottom={1}
 			state={paymentState}
 		>
-			{loading || loadingCurrency || paymentLoading ? (
+			{loadingCurrency || paymentLoading ? (
 				<Loader />
 			) : (
 				<>
 					{!paymentState ? (
 						<>
-							PAY{" "}
+							{formatMessage({ id: "checkout.pay" })}{" "}
 							<NumberFormat
 								value={price}
 								displayType={"text"}
@@ -66,5 +44,3 @@ const BuyButton = ({
 		</Button>
 	);
 };
-
-export default BuyButton;

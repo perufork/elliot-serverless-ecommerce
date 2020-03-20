@@ -185,3 +185,24 @@ export const LabelField = styled.label`
 	display: inline-block;
 	margin-bottom: 1rem;
 `;
+
+export const OutOfStock = styled.div`
+	border-radius: 0.1875rem;
+	display: inline-block;
+	font-size: 9.75pt;
+	padding: 0.4375rem 0.625rem;
+	font-weight: 600;
+	text-align: center;
+	line-height: 1;
+	margin-bottom: 1rem;
+	background: ${({
+		theme: {
+			colors: { red }
+		}
+	}) => red};
+	color: ${({
+		theme: {
+			colors: { white }
+		}
+	}) => white};
+`;

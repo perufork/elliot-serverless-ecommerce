@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useIntl } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart } from "providers/CartProvider";
@@ -15,7 +15,7 @@ import useOrderSummary from "hooks/useOrderSummary";
 export default () => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
 	const { state } = useCart();
-	const { locale } = useIntl();
+	const { locale, formatMessage } = useIntl();
 	const shippingInfo = useShippingInfo();
 	const { promotion } = useCheckout();
 	const cart = state.data || [];
@@ -29,78 +29,88 @@ export default () => {
 
 	return (
 		<Wrapper>
-			<h2>Summary</h2>
+			<h2>
+				<FormattedMessage id="summary.title" />
+			</h2>
 			<Card>
 				<Flex border>
-					<p>product</p>
-					<p>total</p>
+					<p>
+						<FormattedMessage id="cart.th.product" />
+					</p>
+					<p>
+						<FormattedMessage id="cart.th.total" />
+					</p>
 				</Flex>
 				{state?.data?.length > 0 &&
-					state.data.map(
-						({ product: { id, slug, name }, quantity, sku }, i) => (
-							<Product key={id}>
-								<Link
-									href="/[lang]/product/[slug]"
-									as={`/${locale}/product/${slug}`}
-									key={i}
-								>
-									<a>
-										<p>{name}</p>
-										<span>x{quantity}</span>
-									</a>
-								</Link>
-								{sku?.salePrice && (
-									<Price>
-										{loading ? (
-											"..."
-										) : (
-											<NumberFormat
-												value={
-													((sku.salePrice * exchangeRate) / 100) * quantity
-												}
-												displayType={"text"}
-												thousandSeparator={true}
-												prefix={currency}
-											/>
-										)}
-									</Price>
-								)}
-							</Product>
-						)
-					)}
-				<SummaryItem display label="sub total" sum={subTotal} />
+					state.data.map(({ product: { id, slug, name }, quantity, sku }) => (
+						<Product key={id}>
+							<Link
+								href="/[lang]/product/[slug]"
+								as={`/${locale}/product/${slug}`}
+								key={sku.id}
+							>
+								<a>
+									<p>{name}</p>
+									<span>x{quantity}</span>
+								</a>
+							</Link>
+							{sku?.salePrice && (
+								<Price>
+									{loading ? (
+										"..."
+									) : (
+										<NumberFormat
+											value={((sku.salePrice * exchangeRate) / 100) * quantity}
+											displayType={"text"}
+											thousandSeparator={true}
+											prefix={currency}
+										/>
+									)}
+								</Price>
+							)}
+						</Product>
+					))}
+				<SummaryItem
+					display
+					label={formatMessage({ id: "shipping.subtotal" })}
+					sum={subTotal}
+				/>
 				<SummaryItem
 					display={!!promotion}
 					label={usePromotionLabel()}
 					sum={promotionSum}
 				/>
 				<Item>
-					<h3>Shipping & Taxes</h3>
+					<h3>
+						<FormattedMessage id="summary.shipping_taxes" />
+					</h3>
 					{isEmpty(shippingInfo) && (
-						<span>Input an address to get shipping summary</span>
+						<FormattedMessage id="summary.input_address" />
 					)}
 				</Item>
 				{!isEmpty(shippingInfo) && (
 					<>
 						<SummaryItem
 							display
-							label="shipping"
+							label={formatMessage({ id: "shipping.title" })}
 							sum={formatMoney({ sum: shippingCost, exchangeRate })}
 						/>
 						<SummaryItem
 							display={parseFloat(tax) > 0}
-							label="tax"
+							label={formatMessage({ id: "shipping.tax" })}
 							sum={formatMoney({ sum: tax, exchangeRate })}
 						/>
 						<SummaryItem
 							display={parseFloat(duty) > 0}
-							label="duty"
+							label={formatMessage({ id: "shipping.duty" })}
 							sum={formatMoney({ sum: duty, exchangeRate })}
 						/>
 					</>
 				)}
 				<Flex>
-					<h5>Total</h5>
+					<h5>
+						<FormattedMessage id="shipping.total" />
+					</h5>
 					{state?.data?.length > 0 && (
 						<Price>
 							{loading ? (

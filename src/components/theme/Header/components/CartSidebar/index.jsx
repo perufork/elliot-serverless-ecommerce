@@ -35,7 +35,7 @@ const CartSidebar = ({ toggleSidebar }) => {
 	const { promotion } = useCheckout();
 	const { state } = useCart();
 	const { dispatch } = useDispatchCart();
-	const { locale } = useIntl();
+	const { locale, formatMessage } = useIntl();
 
 	const shippingInfo = useShippingInfo();
 	const { duty, tax, shippingCost, shippingTotal } = shippingInfo;
@@ -77,7 +77,10 @@ const CartSidebar = ({ toggleSidebar }) => {
 										>
 											<CancelIcon width={14} height={14} color="#a5a5a5" />
 										</button>
-										<Link href="/[lang]/" as={`/${locale}/`}>
+										<Link
+											href="/[lang]/product/[slug]"
+											as={`/${locale}/product/${slug}`}
+										>
 											<a onClick={toggleSidebar}>{name}</a>
 										</Link>
 										<p>Qty: {quantity}</p>
@@ -94,7 +97,12 @@ const CartSidebar = ({ toggleSidebar }) => {
 										{Object.entries(sku.attributes).length > 0 &&
 											Object.entries(sku.attributes).map((value, i) => (
 												<Attribute key={i}>
-													<span>{value[0]}: </span>
+													<span>
+														{formatMessage({
+															id: `product.attribute.${value[0]}`
+														})}{" "}
+														:{" "}
+													</span>
 													{value[0] === "Color" ? (
 														<Swatch color={value[1]} />
 													) : (
@@ -108,11 +116,15 @@ const CartSidebar = ({ toggleSidebar }) => {
 						)}
 					</div>
 					<CartFooter>
-						<SummaryItem sum={subTotal} display label="Sub Total" />
+						<SummaryItem
+							sum={subTotal}
+							display
+							label={formatMessage({ id: "shipping.subtotal" })}
+						/>
 						<SummaryItem
 							sum={promotionValue}
 							display={!!promotion}
-							label="Promotion"
+							label={formatMessage({ id: "shipping.promotion" })}
 						/>
 						{!isEmpty(shippingInfo) && (
 							<>
@@ -122,21 +134,25 @@ const CartSidebar = ({ toggleSidebar }) => {
 										exchangeRate
 									})}
 									display
-									label="Shipping"
+									label={formatMessage({ id: "shipping.title" })}
 								/>
 								<SummaryItem
 									sum={formatMoney({ sum: tax, exchangeRate })}
 									display={tax > 0}
-									label="Tax"
+									label={formatMessage({ id: "shipping.tax" })}
 								/>
 								<SummaryItem
 									sum={formatMoney({ sum: duty, exchangeRate })}
 									display={duty > 0}
-									label="Duty"
+									label={formatMessage({ id: "shipping.duty" })}
 								/>
 							</>
 						)}
-						<SummaryItem sum={orderTotal} display label="Total" />
+						<SummaryItem
+							sum={orderTotal}
+							display
+							label={formatMessage({ id: "cart.th.total" })}
+						/>
 						<div>
 							<Link href="/[lang]/cart" as={`/${locale}/cart`}>
 								<Button
