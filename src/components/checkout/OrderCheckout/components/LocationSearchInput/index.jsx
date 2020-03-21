@@ -13,7 +13,8 @@ const LocationSearchInput = ({
 	field,
 	searchOptions,
 	onBlur,
-	placeholder
+	placeholder,
+	optional
 }) => {
 	const handleChange = address => {
 		form.setFieldValue(field.name, address);
@@ -22,7 +23,7 @@ const LocationSearchInput = ({
 	const handleSelect = address => {
 		geocodeByAddress(address)
 			.then(results => {
-				const locationValues = splitAddressComponents(results[0]);
+				const locationValues = splitAddressComponents(results[0], optional);
 				for (const fieldToUpdate of fieldsToUpdate) {
 					const update = locationValues[fieldToUpdate];
 					if (update) {
@@ -30,16 +31,30 @@ const LocationSearchInput = ({
 					}
 				}
 
-				form.setFieldValue("addressLine1", locationValues["addressLine1"]);
-
-				onSelect(
-					locationValues["addressLine1"],
-					locationValues["addressLine2"],
-					locationValues["city"],
-					locationValues["state"],
-					locationValues["country"],
-					locationValues["zipCode"]
-				);
+				if (optional) {
+					form.setFieldValue(
+						"addressLine1_optional",
+						locationValues["addressLine1_optional"]
+					);
+					onSelect(
+						locationValues["addressLine1_optional"],
+						locationValues["addressLine2_optional"],
+						locationValues["city_optional"],
+						locationValues["state_optional"],
+						locationValues["country_optional"],
+						locationValues["zipCode_optional"]
+					);
+				} else {
+					form.setFieldValue("addressLine1", locationValues["addressLine1"]);
+					onSelect(
+						locationValues["addressLine1"],
+						locationValues["addressLine2"],
+						locationValues["city"],
+						locationValues["state"],
+						locationValues["country"],
+						locationValues["zipCode"]
+					);
+				}
 				return results;
 			})
 			.catch(error => form.setFieldError(field.name, error.message));

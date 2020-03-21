@@ -6,11 +6,11 @@ export const Products = styled.section`
 	grid-column-gap: 1.875rem;
 	grid-row-gap: 4.0625rem;
 
-	@media (max-width: 770px) {
+	@media (max-width: 960px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	@media (max-width: 400px) {
+	@media (max-width: 680px) {
 		grid-template-columns: 1fr;
 	}
 

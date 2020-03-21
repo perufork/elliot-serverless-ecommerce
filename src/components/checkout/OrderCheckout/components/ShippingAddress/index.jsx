@@ -31,6 +31,7 @@ export default ({
 						errors
 					);
 				}}
+				optional={optional}
 			/>
 			<ErrorMessage
 				component={ErrorField}

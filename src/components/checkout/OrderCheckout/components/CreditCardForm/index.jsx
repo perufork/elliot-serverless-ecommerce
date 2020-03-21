@@ -214,7 +214,8 @@ const CreditCardForm = ({ stripe, checkout }) => {
 		form,
 		onBlur,
 		value,
-		fieldsToUpdate
+		fieldsToUpdate,
+		optional
 	}) => {
 		return (
 			<LocationSearchInput
@@ -225,6 +226,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 				onBlur={onBlur}
 				onSelect={handleAddressSelected}
 				value={value}
+				optional={optional}
 			/>
 		);
 	};
@@ -389,8 +391,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 					!cardError &&
 					displayedShippingOptions &&
 					!paymentLoading;
-
-				// console.log(values);
 
 				return (
 					<Form>

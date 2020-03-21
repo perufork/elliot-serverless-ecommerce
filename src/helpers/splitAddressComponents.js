@@ -1,7 +1,38 @@
 import { getCurrencyAbbreviation } from "country-currency-map";
 import places from "helpers/places.json";
 
-export default place => {
+const generateLocationObjectConstruct = ({
+	inputType,
+	addressLine1,
+	city,
+	state,
+	country,
+	currency,
+	formattedZip
+}) => {
+	switch (inputType) {
+		case "SHIP_TO":
+			return {
+				addressLine1_optional: addressLine1,
+				city_optional: city,
+				state_optional: state,
+				country_optional: country,
+				zipCode_optional: formattedZip,
+				currency
+			};
+		default:
+			return {
+				addressLine1,
+				city,
+				state,
+				country,
+				zipCode: formattedZip,
+				currency
+			};
+	}
+};
+
+export default (place, optional) => {
 	let addressLine1 = "";
 	let city = "";
 	let state = "";
@@ -55,12 +86,16 @@ export default place => {
 	}
 	const formattedZip =
 		zipCode && zipCodeSuffix ? `${zipCode}-${zipCodeSuffix}` : zipCode;
-	return {
+
+	const locationObjectConstruct = generateLocationObjectConstruct({
+		inputType: optional ? "SHIP_TO" : null,
 		addressLine1,
 		city,
-		state,
 		country,
-		zipCode: formattedZip,
-		currency
-	};
+		currency,
+		formattedZip,
+		state
+	});
+
+	return locationObjectConstruct;
 };
