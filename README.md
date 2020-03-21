@@ -19,7 +19,7 @@
 
 ## Core Team
 
-If you're new and need some guidance feel free reach out to any of our core team members: 
+If you're new and need some guidance feel free reach out to any of our core team members:
 
 - [Franco Arza](https://github.com/arzafran): `@arzafran`
 - [Ismail Ghallou](https://github.com/smakosh): `@smakosh`
