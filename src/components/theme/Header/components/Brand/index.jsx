@@ -10,7 +10,7 @@ const Brand = ({ seoDetails }) => {
 		<Link href="/[lang]/" as={`/${locale}/`}>
 			<a aria-label="Brand logo">
 				<Wrapper>
-					{seoDetails.lookAndFeel ? (
+					{seoDetails?.lookAndFeel?.seo?.logo ? (
 						<Img
 							src={`${process.env.ELLIOT_BASE_IMAGE_URL}${seoDetails.lookAndFeel.seo.logo}`}
 							alt={seoDetails.lookAndFeel.seo.title}
