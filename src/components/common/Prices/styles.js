@@ -6,5 +6,13 @@ export const Wrapper = styled.div`
 
 	p:first-child {
 		margin-right: 1rem;
+
+		span {
+			color: ${({
+				theme: {
+					colors: { darkGray }
+				}
+			}) => darkGray};
+		}
 	}
 `;

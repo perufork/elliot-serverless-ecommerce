@@ -28,11 +28,6 @@ export const Content = styled.div`
 	padding-left: 1.25rem;
 	width: 100%;
 
-	span {
-		color: #cc0000;
-		font-size: 12pt;
-	}
-
 	a {
 		cursor: pointer;
 		outline: none;
@@ -48,6 +43,11 @@ export const Content = styled.div`
 		color: ${({ theme: { colors } }) => colors.darkGray};
 		margin-bottom: 0;
 		line-height: 1.6;
+
+		span {
+			color: #cc0000;
+			font-size: 12pt;
+		}
 	}
 `;
 

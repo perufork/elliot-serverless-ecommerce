@@ -25,8 +25,8 @@ export default ({
 				</Link>
 				<p>{product_gender}</p>
 				<Prices
-					salePrice={productSkus[0]?.salePrice}
-					basePrice={productSkus[0]?.basePrice}
+					salePrice={productSkus[0].sale_price}
+					basePrice={productSkus[0].base_price}
 					loading={loading}
 					exchangeRate={exchangeRate}
 					currency={currency}
