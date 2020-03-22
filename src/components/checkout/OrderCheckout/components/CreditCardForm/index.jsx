@@ -555,7 +555,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 											let label = `${provider} ${type}`;
 
 											if (days) {
-												label += ` - Arrives in ${shippingOptions[0]?.days} day(s)`;
+												label += ` - Arrives in ${days} day(s)`;
 											}
 
 											return (

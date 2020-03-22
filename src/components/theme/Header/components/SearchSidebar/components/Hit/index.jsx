@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useIntl } from "react-intl";
-import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
+import Prices from "components/common/Prices";
 import { CartItem, Thumbnail, Content } from "./styles";
 
 export default ({
@@ -24,16 +24,13 @@ export default ({
 					<a>{name}</a>
 				</Link>
 				<p>{product_gender}</p>
-				{productSkus && productSkus[0]?.sale_price && loading ? (
-					"..."
-				) : (
-					<NumberFormat
-						value={(productSkus[0].sale_price * exchangeRate) / 100}
-						displayType={"text"}
-						thousandSeparator={true}
-						prefix={currency}
-					/>
-				)}
+				<Prices
+					salePrice={productSkus[0]?.salePrice}
+					basePrice={productSkus[0]?.basePrice}
+					loading={loading}
+					exchangeRate={exchangeRate}
+					currency={currency}
+				/>
 			</Content>
 		</CartItem>
 	);
