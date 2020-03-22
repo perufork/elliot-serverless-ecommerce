@@ -2,7 +2,9 @@ import Link from "next/link";
 import { FormattedMessage } from "react-intl";
 // import Stars from "components/common/Stars";
 import Button from "components/common/Button";
-// import Label from "../Label";
+import Label from "components/common/Label";
+import Prices from "components/common/Prices";
+import { useCurrency } from "providers/CurrencyProvider";
 import {
 	Wrapper,
 	Thumbnail,
@@ -12,8 +14,6 @@ import {
 	Body,
 	Footer
 } from "./styles";
-import NumberFormat from "react-number-format";
-import { useCurrency } from "providers/CurrencyProvider";
 
 export default ({
 	slug,
@@ -33,13 +33,15 @@ export default ({
 				<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 					<a>
 						{images?.edges?.length > 1 ? (
-							images.edges.map(({ node }) => (
-								<img
-									key={node.id}
-									src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
-									alt={name}
-								/>
-							))
+							images.edges
+								.slice(0, 1)
+								.map(({ node }) => (
+									<img
+										key={node.id}
+										src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
+										alt={name}
+									/>
+								))
 						) : (
 							<>
 								<img
@@ -54,9 +56,11 @@ export default ({
 						)}
 					</a>
 				</Link>
-				{/* <Label>
+				{skus?.edges[0]?.node?.salePrice && (
+					<Label>
 						<span>Sale</span>
-					</Label> */}
+					</Label>
+				)}
 			</Thumbnail>
 			<Content>
 				<Header>
@@ -69,20 +73,13 @@ export default ({
 								<h2>{name}</h2>
 							</a>
 						</Link>
-						{skus?.edges[0]?.node?.salePrice && (
-							<p>
-								{loading ? (
-									"..."
-								) : (
-									<NumberFormat
-										value={(skus.edges[0].node.salePrice * exchangeRate) / 100}
-										displayType={"text"}
-										thousandSeparator={true}
-										prefix={currency}
-									/>
-								)}
-							</p>
-						)}
+						<Prices
+							salePrice={skus?.edges[0]?.node?.salePrice}
+							basePrice={skus?.edges[0]?.node?.basePrice}
+							loading={loading}
+							exchangeRate={exchangeRate}
+							currency={currency}
+						/>
 					</Details>
 					{/* <div>
 					<Stars stars={stars} />

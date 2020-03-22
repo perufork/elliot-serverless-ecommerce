@@ -84,11 +84,14 @@ const CartSidebar = ({ toggleSidebar }) => {
 											<a onClick={toggleSidebar}>{name}</a>
 										</Link>
 										<p>Qty: {quantity}</p>
-										{sku?.salePrice && loading ? (
+										{loading ? (
 											"..."
 										) : (
 											<NumberFormat
-												value={(sku.salePrice * exchangeRate) / 100}
+												value={
+													((sku.salePrice || sku.basePrice) * exchangeRate) /
+													100
+												}
 												displayType={"text"}
 												thousandSeparator={true}
 												prefix={currency}

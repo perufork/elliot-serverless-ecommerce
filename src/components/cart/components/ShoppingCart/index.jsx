@@ -101,13 +101,32 @@ const ShoppingCart = () => {
 												</Product>
 											</td>
 											<td>
-												{sku?.salePrice && (
-													<NumberFormat
-														value={(sku.salePrice * exchangeRate) / 100}
-														displayType={"text"}
-														thousandSeparator={true}
-														prefix={currency}
-													/>
+												{loading ? (
+													"..."
+												) : (
+													<>
+														{sku.basePrice && (
+															<NumberFormat
+																value={(sku.basePrice * exchangeRate) / 100}
+																displayType={"text"}
+																thousandSeparator={true}
+																prefix={currency}
+																style={{
+																	textDecoration:
+																		sku.salePrice && "line-through",
+																	marginRight: ".5rem"
+																}}
+															/>
+														)}
+														{sku.salePrice && (
+															<NumberFormat
+																value={(sku.salePrice * exchangeRate) / 100}
+																displayType={"text"}
+																thousandSeparator={true}
+																prefix={currency}
+															/>
+														)}
+													</>
 												)}
 											</td>
 											<td>

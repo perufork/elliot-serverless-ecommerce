@@ -2,7 +2,6 @@ import { useState, Fragment } from "react";
 import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 import Select from "react-select";
-import NumberFormat from "react-number-format";
 import { useCart, useDispatchCart } from "providers/CartProvider";
 import { useDispatchSidebar } from "providers/SidebarProvider";
 import { useCurrency } from "providers/CurrencyProvider";
@@ -28,6 +27,7 @@ import {
 	LabelField,
 	OutOfStock
 } from "./styles";
+import Prices from "components/common/Prices";
 const PaymentButtons = dynamic(
 	() => import("components/checkout/PaymentButtons"),
 	{
@@ -135,20 +135,13 @@ const Details = ({
 				{selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku && (
 					<Sku>SKU: {selectedVariant?.orderSkus?.edges[0]?.node.sku?.sku}</Sku>
 				)}
-				{selectedVariant?.salePrice && (
-					<p>
-						{loading ? (
-							"..."
-						) : (
-							<NumberFormat
-								value={(selectedVariant.salePrice * exchangeRate) / 100}
-								displayType={"text"}
-								thousandSeparator={true}
-								prefix={currency}
-							/>
-						)}
-					</p>
-				)}
+				<Prices
+					salePrice={selectedVariant?.salePrice}
+					basePrice={selectedVariant?.basePrice}
+					loading={loading}
+					exchangeRate={exchangeRate}
+					currency={currency}
+				/>
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }} />
 			{attributes &&

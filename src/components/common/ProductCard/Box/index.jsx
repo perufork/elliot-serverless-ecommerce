@@ -1,11 +1,11 @@
-// import Label from "../Label";
 import { FormattedMessage } from "react-intl";
 import Link from "next/link";
-import NumberFormat from "react-number-format";
 import { useCurrency } from "providers/CurrencyProvider";
 // import Stars from "components/common/Stars";
-import { Thumbnail, Details } from "./styles";
+import Label from "components/common/Label";
+import Prices from "components/common/Prices";
 // import { HeartIcon } from "components/common/Icons";
+import { Thumbnail, Details } from "./styles";
 
 export default ({ slug, name, images, skus, onClick, locale }) => {
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -15,14 +15,16 @@ export default ({ slug, name, images, skus, onClick, locale }) => {
 				<Link href="/[lang]/product/[slug]" as={`/${locale}/product/${slug}`}>
 					<a>
 						{images?.edges?.length > 1 ? (
-							images.edges.map(({ node }, i) => (
-								<img
-									key={node.id}
-									className={i === 1 ? "secondary" : 0}
-									src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
-									alt={name}
-								/>
-							))
+							images.edges
+								.slice(0, 1)
+								.map(({ node }, i) => (
+									<img
+										key={node.id}
+										className={i === 1 ? "secondary" : 0}
+										src={`${process.env.ELLIOT_BASE_IMAGE_URL}${node.image}`}
+										alt={name}
+									/>
+								))
 						) : (
 							<>
 								<img
@@ -50,9 +52,11 @@ export default ({ slug, name, images, skus, onClick, locale }) => {
 					</li>
 				</ul> */}
 				</div>
-				{/* <Label>
-				<span>Sale</span>
-			</Label> */}
+				{skus?.edges[0]?.node?.salePrice && (
+					<Label>
+						<span>Sale</span>
+					</Label>
+				)}
 			</Thumbnail>
 			<div>
 				<Details>
@@ -62,20 +66,13 @@ export default ({ slug, name, images, skus, onClick, locale }) => {
 						</a>
 					</Link>
 					{/* <Stars stars={stars} /> */}
-					{skus?.edges[0]?.node?.salePrice && (
-						<p>
-							{loading ? (
-								"..."
-							) : (
-								<NumberFormat
-									value={(skus.edges[0].node.salePrice * exchangeRate) / 100}
-									displayType={"text"}
-									thousandSeparator={true}
-									prefix={currency}
-								/>
-							)}
-						</p>
-					)}
+					<Prices
+						salePrice={skus?.edges[0]?.node?.salePrice}
+						basePrice={skus?.edges[0]?.node?.basePrice}
+						loading={loading}
+						exchangeRate={exchangeRate}
+						currency={currency}
+					/>
 				</Details>
 			</div>
 		</div>

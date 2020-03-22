@@ -54,20 +54,22 @@ export default () => {
 									<span>x{quantity}</span>
 								</a>
 							</Link>
-							{sku?.salePrice && (
-								<Price>
-									{loading ? (
-										"..."
-									) : (
-										<NumberFormat
-											value={((sku.salePrice * exchangeRate) / 100) * quantity}
-											displayType={"text"}
-											thousandSeparator={true}
-											prefix={currency}
-										/>
-									)}
-								</Price>
-							)}
+							<Price>
+								{loading ? (
+									"..."
+								) : (
+									<NumberFormat
+										value={
+											(((sku.salePrice || sku.basePrice) * exchangeRate) /
+												100) *
+											quantity
+										}
+										displayType={"text"}
+										thousandSeparator={true}
+										prefix={currency}
+									/>
+								)}
+							</Price>
 						</Product>
 					))}
 				<SummaryItem

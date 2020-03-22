@@ -115,3 +115,12 @@ export const Footer = styled.div`
 	text-align: left;
 	padding-top: 2.5rem;
 `;
+
+export const Prices = styled.div`
+	display: flex;
+	align-items: center;
+
+	p:first-child {
+		margin-right: 1rem;
+	}
+`;

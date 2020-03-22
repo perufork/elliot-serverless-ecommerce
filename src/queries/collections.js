@@ -29,6 +29,7 @@ query collections($domainId: ID!, $checkoutId: String) {
                           height
                           length
                           salePrice
+                          basePrice
                           orderSkus {
                             edges {
                               node {

@@ -98,7 +98,7 @@ export default ({
 				<Tabs
 					content={[
 						{
-							title: formatMessage({ id: "product.descriotion" }),
+							title: formatMessage({ id: "product.description" }),
 							content: <TabDescription description={description} />
 						},
 						{
@@ -123,7 +123,7 @@ export default ({
 							products?.edges
 								.filter(({ node }) => node.id !== id)
 								.sort(() => Math.random() - 0.5)
-								.slice(0, 2)
+								.slice(0, 3)
 								.map(({ node }, i) => {
 									const item = state?.data?.find(
 										({ product }) => product.id === node.id
