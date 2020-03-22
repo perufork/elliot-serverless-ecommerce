@@ -105,19 +105,6 @@ const ShoppingCart = () => {
 													"..."
 												) : (
 													<>
-														{sku.basePrice && (
-															<NumberFormat
-																value={(sku.basePrice * exchangeRate) / 100}
-																displayType={"text"}
-																thousandSeparator={true}
-																prefix={currency}
-																style={{
-																	textDecoration:
-																		sku.salePrice && "line-through",
-																	marginRight: ".5rem"
-																}}
-															/>
-														)}
 														{sku.salePrice && (
 															<NumberFormat
 																value={(sku.salePrice * exchangeRate) / 100}
@@ -126,6 +113,16 @@ const ShoppingCart = () => {
 																prefix={currency}
 															/>
 														)}
+														<NumberFormat
+															value={(sku.basePrice * exchangeRate) / 100}
+															displayType={"text"}
+															thousandSeparator={true}
+															prefix={currency}
+															style={{
+																textDecoration: sku.salePrice && "line-through",
+																marginRight: ".5rem"
+															}}
+														/>
 													</>
 												)}
 											</td>
@@ -141,23 +138,23 @@ const ShoppingCart = () => {
 											</td>
 											<td>
 												<p>
-													{sku?.salePrice && (
-														<strong>
-															{loading ? (
-																"..."
-															) : (
-																<NumberFormat
-																	value={
-																		((sku.salePrice * exchangeRate) / 100) *
-																		quantity
-																	}
-																	displayType={"text"}
-																	thousandSeparator={true}
-																	prefix={currency}
-																/>
-															)}
-														</strong>
-													)}
+													<strong>
+														{loading ? (
+															"..."
+														) : (
+															<NumberFormat
+																value={
+																	(((sku.salePrice || sku.basePrice) *
+																		exchangeRate) /
+																		100) *
+																	quantity
+																}
+																displayType={"text"}
+																thousandSeparator={true}
+																prefix={currency}
+															/>
+														)}
+													</strong>
 												</p>
 											</td>
 											<td>
