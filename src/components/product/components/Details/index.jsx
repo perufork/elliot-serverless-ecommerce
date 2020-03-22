@@ -209,7 +209,7 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 				</ButtonGroup>
-				{parseFloat(inventoryQuantity) <= 0 && (
+				{parseFloat(inventoryQuantity) >= 0 && (
 					<ToggleHidden gridArea="c" hidden={!isEmpty(cart)}>
 						<PaymentButtons addToCartPayload={addToCartPayload} />
 					</ToggleHidden>
