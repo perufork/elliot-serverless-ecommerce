@@ -34,7 +34,7 @@ export default ({
 					<a>
 						{images?.edges?.length > 1 ? (
 							images.edges
-								.slice(0, 1)
+								.slice(0, 2)
 								.map(({ node }) => (
 									<img
 										key={node.id}

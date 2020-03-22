@@ -16,7 +16,7 @@ export default ({ slug, name, images, skus, onClick, locale }) => {
 					<a>
 						{images?.edges?.length > 1 ? (
 							images.edges
-								.slice(0, 1)
+								.slice(0, 2)
 								.map(({ node }, i) => (
 									<img
 										key={node.id}
