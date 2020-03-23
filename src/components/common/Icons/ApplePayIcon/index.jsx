@@ -34,4 +34,4 @@ const ApplePayIcon = ({ width = 49, height = 20 }) => (
 	</StyledIcon>
 );
 
-export default ApplePayIcon;
+export { ApplePayIcon };

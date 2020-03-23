@@ -84,7 +84,7 @@
 	"summary.shipping_taxes": "Spedizione e tasse",
 	"button.checkout": "check-out",
 	"checkout.enter_payment_details": "Inserisci i dettagli di pagamento",
-	"checkout.form.complete_shipping_info": "Informazioni complete sulla spedizione",
+	"checkout.form.complete_shipping_info": "Completa le informazioni di spedizione per vedere un metodo di spedizione",
 	"shipping.local": "Consegna locale",
 	"shipping.calculate": "Calcola Spedizione",
 	"footer.privacy_policy": "politica sulla riservatezza",

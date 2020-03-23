@@ -17,7 +17,7 @@
 	"checkout.enter_payment_details": "Nhập chi tiết thanh toán",
 	"shipping.calculate": "Tính vận chuyển",
 	"validation.cc.fields": "Các trường bắt buộc bị thiếu",
-	"checkout.form.complete_shipping_info": "Thông tin vận chuyển hoàn chỉnh",
+	"checkout.form.complete_shipping_info": "Hoàn thành thông tin vận chuyển để xem một phương thức vận chuyển",
 	"checkout.page.title": "Thủ tục thanh toán",
 	"shipping.local": "Giao hàng tận nơi",
 	"validation.invalid_email": "Email không hợp lệ",

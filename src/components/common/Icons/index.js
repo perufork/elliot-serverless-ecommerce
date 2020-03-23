@@ -12,3 +12,5 @@ export * from "./PlusIcon";
 export * from "./SearchIcon";
 export * from "./MapPin";
 export * from "./EmptyCart";
+export * from "./GooglePayIcon";
+export * from "./ApplePayIcon";

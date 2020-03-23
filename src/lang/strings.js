@@ -69,7 +69,8 @@ export default {
 		"summary.shipping_taxes": "الشحن والضرائب",
 		"checkout.form.state": "حالة",
 		"checkout.shipping_method": "طريقة الشحن",
-		"checkout.form.complete_shipping_info": "معلومات الشحن كاملة",
+		"checkout.form.complete_shipping_info":
+			"أكمل معلومات الشحن لمعرفة طريقة الشحن",
 		"summary.input_address": "أدخل عنوانًا للحصول على ملخص الشحن",
 		"footer.privacy_policy": "سياسة خاصة",
 		"button.buy_now": "اشتري الآن",
@@ -183,7 +184,8 @@ export default {
 		"banner.free_shipping_over": "Gratis forsendelse for alle ordrer over",
 		"product.attribute.Size": "Størrelse",
 		"button.proceed_to_checkout": "Gå til kassen",
-		"checkout.form.complete_shipping_info": "Komplet forsendelsesinformation",
+		"checkout.form.complete_shipping_info":
+			"Komplet forsendelsesinformation for at se en forsendelsesmetode",
 		"checkout.ship_to_different_address": "Send til en anden adresse"
 	},
 	de: {
@@ -247,7 +249,8 @@ export default {
 		"validation.cc.fields": "Erforderliche Felder fehlen",
 		"checkout.shipping_method": "Versandart",
 		"shop.page.description": "Unser tolles Geschäft",
-		"checkout.form.complete_shipping_info": "Vollständige Versandinformationen",
+		"checkout.form.complete_shipping_info":
+			"Vervollständigen Sie die Versandinformationen, um eine Versandart anzuzeigen",
 		"summary.shipping_taxes": "Versand & Steuern",
 		"product.out_of_sotck": "NICHT VORRÄTTIG",
 		"product.additional_information": "zusätzliche Information",
@@ -356,7 +359,8 @@ export default {
 		"shipping.flat_rate": "Flat Rate",
 		"product.attribute.Color": "Χρώμα",
 		"checkout.shipping_method": "Μέθοδος αποστολής",
-		"checkout.form.complete_shipping_info": "Πλήρεις πληροφορίες αποστολής",
+		"checkout.form.complete_shipping_info":
+			"Πλήρεις πληροφορίες αποστολής για να δείτε μια μέθοδο αποστολής",
 		"button.update_cart": "ενημερώστε το καλάθι",
 		"cart.th.quantity": "Ποσότητα",
 		"product.description": "Περιγραφή",
@@ -462,7 +466,8 @@ export default {
 		"checkout.form.country": "Country",
 		"checkout.form.postal_code": "Postal code",
 		"checkout.shipping_method": "Shipping method",
-		"checkout.form.complete_shipping_info": "Complete Shipping Information",
+		"checkout.form.complete_shipping_info":
+			"Complete Shipping Information to see a shipping method",
 		"checkout.form.credit_card": "Credit Card",
 		"checkout.pay": "PAY",
 		"summary.title": "Summary",
@@ -519,7 +524,8 @@ export default {
 		"product.attribute.Occasion": "Oportunidad",
 		"search.no_results": "No se encontraron resultados",
 		"dropdown.sort_by.default": "Defecto",
-		"checkout.form.complete_shipping_info": "Información de envío completa",
+		"checkout.form.complete_shipping_info":
+			"Complete la información de envío para ver un método de envío",
 		"shipping.promotion": "Promoción",
 		"validation.required": "Campo requerido",
 		"checkout.form.credit_card": "Tarjeta de crédito",
@@ -616,7 +622,8 @@ export default {
 		"summary.title": "Yhteenveto",
 		"checkout.form.address": "Osoite",
 		"dropdown.sort_by.oldest": "Vanhin",
-		"checkout.form.complete_shipping_info": "Täydelliset toimitustiedot",
+		"checkout.form.complete_shipping_info":
+			"Täydelliset lähetätiedot nähdäksesi lähetystavan",
 		"button.buy_now_with": "osta nyt",
 		"summary.shipping_taxes": "Toimitus ja verot",
 		"title.cart": "kärry",
@@ -722,7 +729,8 @@ export default {
 		"product.attribute.Size": "Taille",
 		"checkout.coupon.placeholder": "entrez votre code",
 		"checkout.shipping_method": "Mode de livraison",
-		"checkout.form.complete_shipping_info": "Information d'expédition complète",
+		"checkout.form.complete_shipping_info":
+			"Compléter les informations d'expédition pour voir une méthode d'expédition",
 		"product.attribute.Occasion": "Occasion",
 		"checkout.form.country": "Pays",
 		"shipping.local": "Livraison à domicile",
@@ -809,7 +817,8 @@ export default {
 		"sidebar.contact_us": "संपर्क करें",
 		"product.attribute.Color": "रंग",
 		"checkout.enter_payment_details": "भुगतान विवरण दर्ज करें",
-		"checkout.form.complete_shipping_info": "शिपिंग जानकारी पूरी करें",
+		"checkout.form.complete_shipping_info":
+			"शिपिंग विधि देखने के लिए शिपिंग जानकारी को पूरा करें",
 		"button.view_cart": "गाडी देंखे",
 		"checkout.page.title": "चेक आउट",
 		"dropdown.sort_by.default": "चूक",
@@ -936,7 +945,7 @@ export default {
 		"button.checkout": "check-out",
 		"checkout.enter_payment_details": "Inserisci i dettagli di pagamento",
 		"checkout.form.complete_shipping_info":
-			"Informazioni complete sulla spedizione",
+			"Completa le informazioni di spedizione per vedere un metodo di spedizione",
 		"shipping.local": "Consegna locale",
 		"shipping.calculate": "Calcola Spedizione",
 		"footer.privacy_policy": "politica sulla riservatezza",
@@ -993,7 +1002,8 @@ export default {
 		"cart.page.title": "カート",
 		"summary.title": "概要",
 		"checkout.shipping_method": "発送方法",
-		"checkout.form.complete_shipping_info": "完全な発送情報",
+		"checkout.form.complete_shipping_info":
+			"配送方法を確認するための完全な配送情報",
 		"summary.input_address": "住所を入力して配送の概要を取得します",
 		"dropdown.sort_by": "並び替え",
 		"validation.invalid_email": "無効なメール",
@@ -1080,7 +1090,7 @@ export default {
 		"products.found": "발견 된 제품",
 		"button.proceed_to_checkout": "결제 진행",
 		"search.no_results": "결과가 없습니다",
-		"checkout.form.complete_shipping_info": "완전한 배송 정보",
+		"checkout.form.complete_shipping_info": "배송 방법을 보려면 전체 배송 정보",
 		"checkout.coupon.placeholder": "코드를 입력하십시오",
 		"checkout.form.credit_card": "신용 카드",
 		"cart.empty_state": "장바구니에 상품이 없습니다",
@@ -1168,7 +1178,8 @@ export default {
 		"button.add_to_cart": "tambah ke troli",
 		"footer.currency": "Mata wang",
 		"button.update_cart": "kemas kini keranjang",
-		"checkout.form.complete_shipping_info": "Maklumat Penghantaran Lengkap",
+		"checkout.form.complete_shipping_info":
+			"Maklumat Penghantaran Lengkap untuk melihat kaedah perkapalan",
 		"cart.page.title": "Keranjang",
 		"footer.online_shop": "Kedai Dalam Talian",
 		"cart.th.price": "Harga",
@@ -1300,7 +1311,8 @@ export default {
 		"button.back_to_shop": "Terug naar winkel",
 		"checkout.form.state": "Staat",
 		"validation.cc.fields": "Verplichte velden ontbreken",
-		"checkout.form.complete_shipping_info": "Volledige verzendinformatie",
+		"checkout.form.complete_shipping_info":
+			"Vul de verzendgegevens in om een ​​verzendmethode te zien",
 		"product.description": "Beschrijving",
 		"button.proceed_to_checkout": "Ga naar de kassa",
 		"button.checkout.apply": "Van toepassing zijn",
@@ -1385,7 +1397,8 @@ export default {
 		"button.proceed_to_checkout": "Fortsett til utsjekking",
 		"product.attribute.Occasion": "mulighet",
 		"product.attribute.Size": "Størrelse",
-		"checkout.form.complete_shipping_info": "Komplett fraktinformasjon",
+		"checkout.form.complete_shipping_info":
+			"Komplett fraktinformasjon for å se en leveringsmetode",
 		"cart.empty_state": "Ingen varer på handlekurven",
 		"shipping.duty": "Plikt",
 		"checkout.form.city": "By",
@@ -1476,7 +1489,8 @@ export default {
 		"checkout.pay": "ZAPŁACIĆ",
 		"checkout.form.address": "Adres",
 		"checkout.form.full_name": "Pełne imię i nazwisko",
-		"checkout.form.complete_shipping_info": "Pełne informacje o wysyłce",
+		"checkout.form.complete_shipping_info":
+			"Pełne informacje o wysyłce, aby zobaczyć metodę wysyłki",
 		"product.attribute.Size": "Rozmiar",
 		"footer.terms_conditions": "Warunki korzystania",
 		"product.attribute.Material": "Materiał",
@@ -1532,7 +1546,8 @@ export default {
 		"checkout.shipping_method": "Método de envio",
 		"dropdown.sort_by.newest": "O mais novo",
 		"banner.free_shipping_over": "Frete grátis para todos os pedidos acima de",
-		"checkout.form.complete_shipping_info": "Informações Completas de Envio",
+		"checkout.form.complete_shipping_info":
+			"Informações completas de remessa para ver um método de remessa",
 		"checkout.pay": "PAGAR",
 		"product.attribute.Size": "Tamanho",
 		"footer.terms_conditions": "Termos de uso",
@@ -1626,7 +1641,8 @@ export default {
 		"checkout.shipping_method": "Método de envio",
 		"dropdown.sort_by.newest": "O mais novo",
 		"banner.free_shipping_over": "Frete grátis para todos os pedidos acima de",
-		"checkout.form.complete_shipping_info": "Informações Completas de Envio",
+		"checkout.form.complete_shipping_info":
+			"Полная информация о доставке, чтобы увидеть способ доставки",
 		"checkout.pay": "PAGAR",
 		"product.attribute.Size": "Tamanho",
 		"footer.terms_conditions": "Termos de uso",
@@ -1720,7 +1736,8 @@ export default {
 		"checkout.shipping_method": "Método de envio",
 		"dropdown.sort_by.newest": "O mais novo",
 		"banner.free_shipping_over": "Frete grátis para todos os pedidos acima de",
-		"checkout.form.complete_shipping_info": "Informações Completas de Envio",
+		"checkout.form.complete_shipping_info":
+			"Komplett leveransinformation för att se en leveransmetod",
 		"checkout.pay": "PAGAR",
 		"product.attribute.Size": "Tamanho",
 		"footer.terms_conditions": "Termos de uso",
@@ -1845,7 +1862,8 @@ export default {
 		"footer.rights_reserved": "Tüm hakları Saklıdır.",
 		"button.proceed_to_checkout": "Çıkışa doğru devam et",
 		"checkout.form.full_name": "Ad Soyad",
-		"checkout.form.complete_shipping_info": "Komple Kargo Bilgileri",
+		"checkout.form.complete_shipping_info":
+			"Bir gönderim yöntemini görmek için Gönderim Bilgilerini Tamamlayın",
 		"dropdown.sort_by.default": "Varsayılan",
 		"header.links.collections": "Koleksiyonları",
 		"footer.currency": "Para birimi",
@@ -1902,7 +1920,8 @@ export default {
 		"checkout.enter_payment_details": "Nhập chi tiết thanh toán",
 		"shipping.calculate": "Tính vận chuyển",
 		"validation.cc.fields": "Các trường bắt buộc bị thiếu",
-		"checkout.form.complete_shipping_info": "Thông tin vận chuyển hoàn chỉnh",
+		"checkout.form.complete_shipping_info":
+			"Hoàn thành thông tin vận chuyển để xem một phương thức vận chuyển",
 		"checkout.page.title": "Thủ tục thanh toán",
 		"shipping.local": "Giao hàng tận nơi",
 		"validation.invalid_email": "Email không hợp lệ",
@@ -2022,7 +2041,7 @@ export default {
 		"checkout.page.title": "查看",
 		"product.out_of_sotck": "缺货",
 		"dropdown.sort_by.newest": "最新",
-		"checkout.form.complete_shipping_info": "完整的运输信息",
+		"checkout.form.complete_shipping_info": "完整的运送信息以查看运送方法",
 		"button.checkout.apply": "应用",
 		"shipping.total": "总",
 		"product.category": "类别",

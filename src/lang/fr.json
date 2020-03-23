@@ -60,7 +60,7 @@
 	"product.attribute.Size": "Taille",
 	"checkout.coupon.placeholder": "entrez votre code",
 	"checkout.shipping_method": "Mode de livraison",
-	"checkout.form.complete_shipping_info": "Information d'expédition complète",
+	"checkout.form.complete_shipping_info": "Compléter les informations d'expédition pour voir une méthode d'expédition",
 	"product.attribute.Occasion": "Occasion",
 	"checkout.form.country": "Pays",
 	"shipping.local": "Livraison à domicile",

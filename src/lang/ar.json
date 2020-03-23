@@ -68,7 +68,7 @@
 	"summary.shipping_taxes": "الشحن والضرائب",
 	"checkout.form.state": "حالة",
 	"checkout.shipping_method": "طريقة الشحن",
-	"checkout.form.complete_shipping_info": "معلومات الشحن كاملة",
+	"checkout.form.complete_shipping_info": "أكمل معلومات الشحن لمعرفة طريقة الشحن",
 	"summary.input_address": "أدخل عنوانًا للحصول على ملخص الشحن",
 	"footer.privacy_policy": "سياسة خاصة",
 	"button.buy_now": "اشتري الآن",

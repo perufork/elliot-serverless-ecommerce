@@ -4,8 +4,7 @@ import WalletPayBuyButton from "../WalletPayButton";
 import stripeOnToken from "../stripeOnToken";
 import stripeOnShippingOptionChange from "../stripeOnShippingOptionChange";
 import stripeOnShippingAddressChange from "../stripeOnShippingAddressChange";
-import GooglePayIcon from "components/common/Icons/GooglePayIcon";
-import ApplePayIcon from "components/common/Icons/ApplePayIcon";
+import { GooglePayIcon, ApplePayIcon } from "components/common/Icons/";
 import { IconWrapper } from "./styles";
 
 const browser = detect();

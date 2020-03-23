@@ -57,7 +57,7 @@
 	"validation.cc.fields": "Erforderliche Felder fehlen",
 	"checkout.shipping_method": "Versandart",
 	"shop.page.description": "Unser tolles Geschäft",
-	"checkout.form.complete_shipping_info": "Vollständige Versandinformationen",
+	"checkout.form.complete_shipping_info": "Vervollständigen Sie die Versandinformationen, um eine Versandart anzuzeigen",
 	"summary.shipping_taxes": "Versand & Steuern",
 	"product.out_of_sotck": "NICHT VORRÄTTIG",
 	"product.additional_information": "zusätzliche Information",

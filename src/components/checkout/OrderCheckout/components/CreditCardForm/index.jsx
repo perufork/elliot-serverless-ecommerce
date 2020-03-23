@@ -5,8 +5,6 @@ import { useState, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { Flex, Item } from "react-flex-ready";
-import Select from "react-select";
-// import axios from "axios";
 import { Formik, Field, Form, FastField, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
@@ -575,17 +573,13 @@ const CreditCardForm = ({ stripe, checkout }) => {
 										}
 									)
 								) : (
-									<Field
-										component={InputField}
-										placeholder={
-											loadingShippingInfo
-												? ""
-												: formatMessage({
-														id: "checkout.form.complete_shipping_info"
-												  })
-										}
-										disabled
-									/>
+									!loadingShippingInfo && (
+										<div>
+											<strong>
+												<FormattedMessage id="checkout.form.complete_shipping_info" />
+											</strong>
+										</div>
+									)
 								)}
 							</FieldWrapper>
 							<FieldWrapper>

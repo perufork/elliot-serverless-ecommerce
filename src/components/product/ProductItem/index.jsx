@@ -12,6 +12,7 @@ import {
 	TabDescription
 } from "components/product/components/Tab";
 import getProductById from "helpers/getProductById";
+import alertOutOfStock from "helpers/alertOutOfStock";
 import { Products, Section, SectionTitle } from "./styles";
 
 export default ({
@@ -47,8 +48,9 @@ export default ({
 					dispatch,
 					skuId: item.sku.id
 				});
+				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
-				alert("Out of stock");
+				alertOutOfStock(formatMessage({ id: "product.out_of_sotck" }));
 			}
 		} else {
 			const { skus: fetchedSkus } = await getProductById(id);
@@ -56,8 +58,7 @@ export default ({
 			const productFound = fetchedSkus.edges.find(
 				item => item.node.id === node.skus?.edges[0]?.id
 			);
-
-			if (productFound.node.quantity >= 1) {
+			if (productFound.node.quantity >= 0) {
 				addToCart({
 					dispatch,
 					payload: {
@@ -66,11 +67,14 @@ export default ({
 						sku: node.skus?.edges[0]?.node
 					}
 				});
+				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
-				alert("Out of Stock");
+				alertOutOfStock(
+					formatMessage({ id: "product.out_of_sotck" }),
+					formatMessage({ id: "button.go_back" })
+				);
 			}
 		}
-		dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 	};
 
 	const ids = [];
