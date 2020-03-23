@@ -69,4 +69,4 @@ const GooglePayIcon = ({ width = 70, height = 20 }) => (
 	</StyledIcon>
 );
 
-export default GooglePayIcon;
+export { GooglePayIcon };

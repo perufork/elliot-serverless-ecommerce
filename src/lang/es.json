@@ -46,7 +46,7 @@
 	"product.attribute.Occasion": "Oportunidad",
 	"search.no_results": "No se encontraron resultados",
 	"dropdown.sort_by.default": "Defecto",
-	"checkout.form.complete_shipping_info": "Información de envío completa",
+	"checkout.form.complete_shipping_info": "Complete la información de envío para ver un método de envío",
 	"shipping.promotion": "Promoción",
 	"validation.required": "Campo requerido",
 	"checkout.form.credit_card": "Tarjeta de crédito",

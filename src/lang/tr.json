@@ -54,7 +54,7 @@
 	"footer.rights_reserved": "Tüm hakları Saklıdır.",
 	"button.proceed_to_checkout": "Çıkışa doğru devam et",
 	"checkout.form.full_name": "Ad Soyad",
-	"checkout.form.complete_shipping_info": "Komple Kargo Bilgileri",
+	"checkout.form.complete_shipping_info": "Bir gönderim yöntemini görmek için Gönderim Bilgilerini Tamamlayın",
 	"dropdown.sort_by.default": "Varsayılan",
 	"header.links.collections": "Koleksiyonları",
 	"footer.currency": "Para birimi",

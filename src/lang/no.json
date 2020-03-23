@@ -65,7 +65,7 @@
 	"button.proceed_to_checkout": "Fortsett til utsjekking",
 	"product.attribute.Occasion": "mulighet",
 	"product.attribute.Size": "Størrelse",
-	"checkout.form.complete_shipping_info": "Komplett fraktinformasjon",
+	"checkout.form.complete_shipping_info": "Komplett fraktinformasjon for å se en leveringsmetode",
 	"cart.empty_state": "Ingen varer på handlekurven",
 	"shipping.duty": "Plikt",
 	"checkout.form.city": "By",

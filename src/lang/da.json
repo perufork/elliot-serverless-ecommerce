@@ -88,6 +88,6 @@
 	"banner.free_shipping_over": "Gratis forsendelse for alle ordrer over",
 	"product.attribute.Size": "Størrelse",
 	"button.proceed_to_checkout": "Gå til kassen",
-	"checkout.form.complete_shipping_info": "Komplet forsendelsesinformation",
+	"checkout.form.complete_shipping_info": "Komplet forsendelsesinformation for at se en forsendelsesmetode",
 	"checkout.ship_to_different_address": "Send til en anden adresse"
 }

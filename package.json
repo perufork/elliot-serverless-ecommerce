@@ -39,6 +39,7 @@
 		"react-stripe-elements": "^6.0.1",
 		"react-tabs": "^3.1.0",
 		"styled-components": "^4.4.1",
+		"sweetalert2": "^9.10.5",
 		"swiper": "^5.2.1",
 		"yup": "^0.28.0"
 	},

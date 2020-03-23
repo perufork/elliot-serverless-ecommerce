@@ -60,7 +60,7 @@
 	"checkout.pay": "ZAPŁACIĆ",
 	"checkout.form.address": "Adres",
 	"checkout.form.full_name": "Pełne imię i nazwisko",
-	"checkout.form.complete_shipping_info": "Pełne informacje o wysyłce",
+	"checkout.form.complete_shipping_info": "Pełne informacje o wysyłce, aby zobaczyć metodę wysyłki",
 	"product.attribute.Size": "Rozmiar",
 	"footer.terms_conditions": "Warunki korzystania",
 	"product.attribute.Material": "Materiał",

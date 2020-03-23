@@ -48,7 +48,7 @@
 	"cart.page.title": "カート",
 	"summary.title": "概要",
 	"checkout.shipping_method": "発送方法",
-	"checkout.form.complete_shipping_info": "完全な発送情報",
+	"checkout.form.complete_shipping_info": "配送方法を確認するための完全な配送情報",
 	"summary.input_address": "住所を入力して配送の概要を取得します",
 	"dropdown.sort_by": "並び替え",
 	"validation.invalid_email": "無効なメール",

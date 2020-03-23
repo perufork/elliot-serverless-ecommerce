@@ -83,7 +83,7 @@
 	"checkout.form.country": "Country",
 	"checkout.form.postal_code": "Postal code",
 	"checkout.shipping_method": "Shipping method",
-	"checkout.form.complete_shipping_info": "Complete Shipping Information",
+	"checkout.form.complete_shipping_info": "Complete Shipping Information to see a shipping method",
 	"checkout.form.credit_card": "Credit Card",
 	"checkout.pay": "PAY",
 	"summary.title": "Summary",
