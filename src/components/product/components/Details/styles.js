@@ -99,6 +99,12 @@ export const ButtonGroup = styled.div`
 	grid-area: ${({ gridArea }) => gridArea};
 `;
 
+export const CustomButton = styled.button`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
 export const MainAction = styled.div`
 	grid-column-start: 1;
 	grid-column-end: -1;

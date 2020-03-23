@@ -6,10 +6,13 @@ import { useCheckout } from "providers/CheckoutProvider";
 import getTaxAndDutyFromShippingOptions from "helpers/getTaxFromShippingOptions";
 import getShippingOptions from "helpers/getShippingOptions";
 import Button from "components/common/Button";
-import { ButtonGroup } from "components/product/components/Details/styles";
 import { FormattedMessage } from "react-intl";
 import { addToCart } from "components/cart/actions";
 import isEmpty from "helpers/isEmpty";
+import {
+	ButtonGroup,
+	CustomButton
+} from "components/product/components/Details/styles";
 
 const WalletPayBuyButton = ({
 	children,
@@ -103,7 +106,8 @@ const WalletPayBuyButton = ({
 
 	return (
 		<ButtonGroup>
-			<Button
+			<CustomButton
+				as={Button}
 				disabled={loading}
 				onClick={handleClick}
 				type="button"
@@ -111,7 +115,7 @@ const WalletPayBuyButton = ({
 				wide
 			>
 				{buttonContent}
-			</Button>
+			</CustomButton>
 		</ButtonGroup>
 	);
 };
