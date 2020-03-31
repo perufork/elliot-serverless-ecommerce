@@ -119,17 +119,7 @@ export default ({
 					<SectionTitle>
 						<FormattedMessage id="product.related_products" />
 					</SectionTitle>
-					<Products
-						grid={true}
-						related
-						products={
-							globalCollections?.edges.filter(collection =>
-								collections.edges.find(
-									item => item.node.id === collection.node.id
-								)
-							).length
-						}
-					>
+					<Products grid={true} related>
 						{globalCollections?.edges
 							.filter(collection =>
 								collections.edges.find(

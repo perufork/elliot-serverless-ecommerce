@@ -2,12 +2,7 @@ import styled from "styled-components";
 
 export const Products = styled.section`
 	display: grid;
-	grid-template-columns: ${({ related, products }) =>
-		related
-			? products
-				? `repeat(${products}, 1fr)`
-				: "repeat(1, 1fr)"
-			: "repeat(4, 1fr)"};
+	grid-template-columns: repeat(4, 1fr);
 	grid-column-gap: 1.875rem;
 	grid-row-gap: 4.0625rem;
 
