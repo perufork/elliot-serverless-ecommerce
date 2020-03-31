@@ -50,7 +50,7 @@ export default ({
 				});
 				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
-				alertOutOfStock(formatMessage({ id: "product.out_of_sotck" }));
+				alertOutOfStock(formatMessage({ id: "product.out_of_stock" }));
 			}
 		} else {
 			const { skus: fetchedSkus } = await getProductById(id);
@@ -70,7 +70,7 @@ export default ({
 				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
 				alertOutOfStock(
-					formatMessage({ id: "product.out_of_sotck" }),
+					formatMessage({ id: "product.out_of_stock" }),
 					formatMessage({ id: "button.go_back" })
 				);
 			}

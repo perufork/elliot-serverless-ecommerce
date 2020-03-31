@@ -60,7 +60,7 @@
 	"dropdown.sort_by.default": "चूक",
 	"title.cart": "गाड़ी",
 	"product.related_products": "संबंधित उत्पाद",
-	"product.out_of_sotck": "स्टॉक ख़त्म",
+	"product.out_of_stock": "स्टॉक ख़त्म",
 	"checkout.form.country": "देश",
 	"summary.input_address": "शिपिंग सारांश प्राप्त करने के लिए एक पते पर इनपुट करें",
 	"button.continue_shopping": "खरीदारी जारी रखें",
