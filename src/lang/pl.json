@@ -77,7 +77,7 @@
 	"checkout.enter_payment_details": "Wprowadź szczegóły płatności",
 	"product.attribute.Fabric": "Tkanina",
 	"search.no_results": "Nie znaleziono wyników",
-	"product.out_of_sotck": "OBECNIE BRAK NA STANIE",
+	"product.out_of_stock": "OBECNIE BRAK NA STANIE",
 	"summary.shipping_taxes": "Wysyłka i podatki",
 	"checkout.form.phone": "Telefon",
 	"checkout.form.postal_code": "Kod pocztowy",

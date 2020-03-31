@@ -562,7 +562,7 @@ const CreditCardForm = ({ stripe, checkout }) => {
 													<input
 														type="radio"
 														id={`shipping-${i}`}
-														value={0}
+														value={selectedShippingOptionIndex}
 														name="shipping"
 														onChange={e =>
 															setSelectedShippingOptionIndex(e.target.value)

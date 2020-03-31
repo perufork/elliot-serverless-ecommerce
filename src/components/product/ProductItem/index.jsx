@@ -50,7 +50,7 @@ export default ({
 				});
 				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
-				alertOutOfStock(formatMessage({ id: "product.out_of_sotck" }));
+				alertOutOfStock(formatMessage({ id: "product.out_of_stock" }));
 			}
 		} else {
 			const { skus: fetchedSkus } = await getProductById(id);
@@ -70,7 +70,7 @@ export default ({
 				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
 				alertOutOfStock(
-					formatMessage({ id: "product.out_of_sotck" }),
+					formatMessage({ id: "product.out_of_stock" }),
 					formatMessage({ id: "button.go_back" })
 				);
 			}
@@ -112,43 +112,47 @@ export default ({
 					]}
 				/>
 			</Container>
-			<Section as={Container}>
-				<SectionTitle>
-					<FormattedMessage id="product.related_products" />
-				</SectionTitle>
-				<Products grid={true}>
-					{globalCollections?.edges
-						.filter(collection =>
-							collections.edges.find(
-								item => item.node.id === collection.node.id
+			{globalCollections?.edges.filter(collection =>
+				collections.edges.find(item => item.node.id === collection.node.id)
+			).length > 0 && (
+				<Section as={Container}>
+					<SectionTitle>
+						<FormattedMessage id="product.related_products" />
+					</SectionTitle>
+					<Products grid={true} related>
+						{globalCollections?.edges
+							.filter(collection =>
+								collections.edges.find(
+									item => item.node.id === collection.node.id
+								)
 							)
-						)
-						.map(({ node: { products } }) =>
-							products?.edges
-								.filter(({ node }) => node.id !== id)
-								.sort(() => Math.random() - 0.5)
-								.slice(0, 4)
-								.map(({ node }, i) => {
-									const item = state?.data?.find(
-										({ product }) => product.id === node.id
-									);
+							.map(({ node: { products } }) =>
+								products?.edges
+									.filter(({ node }) => node.id !== id)
+									.sort(() => Math.random() - 0.5)
+									.slice(0, 4)
+									.map(({ node }, i) => {
+										const item = state?.data?.find(
+											({ product }) => product.id === node.id
+										);
 
-									if (ids.includes(node.id)) return null;
+										if (ids.includes(node.id)) return null;
 
-									ids.push(node.id);
+										ids.push(node.id);
 
-									return (
-										<ProductCard
-											key={i}
-											onClick={() => handleCart(node, item)}
-											grid
-											{...node}
-										/>
-									);
-								})
-						)}
-				</Products>
-			</Section>
+										return (
+											<ProductCard
+												key={i}
+												onClick={() => handleCart(node, item)}
+												grid
+												{...node}
+											/>
+										);
+									})
+							)}
+					</Products>
+				</Section>
+			)}
 		</>
 	);
 };

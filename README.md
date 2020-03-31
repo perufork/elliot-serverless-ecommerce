@@ -2,8 +2,6 @@
 
 ![ELLIOT X ZEIT](elliot-zeit.jpg)
 
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/helloiamelliot/elliot-serverless-ecommerce)
-
 ## Features
 
 - Deploy, sell and fulfill in seconds
@@ -60,30 +58,42 @@ If you're new and need some guidance feel free reach out to any of our core team
 
 ### Locally
 
-1. Create dev environment file from template `./.env.development.tempate` by running `cp .env.development.template .env.development`
-2. Use the [Elliot CLI](https://github.com/helloiamelliot/elliot-cli) to fetch your account's env variable containing:
-   1. ELLIOT_API_KEY
-   2. ELLIOT_STORE_FRONT_ID
-   3. ELLIOT_DOMAIN_ID
-   4. ELLIOT_STORE_FRONT_NAME
-3. Or get them via the [Elliot Dashboard](https://elliot.store/) by clicking on "Get Headless"
-4. To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
+1. Clone the repository
+2. Create dev environment file from template `./.env.development.tempate` by running `cp .env.development.template .env.development`
+3. Use the [Elliot CLI](https://github.com/helloiamelliot/elliot-cli) to fetch your account's single env variable containing:
+
+   ```bash
+   ELLIOT_DOMAIN_ID|ELLIOT_STORE_FRONT_ID|ELLIOT_STORE_FRONT_NAME|ELLIOT_API_KEY
+   ```
+
+4. Or get them via the [Elliot Dashboard](https://elliot.store/) by clicking on "Get Headless"
+5. To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
 
    > Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#Apple) to get the Apple verification file
 
-5. Run the following commands to start the server locally:
+6. Run the following commands to start the server locally:
 
-```bash
-npm i && npm run dev
-```
+   ```bash
+   npm i && npm run dev
+   ```
 
-6. When deploying on [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added.
+7. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
+
+   ```bash
+   now secrets add base_url <your domain name>
+   now secrets add elliot_env_variables <your Elliot env variable>
+   now --prod // Or by pushing to your GitHub repository
+   ```
 
 ### Production
 
 1. Go to your Domain space
 2. Click on "Get Headless"
 3. Follow the on boarding and you will be good to go!
+
+> To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
+
+> Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#Apple) to get the Apple verification file
 
 ## Built with
 

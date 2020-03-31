@@ -85,7 +85,7 @@
 	"button.add_to_cart": "Lisää ostoskoriin",
 	"button.continue_shopping": "jatka ostoksia",
 	"shipping.subtotal": "Välisumma",
-	"product.out_of_sotck": "LOPPU VARASTOSTA",
+	"product.out_of_stock": "LOPPU VARASTOSTA",
 	"button.buy_now": "osta nyt",
 	"dropdown.sort_by.average_rating": "Keskimääräinen arvio",
 	"button.checkout": "Tarkista",

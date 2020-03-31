@@ -6,6 +6,12 @@ export const Products = styled.section`
 	grid-column-gap: 1.875rem;
 	grid-row-gap: 4.0625rem;
 
+	${({ related }) =>
+		related &&
+		`
+		justify-content: center;
+	`}
+
 	@media (max-width: 960px) {
 		grid-template-columns: repeat(2, 1fr);
 	}

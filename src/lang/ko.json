@@ -67,7 +67,7 @@
 	"checkout.form.city": "시티",
 	"summary.input_address": "배송 요약을 받으려면 주소를 입력하십시오",
 	"shipping.flat_rate": "고정 요금",
-	"product.out_of_sotck": "품절",
+	"product.out_of_stock": "품절",
 	"summary.title": "요약",
 	"checkout.form.country": "국가",
 	"summary.shipping_taxes": "배송 및 세금",

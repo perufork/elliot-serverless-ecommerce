@@ -41,7 +41,7 @@
 	"products.found": "見つかった製品",
 	"product.attribute.Texture": "テクスチャー",
 	"checkout.form.credit_card": "クレジットカード",
-	"product.out_of_sotck": "在庫切れ",
+	"product.out_of_stock": "在庫切れ",
 	"button.update_cart": "カートの更新",
 	"dropdown.sort_by.average_rating": "平均評価",
 	"button.go_back": "戻る",

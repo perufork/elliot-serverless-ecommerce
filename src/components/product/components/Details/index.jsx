@@ -108,7 +108,7 @@ const Details = ({
 				});
 				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
-				alertOutOfStock(formatMessage({ id: "product.out_of_sotck" }));
+				alertOutOfStock(formatMessage({ id: "product.out_of_stock" }));
 			}
 		} else {
 			const { skus: fetchedSkus } = await getProductById(id);
@@ -122,7 +122,7 @@ const Details = ({
 				dispatchSidebar({ type: "OPEN_SIDEBAR", content: "cart" });
 			} else {
 				alertOutOfStock(
-					formatMessage({ id: "product.out_of_sotck" }),
+					formatMessage({ id: "product.out_of_stock" }),
 					formatMessage({ id: "button.go_back" })
 				);
 			}
@@ -215,7 +215,7 @@ const Details = ({
 						<FormattedMessage id="button.add_to_cart" />
 					</Button>
 				</ButtonGroup>
-				{parseFloat(inventoryQuantity) >= 0 && (
+				{parseFloat(inventoryQuantity) > 0 && (
 					<ToggleHidden gridArea="c" hidden={!isEmpty(cart)}>
 						<PaymentButtons addToCartPayload={addToCartPayload} />
 					</ToggleHidden>

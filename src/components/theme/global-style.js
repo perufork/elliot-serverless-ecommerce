@@ -61,6 +61,37 @@ const GlobalStyle = createGlobalStyle`
   button:focus {
     outline: none;
   }
+
+  .swal2-actions .swal2-styled.swal2-confirm {
+    display: ${({ theme: { button } }) => button.display};
+    padding: ${({ theme: { button } }) => button.padding};
+    font-size: ${({ theme: { button } }) => button.fontSize};
+    font-weight: ${({ theme: { button } }) => button.fontWeight};
+    line-height: ${({ theme: { button } }) => button.lineHeight};
+    border: ${({ theme: { button } }) => button.border};
+    transition: ${({ theme: { button } }) => button.transition};
+    text-transform: ${({ theme: { button } }) => button.textTransform};
+    cursor: ${({ theme: { button } }) => button.cursor};
+
+    &:hover {
+      transition: ${({ theme: { button } }) => button.transition};
+    }
+
+    ${({
+			theme: {
+				button: {
+					variants: { primary }
+				}
+			}
+		}) => `
+        color: ${primary.color};
+        background: ${primary.bg};
+
+        &:hover {
+            background: ${primary.hover.bg};
+        }
+      `}
+  }
 `;
 
 export default GlobalStyle;
