@@ -67,13 +67,17 @@ If you're new and need some guidance feel free reach out to any of our core team
    ```
 
 4. Or get it via the [Elliot Dashboard](https://elliot.store/) by clicking on "Get Headless"
-5. Run the following commands to start the server locally:
+5. To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
+
+   > Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#enabling-digital-wallets) to get the Apple verification file
+
+6. Run the following commands to start the server locally:
 
    ```bash
    npm i && npm run dev
    ```
 
-6. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
+7. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
 
    ```bash
    now secrets add base_url <your domain name>
@@ -87,6 +91,10 @@ If you're new and need some guidance feel free reach out to any of our core team
 2. Choose a domain space
 3. Click on "Get Headless"
 4. Follow the on boarding and you will be good to go!
+
+> To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
+
+> Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#enabling-digital-wallets) to get the Apple verification file
 
 ## Built with
 
