@@ -50,7 +50,7 @@ If you're new and need some guidance feel free reach out to any of our core team
 
 ## Prerequisites
 
-[Create an Elliot account](https://admin.elliot.store/)
+[Create an Elliot account](https://elliot.store/)
 
 > Start by creating a store and adding a few products to it!
 
@@ -66,7 +66,7 @@ If you're new and need some guidance feel free reach out to any of our core team
    ELLIOT_DOMAIN_ID|ELLIOT_STORE_FRONT_ID|ELLIOT_STORE_FRONT_NAME|ELLIOT_API_KEY
    ```
 
-4. Or get it via the [Elliot Dashboard](https://admin.elliot.store/) by clicking on "Get Headless"
+4. Or get it via the [Elliot Dashboard](https://elliot.store/) by clicking on "Get Headless"
 5. Run the following commands to start the server locally:
 
    ```bash
