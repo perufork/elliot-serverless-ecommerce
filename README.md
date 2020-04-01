@@ -50,7 +50,7 @@ If you're new and need some guidance feel free reach out to any of our core team
 
 ## Prerequisites
 
-[Create an Elliot account](https://admin.elliot.store/)
+[Create an Elliot account](https://elliot.store/)
 
 > Start by creating a store and adding a few products to it!
 
@@ -66,34 +66,27 @@ If you're new and need some guidance feel free reach out to any of our core team
    ELLIOT_DOMAIN_ID|ELLIOT_STORE_FRONT_ID|ELLIOT_STORE_FRONT_NAME|ELLIOT_API_KEY
    ```
 
-4. Or get them via the [Elliot Dashboard](https://admin.elliot.store/) by clicking on "Get Headless"
-5. To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
-
-   > Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#Apple) to get the Apple verification file
-
-6. Run the following commands to start the server locally:
+4. Or get it via the [Elliot Dashboard](https://elliot.store/) by clicking on "Get Headless"
+5. Run the following commands to start the server locally:
 
    ```bash
    npm i && npm run dev
    ```
 
-7. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
+6. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
 
    ```bash
    now secrets add base_url <your domain name>
    now secrets add elliot_env_variables <your Elliot env variable>
-   now --prod // Or by pushing to your GitHub repository
+   now --prod
    ```
 
-### Production
+### Online
 
-1. Go to your Domain space
-2. Click on "Get Headless"
-3. Follow the on boarding and you will be good to go!
-
-> To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
-
-> Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#Apple) to get the Apple verification file
+1. Login on [Elliot](https://elliot.store)
+2. Choose a domain space
+3. Click on "Get Headless"
+4. Follow the on boarding and you will be good to go!
 
 ## Built with
 
@@ -107,3 +100,9 @@ If you're new and need some guidance feel free reach out to any of our core team
 Want to invest some time in building the future of global commerce? Email us at devs@elliot.store.
 
 If you have discovered a 🐜 or have a feature suggestion, feel free to create an issue on Github.
+
+## Enabling Digital Wallets
+
+To enable wallets such as Apple Pay, your ZEIT package will need a verification file from Elliot.
+
+To receive that verification file, and be added to our Slack, email our [Partnerships team](mailto:devs@elliot.store).
