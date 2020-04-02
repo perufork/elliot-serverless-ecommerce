@@ -1,4 +1,4 @@
-import PromotionDiscountType from "./constants/PromotionDiscountType";
+import PromotionDiscountType from "helpers/constants/PromotionDiscountType";
 
 const getOrderAfterPromo = ({ orderTotal, promotion }) => {
 	let updatedOrderTotal = orderTotal;

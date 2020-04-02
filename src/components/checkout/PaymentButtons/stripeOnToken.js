@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import ShippingPreference from "helpers/constants/ShippingPreference";
 import OrderStatus from "helpers/constants/OrderStatus";
-import getShippingPayload from "helpers/getShippingPayload";
+import getShippingPayload from "helpers/shipping/getShippingPayload";
 
 const stripeOnToken = async ({
 	onOrderSubmitted,

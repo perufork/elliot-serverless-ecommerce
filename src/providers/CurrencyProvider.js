@@ -1,7 +1,7 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
-import currencies from "helpers/currencies.json";
 import axios from "axios";
-import getDefaultCurrency from "helpers/getDefaultCurrency";
+import currencies from "helpers/payment/currencies.json";
+import getDefaultCurrency from "helpers/runtime/getDefaultCurrency";
 
 const CurrencyContext = createContext();
 

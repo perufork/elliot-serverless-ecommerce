@@ -1,7 +1,7 @@
 import ShippingPreference from "helpers/constants/ShippingPreference";
 import getSkuPrice from "./getSkuPrice";
 import getWalletDisplayItems from "./getWalletDisplayItems";
-import getPromotionValidity from "helpers/getPromotionValidity";
+import getPromotionValidity from "helpers/payment/getPromotionValidity";
 import PromotionDiscountType from "helpers/constants/PromotionDiscountType";
 
 export const getShippingPaymentRequestInput = (checkout, cart) => ({

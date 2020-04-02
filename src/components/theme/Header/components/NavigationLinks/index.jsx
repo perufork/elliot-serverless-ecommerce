@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useIntl, FormattedMessage } from "react-intl";
 import { useCurrency } from "providers/CurrencyProvider";
-import languages from "helpers/languages";
-import currencies from "helpers/currencies.json";
+import languages from "helpers/i18n/languages.json";
+import currencies from "helpers/payment/currencies.json";
 import Dropdown from "components/common/Dropdown";
 import {
 	Navigation,
@@ -13,7 +13,7 @@ import {
 	List
 } from "./styles";
 
-const NavigationLinks = ({ toggleSidebar, checkout }) => {
+const NavigationLinks = ({ toggleSidebar, checkout, legal }) => {
 	const { state: currency, setState: setCurrency } = useCurrency();
 	const { locale } = useIntl();
 
@@ -47,13 +47,15 @@ const NavigationLinks = ({ toggleSidebar, checkout }) => {
 							</a>
 						</Link>
 					</li>
-					<li>
-						<Link href="/[lang]/about" as={`/${locale}/about`}>
-							<a onClick={toggleSidebar}>
-								<FormattedMessage id="footer.about_us" />
-							</a>
-						</Link>
-					</li>
+					{legal?.about && (
+						<li>
+							<Link href="/[lang]/about" as={`/${locale}/about`}>
+								<a onClick={toggleSidebar}>
+									<FormattedMessage id="footer.about_us" />
+								</a>
+							</Link>
+						</li>
+					)}
 				</DesktopMenu>
 			</Menu>
 			{checkout?.domain?.company?.address?.address1 && (

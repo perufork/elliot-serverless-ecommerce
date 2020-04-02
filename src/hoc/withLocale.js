@@ -3,7 +3,7 @@ import Error from "next/error";
 import { getDisplayName } from "next/dist/next-server/lib/utils";
 import { createIntlCache, RawIntlProvider, createIntl } from "react-intl";
 import strings from "lang/strings";
-import locales from "helpers/locales";
+import locales from "helpers/i18n/locales";
 
 const cache = createIntlCache();
 

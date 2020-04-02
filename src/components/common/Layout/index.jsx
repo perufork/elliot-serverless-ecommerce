@@ -12,7 +12,8 @@ const Layout = ({
 	theme,
 	seoDetails,
 	promotion,
-	checkout
+	checkout,
+	legal
 }) => {
 	return (
 		<>
@@ -36,9 +37,14 @@ const Layout = ({
 					seoDetails={seoDetails}
 					promotion={promotion}
 					checkout={checkout}
+					legal={legal}
 				/>
 				<Wrapper>{children}</Wrapper>
-				<Footer collections={collections} seoDetails={seoDetails} />
+				<Footer
+					collections={collections}
+					seoDetails={seoDetails}
+					legal={legal}
+				/>
 			</>
 		</>
 	);

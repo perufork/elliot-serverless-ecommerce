@@ -1,5 +1,5 @@
 import { getCurrencyAbbreviation } from "country-currency-map";
-import places from "helpers/places.json";
+import places from "helpers/shipping/places.json";
 
 const generateLocationObjectConstruct = ({
 	inputType,

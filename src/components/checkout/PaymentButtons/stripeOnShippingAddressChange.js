@@ -1,12 +1,12 @@
-import getShippingOptions from "helpers/getShippingOptions";
-import getTaxAndDutyFromShippingOptions from "helpers/getTaxFromShippingOptions";
-import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
+import getShippingOptions from "helpers/shipping/getShippingOptions";
+import getTaxAndDutyFromShippingOptions from "helpers/shipping/getTaxFromShippingOptions";
+import getDisplayedShippingOptions from "helpers/shipping/getDisplayedShippingOptions";
 import FlatRateShippingOptions from "helpers/constants/FlatRateShippingOptions";
-import getSkuTotal from "helpers/getSkuTotal";
+import getSkuTotal from "helpers/payment/getSkuTotal";
 import PromotionDiscountType from "helpers/constants/PromotionDiscountType";
-import getRawCartPrice from "helpers/getRawCartPrice";
-import getWalletDisplayItems from "helpers/getWalletDisplayItems";
-import getPromotionValidity from "helpers/getPromotionValidity";
+import getRawCartPrice from "helpers/payment/getRawCartPrice";
+import getWalletDisplayItems from "helpers/payment/getWalletDisplayItems";
+import getPromotionValidity from "helpers/payment/getPromotionValidity";
 
 const stripeOnShippingAddressChange = async ({
 	ev,

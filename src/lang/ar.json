@@ -62,7 +62,6 @@
 	"checkout.form.credit_card": "بطاقة الائتمان",
 	"shipping.calculate": "احسب الشحن",
 	"cart.empty_state": "لا توجد عناصر في سلة التسوق",
-	"dropdown.sort_by.average_rating": "متوسط تقييم",
 	"shipping.flat_rate": "معدل",
 	"validation.full_name": "يجب أن يكون الاسم الكامل أقل من 100 حرف!",
 	"summary.shipping_taxes": "الشحن والضرائب",

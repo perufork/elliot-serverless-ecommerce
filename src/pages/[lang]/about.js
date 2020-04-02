@@ -3,20 +3,21 @@ import Layout from "components/common/Layout";
 import SEO from "components/common/SEO";
 import Container from "components/common/Container";
 import withLocale from "hoc/withLocale";
-import getCollections from "helpers/getCollections";
-import getSeoDetails from "helpers/getSeoDetails";
-import getPromotion from "helpers/getPromotion";
-import getCheckout from "helpers/getCheckout";
-import getLegal from "helpers/getLegal";
+import getCollections from "helpers/buildtime/getCollections";
+import getSeoDetails from "helpers/buildtime/getSeoDetails";
+import getPromotion from "helpers/buildtime/getPromotion";
+import getCheckout from "helpers/buildtime/getCheckout";
+import getLegal from "helpers/buildtime/getLegal";
 
-const Index = ({ about, collections, seoDetails, promotion, checkout }) => (
+const Index = ({ legal, collections, seoDetails, promotion, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
 		checkout={checkout}
+		legal={legal}
 	>
-		{about ? (
+		{legal?.about ? (
 			<>
 				<SEO
 					localizedTitle="shop.page.title"
@@ -24,7 +25,7 @@ const Index = ({ about, collections, seoDetails, promotion, checkout }) => (
 					seoDetails={seoDetails}
 				/>
 				<Container>
-					<div dangerouslySetInnerHTML={{ __html: about }} />
+					<div dangerouslySetInnerHTML={{ __html: legal.about }} />
 				</Container>
 			</>
 		) : (
@@ -39,11 +40,11 @@ export const getStaticProps = async ({ params: { lang } }) => {
 		const seoDetails = await getSeoDetails();
 		const promotion = await getPromotion();
 		const checkout = await getCheckout();
-		const { about } = await getLegal();
+		const legal = await getLegal();
 
 		return {
 			props: {
-				about,
+				legal,
 				collections,
 				seoDetails,
 				locale: lang,
@@ -55,7 +56,7 @@ export const getStaticProps = async ({ params: { lang } }) => {
 		console.log(error);
 		return {
 			props: {
-				about: "",
+				legal: {},
 				collections: [],
 				seoDetails: {},
 				locale: lang,

@@ -15,7 +15,7 @@ import {
 	PinterestIcon,
 	TwiterIcon
 } from "components/common/Icons/SocialIcon";
-import getProductById from "helpers/getProductById";
+import getProductById from "helpers/runtime/getProductById";
 import isEmpty from "helpers/isEmpty";
 import alertOutOfStock from "helpers/alertOutOfStock";
 import dynamic from "next/dynamic";

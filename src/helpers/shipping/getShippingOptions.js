@@ -1,4 +1,4 @@
-import getMinimalCart from "./getMinimalCart";
+import getMinimalCart from "../payment/getMinimalCart";
 
 const getShippingOptions = async ({ shippingDestination, cart, checkout }) => {
 	try {

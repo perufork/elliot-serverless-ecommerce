@@ -1,8 +1,8 @@
-import getDisplayedShippingOptions from "helpers/getDisplayedShippingOptions";
-import getTaxAndDutyFromShippingOptions from "helpers/getTaxFromShippingOptions";
-import getRawCartPrice from "helpers/getRawCartPrice";
-import getSkuTotal from "helpers/getSkuTotal";
-import getWalletDisplayItems from "helpers/getWalletDisplayItems";
+import getDisplayedShippingOptions from "helpers/shipping/getDisplayedShippingOptions";
+import getTaxAndDutyFromShippingOptions from "helpers/shipping/getTaxFromShippingOptions";
+import getRawCartPrice from "helpers/payment/getRawCartPrice";
+import getSkuTotal from "helpers/payment/getSkuTotal";
+import getWalletDisplayItems from "helpers/payment/getWalletDisplayItems";
 
 const stripeOnShippingOptionChange = async ({
 	ev,

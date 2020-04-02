@@ -3,8 +3,8 @@ import { useIntl, FormattedMessage } from "react-intl";
 import { useCurrency } from "providers/CurrencyProvider";
 import Dropdown from "components/common/Dropdown";
 import Container from "components/common/Container";
-import languages from "helpers/languages.json";
-import currencies from "helpers/currencies.json";
+import languages from "helpers/i18n/languages.json";
+import currencies from "helpers/payment/currencies.json";
 import {
 	CopyWrapper,
 	Item,
@@ -15,7 +15,7 @@ import {
 	Wrapper
 } from "./styles";
 
-const Footer = ({ collections, seoDetails }) => {
+const Footer = ({ collections, seoDetails, legal }) => {
 	const { locale } = useIntl();
 	const { state: currency, setState: setCurrency } = useCurrency();
 
@@ -26,33 +26,42 @@ const Footer = ({ collections, seoDetails }) => {
 					<ListTitle>
 						<FormattedMessage id="footer.help_and_information" />
 					</ListTitle>
-					<Item>
-						<Link href="/[lang]/faqs" as={`/${locale}/faqs`}>
-							<a>
-								<FormattedMessage id="footer.faqs" />
-							</a>
-						</Link>
-					</Item>
-					<Item>
-						<Link href="/[lang]/return-policy" as={`/${locale}/return-policy`}>
-							<a>
-								<FormattedMessage id="footer.return_policy" />
-							</a>
-						</Link>
-					</Item>
+					{legal?.faqs && (
+						<Item>
+							<Link href="/[lang]/faqs" as={`/${locale}/faqs`}>
+								<a>
+									<FormattedMessage id="footer.faqs" />
+								</a>
+							</Link>
+						</Item>
+					)}
+					{legal?.returnPolicy && (
+						<Item>
+							<Link
+								href="/[lang]/return-policy"
+								as={`/${locale}/return-policy`}
+							>
+								<a>
+									<FormattedMessage id="footer.return_policy" />
+								</a>
+							</Link>
+						</Item>
+					)}
 				</List>
 				<List>
 					<ListTitle>
 						<FormattedMessage id="footer.about" />{" "}
 						{seoDetails?.lookAndFeel?.seo?.name}
 					</ListTitle>
-					<Item>
-						<Link href="/[lang]/about" as={`/${locale}/about`}>
-							<a>
-								<FormattedMessage id="footer.about_us" />
-							</a>
-						</Link>
-					</Item>
+					{legal?.about && (
+						<Item>
+							<Link href="/[lang]/about" as={`/${locale}/about`}>
+								<a>
+									<FormattedMessage id="footer.about_us" />
+								</a>
+							</Link>
+						</Item>
+					)}
 				</List>
 				<List>
 					<ListTitle>
@@ -105,28 +114,30 @@ const Footer = ({ collections, seoDetails }) => {
 						<span>{seoDetails?.lookAndFeel?.seo?.name}.</span>{" "}
 						<FormattedMessage id="footer.rights_reserved" />
 					</p>
-					<ul>
-						<li>
-							<Link
-								href="/[lang]/privacy-policy"
-								as={`/${locale}/privacy-policy`}
-							>
-								<a>
-									<FormattedMessage id="footer.privacy_policy" />
-								</a>
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/[lang]/terms-and-conditions"
-								as={`/${locale}/terms-and-conditions`}
-							>
-								<a>
-									<FormattedMessage id="footer.terms_conditions" />
-								</a>
-							</Link>
-						</li>
-					</ul>
+					{legal?.privacyPolicy && legal?.termsAndConditions && (
+						<ul>
+							<li>
+								<Link
+									href="/[lang]/privacy-policy"
+									as={`/${locale}/privacy-policy`}
+								>
+									<a>
+										<FormattedMessage id="footer.privacy_policy" />
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="/[lang]/terms-and-conditions"
+									as={`/${locale}/terms-and-conditions`}
+								>
+									<a>
+										<FormattedMessage id="footer.terms_conditions" />
+									</a>
+								</Link>
+							</li>
+						</ul>
+					)}
 				</CopyWrapper>
 			</Container>
 		</Wrapper>

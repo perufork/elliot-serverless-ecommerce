@@ -9,7 +9,7 @@ import { useCurrency } from "providers/CurrencyProvider";
 import { Container, Banner, Wrapper, Options } from "./styles";
 import { useCheckout } from "providers/CheckoutProvider";
 
-export default ({ collections, seoDetails, promotion, checkout }) => {
+export default ({ collections, seoDetails, promotion, checkout, legal }) => {
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -55,6 +55,7 @@ export default ({ collections, seoDetails, promotion, checkout }) => {
 				toggleSidebar={toggleSidebar}
 				content={state.content}
 				checkout={checkout}
+				legal={legal}
 			/>
 			<Container>
 				{promotion && (

@@ -78,7 +78,6 @@ export default ({ products, collection }) => {
 							label={formatMessage({ id: "dropdown.sort_by" })}
 							options={[
 								formatMessage({ id: "dropdown.sort_by.default" }),
-								formatMessage({ id: "dropdown.sort_by.average_rating" }),
 								formatMessage({ id: "dropdown.sort_by.newest" }),
 								formatMessage({ id: "dropdown.sort_by.oldest" })
 							]}

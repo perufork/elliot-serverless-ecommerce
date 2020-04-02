@@ -11,7 +11,7 @@ import {
 	TabAdditionInformation,
 	TabDescription
 } from "components/product/components/Tab";
-import getProductById from "helpers/getProductById";
+import getProductById from "helpers/runtime/getProductById";
 import alertOutOfStock from "helpers/alertOutOfStock";
 import { Products, Section, SectionTitle } from "./styles";
 

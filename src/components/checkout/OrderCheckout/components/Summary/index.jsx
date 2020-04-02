@@ -6,7 +6,7 @@ import { useCart } from "providers/CartProvider";
 import { Wrapper, Flex, Product, Item, Price, Card } from "./styles";
 import useShippingInfo from "hooks/useShippingInfo";
 import isEmpty from "helpers/isEmpty";
-import formatMoney from "helpers/formatMoney";
+import formatMoney from "helpers/payment/formatMoney";
 import SummaryItem from "./SummaryItem";
 import { useCheckout } from "providers/CheckoutProvider";
 import usePromotionLabel from "hooks/usePromotionLabel";
