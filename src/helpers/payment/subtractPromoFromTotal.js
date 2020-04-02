@@ -1,5 +1,5 @@
-import getPromotionValidity from "helpers/getPromotionValidity";
-import getOrderAfterPromo from "helpers/getOrderTotalAfterPromo";
+import getPromotionValidity from "helpers/payment/getPromotionValidity";
+import getOrderAfterPromo from "helpers/payment/getOrderTotalAfterPromo";
 
 const subtractPromoFromTotal = ({ orderTotal, exchangeRate, promotion }) => {
 	let updatedOrderTotal = orderTotal;

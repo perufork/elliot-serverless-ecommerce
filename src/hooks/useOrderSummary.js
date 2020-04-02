@@ -1,5 +1,5 @@
-import getTotal from "helpers/getTotal";
-import subtractPromoFromTotal from "helpers/subtractPromoFromTotal";
+import getTotal from "helpers/payment/getTotal";
+import subtractPromoFromTotal from "helpers/payment/subtractPromoFromTotal";
 
 const useOrderSummary = ({
 	shippingTotal = 0,

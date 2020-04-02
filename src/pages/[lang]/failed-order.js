@@ -2,19 +2,27 @@ import Layout from "components/common/Layout";
 import SEO from "components/common/SEO";
 import FailedOrder from "components/shipping/FailedOrder";
 import withLocale from "hoc/withLocale";
-import getProducts from "helpers/getProducts";
-import getCollections from "helpers/getCollections";
-import getSeoDetails from "helpers/getSeoDetails";
-import getPromotion from "helpers/getPromotion";
-import getCheckout from "helpers/getCheckout";
-import locales from "helpers/locales";
+import getProducts from "helpers/buildtime/getProducts";
+import getCollections from "helpers/buildtime/getCollections";
+import getSeoDetails from "helpers/buildtime/getSeoDetails";
+import getPromotion from "helpers/buildtime/getPromotion";
+import getCheckout from "helpers/buildtime/getCheckout";
+import locales from "helpers/i18n/locales";
+import getLegal from "helpers/buildtime/getLegal";
 
-const OrderFailed = ({ collections, seoDetails, promotion, checkout }) => (
+const OrderFailed = ({
+	legal,
+	collections,
+	seoDetails,
+	promotion,
+	checkout
+}) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
 		checkout={checkout}
+		legal={legal}
 	>
 		<SEO
 			localizedTitle="shop.page.title"
@@ -39,6 +47,7 @@ export const getStaticProps = async ({ params: { lang } }) => {
 		const seoDetails = await getSeoDetails();
 		const promotion = await getPromotion();
 		const checkout = await getCheckout();
+		const legal = await getLegal();
 
 		return {
 			props: {
@@ -47,7 +56,8 @@ export const getStaticProps = async ({ params: { lang } }) => {
 				seoDetails,
 				locale: lang,
 				promotion,
-				checkout
+				checkout,
+				legal
 			}
 		};
 	} catch (error) {
@@ -59,7 +69,8 @@ export const getStaticProps = async ({ params: { lang } }) => {
 				seoDetails: {},
 				locale: lang,
 				promotion: {},
-				checkout: {}
+				checkout: {},
+				legal: {}
 			}
 		};
 	}

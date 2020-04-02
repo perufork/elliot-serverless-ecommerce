@@ -2,7 +2,7 @@ import PlacesAutocomplete, {
 	geocodeByAddress
 } from "react-places-autocomplete";
 import { MapPin } from "components/common/Icons";
-import splitAddressComponents from "helpers/splitAddressComponents";
+import splitAddressComponents from "helpers/shipping/splitAddressComponents";
 import InputField from "components/common/InputField";
 import { Wrapper, SuggestionWrapper, Icon } from "./styles";
 

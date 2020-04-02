@@ -9,7 +9,7 @@ import { CancelIcon, EmptyCart } from "components/common/Icons";
 import Button from "components/common/Button";
 import Swatch from "components/common/Swatch";
 import { removeFromCart } from "components/cart/actions";
-import formatMoney from "helpers/formatMoney";
+import formatMoney from "helpers/payment/formatMoney";
 import isEmpty from "helpers/isEmpty";
 import useShippingInfo from "hooks/useShippingInfo";
 import useOrderSummary from "hooks/useOrderSummary";

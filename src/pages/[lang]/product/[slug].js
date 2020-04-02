@@ -3,12 +3,48 @@ import Layout from "components/common/Layout";
 import SEO from "components/common/SEO";
 import ProductItem from "components/product/ProductItem";
 import withLocale from "hoc/withLocale";
-import locales from "helpers/locales";
-import getProducts from "helpers/getProducts";
-import getCollections from "helpers/getCollections";
-import getSeoDetails from "helpers/getSeoDetails";
-import getPromotion from "helpers/getPromotion";
-import getCheckout from "helpers/getCheckout";
+import locales from "helpers/i18n/locales";
+import getProducts from "helpers/buildtime/getProducts";
+import getCollections from "helpers/buildtime/getCollections";
+import getSeoDetails from "helpers/buildtime/getSeoDetails";
+import getPromotion from "helpers/buildtime/getPromotion";
+import getCheckout from "helpers/buildtime/getCheckout";
+import getLegal from "helpers/buildtime/getLegal";
+
+const Product = ({
+	legal,
+	product,
+	collections,
+	seoDetails,
+	promotion,
+	checkout
+}) => (
+	<Layout
+		collections={collections}
+		seoDetails={seoDetails}
+		promotion={promotion}
+		checkout={checkout}
+		legal={legal}
+	>
+		{product.id ? (
+			<>
+				<SEO
+					title={product.productSeo?.edges[0]?.node?.title || product.name}
+					description={
+						product.productSeo?.edges[0]?.node?.description ||
+						product.description?.replace(/(<([^>]+)>)/gi, "")
+					}
+					location={product.slug}
+					cover={`https://storage.googleapis.com/elliot-images-us/${product.images?.edges[0]?.node?.image}`}
+					seoDetails={seoDetails}
+				/>
+				<ProductItem {...product} globalCollections={collections} />
+			</>
+		) : (
+			<Error statusCode={404} />
+		)}
+	</Layout>
+);
 
 export const getStaticPaths = async () => {
 	const products = await getProducts();
@@ -30,6 +66,7 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 		const seoDetails = await getSeoDetails();
 		const promotion = await getPromotion();
 		const checkout = await getCheckout();
+		const legal = await getLegal();
 
 		const product = products.edges.find(
 			({ node: { slug: _slug } }) => _slug === slug
@@ -41,7 +78,8 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 				collections,
 				seoDetails,
 				promotion,
-				checkout
+				checkout,
+				legal
 			}
 		};
 	} catch (error) {
@@ -52,37 +90,11 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 				collections: [],
 				seoDetails: {},
 				promotion: {},
-				checkout: {}
+				checkout: {},
+				legal: {}
 			}
 		};
 	}
 };
-
-const Product = ({ product, collections, seoDetails, promotion, checkout }) => (
-	<Layout
-		collections={collections}
-		seoDetails={seoDetails}
-		promotion={promotion}
-		checkout={checkout}
-	>
-		{product.id ? (
-			<>
-				<SEO
-					title={product.productSeo?.edges[0]?.node?.title || product.name}
-					description={
-						product.productSeo?.edges[0]?.node?.description ||
-						product.description?.replace(/(<([^>]+)>)/gi, "")
-					}
-					location={product.slug}
-					cover={`https://storage.googleapis.com/elliot-images-us/${product.images?.edges[0]?.node?.image}`}
-					seoDetails={seoDetails}
-				/>
-				<ProductItem {...product} globalCollections={collections} />
-			</>
-		) : (
-			<Error statusCode={404} />
-		)}
-	</Layout>
-);
 
 export default withLocale(Product);

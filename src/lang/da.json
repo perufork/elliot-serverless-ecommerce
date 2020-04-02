@@ -56,7 +56,6 @@
 	"summary.shipping_taxes": "Forsendelse & Skatter",
 	"dropdown.sort_by.default": "Standard",
 	"summary.input_address": "Indtast en adresse for at få forsendelsesoversigt",
-	"dropdown.sort_by.average_rating": "Gennemsnitlig vurdering",
 	"validation.cc.fields": "Nødvendige felter mangler",
 	"checkout.form.postal_code": "Postnummer",
 	"checkout.form.email": "E-mail",

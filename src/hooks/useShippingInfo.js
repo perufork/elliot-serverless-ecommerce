@@ -1,5 +1,5 @@
 import { useGlobalState } from "providers/GlobalStateProvider";
-import formatMoney from "helpers/formatMoney";
+import formatMoney from "helpers/payment/formatMoney";
 import { useCurrency } from "providers/CurrencyProvider";
 
 const useShippingInfo = () => {

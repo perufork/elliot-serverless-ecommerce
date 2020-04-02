@@ -1,4 +1,4 @@
-import ShippingPreference from "./constants/ShippingPreference";
+import ShippingPreference from "helpers/constants/ShippingPreference";
 
 export const getShippingPayload = ({
 	checkout,

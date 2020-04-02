@@ -1,7 +1,7 @@
 import { useCheckout } from "providers/CheckoutProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import PromotionDiscountType from "helpers/constants/PromotionDiscountType";
-import getPromotionValidity from "helpers/getPromotionValidity";
+import getPromotionValidity from "helpers/payment/getPromotionValidity";
 
 const usePromotionLabel = () => {
 	const { promotion } = useCheckout();

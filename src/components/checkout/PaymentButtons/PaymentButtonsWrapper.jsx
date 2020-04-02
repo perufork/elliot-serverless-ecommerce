@@ -4,14 +4,14 @@ import StripePaymentButton from "./WalletPayButtons/index";
 import { useCheckout } from "providers/CheckoutProvider";
 import { useCurrency } from "providers/CurrencyProvider";
 import { useCart } from "providers/CartProvider";
-import getRawCartPrice from "helpers/getRawCartPrice";
-import getSkuTotal from "helpers/getSkuTotal";
+import getRawCartPrice from "helpers/payment/getRawCartPrice";
+import getSkuTotal from "helpers/payment/getSkuTotal";
 import {
 	getSelfCheckoutPaymentRequestInput,
 	getShippingPaymentRequestInput
-} from "helpers/getPaymentRequestInput";
+} from "helpers/payment/getPaymentRequestInput";
 import ShippingPreference from "helpers/constants/ShippingPreference";
-import getWalletDisplayItems from "helpers/getWalletDisplayItems";
+import getWalletDisplayItems from "helpers/payment/getWalletDisplayItems";
 
 const PaymentButtonsWrapper = ({ stripe, addToCartPayload }) => {
 	const checkout = useCheckout();

@@ -3,7 +3,13 @@ import CartSidebar from "components/theme/Header/components/CartSidebar";
 import SearchSidebar from "components/theme/Header/components/SearchSidebar";
 import { Wrapper, Burger, Close, Nav, Overlay, Content } from "./styles";
 
-export default ({ visibleSidebar, toggleSidebar, content, checkout }) => {
+export default ({
+	visibleSidebar,
+	toggleSidebar,
+	content,
+	checkout,
+	legal
+}) => {
 	const renderContent = () => {
 		switch (content) {
 			case "cart":
@@ -26,6 +32,7 @@ export default ({ visibleSidebar, toggleSidebar, content, checkout }) => {
 				return (
 					<NavigationLinks
 						checkout={checkout}
+						legal={legal}
 						toggleSidebar={() =>
 							toggleSidebar({ type: "CLOSE_SIDEBAR", content: "" })
 						}

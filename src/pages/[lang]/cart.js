@@ -1,18 +1,20 @@
 import Layout from "components/common/Layout";
 import Items from "components/cart/Items";
 import withLocale from "hoc/withLocale";
-import getCollections from "helpers/getCollections";
+import getCollections from "helpers/buildtime/getCollections";
 import SEO from "components/common/SEO";
-import getSeoDetails from "helpers/getSeoDetails";
-import getPromotion from "helpers/getPromotion";
-import getCheckout from "helpers/getCheckout";
+import getSeoDetails from "helpers/buildtime/getSeoDetails";
+import getPromotion from "helpers/buildtime/getPromotion";
+import getCheckout from "helpers/buildtime/getCheckout";
+import getLegal from "helpers/buildtime/getLegal";
 
-const Cart = ({ collections, seoDetails, promotion, checkout }) => (
+const Cart = ({ legal, collections, seoDetails, promotion, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		promotion={promotion}
 		checkout={checkout}
+		legal={legal}
 	>
 		<SEO
 			localizedTitle="shop.page.cart_title"
@@ -29,6 +31,7 @@ export const getStaticProps = async ({ params }) => {
 		const seoDetails = await getSeoDetails();
 		const promotion = await getPromotion();
 		const checkout = await getCheckout();
+		const legal = await getLegal();
 
 		return {
 			props: {
@@ -36,7 +39,8 @@ export const getStaticProps = async ({ params }) => {
 				seoDetails,
 				locale: params.lang,
 				promotion,
-				checkout
+				checkout,
+				legal
 			}
 		};
 	} catch (error) {
@@ -46,7 +50,8 @@ export const getStaticProps = async ({ params }) => {
 				seoDetails: {},
 				locale: params.lang,
 				promotion: {},
-				checkout: {}
+				checkout: {},
+				legal: {}
 			}
 		};
 	}

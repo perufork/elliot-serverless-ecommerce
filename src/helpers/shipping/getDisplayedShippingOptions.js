@@ -1,4 +1,4 @@
-import getDomainOwnerProfileId from "./getDomainOwnerProfileId";
+import getDomainOwnerProfileId from "../payment/getDomainOwnerProfileId";
 
 const getDisplayedShippingOptions = ({
 	shippingOptions: perVendorShippingOptions,

@@ -87,7 +87,6 @@
 	"shipping.subtotal": "Välisumma",
 	"product.out_of_stock": "LOPPU VARASTOSTA",
 	"button.buy_now": "osta nyt",
-	"dropdown.sort_by.average_rating": "Keskimääräinen arvio",
 	"button.checkout": "Tarkista",
 	"checkout.ship_to_different_address": "Toimita toiseen osoitteeseen"
 }
