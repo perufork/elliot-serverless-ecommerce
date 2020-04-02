@@ -63,6 +63,7 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 			({ node: { slug: _slug } }) => _slug === slug
 		);
 		return {
+			revalidate: 8,
 			props: {
 				collection: collection.node,
 				locale: lang,
