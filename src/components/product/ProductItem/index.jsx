@@ -28,7 +28,8 @@ export default ({
 	images,
 	attributes,
 	metadata,
-	gender
+	gender,
+	relatedProducts
 }) => {
 	const { formatMessage } = useIntl();
 	const { state } = useCart();
@@ -119,38 +120,39 @@ export default ({
 					<SectionTitle>
 						<FormattedMessage id="product.related_products" />
 					</SectionTitle>
-					<Products grid={true} related>
-						{globalCollections?.edges
-							.filter(collection =>
-								collections.edges.find(
-									item => item.node.id === collection.node.id
-								)
-							)
-							.map(({ node: { products } }) =>
-								products?.edges
-									.filter(({ node }) => node.id !== id)
-									.sort(() => Math.random() - 0.5)
-									.slice(0, 4)
-									.map(({ node }, i) => {
-										const item = state?.data?.find(
-											({ product }) => product.id === node.id
-										);
+					{relatedProducts?.edges?.length > 0 && (
+						<Products
+							grid={true}
+							products={
+								relatedProducts?.edges?.filter(({ node }) => node.slug !== slug)
+									.length
+							}
+							related
+						>
+							{relatedProducts?.edges
+								.filter(({ node }) => node.slug !== slug)
+								.sort(() => Math.random() - 0.5)
+								.slice(0, 4)
+								.map(({ node }, i) => {
+									const item = state?.data?.find(
+										({ product }) => product.id === node.id
+									);
 
-										if (ids.includes(node.id)) return null;
+									if (ids.includes(node.id)) return null;
 
-										ids.push(node.id);
+									ids.push(node.id);
 
-										return (
-											<ProductCard
-												key={i}
-												onClick={() => handleCart(node, item)}
-												grid
-												{...node}
-											/>
-										);
-									})
-							)}
-					</Products>
+									return (
+										<ProductCard
+											key={i}
+											onClick={() => handleCart(node, item)}
+											grid
+											{...node}
+										/>
+									);
+								})}
+						</Products>
+					)}
 				</Section>
 			)}
 		</>
