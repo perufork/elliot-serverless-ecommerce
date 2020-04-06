@@ -5,22 +5,14 @@ import withLocale from "hoc/withLocale";
 import getProducts from "helpers/buildtime/getProducts";
 import getCollections from "helpers/buildtime/getCollections";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
-import getPromotion from "helpers/buildtime/getPromotion";
 import getCheckout from "helpers/buildtime/getCheckout";
 import locales from "helpers/i18n/locales";
 import getLegal from "helpers/buildtime/getLegal";
 
-const OrderFailed = ({
-	legal,
-	collections,
-	seoDetails,
-	promotion,
-	checkout
-}) => (
+const OrderFailed = ({ legal, collections, seoDetails, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
-		promotion={promotion}
 		checkout={checkout}
 		legal={legal}
 	>
@@ -45,7 +37,6 @@ export const getStaticProps = async ({ params: { lang } }) => {
 		const products = await getProducts();
 		const collections = await getCollections();
 		const seoDetails = await getSeoDetails();
-		const promotion = await getPromotion();
 		const checkout = await getCheckout();
 		const legal = await getLegal();
 
@@ -55,7 +46,6 @@ export const getStaticProps = async ({ params: { lang } }) => {
 				collections,
 				seoDetails,
 				locale: lang,
-				promotion,
 				checkout,
 				legal
 			}
@@ -68,7 +58,6 @@ export const getStaticProps = async ({ params: { lang } }) => {
 				collections: [],
 				seoDetails: {},
 				locale: lang,
-				promotion: {},
 				checkout: {},
 				legal: {}
 			}

@@ -88,5 +88,6 @@
 	"search.no_results": "Er zijn geen resultaten gevonden",
 	"checkout.pay": "BETALEN",
 	"footer.privacy_policy": "Privacybeleid",
-	"checkout.ship_to_different_address": "Verzend naar een ander adres"
+	"checkout.ship_to_different_address": "Verzend naar een ander adres",
+	"products.show_more": "Ontdek meer"
 }

@@ -7,7 +7,7 @@ export default async () => {
 	return buildCache("getPromotion", () =>
 		axios
 			.post(
-				"https://admin.elliot.store/api",
+				"https://admin.elliot.store/api ",
 				{
 					query: promotionQuery,
 					variables: {

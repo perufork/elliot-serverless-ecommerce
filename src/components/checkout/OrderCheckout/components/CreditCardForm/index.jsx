@@ -355,7 +355,6 @@ const CreditCardForm = ({ stripe, checkout }) => {
 						selectedShippingOptionIndex
 					});
 
-					// console.log(payload, null, 2);
 					const res = await fetch(
 						"https://us-east1-elliot-192017.cloudfunctions.net/createOrderShipping",
 						{

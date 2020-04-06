@@ -88,5 +88,6 @@
 	"shipping.local": "Penghantaran Tempatan",
 	"product.attribute.Occasion": "Peluang",
 	"shipping.calculate": "Kira Penghantaran",
-	"checkout.ship_to_different_address": "Hantar ke alamat lain"
+	"checkout.ship_to_different_address": "Hantar ke alamat lain",
+	"products.show_more": "Ketahui lebih lanjut"
 }

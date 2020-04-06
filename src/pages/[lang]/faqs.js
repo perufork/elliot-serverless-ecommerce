@@ -5,15 +5,13 @@ import Container from "components/common/Container";
 import withLocale from "hoc/withLocale";
 import getCollections from "helpers/buildtime/getCollections";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
-import getPromotion from "helpers/buildtime/getPromotion";
 import getCheckout from "helpers/buildtime/getCheckout";
 import getLegal from "helpers/buildtime/getLegal";
 
-const Index = ({ legal, collections, seoDetails, promotion, checkout }) => (
+const Index = ({ legal, collections, seoDetails, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
-		promotion={promotion}
 		checkout={checkout}
 		legal={legal}
 	>
@@ -38,7 +36,6 @@ export const getStaticProps = async ({ params: { lang } }) => {
 	try {
 		const collections = await getCollections();
 		const seoDetails = await getSeoDetails();
-		const promotion = await getPromotion();
 		const checkout = await getCheckout();
 		const legal = await getLegal();
 
@@ -48,7 +45,6 @@ export const getStaticProps = async ({ params: { lang } }) => {
 				collections,
 				seoDetails,
 				locale: lang,
-				promotion,
 				checkout
 			}
 		};
@@ -60,7 +56,6 @@ export const getStaticProps = async ({ params: { lang } }) => {
 				collections: [],
 				seoDetails: {},
 				locale: lang,
-				promotion: {},
 				checkout: {}
 			}
 		};

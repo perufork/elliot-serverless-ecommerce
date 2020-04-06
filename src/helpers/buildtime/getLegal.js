@@ -12,7 +12,7 @@ export default async () => {
 			}
 		}
 	} = await axios.post(
-		"https://admin.elliot.store/api",
+		"https://admin.elliot.store/api ",
 		{
 			query: legalQuery,
 			variables: {

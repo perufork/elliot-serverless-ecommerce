@@ -7,22 +7,13 @@ import locales from "helpers/i18n/locales";
 import getProducts from "helpers/buildtime/getProducts";
 import getCollections from "helpers/buildtime/getCollections";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
-import getPromotion from "helpers/buildtime/getPromotion";
 import getCheckout from "helpers/buildtime/getCheckout";
 import getLegal from "helpers/buildtime/getLegal";
 
-const Product = ({
-	legal,
-	product,
-	collections,
-	seoDetails,
-	promotion,
-	checkout
-}) => (
+const Product = ({ legal, product, collections, seoDetails, checkout }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
-		promotion={promotion}
 		checkout={checkout}
 		legal={legal}
 	>
@@ -64,7 +55,6 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 		const collections = await getCollections();
 		const products = await getProducts();
 		const seoDetails = await getSeoDetails();
-		const promotion = await getPromotion();
 		const checkout = await getCheckout();
 		const legal = await getLegal();
 
@@ -77,7 +67,6 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 				locale: lang,
 				collections,
 				seoDetails,
-				promotion,
 				checkout,
 				legal
 			}
@@ -89,7 +78,6 @@ export const getStaticProps = async ({ params: { slug, lang } }) => {
 				locale: lang,
 				collections: [],
 				seoDetails: {},
-				promotion: {},
 				checkout: {},
 				legal: {}
 			}

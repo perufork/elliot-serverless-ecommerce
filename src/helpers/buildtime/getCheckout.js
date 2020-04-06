@@ -11,7 +11,7 @@ export default async () => {
 	return buildCache("getCheckout", () =>
 		axios
 			.post(
-				"https://admin.elliot.store/api",
+				"https://admin.elliot.store/api ",
 				{
 					query: checkoutQuery,
 					variables: {

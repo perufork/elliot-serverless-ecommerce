@@ -8,7 +8,7 @@ export default async id => {
 			data: { node }
 		}
 	} = await axios.post(
-		"https://cors-anywhere.herokuapp.com/https://admin.elliot.store/api",
+		"https://cors-anywhere.herokuapp.com/https://admin.elliot.store/api ",
 		{
 			query: productByIdQuery,
 			variables: {

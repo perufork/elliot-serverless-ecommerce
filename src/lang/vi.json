@@ -88,5 +88,6 @@
 	"button.update_total": "Tổng số cập nhật",
 	"cart.th.price": "Giá bán",
 	"checkout.form.address": "Địa chỉ",
-	"checkout.ship_to_different_address": "Gửi đến địa chỉ khác"
+	"checkout.ship_to_different_address": "Gửi đến địa chỉ khác",
+	"products.show_more": "Khám phá nhiều hơn"
 }

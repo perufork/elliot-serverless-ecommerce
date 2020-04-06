@@ -12,7 +12,6 @@ const Checkout = ({ legal, collections, checkout, seoDetails, promotion }) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
-		promotion={promotion}
 		checkout={checkout}
 		legal={legal}
 	>
