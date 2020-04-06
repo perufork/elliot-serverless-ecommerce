@@ -88,5 +88,6 @@
 	"product.attribute.Size": "크기",
 	"product.tags": "태그",
 	"validation.full_name": "성명은 100 자 이하 여야합니다!",
-	"checkout.ship_to_different_address": "다른 주소로 배송"
+	"checkout.ship_to_different_address": "다른 주소로 배송",
+	"products.show_more": "더 발견하다"
 }

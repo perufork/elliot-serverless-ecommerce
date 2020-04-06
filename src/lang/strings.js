@@ -90,7 +90,8 @@ export default {
 		"shipping.promotion": "ترقية وظيفية",
 		"button.view_cart": "عرض السلة",
 		"checkout.form.address_2": "العنوان 2",
-		"checkout.ship_to_different_address": "اشحن الى عنوان مختلف"
+		"checkout.ship_to_different_address": "اشحن الى عنوان مختلف",
+		"products.show_more": "إكتشف أكثر"
 	},
 	da: {
 		"button.buy_now": "køb nu",
@@ -184,7 +185,8 @@ export default {
 		"button.proceed_to_checkout": "Gå til kassen",
 		"checkout.form.complete_shipping_info":
 			"Komplet forsendelsesinformation for at se en forsendelsesmetode",
-		"checkout.ship_to_different_address": "Send til en anden adresse"
+		"checkout.ship_to_different_address": "Send til en anden adresse",
+		"products.show_more": "Oplev mere"
 	},
 	de: {
 		"button.proceed_to_checkout": "Zur Kasse",
@@ -280,7 +282,8 @@ export default {
 		"checkout.coupon.placeholder": "Gib deinen Code ein",
 		"product.attribute.Occasion": "Gelegenheit",
 		"shipping.free": "Kostenloser Versand",
-		"checkout.ship_to_different_address": "zu einer anderen Adresse liefern"
+		"checkout.ship_to_different_address": "zu einer anderen Adresse liefern",
+		"products.show_more": "Entdecke mehr"
 	},
 	el: {
 		"button.add_to_cart": "προσθήκη στο καλάθι",
@@ -375,7 +378,8 @@ export default {
 		"button.go_back": "Πήγαινε πίσω",
 		"button.back_to_shop": "Επιστροφή στο κατάστημα",
 		"header.links.collections": "Συλλογές",
-		"checkout.ship_to_different_address": "Αποστολή σε διαφορετική διεύθυνση"
+		"checkout.ship_to_different_address": "Αποστολή σε διαφορετική διεύθυνση",
+		"products.show_more": "Ανακάλυψε περισσότερα"
 	},
 	en: {
 		"button.add_to_cart": "add to cart",
@@ -445,6 +449,7 @@ export default {
 		"product.description": "Description",
 		"product.additional_information": "Additional Information",
 		"product.out_of_stock": "OUT OF STOCK",
+		"products.show_more": "Discover more",
 		"search.no_results": "No results have been found",
 		"sidebar.contact_us": "Contact Us",
 		"shipping.tax": "Tax",
@@ -563,7 +568,8 @@ export default {
 		"checkout.form.address_2": "Dirección 2",
 		"shipping.total": "Total",
 		"checkout.form.phone": "Teléfono",
-		"checkout.ship_to_different_address": "Envia a una direccion diferente"
+		"checkout.ship_to_different_address": "Envia a una direccion diferente",
+		"products.show_more": "Descubrir más"
 	},
 	fi: {
 		"button.proceed_to_checkout": "Siirry maksamaan",
@@ -656,7 +662,8 @@ export default {
 		"product.out_of_stock": "LOPPU VARASTOSTA",
 		"button.buy_now": "osta nyt",
 		"button.checkout": "Tarkista",
-		"checkout.ship_to_different_address": "Toimita toiseen osoitteeseen"
+		"checkout.ship_to_different_address": "Toimita toiseen osoitteeseen",
+		"products.show_more": "Löydä lisää"
 	},
 	fr: {
 		"button.add_to_cart": "ajouter au chariot",
@@ -751,7 +758,8 @@ export default {
 		"checkout.page.title": "Check-out",
 		"button.go_back": "retourner",
 		"cart.empty_state": "Aucun article sur le panier",
-		"checkout.ship_to_different_address": "Livrer à une adresse différente"
+		"checkout.ship_to_different_address": "Livrer à une adresse différente",
+		"products.show_more": "Découvrir plus"
 	},
 	hi: {
 		"button.update_cart": "कार्ट अपडेट करें",
@@ -845,7 +853,8 @@ export default {
 		"footer.faqs": "पूछे जाने वाले प्रश्न",
 		"shop.page.title": "दुकान",
 		"button.back_to_shop": "वापस दुकान में",
-		"checkout.ship_to_different_address": "एक अलग पते पर जहाज"
+		"checkout.ship_to_different_address": "एक अलग पते पर जहाज",
+		"products.show_more": "और ढूंढें"
 	},
 	it: {
 		"button.update_cart": "aggiorna carrello",
@@ -940,7 +949,8 @@ export default {
 		"shipping.calculate": "Calcola Spedizione",
 		"footer.privacy_policy": "politica sulla riservatezza",
 		"checkout.coupon.label": "Codice di sconto",
-		"checkout.ship_to_different_address": "Spedisci a un indirizzo diverso"
+		"checkout.ship_to_different_address": "Spedisci a un indirizzo diverso",
+		"products.show_more": "Scopri di più"
 	},
 	ja: {
 		"shop.page.description": "私たちの素晴らしい店",
@@ -1033,7 +1043,8 @@ export default {
 		"footer.about": "約",
 		"checkout.form.city": "市",
 		"product.attribute.Color": "色",
-		"checkout.ship_to_different_address": "別の住所に発送する"
+		"checkout.ship_to_different_address": "別の住所に発送する",
+		"products.show_more": "もっと発見する"
 	},
 	ko: {
 		"button.checkout.apply": "대다",
@@ -1125,7 +1136,8 @@ export default {
 		"product.attribute.Size": "크기",
 		"product.tags": "태그",
 		"validation.full_name": "성명은 100 자 이하 여야합니다!",
-		"checkout.ship_to_different_address": "다른 주소로 배송"
+		"checkout.ship_to_different_address": "다른 주소로 배송",
+		"products.show_more": "더 발견하다"
 	},
 	ms: {
 		"cart.th.product": "Produk",
@@ -1219,7 +1231,8 @@ export default {
 		"shipping.local": "Penghantaran Tempatan",
 		"product.attribute.Occasion": "Peluang",
 		"shipping.calculate": "Kira Penghantaran",
-		"checkout.ship_to_different_address": "Hantar ke alamat lain"
+		"checkout.ship_to_different_address": "Hantar ke alamat lain",
+		"products.show_more": "Ketahui lebih lanjut"
 	},
 	nl: {
 		"shop.page.description": "Onze geweldige winkel",
@@ -1314,7 +1327,8 @@ export default {
 		"search.no_results": "Er zijn geen resultaten gevonden",
 		"checkout.pay": "BETALEN",
 		"footer.privacy_policy": "Privacybeleid",
-		"checkout.ship_to_different_address": "Verzend naar een ander adres"
+		"checkout.ship_to_different_address": "Verzend naar een ander adres",
+		"products.show_more": "Ontdek meer"
 	},
 	no: {
 		"button.add_to_cart": "Legg i handlekurv",
@@ -1408,7 +1422,8 @@ export default {
 		"summary.title": "Sammendrag",
 		"footer.help_and_information": "Hjelp og informasjon",
 		"checkout.pay": "BETALE",
-		"checkout.ship_to_different_address": "Send til en annen adresse"
+		"checkout.ship_to_different_address": "Send til en annen adresse",
+		"products.show_more": "Oppdag mer"
 	},
 	pl: {
 		"button.buy_now": "Kup Teraz",
@@ -1503,7 +1518,8 @@ export default {
 		"product.attribute.Occasion": "Okazja",
 		"header.links.collections": "Kolekcje",
 		"product.attribute.Color": "Kolor",
-		"checkout.ship_to_different_address": "Dostawa na inny adres"
+		"checkout.ship_to_different_address": "Dostawa na inny adres",
+		"products.show_more": "Odkryj więcej"
 	},
 	pt: {
 		"cart.th.quantity": "Quantidade",
@@ -1597,7 +1613,8 @@ export default {
 		"footer.language": "Língua",
 		"footer.help_and_information": "Ajuda e Informações",
 		"footer.about_us": "Sobre nós",
-		"checkout.ship_to_different_address": "Envie para um endereço diferente"
+		"checkout.ship_to_different_address": "Envie para um endereço diferente",
+		"products.show_more": "Descubra mais"
 	},
 	ru: {
 		"cart.th.quantity": "Quantidade",
@@ -1691,7 +1708,8 @@ export default {
 		"footer.language": "Língua",
 		"footer.help_and_information": "Ajuda e Informações",
 		"footer.about_us": "Sobre nós",
-		"checkout.ship_to_different_address": "доставить по другому адресу"
+		"checkout.ship_to_different_address": "доставить по другому адресу",
+		"products.show_more": "Открой для себя больше"
 	},
 	sv: {
 		"cart.th.quantity": "Quantidade",
@@ -1785,7 +1803,8 @@ export default {
 		"footer.language": "Língua",
 		"footer.help_and_information": "Ajuda e Informações",
 		"footer.about_us": "Sobre nós",
-		"checkout.ship_to_different_address": "skicka till en annan adress"
+		"checkout.ship_to_different_address": "skicka till en annan adress",
+		"products.show_more": "Upptäck mer"
 	},
 	tr: {
 		"checkout.form.address": "Adres",
@@ -1879,7 +1898,8 @@ export default {
 		"product.attribute.Texture": "Doku",
 		"dropdown.sort_by.newest": "en yeni",
 		"checkout.form.postal_code": "Posta kodu",
-		"checkout.ship_to_different_address": "Farklı bir adrese gönder"
+		"checkout.ship_to_different_address": "Farklı bir adrese gönder",
+		"products.show_more": "Daha fazlasını keşfet"
 	},
 	vi: {
 		"shipping.total": "Toàn bộ",
@@ -1973,7 +1993,8 @@ export default {
 		"button.update_total": "Tổng số cập nhật",
 		"cart.th.price": "Giá bán",
 		"checkout.form.address": "Địa chỉ",
-		"checkout.ship_to_different_address": "Gửi đến địa chỉ khác"
+		"checkout.ship_to_different_address": "Gửi đến địa chỉ khác",
+		"products.show_more": "Khám phá nhiều hơn"
 	},
 	zh: {
 		"checkout.form.full_name": "全名",
@@ -2065,6 +2086,7 @@ export default {
 		"footer.about": "关于",
 		"checkout.form.credit_card": "信用卡",
 		"checkout.coupon.label": "优惠码",
-		"checkout.ship_to_different_address": "运送到不同的地址"
+		"checkout.ship_to_different_address": "运送到不同的地址",
+		"products.show_more": "发现更多"
 	}
 };

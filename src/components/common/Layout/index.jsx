@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import Header from "components/theme/Header";
 import Footer from "components/theme/Footer";
 import { withTheme } from "styled-components";
@@ -11,7 +10,6 @@ const Layout = ({
 	collections,
 	theme,
 	seoDetails,
-	promotion,
 	checkout,
 	legal
 }) => {
@@ -35,7 +33,6 @@ const Layout = ({
 				<Header
 					collections={collections}
 					seoDetails={seoDetails}
-					promotion={promotion}
 					checkout={checkout}
 					legal={legal}
 				/>

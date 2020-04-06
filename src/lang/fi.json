@@ -88,5 +88,6 @@
 	"product.out_of_stock": "LOPPU VARASTOSTA",
 	"button.buy_now": "osta nyt",
 	"button.checkout": "Tarkista",
-	"checkout.ship_to_different_address": "Toimita toiseen osoitteeseen"
+	"checkout.ship_to_different_address": "Toimita toiseen osoitteeseen",
+	"products.show_more": "Löydä lisää"
 }

@@ -88,5 +88,6 @@
 	"product.attribute.Occasion": "Okazja",
 	"header.links.collections": "Kolekcje",
 	"product.attribute.Color": "Kolor",
-	"checkout.ship_to_different_address": "Dostawa na inny adres"
+	"checkout.ship_to_different_address": "Dostawa na inny adres",
+	"products.show_more": "Odkryj więcej"
 }

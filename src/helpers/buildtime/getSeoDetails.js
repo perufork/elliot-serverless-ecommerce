@@ -7,7 +7,7 @@ export default async () => {
 	return buildCache("getSeoDetails", () =>
 		axios
 			.post(
-				"https://admin.elliot.store/api",
+				"https://admin.elliot.store/api ",
 				{
 					query: seoQuery,
 					variables: {

@@ -11,7 +11,9 @@ const Dropdown = ({
 	standalone,
 	languages,
 	currency,
-	setCurrency
+	setCurrency,
+	sorting,
+	setSorting
 }) => {
 	const { locale } = useIntl();
 	const listEl = useRef(null);
@@ -84,6 +86,16 @@ const Dropdown = ({
 							}}
 						>
 							{item.value}
+						</Item>
+					) : sorting ? (
+						<Item
+							key={`option-${index}`}
+							onClick={e => {
+								setSorting(item);
+								pickElement(e);
+							}}
+						>
+							{item}
 						</Item>
 					) : (
 						<Item key={`option-${index}`} onClick={pickElement}>

@@ -88,5 +88,6 @@
 	"product.attribute.Texture": "Doku",
 	"dropdown.sort_by.newest": "en yeni",
 	"checkout.form.postal_code": "Posta kodu",
-	"checkout.ship_to_different_address": "Farklı bir adrese gönder"
+	"checkout.ship_to_different_address": "Farklı bir adrese gönder",
+	"products.show_more": "Daha fazlasını keşfet"
 }

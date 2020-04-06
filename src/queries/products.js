@@ -6,6 +6,7 @@ query checkout($id: ID! $domainId: ID!) {
         edges {
           node {
             id
+            createdOn
             name
             gender
             variantCount

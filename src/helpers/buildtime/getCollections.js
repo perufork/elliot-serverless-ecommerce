@@ -11,7 +11,7 @@ export default async () => {
 	return buildCache("getCollections", () =>
 		axios
 			.post(
-				"https://admin.elliot.store/api",
+				"https://admin.elliot.store/api ",
 				{
 					query: collectionsQuery,
 					variables: {

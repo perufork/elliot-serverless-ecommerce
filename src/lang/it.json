@@ -88,5 +88,6 @@
 	"shipping.calculate": "Calcola Spedizione",
 	"footer.privacy_policy": "politica sulla riservatezza",
 	"checkout.coupon.label": "Codice di sconto",
-	"checkout.ship_to_different_address": "Spedisci a un indirizzo diverso"
+	"checkout.ship_to_different_address": "Spedisci a un indirizzo diverso",
+	"products.show_more": "Scopri di più"
 }

@@ -9,7 +9,7 @@ import { useCurrency } from "providers/CurrencyProvider";
 import { Container, Banner, Wrapper, Options } from "./styles";
 import { useCheckout } from "providers/CheckoutProvider";
 
-export default ({ collections, seoDetails, promotion, checkout, legal }) => {
+export default ({ collections, seoDetails, checkout, legal }) => {
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -21,27 +21,28 @@ export default ({ collections, seoDetails, promotion, checkout, legal }) => {
 		});
 	};
 
-	const {
-		domain: { freeShippingThreshold, freeShippingThresholdTarget },
-		shipFromLocation: { country }
-	} = useCheckout();
+	const { domain, shipFromLocation } = useCheckout();
 
 	const FreeShippingText = () => {
 		const threshold = loading ? (
 			"..."
 		) : (
 			<NumberFormat
-				value={(parseInt(freeShippingThreshold) / 100) * exchangeRate}
+				value={(parseInt(domain?.freeShippingThreshold) / 100) * exchangeRate}
 				displayType={"text"}
 				thousandSeparator={true}
 				prefix={currency}
 			/>
 		);
 
-		if (freeShippingThresholdTarget === FreeShippingThresholdTarget.DOMESTIC) {
+		if (
+			domain?.freeShippingThresholdTarget ===
+			FreeShippingThresholdTarget.DOMESTIC
+		) {
 			return (
 				<span>
-					Free Shipping for all {country} orders over {threshold}
+					Free Shipping for all {shipFromLocation?.country} orders over{" "}
+					{threshold}
 				</span>
 			);
 		}
@@ -58,7 +59,7 @@ export default ({ collections, seoDetails, promotion, checkout, legal }) => {
 				legal={legal}
 			/>
 			<Container>
-				{promotion && (
+				{domain?.freeShippingThreshold && (
 					<Banner>
 						<FreeShippingText />
 					</Banner>
