@@ -58,23 +58,42 @@ If you're new and need some guidance feel free reach out to any of our core team
 
 ### Locally
 
-1. Clone the repository
-2. Create dev environment file from template `./.env.development.tempate` by running `cp .env.development.template .env.development`
-3. Use the [Elliot CLI](https://github.com/helloiamelliot/elliot-cli) to fetch your account's single env variable containing:
+1. Install the [Elliot CLI](https://github.com/helloiamelliot/elliot-cli) running
 
    ```bash
-   ELLIOT_DOMAIN_ID|ELLIOT_STORE_FRONT_ID|ELLIOT_STORE_FRONT_NAME|ELLIOT_API_KEY
+   npm i -g elliot-cli
    ```
 
-4. Or get it via the [Elliot Dashboard](https://elliot.store/) by clicking on "Get Headless"
+   Or
+
+   ```bash
+   yarn global add elliot-cli
+   ```
+
+2. Login to Elliot via the CLI running
+
+   ```bash
+   elliot login
+   ```
+
+3. Get your domain and experience by running
+
+   ```bash
+   elliot deploy
+   ```
+
+4. Choose your domain ID and experience and it will automatically clone this boilerplate and handle everything for you
+
+   > It will create `.env.development` file with the right env variables keys//values, delete any files unrelated and install the dependencies used.
+
 5. To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
 
    > Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#enabling-digital-wallets) to get the Apple verification file
 
-6. Run the following commands to start the server locally:
+6. Run the following commands to start the server locally on port `3000`:
 
    ```bash
-   npm i && npm run dev
+   npm run dev
    ```
 
 7. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
@@ -85,12 +104,14 @@ If you're new and need some guidance feel free reach out to any of our core team
    now --prod
    ```
 
+   > You can get these values from your `.env.development` file
+
 ### Online
 
 1. Login on [Elliot](https://elliot.store)
 2. Choose a domain space
 3. Click on "Get Headless"
-4. Follow the on boarding and you will be good to go!
+4. Follow the onboarding and you will be good to go!
 
 > To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
 
