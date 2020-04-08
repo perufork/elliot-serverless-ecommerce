@@ -5,6 +5,7 @@ import Dropdown from "components/common/Dropdown";
 import Container from "components/common/Container";
 import languages from "helpers/i18n/languages.json";
 import currencies from "helpers/payment/currencies.json";
+import paymentMethods from "assets/cards.png";
 import {
 	CopyWrapper,
 	Item,
@@ -107,39 +108,46 @@ const Footer = ({ collections, seoDetails, legal }) => {
 				</List>
 			</Navigation>
 			<Separator />
-			<Container>
-				<CopyWrapper>
-					<p>
-						© {new Date().getFullYear()}{" "}
-						<span>{seoDetails?.lookAndFeel?.seo?.name}.</span>{" "}
-						<FormattedMessage id="footer.rights_reserved" />
-					</p>
-					{legal?.privacyPolicy && legal?.termsAndConditions && (
-						<ul>
-							<li>
-								<Link
-									href="/[lang]/privacy-policy"
-									as={`/${locale}/privacy-policy`}
-								>
-									<a>
-										<FormattedMessage id="footer.privacy_policy" />
-									</a>
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/[lang]/terms-and-conditions"
-									as={`/${locale}/terms-and-conditions`}
-								>
-									<a>
-										<FormattedMessage id="footer.terms_conditions" />
-									</a>
-								</Link>
-							</li>
-						</ul>
-					)}
-				</CopyWrapper>
-			</Container>
+			<CopyWrapper as={Container}>
+				<p>
+					© {new Date().getFullYear()}{" "}
+					<span>{seoDetails?.lookAndFeel?.seo?.name}.</span>{" "}
+					<FormattedMessage id="footer.rights_reserved" />
+				</p>
+				{legal?.privacyPolicy && legal?.termsAndConditions && (
+					<ul>
+						<li>
+							<Link
+								href="/[lang]/privacy-policy"
+								as={`/${locale}/privacy-policy`}
+							>
+								<a>
+									<FormattedMessage id="footer.privacy_policy" />
+								</a>
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/[lang]/terms-and-conditions"
+								as={`/${locale}/terms-and-conditions`}
+							>
+								<a>
+									<FormattedMessage id="footer.terms_conditions" />
+								</a>
+							</Link>
+						</li>
+					</ul>
+				)}
+			</CopyWrapper>
+			<CopyWrapper as={Container}>
+				<p>
+					Powered by{" "}
+					<a href="https://elliot.store" target="__blank">
+						Elliot
+					</a>
+				</p>
+				<img src={paymentMethods} alt="payment methods supported" />
+			</CopyWrapper>
 		</Wrapper>
 	);
 };
