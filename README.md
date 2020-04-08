@@ -117,6 +117,10 @@ If you're new and need some guidance feel free reach out to any of our core team
 
 > Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#enabling-digital-wallets) to get the Apple verification file
 
+## Custom theme
+
+You can easily customize the theme by changing the values on the theme config [here](https://github.com/helloiamelliot/elliot-serverless-ecommerce/blob/master/src/components/theme/index.js)
+
 ## Built with
 
 - Next.js

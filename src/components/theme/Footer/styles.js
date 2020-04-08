@@ -90,6 +90,10 @@ export const CopyWrapper = styled.div`
 	align-items: center;
 	justify-content: space-between;
 
+	img {
+		max-width: 250px;
+	}
+
 	p {
 		font-size: 10.5pt;
 		line-height: 2.5rem;
