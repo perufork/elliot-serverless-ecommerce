@@ -48,6 +48,7 @@ export const getStaticProps = async ({ params: { lang } }) => {
 		const legal = await getLegal();
 
 		return {
+			revalidate: 1,
 			props: {
 				products,
 				collections,
