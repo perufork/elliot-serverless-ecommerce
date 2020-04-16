@@ -1,4 +1,8 @@
 {
+	"env": {
+		"BASE_URL": "@base_url",
+		"ELLIOT_ENV_VARIABLES": "@elliot_env_variables"
+	},
 	"build": {
 		"env": {
 			"BASE_URL": "@base_url",
