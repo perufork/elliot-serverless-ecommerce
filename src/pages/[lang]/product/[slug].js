@@ -55,11 +55,19 @@ export const getStaticProps = async ({
 	params: { slug, lang },
 	preview = null
 }) => {
-	const collections = await getCollections();
-	const product = await getProductBySlug(slug, preview);
-	const seoDetails = await getSeoDetails();
-	const checkout = await getCheckout();
-	const legal = await getLegal();
+	const [
+		collections,
+		product,
+		seoDetails,
+		checkout,
+		legal
+	] = await Promise.all([
+		getCollections(),
+		getProductBySlug(slug, preview),
+		getSeoDetails(),
+		getCheckout(),
+		getLegal()
+	]);
 
 	return {
 		revalidate: 1,
