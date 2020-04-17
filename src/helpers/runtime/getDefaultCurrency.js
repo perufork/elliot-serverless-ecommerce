@@ -1,6 +1,6 @@
 import axios from "axios";
 import defaultCurrencyQuery from "queries/defaultCurrency";
-import { ELLIOT_STORE_FRONT_ID, ELLIOT_API_KEY } from "config";
+import { ELLIOT_STORE_FRONT_ID, ELLIOT_API_KEY, ENVIRONMENT } from "config";
 
 export default async () => {
 	const {
@@ -14,7 +14,9 @@ export default async () => {
 			}
 		}
 	} = await axios.post(
-		"https://cors-anywhere.herokuapp.com/https://admin.elliot.store/api ",
+		ENVIRONMENT === "staging"
+			? "https://cors-anywhere.herokuapp.com/https://admin.elliot.store/api"
+			: "https://admin.elliot.store/api",
 		{
 			query: defaultCurrencyQuery,
 			variables: {

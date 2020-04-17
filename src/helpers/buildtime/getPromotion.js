@@ -1,6 +1,6 @@
 import axios from "axios";
 import promotionQuery from "queries/promotion";
-import buildCache from "./buildCache";
+import buildCache from "helpers/buildtime/buildCache";
 import { ELLIOT_STORE_FRONT_ID, ELLIOT_API_KEY } from "config";
 
 export default async () => {
