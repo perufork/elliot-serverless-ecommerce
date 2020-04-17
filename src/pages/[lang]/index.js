@@ -41,11 +41,19 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = async ({ params: { lang } }) => {
 	try {
-		const products = await getProducts();
-		const collections = await getCollections();
-		const seoDetails = await getSeoDetails();
-		const checkout = await getCheckout();
-		const legal = await getLegal();
+		const [
+			products,
+			collections,
+			seoDetails,
+			checkout,
+			legal
+		] = await Promise.all([
+			getProducts(),
+			getCollections(),
+			getSeoDetails(),
+			getCheckout(),
+			getLegal()
+		]);
 
 		return {
 			revalidate: 1,
