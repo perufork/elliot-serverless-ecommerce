@@ -1,27 +1,29 @@
 import Head from "next/head";
 import Header from "components/theme/Header";
 import Footer from "components/theme/Footer";
-import { withTheme } from "styled-components";
+import { useTheme } from "styled-components";
 import GlobalStyle from "components/theme/global-style";
 import { Wrapper } from "./styles";
 
-const Layout = ({
+export default ({
 	children,
 	collections,
-	theme,
 	seoDetails,
 	checkout,
-	legal
+	legal,
+	preview
 }) => {
+	const { fonts } = useTheme();
+
 	return (
 		<>
 			<Head>
 				{/* TODO: pass custom font from theme */}
 				<link
-					href={`https://fonts.googleapis.com/css?family=${theme.fonts.primary.replace(
+					href={`https://fonts.googleapis.com/css?family=${fonts.primary.replace(
 						" ",
 						"+"
-					)}:300,400,500|${theme.fonts.primary.replace(
+					)}:300,400,500|${fonts.primary.replace(
 						" ",
 						"+"
 					)}:400,700&display=fallback`}
@@ -35,6 +37,7 @@ const Layout = ({
 					seoDetails={seoDetails}
 					checkout={checkout}
 					legal={legal}
+					preview={preview}
 				/>
 				<Wrapper>{children}</Wrapper>
 				<Footer
@@ -46,5 +49,3 @@ const Layout = ({
 		</>
 	);
 };
-
-export default withTheme(Layout);

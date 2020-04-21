@@ -24,35 +24,23 @@ const Checkout = ({ legal, collections, checkout, seoDetails, promotion }) => (
 	</Layout>
 );
 
-export const getStaticProps = async ({ params }) => {
-	try {
-		const collections = await getCollections();
-		const checkout = await getCheckout();
-		const seoDetails = await getSeoDetails();
-		const promotion = await getPromotion();
-		const legal = await getLegal();
+export const getStaticProps = async ({ params: { lang } }) => {
+	const collections = await getCollections();
+	const seoDetails = await getSeoDetails();
+	const checkout = await getCheckout();
+	const promotion = await getPromotion();
+	const legal = await getLegal();
 
-		return {
-			props: {
-				collections,
-				seoDetails,
-				checkout,
-				locale: params.lang,
-				promotion,
-				legal
-			}
-		};
-	} catch (error) {
-		return {
-			props: {
-				locale: params.lang,
-				seoDetails: {},
-				collections: [],
-				promotion: {},
-				legal: {}
-			}
-		};
-	}
+	return {
+		props: {
+			collections: collections,
+			seoDetails,
+			locale: lang,
+			checkout,
+			promotion,
+			legal
+		}
+	};
 };
 
 export { getStaticPaths } from "./index";

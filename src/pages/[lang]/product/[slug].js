@@ -4,18 +4,27 @@ import SEO from "components/common/SEO";
 import ProductItem from "components/product/ProductItem";
 import withLocale from "hoc/withLocale";
 import locales from "helpers/i18n/locales";
-import getProducts from "helpers/buildtime/getProducts";
+import getProductsSlugs from "helpers/buildtime/getProductsSlugs";
 import getCollections from "helpers/buildtime/getCollections";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
 import getCheckout from "helpers/buildtime/getCheckout";
 import getLegal from "helpers/buildtime/getLegal";
+import getProductBySlug from "helpers/buildtime/getProductBySlug";
 
-const Product = ({ legal, product, collections, seoDetails, checkout }) => (
+const Product = ({
+	legal,
+	product,
+	collections,
+	seoDetails,
+	checkout,
+	preview
+}) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		checkout={checkout}
 		legal={legal}
+		preview={preview}
 	>
 		{product.id ? (
 			<>
@@ -38,9 +47,9 @@ const Product = ({ legal, product, collections, seoDetails, checkout }) => (
 );
 
 export const getStaticPaths = async () => {
-	const products = await getProducts();
+	const productsSlugs = await getProductsSlugs();
 
-	const localizedProducts = products.edges.map(({ node: { slug } }) =>
+	const localizedProducts = productsSlugs.edges.map(({ node: { slug } }) =>
 		locales.map(locale => `/${locale}/product/${slug}`)
 	);
 
@@ -50,40 +59,36 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps = async ({ params: { slug, lang } }) => {
-	try {
-		const collections = await getCollections();
-		const products = await getProducts();
-		const seoDetails = await getSeoDetails();
-		const checkout = await getCheckout();
-		const legal = await getLegal();
+export const getStaticProps = async ({
+	params: { slug, lang },
+	preview = null
+}) => {
+	const [
+		collections,
+		product,
+		seoDetails,
+		checkout,
+		legal
+	] = await Promise.all([
+		getCollections(),
+		getProductBySlug(slug, preview),
+		getSeoDetails(),
+		getCheckout(),
+		getLegal()
+	]);
 
-		const product = products.edges.find(
-			({ node: { slug: _slug } }) => _slug === slug
-		);
-		return {
-			revalidate: 1,
-			props: {
-				product: product.node,
-				locale: lang,
-				collections,
-				seoDetails,
-				checkout,
-				legal
-			}
-		};
-	} catch (error) {
-		return {
-			props: {
-				product: {},
-				locale: lang,
-				collections: [],
-				seoDetails: {},
-				checkout: {},
-				legal: {}
-			}
-		};
-	}
+	return {
+		unstable_revalidate: 1,
+		props: {
+			product,
+			locale: lang,
+			collections,
+			seoDetails,
+			checkout,
+			legal,
+			preview
+		}
+	};
 };
 
 export default withLocale(Product);

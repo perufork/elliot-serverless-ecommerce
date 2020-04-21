@@ -40,38 +40,27 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug, lang } }) => {
-	try {
-		const collections = await getCollections();
-		const seoDetails = await getSeoDetails();
-		const checkout = await getCheckout();
-		const legal = await getLegal();
+	const [collections, seoDetails, checkout, legal] = await Promise.all([
+		getCollections(),
+		getSeoDetails(),
+		getCheckout(),
+		getLegal()
+	]);
 
-		const collection = collections.edges.find(
-			({ node: { slug: _slug } }) => _slug === slug
-		);
-		return {
-			revalidate: 1,
-			props: {
-				collection: collection.node,
-				locale: lang,
-				collections,
-				seoDetails,
-				checkout,
-				legal
-			}
-		};
-	} catch (error) {
-		return {
-			props: {
-				collection: {},
-				locale: lang,
-				collections: [],
-				seoDetails: {},
-				checkout: {},
-				legal: {}
-			}
-		};
-	}
+	const collection = collections.edges.find(
+		({ node: { slug: _slug } }) => _slug === slug
+	);
+	return {
+		unstable_revalidate: 1,
+		props: {
+			collection: collection.node,
+			locale: lang,
+			collections,
+			seoDetails,
+			checkout,
+			legal
+		}
+	};
 };
 
 export default withLocale(Product);

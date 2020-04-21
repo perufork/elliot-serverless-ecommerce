@@ -1,5 +1,5 @@
 import axios from "axios";
-import buildCache from "./buildCache";
+import buildCache from "helpers/buildtime/buildCache";
 import productsQuery from "queries/products";
 import {
 	ELLIOT_STORE_FRONT_ID,

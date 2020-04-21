@@ -1,15 +1,15 @@
 import axios from "axios";
-import seoQuery from "queries/seo";
 import buildCache from "helpers/buildtime/buildCache";
+import productsSlugs from "queries/productsSlugs";
 import { ELLIOT_STORE_FRONT_ID, ELLIOT_API_KEY } from "config";
 
 export default async () => {
-	return buildCache("getSeoDetails", () =>
+	return buildCache("getProductsSlugs", () =>
 		axios
 			.post(
 				"https://admin.elliot.store/api ",
 				{
-					query: seoQuery,
+					query: productsSlugs,
 					variables: {
 						id: ELLIOT_STORE_FRONT_ID
 					}
@@ -21,6 +21,6 @@ export default async () => {
 					}
 				}
 			)
-			.then(res => res.data.data.node)
+			.then(res => res.data.data.node.products)
 	);
 };

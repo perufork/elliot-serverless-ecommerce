@@ -6,6 +6,7 @@ import SEO from "components/common/SEO";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
 import getCheckout from "helpers/buildtime/getCheckout";
 import getLegal from "helpers/buildtime/getLegal";
+import getPromotion from "helpers/buildtime/getPromotion";
 
 const Cart = ({ legal, collections, seoDetails, checkout }) => (
 	<Layout
@@ -23,33 +24,23 @@ const Cart = ({ legal, collections, seoDetails, checkout }) => (
 	</Layout>
 );
 
-export const getStaticProps = async ({ params }) => {
-	try {
-		const collections = await getCollections();
-		const seoDetails = await getSeoDetails();
-		const checkout = await getCheckout();
-		const legal = await getLegal();
+export const getStaticProps = async ({ params: { lang } }) => {
+	const collections = await getCollections();
+	const seoDetails = await getSeoDetails();
+	const checkout = await getCheckout();
+	const promotion = await getPromotion();
+	const legal = await getLegal();
 
-		return {
-			props: {
-				collections: collections,
-				seoDetails,
-				locale: params.lang,
-				checkout,
-				legal
-			}
-		};
-	} catch (error) {
-		return {
-			props: {
-				collections: [],
-				seoDetails: {},
-				locale: params.lang,
-				checkout: {},
-				legal: {}
-			}
-		};
-	}
+	return {
+		props: {
+			collections: collections,
+			seoDetails,
+			locale: lang,
+			checkout,
+			promotion,
+			legal
+		}
+	};
 };
 
 export { getStaticPaths } from "./index";

@@ -1,6 +1,6 @@
 import axios from "axios";
 import productByIdQuery from "queries/productById";
-import { ELLIOT_API_KEY } from "config";
+import { ELLIOT_API_KEY, ENVIRONMENT } from "config";
 
 export default async id => {
 	const {
@@ -8,7 +8,9 @@ export default async id => {
 			data: { node }
 		}
 	} = await axios.post(
-		"https://cors-anywhere.herokuapp.com/https://admin.elliot.store/api ",
+		ENVIRONMENT === "staging"
+			? "https://cors-anywhere.herokuapp.com/https://admin.elliot.store/api"
+			: "https://admin.elliot.store/api",
 		{
 			query: productByIdQuery,
 			variables: {
