@@ -2,12 +2,11 @@ import Layout from "components/common/Layout";
 import SEO from "components/common/SEO";
 import FailedOrder from "components/shipping/FailedOrder";
 import withLocale from "hoc/withLocale";
-import getProducts from "helpers/buildtime/getProducts";
 import getCollections from "helpers/buildtime/getCollections";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
 import getCheckout from "helpers/buildtime/getCheckout";
-import locales from "helpers/i18n/locales";
 import getLegal from "helpers/buildtime/getLegal";
+import getPromotion from "helpers/buildtime/getPromotion";
 
 const OrderFailed = ({ legal, collections, seoDetails, checkout }) => (
 	<Layout
@@ -25,44 +24,25 @@ const OrderFailed = ({ legal, collections, seoDetails, checkout }) => (
 	</Layout>
 );
 
-export const getStaticPaths = () => {
+export const getStaticProps = async ({ params: { lang } }) => {
+	const collections = await getCollections();
+	const seoDetails = await getSeoDetails();
+	const checkout = await getCheckout();
+	const promotion = await getPromotion();
+	const legal = await getLegal();
+
 	return {
-		paths: locales.map(locale => ({ params: { lang: locale } })),
-		fallback: true
+		props: {
+			collections: collections,
+			seoDetails,
+			locale: lang,
+			checkout,
+			promotion,
+			legal
+		}
 	};
 };
 
-export const getStaticProps = async ({ params: { lang } }) => {
-	try {
-		const products = await getProducts();
-		const collections = await getCollections();
-		const seoDetails = await getSeoDetails();
-		const checkout = await getCheckout();
-		const legal = await getLegal();
-
-		return {
-			props: {
-				products,
-				collections,
-				seoDetails,
-				locale: lang,
-				checkout,
-				legal
-			}
-		};
-	} catch (error) {
-		console.log(error);
-		return {
-			props: {
-				products: [],
-				collections: [],
-				seoDetails: {},
-				locale: lang,
-				checkout: {},
-				legal: {}
-			}
-		};
-	}
-};
+export { getStaticPaths } from "./index";
 
 export default withLocale(OrderFailed);

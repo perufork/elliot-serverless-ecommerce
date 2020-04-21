@@ -7,6 +7,7 @@ import getCollections from "helpers/buildtime/getCollections";
 import getSeoDetails from "helpers/buildtime/getSeoDetails";
 import getCheckout from "helpers/buildtime/getCheckout";
 import getLegal from "helpers/buildtime/getLegal";
+import getPromotion from "helpers/buildtime/getPromotion";
 
 const Index = ({ legal, collections, seoDetails, checkout }) => (
 	<Layout
@@ -33,33 +34,22 @@ const Index = ({ legal, collections, seoDetails, checkout }) => (
 );
 
 export const getStaticProps = async ({ params: { lang } }) => {
-	try {
-		const collections = await getCollections();
-		const seoDetails = await getSeoDetails();
-		const checkout = await getCheckout();
-		const legal = await getLegal();
+	const collections = await getCollections();
+	const seoDetails = await getSeoDetails();
+	const checkout = await getCheckout();
+	const promotion = await getPromotion();
+	const legal = await getLegal();
 
-		return {
-			props: {
-				legal,
-				collections,
-				seoDetails,
-				locale: lang,
-				checkout
-			}
-		};
-	} catch (error) {
-		console.log(error);
-		return {
-			props: {
-				legal: {},
-				collections: [],
-				seoDetails: {},
-				locale: lang,
-				checkout: {}
-			}
-		};
-	}
+	return {
+		props: {
+			collections: collections,
+			seoDetails,
+			locale: lang,
+			checkout,
+			promotion,
+			legal
+		}
+	};
 };
 
 export { getStaticPaths } from "./index";

@@ -52,9 +52,20 @@ If you're new and need some guidance feel free reach out to any of our core team
 
 [Create an Elliot account](https://elliot.store/)
 
-> Start by creating a store and adding a few products to it!
+> Start by creating a store and add a few products to it!
 
 [Yarn](https://yarnpkg.com/en/) or [NPM](https://nodejs.org/)
+
+### Online
+
+1. Login on [Elliot](https://elliot.store)
+2. Choose a domain space
+3. Click on "Get Headless"
+4. Follow the onboarding and you will be good to go!
+
+> To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
+
+> Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#enabling-digital-wallets) to get the Apple verification file
 
 ### Locally
 
@@ -93,7 +104,7 @@ If you're new and need some guidance feel free reach out to any of our core team
 6. Run the following commands to start the server locally on port `3000`:
 
    ```bash
-   npm run dev
+   yarn run dev
    ```
 
 7. When deploying to [ZEIT Now](https://zeit.co), you will have to set the [Now secrets](https://zeit.co/docs/v2/build-step#adding-secrets), so ensure that they've been added:
@@ -106,20 +117,26 @@ If you're new and need some guidance feel free reach out to any of our core team
 
    > You can get these values from your `.env.development` file
 
-### Online
-
-1. Login on [Elliot](https://elliot.store)
-2. Choose a domain space
-3. Click on "Get Headless"
-4. Follow the onboarding and you will be good to go!
-
-> To enable Apple Pay, you will have to get the Apple verification file and place it under `/public/.well-known/`
-
-> Follow this [Guide](https://github.com/helloiamelliot/elliot-serverless-ecommerce#enabling-digital-wallets) to get the Apple verification file
-
 ## Custom theme
 
 You can easily customize the theme by changing the values on the theme config [here](https://github.com/helloiamelliot/elliot-serverless-ecommerce/blob/master/src/components/theme/index.js)
+
+## Preview mode
+
+We do support [Next js preview mode](https://nextjs.org/docs/advanced-features/preview-mode)
+
+1. Add `ELLIOT_PREVIEW_MODE_SECRET` as env variable with a secret value to be kept somewhere safe, you can add the env variable to your ZEIT Now project settings
+   ![ZEIT Now env variables](zeit-env-section.png)
+
+2. Now visit the following link
+
+   ```bash
+   <your website link>/api/preview?secret=<ELLIOT_PREVIEW_MODE_SECRET value>&slug=<your product slug>
+   ```
+
+3. You can now open the same product on [Elliot](https://elliot.store), edit it and see the changes live when ever you refresh the product page
+
+> You might have to upgrade your ZEIT Now account in order to prolonge the serverless function running time to go over 10 seconds.
 
 ## Built with
 

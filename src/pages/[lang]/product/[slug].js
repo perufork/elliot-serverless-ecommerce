@@ -11,12 +11,20 @@ import getCheckout from "helpers/buildtime/getCheckout";
 import getLegal from "helpers/buildtime/getLegal";
 import getProductBySlug from "helpers/buildtime/getProductBySlug";
 
-const Product = ({ legal, product, collections, seoDetails, checkout }) => (
+const Product = ({
+	legal,
+	product,
+	collections,
+	seoDetails,
+	checkout,
+	preview
+}) => (
 	<Layout
 		collections={collections}
 		seoDetails={seoDetails}
 		checkout={checkout}
 		legal={legal}
+		preview={preview}
 	>
 		{product.id ? (
 			<>
@@ -70,14 +78,15 @@ export const getStaticProps = async ({
 	]);
 
 	return {
-		revalidate: 1,
+		unstable_revalidate: 1,
 		props: {
 			product,
 			locale: lang,
 			collections,
 			seoDetails,
 			checkout,
-			legal
+			legal,
+			preview
 		}
 	};
 };

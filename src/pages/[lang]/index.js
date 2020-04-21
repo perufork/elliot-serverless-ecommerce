@@ -40,45 +40,31 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = async ({ params: { lang } }) => {
-	try {
-		const [
+	const [
+		products,
+		collections,
+		seoDetails,
+		checkout,
+		legal
+	] = await Promise.all([
+		getProducts(),
+		getCollections(),
+		getSeoDetails(),
+		getCheckout(),
+		getLegal()
+	]);
+
+	return {
+		unstable_revalidate: 1,
+		props: {
 			products,
 			collections,
 			seoDetails,
+			locale: lang,
 			checkout,
 			legal
-		] = await Promise.all([
-			getProducts(),
-			getCollections(),
-			getSeoDetails(),
-			getCheckout(),
-			getLegal()
-		]);
-
-		return {
-			revalidate: 1,
-			props: {
-				products,
-				collections,
-				seoDetails,
-				locale: lang,
-				checkout,
-				legal
-			}
-		};
-	} catch (error) {
-		console.log(error);
-		return {
-			props: {
-				products: [],
-				collections: [],
-				seoDetails: {},
-				locale: lang,
-				checkout: {},
-				legal: {}
-			}
-		};
-	}
+		}
+	};
 };
 
 export default withLocale(Index);

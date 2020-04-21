@@ -1,15 +1,18 @@
 import NumberFormat from "react-number-format";
+import { useRouter } from "next/router";
+import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
+import { useCurrency } from "providers/CurrencyProvider";
+import { useCheckout } from "providers/CheckoutProvider";
 import FreeShippingThresholdTarget from "helpers/constants/FreeShippingThresholdTarget";
 import Brand from "./components/Brand";
 import Links from "./components/Links";
 import Buttons from "./components/Buttons";
+import { CancelIcon } from "components/common/Icons";
 import Sidebar from "components/theme/Header/components/Sidebar";
-import { useSidebar, useDispatchSidebar } from "providers/SidebarProvider";
-import { useCurrency } from "providers/CurrencyProvider";
 import { Container, Banner, Wrapper, Options } from "./styles";
-import { useCheckout } from "providers/CheckoutProvider";
 
-export default ({ collections, seoDetails, checkout, legal }) => {
+export default ({ collections, seoDetails, checkout, legal, preview }) => {
+	const router = useRouter();
 	const { state } = useSidebar();
 	const { dispatch } = useDispatchSidebar();
 	const { state: currency, exchangeRate, loading } = useCurrency();
@@ -59,6 +62,17 @@ export default ({ collections, seoDetails, checkout, legal }) => {
 				legal={legal}
 			/>
 			<Container>
+				{preview && (
+					<Banner preview={preview}>
+						<span>You are on Preview mode</span>
+						<button
+							type="button"
+							onClick={() => router.push("/api/exit-preview")}
+						>
+							<CancelIcon color="#fff" width={16} height={16} />
+						</button>
+					</Banner>
+				)}
 				{domain?.freeShippingThreshold && (
 					<Banner>
 						<FreeShippingText />
